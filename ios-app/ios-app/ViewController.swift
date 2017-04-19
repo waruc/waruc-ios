@@ -55,7 +55,19 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    // Navigates to the view on the right
+    // Does nothing if already in the right most view
+    func scrollRight() {
+        print("Scrolling right")
+        print(scrollContainer.contentOffset.x)
+        //if() {}
+    }
+    
+    // Navigates to the view on the left
+    // Does nothing if already in the left most view
+    func scrollLeft() {
+        print("Scrolling left")
+    }
 }
 

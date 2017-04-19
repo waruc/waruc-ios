@@ -153,6 +153,7 @@
 				310A98B6D9A1D63714EED01519D53367 /* LaunchScreen.storyboard */,
 				8B59706C944B9BFCB129977268D9F82D /* Main.storyboard */,
 				B7C665298DB176695132B2F26FA1F9E6 /* ios_app.xcdatamodeld */,
+				6E6FF06C1E99B6F7002D67E7 /* ViewControllers */,
 				6E1DBFFD1E986EEA00E29C42 /* Views */,
 			);
 			path = "ios-app";
@@ -171,14 +172,21 @@
 		6E1DBFFD1E986EEA00E29C42 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6E1DBFF11E986A2800E29C42 /* ProfileViewController.swift */,
 				6E1DBFF21E986A2800E29C42 /* ProfileViewController.xib */,
-				6E1DBFF51E986EA200E29C42 /* HomeViewController.swift */,
 				6E1DBFF61E986EA200E29C42 /* HomeViewController.xib */,
-				6E1DBFF91E986ED900E29C42 /* SettingsViewController.swift */,
 				6E1DBFFA1E986ED900E29C42 /* SettingsViewController.xib */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		6E6FF06C1E99B6F7002D67E7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6E1DBFF11E986A2800E29C42 /* ProfileViewController.swift */,
+				6E1DBFF51E986EA200E29C42 /* HomeViewController.swift */,
+				6E1DBFF91E986ED900E29C42 /* SettingsViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		B73C30D975AB91CC6C28AACB /* Pods */ = {
@@ -271,7 +279,7 @@
 				TargetAttributes = {
 					4B7F7B27DA252087D73087D24E7742BA = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = MYKB4J9SMT;
+						DevelopmentTeam = K75D96Y95K;
 						ProvisioningStyle = Automatic;
 					};
 					A26F4000BB5354698DA5E0082DFB9B15 = {
@@ -561,10 +569,10 @@
 			baseConfigurationReference = 08899C3F8A4DC92BBE8E1BFD /* Pods-ios-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MYKB4J9SMT;
+				DEVELOPMENT_TEAM = K75D96Y95K;
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "waruc.ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "ishansaksena.ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -575,10 +583,10 @@
 			baseConfigurationReference = 795BECD3F7BDDC7A07BAB855 /* Pods-ios-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MYKB4J9SMT;
+				DEVELOPMENT_TEAM = K75D96Y95K;
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "waruc.ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "ishansaksena.ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
