@@ -8,14 +8,20 @@ target 'ios-app' do
   # Pods for ios-app
   pod 'RealmSwift'
 
-  target 'ios-appTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+# Pods for Firebase
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    
 
-  target 'ios-appUITests' do
+
+  #target 'ios-appTests' do
     inherit! :search_paths
     # Pods for testing
-  end
+  #end
+
+  #target 'ios-appUITests' do
+    #inherit! :search_paths
+    # Pods for testing
+  #end
 
 end
