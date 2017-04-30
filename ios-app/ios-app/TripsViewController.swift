@@ -1,14 +1,14 @@
 //
-//  HomeViewController.swift
+//  TripsViewController.swift
 //  ios-app
 //
-//  Created by ishansaksena on 4/7/17.
+//  Created by ishansaksena on 4/30/17.
 //  Copyright © 2017 Nicholas Nordale. All rights reserved.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class TripsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

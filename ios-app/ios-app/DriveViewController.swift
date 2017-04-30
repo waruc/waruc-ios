@@ -21,7 +21,6 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         /* TODO: Get user data */
         
         profileImage.image = UIImage(named: "birdperson")
@@ -42,12 +41,7 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // Navigate to home view 
-    @IBAction func goHome(_ sender: UIBarButtonItem) {
-        print("goHome")
-        
-    }
-
+    
     /*
     // MARK: - Navigation
 
