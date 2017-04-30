@@ -9,9 +9,15 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
+    @IBOutlet weak var profileName: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
+        self.profileImage.clipsToBounds = true
+        
         
     }
 
