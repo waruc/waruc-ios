@@ -5,23 +5,24 @@ target 'ios-app' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
+  
+pod 'Firebase/Core'	
+pod 'Firebase/Auth'
+
   # Pods for ios-app
-  pod 'RealmSwift'
 
-# Pods for Firebase
-    pod 'Firebase/Core'
-    pod 'Firebase/Auth'
-    
-
-
-  #target 'ios-appTests' do
+  target 'ios-appTests' do
     inherit! :search_paths
     # Pods for testing
-  #end
 
-  #target 'ios-appUITests' do
-    #inherit! :search_paths
-    # Pods for testing
-  #end
+pod 'Firebase/Core'	
+pod 'Firebase/Auth'
+  end
+
+  target 'ios-appUITests' do
+    inherit! :search_paths
+    # Pods for testing.
+
+  end
 
 end

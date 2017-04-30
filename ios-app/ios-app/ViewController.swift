@@ -53,12 +53,12 @@ class ViewController: UIViewController {
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         // TODO: Form validation
         
-        if let email = emailTextField.text, let pass = passwordTextField {
+        if let email = emailTextField.text, let pass = passwordTextField.text {
             // check if sign in or create a new account
             if isSignIn {
                 // Sign in with Firebase
-                FIRAuth.auth()?.signIn(withEmail: email, password: pass,
-                                       completion: FIRAuthResultCallback?)
+                FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: <#T##FIRAuthResultCallback?##FIRAuthResultCallback?##(FIRUser?, Error?) -> Void#>)
+
                 
             }
             else {

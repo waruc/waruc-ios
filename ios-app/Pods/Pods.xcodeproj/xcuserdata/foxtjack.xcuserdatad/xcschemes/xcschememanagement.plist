@@ -19,12 +19,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Realm.xcscheme</key>
+		<key>Pods-ios-appTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RealmSwift.xcscheme</key>
+		<key>Pods-ios-appUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,27 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>05D739619AEE1454E698D91721CF433C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>818B1DA6C210B70B1DDA74090B931A99</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>910CFB4252025F351A1F87AE40A29326</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>98BDAE3F6280515BAD08562BD90933DD</key>
+		<key>673DD1A4B050546CA8E7BAB3137910E8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CAF2CFE95CE33AD852D9BC5FE6E380F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
