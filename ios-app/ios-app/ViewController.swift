@@ -57,22 +57,42 @@ class ViewController: UIViewController {
             // check if sign in or create a new account
             if isSignIn {
                 // Sign in with Firebase
-                FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: <#T##FIRAuthResultCallback?##FIRAuthResultCallback?##(FIRUser?, Error?) -> Void#>)
+                FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
+                    
+                    //check that user is not nill
+                    if let u = user {
+                        // User is found
+                        self.performSegue(withIdentifier: "goToSuccess", sender: self)
+                    }
+                    else {
+                        
+                    }
+                    
+                })
 
                 
             }
             else {
                 // Register the user with Firebase
+                FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user, error) in
+                    if let u = user {
+                        // User is found
+                        self.performSegue(withIdentifier: "goToSuccess", sender: self)
+                    }
+                    else {
+                        // display error
+                    }
+                })
             }
-            
-            
-            
-            
-            
         }
         
     }
     
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        // Dismiss the keyboard when the view is tapped on
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
 }
 
