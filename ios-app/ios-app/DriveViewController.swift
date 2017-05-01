@@ -8,33 +8,105 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class DriveViewController: UIViewController {
+    
+    //Main header
+    @IBOutlet weak var cityHeader: UILabel!
+    
+    //Pairing area
+    @IBOutlet weak var connectionTypeHeader: UILabel!
+    @IBOutlet weak var connectionTypeSubHeader: UILabel!
+    @IBOutlet weak var connectionImage: UIImageView!
+    @IBOutlet weak var greyBoxOne: UILabel!
 
-    @IBOutlet weak var bar: UINavigationBar!
+    //Vehicle area
+    @IBOutlet weak var vehicleHeader: UILabel!
+    @IBOutlet weak var vehicleSubHeader: UILabel!
+    @IBOutlet weak var vehicleImage: UIImageView!
+    @IBOutlet weak var greyBoxTwo: UILabel!
     
-    @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var memberSinceLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
-    
-    @IBOutlet weak var cars: UITableView!
+    //Bottom tracking bar
+    @IBOutlet weak var bottomTrackingStatus: UILabel!
+    @IBOutlet weak var bottomStartStopTrackingButton: UIButton!
+    @IBOutlet weak var bottomBar: UIView!
+
+    //Colors
+    var purple = UIColor(red:0.58, green:0.11, blue:1.00, alpha:1.0)
+    var black = UIColor(red:0.00, green:0.00, blue:0.00, alpha:1.0)
+    var green = UIColor(red:0.22, green:0.78, blue:0.51, alpha:1.0)
+    var backgroundBlack = UIColor(red:0.13, green:0.13, blue:0.15, alpha:1.0)
+    var white = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
+    var lightGrey = UIColor(red:0.61, green:0.61, blue:0.61, alpha:1.0)
+    var darkGrey = UIColor(red:0.61, green:0.61, blue:0.61, alpha:1.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         /* TODO: Get user data */
         
-        profileImage.image = UIImage(named: "birdperson")
-        profileImage.layer.borderWidth = 0
-        profileImage.layer.masksToBounds = false
-        profileImage.layer.borderColor = UIColor.black.cgColor
-        profileImage.layer.cornerRadius = profileImage.frame.height/2
-        profileImage.clipsToBounds = true
+        self.greyBoxOne.layer.cornerRadius = 6.0
+        self.greyBoxOne.clipsToBounds = true
+        self.greyBoxTwo.layer.cornerRadius = 6.0
+        self.greyBoxTwo.clipsToBounds = true
         
-        nameLabel.text = "Rick Sanchez"
-        memberSinceLabel.text = "Member Since " + "1989"
-        locationLabel.text = "Seattle, WA"
+        self.bottomBar.backgroundColor = green
 
     }
+    
+    var drive = false
+    
+    @IBAction func send(_ sender: UIButton) {
+        if (!drive) {
+            setBlack()
+        } else {
+            setWhite();
+        }
+        drive = !drive
+    }
+    
+    func setBlack() {
+        //bars
+        self.bottomBar.backgroundColor = purple
+        self.view.backgroundColor = backgroundBlack
+        
+        //grey images
+        self.greyBoxOne.backgroundColor = darkGrey
+        self.greyBoxTwo.backgroundColor = darkGrey
+        
+        
+        //text
+        self.cityHeader.textColor = white
+        self.bottomTrackingStatus.text = "Tracking..."
+        self.connectionTypeHeader.textColor = white
+        self.vehicleHeader.textColor = white
+        self.connectionTypeSubHeader.textColor = darkGrey
+        self.vehicleSubHeader.textColor = darkGrey
+
+    }
+    
+    func setWhite() {
+        //bars
+        self.bottomBar.backgroundColor = green
+        self.view.backgroundColor = white
+        
+        //grey images
+        self.greyBoxOne.backgroundColor = darkGrey
+        self.greyBoxTwo.backgroundColor = darkGrey
+        
+        
+        //text
+        self.cityHeader.textColor = black
+        self.bottomTrackingStatus.text = "Not Tracking"
+        self.connectionTypeHeader.textColor = black
+        self.vehicleHeader.textColor = black
+        self.connectionTypeSubHeader.textColor = lightGrey
+        self.vehicleSubHeader.textColor = lightGrey
+        
+        
+    }
+    
+    
+        
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

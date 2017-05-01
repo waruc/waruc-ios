@@ -12,12 +12,17 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
 
+    var green = UIColor(red:0.22, green:0.78, blue:0.51, alpha:1.0)
+    
+    @IBOutlet weak var bottomBar: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
         self.profileImage.clipsToBounds = true
         
+        self.bottomBar.backgroundColor = green
         
     }
 

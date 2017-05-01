@@ -1,25 +1,21 @@
 //
-//  TripsViewController.swift
+//  TabBarViewController.swift
 //  ios-app
 //
-//  Created by ishansaksena on 4/30/17.
+//  Created by Babbs, Dylan on 4/30/17.
 //  Copyright © 2017 Nicholas Nordale. All rights reserved.
 //
 
 import UIKit
 
-class TripsViewController: UIViewController {
+class TabBarViewController: UITabBarController {
 
-    @IBOutlet weak var bottomBar: UIView!
-    
-    var green = UIColor(red:0.22, green:0.78, blue:0.51, alpha:1.0)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.bottomBar.backgroundColor = green
 
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
