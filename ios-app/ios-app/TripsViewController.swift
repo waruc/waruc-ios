@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TripsViewController: UIViewController {
+class TripsViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var bottomBar: UIView!
     
