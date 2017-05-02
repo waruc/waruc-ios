@@ -8,9 +8,10 @@
 
 import UIKit
 
-class TripsViewController: UIViewController, UITableViewDelegate {
+class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var bottomBar: UIView!
+    @IBOutlet weak var tripTableView: UITableView!
     
     var green = UIColor(red:0.22, green:0.78, blue:0.51, alpha:1.0)
     
@@ -18,8 +19,10 @@ class TripsViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         
         self.bottomBar.backgroundColor = green
-
-        // Do any additional setup after loading the view.
+        
+        // Table view setup 
+        tripTableView.delegate = self
+        tripTableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,5 +40,20 @@ class TripsViewController: UIViewController, UITableViewDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tripTableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as! TripTableViewCell
+        
+        cell.dateLabel?.text = "This be the date"
+        cell.timeLabel?.text = "This be the time"
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 }
