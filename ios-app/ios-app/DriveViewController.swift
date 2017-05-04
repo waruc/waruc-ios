@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class DriveViewController: UIViewController {
     
@@ -31,15 +32,6 @@ class DriveViewController: UIViewController {
     @IBOutlet weak var bottomStartStopTrackingButton: UIButton!
     @IBOutlet weak var bottomBar: UIView!
 
-    //Colors
-    var purple = UIColor(red:0.58, green:0.11, blue:1.00, alpha:1.0)
-    var black = UIColor(red:0.00, green:0.00, blue:0.00, alpha:1.0)
-    var green = UIColor(red:0.22, green:0.78, blue:0.51, alpha:1.0)
-    var backgroundBlack = UIColor(red:0.13, green:0.13, blue:0.15, alpha:1.0)
-    var white = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
-    var lightGrey = UIColor(red:0.61, green:0.61, blue:0.61, alpha:1.0)
-    var darkGrey = UIColor(red:0.61, green:0.61, blue:0.61, alpha:1.0)
-    
     // NSNotification for starting/stopping tracking
     let toggleTracking = Notification.Name(rawValue: "toggleTracking")
     
@@ -54,7 +46,7 @@ class DriveViewController: UIViewController {
         self.greyBoxTwo.layer.cornerRadius = 6.0
         self.greyBoxTwo.clipsToBounds = true
         
-        self.bottomBar.backgroundColor = green
+        self.bottomBar.backgroundColor = Colors.green
         
         // NSNotificationCenter for starting and stopping tracking setup
         // Register to receive notification
@@ -66,6 +58,8 @@ class DriveViewController: UIViewController {
         
         //debug:
         print("on start \(States.Activity.track)")
+        
+        geocoder()
 
     }
     
@@ -86,46 +80,66 @@ class DriveViewController: UIViewController {
     
     func setBlack() {
         //bars
-        self.bottomBar.backgroundColor = purple
-        self.view.backgroundColor = backgroundBlack
+        self.bottomBar.backgroundColor = Colors.purple
+        self.view.backgroundColor = Colors.backgroundBlack
         
         //grey images
-        self.greyBoxOne.backgroundColor = darkGrey
-        self.greyBoxTwo.backgroundColor = darkGrey
+        self.greyBoxOne.backgroundColor = Colors.darkGrey
+        self.greyBoxTwo.backgroundColor = Colors.darkGrey
         
         
         //text
-        self.cityHeader.textColor = white
+        self.cityHeader.textColor = Colors.white
         self.bottomTrackingStatus.text = "Tracking..."
-        self.connectionTypeHeader.textColor = white
-        self.vehicleHeader.textColor = white
-        self.connectionTypeSubHeader.textColor = darkGrey
-        self.vehicleSubHeader.textColor = darkGrey
+        self.connectionTypeHeader.textColor = Colors.white
+        self.vehicleHeader.textColor = Colors.white
+        self.connectionTypeSubHeader.textColor = Colors.darkGrey
+        self.vehicleSubHeader.textColor = Colors.darkGrey
 
     }
     
     func setWhite() {
         //bars
-        self.bottomBar.backgroundColor = green
-        self.view.backgroundColor = white
+        self.bottomBar.backgroundColor = Colors.green
+        self.view.backgroundColor = Colors.white
         
         //grey images
-        self.greyBoxOne.backgroundColor = darkGrey
-        self.greyBoxTwo.backgroundColor = darkGrey
+        self.greyBoxOne.backgroundColor = Colors.darkGrey
+        self.greyBoxTwo.backgroundColor = Colors.darkGrey
         
         
         //text
-        self.cityHeader.textColor = black
+        self.cityHeader.textColor = Colors.black
         self.bottomTrackingStatus.text = "Not Tracking"
-        self.connectionTypeHeader.textColor = black
-        self.vehicleHeader.textColor = black
-        self.connectionTypeSubHeader.textColor = lightGrey
-        self.vehicleSubHeader.textColor = lightGrey
+        self.connectionTypeHeader.textColor = Colors.black
+        self.vehicleHeader.textColor = Colors.black
+        self.connectionTypeSubHeader.textColor = Colors.lightGrey
+        self.vehicleSubHeader.textColor = Colors.lightGrey
     }
     
     // MARK: NSNotification Listeners
     // The user started or stopped tracking 
     func didToggleTracking() {
         //print("Did toggle tracking distance in drive view Controller")
+    }
+    
+    func geocoder() {
+        let geocoder = GMSGeocoder()
+        var result = "geocode"
+        
+        var tempLatLong = CLLocationCoordinate2D(latitude: 47.608013, longitude: -122.335167)
+        geocoder.reverseGeocodeCoordinate(tempLatLong) {
+            response , error in
+            if let address = response?.firstResult() {
+                print("why didn't we get in here")
+                if address.locality == nil || address.administrativeArea == nil {
+                    result = "Somewhere on Planet Earth"
+                } else {
+                    result = "\(address.locality!), \(address.administrativeArea!)"
+                }
+            }
+            self.cityHeader.text = result
+        }
+        
     }
 }

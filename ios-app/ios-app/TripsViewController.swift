@@ -11,15 +11,27 @@ import UIKit
 class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: References
+    
+    
+    //Header
+    @IBOutlet weak var mytripsHeader: UILabel!
+    @IBOutlet weak var mileCountLabel: UILabel!
+    @IBOutlet weak var totalMilesLabel: UILabel!
+    
+    
+    
+    //Bottom area
     @IBOutlet weak var bottomBar: UIView!
+    @IBOutlet weak var trackingStatusLabel: UILabel!
+
+    
     @IBOutlet weak var tripTableView: UITableView!
     
-    var green = UIColor(red:0.22, green:0.78, blue:0.51, alpha:1.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.bottomBar.backgroundColor = green
+        self.bottomBar.backgroundColor = Colors.green
         
         // Table view setup 
         tripTableView.delegate = self
@@ -49,12 +61,27 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         print("hi")
     }
     
+
     @IBAction func send(_ sender: UIButton) {
         States.Activity.track = !States.Activity.track
         print("Trips switched to \(States.Activity.track)")
+        setBlack()
     }
     public func setBlack() {
-        self.view.backgroundColor = UIColor.black
+        //Main and header
+        self.view.backgroundColor = Colors.backgroundBlack
+        mytripsHeader.textColor = Colors.white
+        totalMilesLabel.textColor = Colors.white
+        
+        //Tableview
+        self.tripTableView.backgroundColor = Colors.backgroundBlack
+        
+        //Bottom bar
+        bottomBar.backgroundColor = Colors.purple
+        trackingStatusLabel.text = "Tracking..."
+        
+        
+        
     }
     func setWhite() {
         view.backgroundColor = UIColor.white
@@ -78,8 +105,10 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.timeLabel?.text = "7:00 a.m."
         cell.distanceLabel?.text = "7.82 miles"
         cell.monthLabel?.text = "June"
+        
         return cell
     }
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

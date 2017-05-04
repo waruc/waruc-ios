@@ -289,6 +289,10 @@
                     <tabBarItem key="tabBarItem" title="History" image="history" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="bottomBar" destination="fUT-cY-Esr" id="fsx-GN-ieJ"/>
+                        <outlet property="mileCountLabel" destination="eEo-a6-wd9" id="OR3-bE-uFk"/>
+                        <outlet property="mytripsHeader" destination="gW2-u0-KgW" id="Uhc-3k-vWP"/>
+                        <outlet property="totalMilesLabel" destination="4No-sp-R2E" id="q76-z2-fFE"/>
+                        <outlet property="trackingStatusLabel" destination="fP0-ax-haF" id="EUb-YS-pX3"/>
                         <outlet property="tripTableView" destination="kLe-jE-7fM" id="G3r-pa-ehb"/>
                     </connections>
                 </viewController>
