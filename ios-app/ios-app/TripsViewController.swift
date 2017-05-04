@@ -9,7 +9,8 @@
 import UIKit
 
 class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
+    // MARK: References
     @IBOutlet weak var bottomBar: UIView!
     @IBOutlet weak var tripTableView: UITableView!
     
@@ -25,22 +26,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tripTableView.dataSource = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
+    // MARK: TableViewDelegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
@@ -48,8 +34,10 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tripTableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as! TripTableViewCell
         
-        cell.dateLabel?.text = "This be the date"
-        cell.timeLabel?.text = "This be the time"
+        cell.dayLabel?.text = "14"
+        cell.timeLabel?.text = "7:00 a.m."
+        cell.distanceLabel?.text = "7.82 miles"
+        cell.monthLabel?.text = "June"
         return cell
     }
     

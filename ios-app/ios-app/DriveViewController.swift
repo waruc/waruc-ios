@@ -10,6 +10,7 @@ import UIKit
 
 class DriveViewController: UIViewController {
     
+    // MARK: References
     //Main header
     @IBOutlet weak var cityHeader: UILabel!
     
@@ -39,6 +40,7 @@ class DriveViewController: UIViewController {
     var lightGrey = UIColor(red:0.61, green:0.61, blue:0.61, alpha:1.0)
     var darkGrey = UIColor(red:0.61, green:0.61, blue:0.61, alpha:1.0)
     
+    // MARK: Setup
     override func viewDidLoad() {
         super.viewDidLoad()
         /* TODO: Get user data */
@@ -100,28 +102,6 @@ class DriveViewController: UIViewController {
         self.vehicleHeader.textColor = black
         self.connectionTypeSubHeader.textColor = lightGrey
         self.vehicleSubHeader.textColor = lightGrey
-        
-        
     }
-    
-    
-        
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
