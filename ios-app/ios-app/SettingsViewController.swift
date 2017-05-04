@@ -18,6 +18,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var bottomBar: UIView!
     @IBOutlet weak var settingsTableView: UITableView!
     
+    // NSNotification for starting/stopping tracking
+    let toggleTracking = Notification.Name(rawValue: "toggleTracking")
+    
     // MARK: Setup 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +34,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         self.settingsTableView.delegate = self
         self.settingsTableView.dataSource = self
         
+        // NSNotificationCenter for starting and stopping tracking setup
+        // Register to receive notification
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.didToggleTracking), name: toggleTracking, object: nil)
     }
 
     // MARK: TableViewDelegate Methods     
@@ -60,4 +67,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
+    
+    // MARK: NSNotification Listeners
+    // The user started or stopped tracking 
+    func didToggleTracking() {
+        print("Did toggle tracking distance in Settings View Controller")
+    }
+    
+    
 }

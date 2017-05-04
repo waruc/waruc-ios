@@ -19,7 +19,7 @@ class DriveViewController: UIViewController {
     @IBOutlet weak var connectionTypeSubHeader: UILabel!
     @IBOutlet weak var connectionImage: UIImageView!
     @IBOutlet weak var greyBoxOne: UILabel!
-
+    
     //Vehicle area
     @IBOutlet weak var vehicleHeader: UILabel!
     @IBOutlet weak var vehicleSubHeader: UILabel!
@@ -40,6 +40,9 @@ class DriveViewController: UIViewController {
     var lightGrey = UIColor(red:0.61, green:0.61, blue:0.61, alpha:1.0)
     var darkGrey = UIColor(red:0.61, green:0.61, blue:0.61, alpha:1.0)
     
+    // NSNotification for starting/stopping tracking
+    let toggleTracking = Notification.Name(rawValue: "toggleTracking")
+    
     // MARK: Setup
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,18 +54,30 @@ class DriveViewController: UIViewController {
         self.greyBoxTwo.clipsToBounds = true
         
         self.bottomBar.backgroundColor = green
+        
+        // NSNotificationCenter for starting and stopping tracking setup
+        // Register to receive notification
+        NotificationCenter.default.addObserver(self, selector: #selector(DriveViewController.didToggleTracking), name: toggleTracking, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.didToggleTracking), name: toggleTracking, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(TripsViewController.didToggleTracking), name: toggleTracking, object: nil)
 
     }
     
     var drive = false
     
     @IBAction func send(_ sender: UIButton) {
+        // Change colors of view
         if (!drive) {
             setBlack()
         } else {
             setWhite();
         }
         drive = !drive
+        
+        // Post toggle tracking notification
+        NotificationCenter.default.post(name: toggleTracking, object: nil)
     }
     
     func setBlack() {
@@ -103,5 +118,10 @@ class DriveViewController: UIViewController {
         self.connectionTypeSubHeader.textColor = lightGrey
         self.vehicleSubHeader.textColor = lightGrey
     }
-
+    
+    // MARK: NSNotification Listeners
+    // The user started or stopped tracking 
+    func didToggleTracking() {
+        print("Did toggle tracking distance in drive view Controller")
+    }
 }

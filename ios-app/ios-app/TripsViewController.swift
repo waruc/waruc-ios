@@ -24,7 +24,14 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Table view setup 
         tripTableView.delegate = self
         tripTableView.dataSource = self
+        
+        // NSNotificationCenter for starting and stopping tracking setup
+        // Register to receive notification
+        NotificationCenter.default.addObserver(self, selector: #selector(TripsViewController.didToggleTracking), name: toggleTracking, object: nil)
     }
+    
+    // NSNotification for starting/stopping tracking
+    let toggleTracking = Notification.Name(rawValue: "toggleTracking")
 
     // MARK: TableViewDelegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,5 +50,11 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+    }
+    
+    // MARK: NSNotification Listeners
+    // The user started or stopped tracking 
+    func didToggleTracking() {
+        print("Did toggle tracking distance in TripsViewController")
     }
 }
