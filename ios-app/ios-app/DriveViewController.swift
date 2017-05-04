@@ -46,6 +46,7 @@ class DriveViewController: UIViewController {
     // MARK: Setup
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         /* TODO: Get user data */
         
         self.greyBoxOne.layer.cornerRadius = 6.0
@@ -62,19 +63,22 @@ class DriveViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.didToggleTracking), name: toggleTracking, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(TripsViewController.didToggleTracking), name: toggleTracking, object: nil)
+        
+        //debug:
+        print("on start \(States.Activity.track)")
 
     }
     
-    var drive = false
-    
-    @IBAction func send(_ sender: UIButton) {
-        // Change colors of view
-        if (!drive) {
+    @IBAction public func send(_ sender: UIButton) {
+        States.Activity.track = !States.Activity.track
+        print("Drives state switch to \(States.Activity.track)")
+        if (States.Activity.track) {
             setBlack()
         } else {
-            setWhite();
+            setWhite()
         }
-        drive = !drive
+        
+
         
         // Post toggle tracking notification
         NotificationCenter.default.post(name: toggleTracking, object: nil)
@@ -122,6 +126,6 @@ class DriveViewController: UIViewController {
     // MARK: NSNotification Listeners
     // The user started or stopped tracking 
     func didToggleTracking() {
-        print("Did toggle tracking distance in drive view Controller")
+        //print("Did toggle tracking distance in drive view Controller")
     }
 }

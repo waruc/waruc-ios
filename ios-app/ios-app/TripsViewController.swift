@@ -28,7 +28,40 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // NSNotificationCenter for starting and stopping tracking setup
         // Register to receive notification
         NotificationCenter.default.addObserver(self, selector: #selector(TripsViewController.didToggleTracking), name: toggleTracking, object: nil)
+        
+        //See state
+        print("Trips state is \(States.Activity.track)")
+         
+        
+        //@Ishan, here is the observer:
+        /*
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(appWillEnterForeground),
+                                               name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                               object: nil)
+        */
+        
     }
+    
+    
+    //Below code is work in progress from master.swift trying to update color
+    public func sayHi() {
+        print("hi")
+    }
+    
+    @IBAction func send(_ sender: UIButton) {
+        States.Activity.track = !States.Activity.track
+        print("Trips switched to \(States.Activity.track)")
+    }
+    public func setBlack() {
+        self.view.backgroundColor = UIColor.black
+    }
+    func setWhite() {
+        view.backgroundColor = UIColor.white
+    }
+    //end work in progress code
+    
+    
     
     // NSNotification for starting/stopping tracking
     let toggleTracking = Notification.Name(rawValue: "toggleTracking")

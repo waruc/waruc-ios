@@ -38,7 +38,30 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         // Register to receive notification
         
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.didToggleTracking), name: toggleTracking, object: nil)
+        print("Settings state is \(States.Activity.track)")
+        //Set black/white UI
     }
+    
+    
+    //Below code is work in progress from master.swift trying to update color
+    @IBAction func send(_ sender: UIButton) {
+        States.Activity.track = !States.Activity.track
+        print("Settings state switched to \(States.Activity.track)")
+        if (States.Activity.track) {
+            setBlack()
+        } else {
+            //setWhite()
+        }
+    }
+    func setBlack() {
+        view.backgroundColor = UIColor.black
+    }
+    func setWhite() {
+        view.backgroundColor = UIColor.white
+    }
+    //END work in progress code
+    
+    
 
     // MARK: TableViewDelegate Methods     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

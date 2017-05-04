@@ -24,6 +24,7 @@
 		A43687021EB69AD500933684 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43687011EB69AD500933684 /* TabBarViewController.swift */; };
 		A43687051EB6B68F00933684 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43687041EB6B68F00933684 /* Trip.swift */; };
 		A4CC56451EBB009B002F00E8 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CC56441EBB009B002F00E8 /* SettingsTableViewCell.swift */; };
+		A4CC564D1EBB0F92002F00E8 /* master.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CC564C1EBB0F92002F00E8 /* master.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		A43687011EB69AD500933684 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		A43687041EB6B68F00933684 /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		A4CC56441EBB009B002F00E8 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		A4CC564C1EBB0F92002F00E8 /* master.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = master.swift; sourceTree = "<group>"; };
 		A5A29964B8F0B4C2F0A0FF7EA8C97BC6 /* ios_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_appUITests.swift; sourceTree = "<group>"; };
 		B4D956C7BCCEE0A3FA588490 /* Pods_ios_appTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_appTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD4723942D8C35A66482A93661B91F5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				310A98B6D9A1D63714EED01519D53367 /* LaunchScreen.storyboard */,
 				B7C665298DB176695132B2F26FA1F9E6 /* ios_app.xcdatamodeld */,
 				6E8A69A91EB67D56005CC6FE /* Main.storyboard */,
+				A4CC564C1EBB0F92002F00E8 /* master.swift */,
 				6E6FF06C1E99B6F7002D67E7 /* ViewControllers */,
 			);
 			path = "ios-app";
@@ -495,6 +498,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E8A69AC1EB67F19005CC6FE /* TripsViewController.swift in Sources */,
+				A4CC564D1EBB0F92002F00E8 /* master.swift in Sources */,
 				63D41EA86ED1CCCE596BD598F48E4A3E /* AppDelegate.swift in Sources */,
 				A4CC56451EBB009B002F00E8 /* SettingsTableViewCell.swift in Sources */,
 				6E1DBFF31E986A2900E29C42 /* DriveViewController.swift in Sources */,
