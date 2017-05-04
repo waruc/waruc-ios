@@ -8,8 +8,9 @@
 
 import UIKit
 import GoogleMaps
+import CoreLocation
 
-class DriveViewController: UIViewController {
+class DriveViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: References
     //Main header
@@ -35,6 +36,9 @@ class DriveViewController: UIViewController {
     // NSNotification for starting/stopping tracking
     let toggleTracking = Notification.Name(rawValue: "toggleTracking")
     
+    //Location services
+    var locationManager: CLLocationManager!
+    
     // MARK: Setup
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,8 +63,33 @@ class DriveViewController: UIViewController {
         //debug:
         print("on start \(States.Activity.track)")
         
+        //Location services:
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        
         geocoder()
+        
+        
 
+    }
+    
+    func startScanning() {
+        let uuid = UUID(uuidString: "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5")!
+        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: 123, minor: 456, identifier: "MyBeacon")
+        
+        locationManager.startMonitoring(for: beaconRegion)
+        locationManager.startRangingBeacons(in: beaconRegion)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways {
+            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
+                if CLLocationManager.isRangingAvailable() {
+                    startScanning()
+                }
+            }
+        }
     }
     
     @IBAction public func send(_ sender: UIButton) {
@@ -123,6 +152,8 @@ class DriveViewController: UIViewController {
         //print("Did toggle tracking distance in drive view Controller")
     }
     
+    
+    //TODO: Change Administrative Area in short_name
     func geocoder() {
         let geocoder = GMSGeocoder()
         var result = "geocode"
