@@ -27,49 +27,37 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var tripTableView: UITableView!
     
+    @IBOutlet weak var bottomStartStopTrackingButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.bottomBar.backgroundColor = Colors.green
-        
         // Table view setup 
         tripTableView.delegate = self
         tripTableView.dataSource = self
-        
-        // NSNotificationCenter for starting and stopping tracking setup
-        // Register to receive notification
-        NotificationCenter.default.addObserver(self, selector: #selector(TripsViewController.didToggleTracking), name: toggleTracking, object: nil)
-        
-        //See state
-        print("Trips state is \(States.Activity.track)")
-         
-        
-        //@Ishan, here is the observer:
-        /*
-        NotificationCenter.default.addObserver(self, 
-                                               selector: #selector(appWillEnterForeground),
-                                               name: NSNotification.Name.UIApplicationDidBecomeActive,
-                                               object: nil)
-        */
-        
     }
     
-    
-    //Below code is work in progress from master.swift trying to update color
-    public func sayHi() {
-        print("hi")
-    }
-    
+    override func viewWillAppear(_ animated: Bool) {
+//        if States.Activity.track {
+//            setBlack()
+//        } else {
+//            setWhite()
+//        }
+    }    
 
     @IBAction func send(_ sender: UIButton) {
         States.Activity.track = !States.Activity.track
-        print("Trips switched to \(States.Activity.track)")
-        setBlack()
+//        print("Trips switched to \(States.Activity.track)")
+//        if (States.Activity.track) {
+//            setBlack()
+//        } else {
+//            setWhite()
+//        }
     }
+    
     public func setBlack() {
         //Main and header
-        self.view.backgroundColor = Colors.backgroundBlack
+        view.backgroundColor = Colors.backgroundBlack
         mytripsHeader.textColor = Colors.white
         totalMilesLabel.textColor = Colors.white
         
@@ -80,13 +68,23 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         bottomBar.backgroundColor = Colors.purple
         trackingStatusLabel.text = "Tracking..."
         
-        
-        
+        bottomStartStopTrackingButton.setTitle("Stop", for: .normal)
     }
+    
     func setWhite() {
-        view.backgroundColor = UIColor.white
+        //Main and header
+        view.backgroundColor = Colors.white
+        totalMilesLabel.textColor = Colors.black
+        mytripsHeader.textColor = Colors.black
+        
+        //Tableview
+        self.tripTableView.backgroundColor = Colors.white
+        
+        //Bottom bar
+        bottomBar.backgroundColor = Colors.green
+        trackingStatusLabel.text = "Not Tracking"
+        bottomStartStopTrackingButton.setTitle("Start", for: .normal)
     }
-    //end work in progress code
     
     
     
@@ -95,18 +93,49 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     // MARK: TableViewDelegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 10
     }
+    
+    var fakeNews = [["8", "7:32 a.m.", "7.82 miles", "April"],
+                    ["12", "8:46 a.m.", "9.87 miles", "April"],
+                    ["13", "5:00 p.m.", "17.34 miles", "April"],
+                    ["15", "7:00 a.m.", "4.36 miles", "April"],
+                    ["24", "7:00 p.m.", "101.75 miles", "April"],
+                    ["8", "7:32 a.m.", "7.82 miles", "March"],
+                    ["12", "8:46 a.m.", "9.87 miles", "March"],
+                    ["13", "5:00 p.m.", "17.34 miles", "March"],
+                    ["15", "7:00 a.m.", "4.36 miles", "March"],
+                    ["24", "7:00 p.m.", "101.75 miles", "March"]]
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tripTableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as! TripTableViewCell
         
-        cell.dayLabel?.text = "14"
-        cell.timeLabel?.text = "7:00 a.m."
-        cell.distanceLabel?.text = "7.82 miles"
-        cell.monthLabel?.text = "June"
+//        cell.dayLabel?.text = "14"
+//        cell.timeLabel?.text = "7:00 a.m."
+//        cell.distanceLabel?.text = "7.82 miles"
+//        cell.monthLabel?.text = "June"
+        
+        var news = fakeNews[indexPath.row]
+        
+        cell.dayLabel?.text = news[0]
+        cell.timeLabel?.text = news[1]
+        cell.distanceLabel?.text = news[2]
+        cell.monthLabel?.text = news[3]
+        
+        
+        //cell.contentView.backgroundColor = Colors.backgroundBlack
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        if States.Activity.track {
+//            //setBlack()
+//            cell.contentView.backgroundColor = Colors.backgroundBlack
+//        } else {
+//            //setWhite()
+//            cell.contentView.backgroundColor = Colors.white
+//        }
     }
 
     

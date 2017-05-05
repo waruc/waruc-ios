@@ -13,11 +13,15 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
 
-    var green = UIColor(red:0.22, green:0.78, blue:0.51, alpha:1.0)
+    @IBOutlet weak var profileInitials: UILabel!
     
+    @IBOutlet weak var settingsHeader: UILabel!
     @IBOutlet weak var bottomBar: UIView!
     @IBOutlet weak var settingsTableView: UITableView!
     
+    @IBOutlet weak var trackingStatusLabel: UILabel!
+    
+    @IBOutlet weak var bottomStartStopTrackingButton: UIButton!
     // NSNotification for starting/stopping tracking
     let toggleTracking = Notification.Name(rawValue: "toggleTracking")
     
@@ -28,7 +32,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
         self.profileImage.clipsToBounds = true
         
-        self.bottomBar.backgroundColor = green
+        self.bottomBar.backgroundColor = Colors.green
+        
         
         // Table View set up
         self.settingsTableView.delegate = self
@@ -42,27 +47,60 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         //Set black/white UI
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+//        if States.Activity.track {
+//            setBlack()
+//        } else {
+//            setWhite()
+//        }
+    } 
+    
     
     //Below code is work in progress from master.swift trying to update color
     @IBAction func send(_ sender: UIButton) {
         States.Activity.track = !States.Activity.track
-        print("Settings state switched to \(States.Activity.track)")
-        if (States.Activity.track) {
-            setBlack()
-        } else {
-            //setWhite()
-        }
+//        print("Settings state switched to \(States.Activity.track)")
+//        if (States.Activity.track) {
+//            setBlack()
+//        } else {
+//            setWhite()
+//        }
     }
+    
+   
+    
     func setBlack() {
-        view.backgroundColor = UIColor.black
+        //Main and header
+        view.backgroundColor = Colors.backgroundBlack
+        settingsHeader.textColor = Colors.white
+        
+        //Middle text
+        profileName.textColor = Colors.white
+        
+        //Bottom bar area
+        bottomBar.backgroundColor = Colors.purple
+        trackingStatusLabel.text = "Tracking..."
+        
+        //button
+        bottomStartStopTrackingButton.setTitle("Stop", for: .normal)
+        
     }
     func setWhite() {
+        //Main and header
         view.backgroundColor = UIColor.white
-    }
-    //END work in progress code
-    
-    
+        settingsHeader.textColor = Colors.black
 
+        //Middle text
+        profileName.textColor = Colors.black
+        
+        //Bottom bar area
+        bottomBar.backgroundColor = Colors.green
+        trackingStatusLabel.text = "Not Tracking"
+        
+        //button
+        bottomStartStopTrackingButton.setTitle("Start", for: .normal)
+    }
+    
     // MARK: TableViewDelegate Methods     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Vehicles"

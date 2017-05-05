@@ -49,6 +49,7 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         self.greyBoxOne.clipsToBounds = true
         self.greyBoxTwo.layer.cornerRadius = 6.0
         self.greyBoxTwo.clipsToBounds = true
+
         
         self.bottomBar.backgroundColor = Colors.green
         
@@ -107,6 +108,16 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         NotificationCenter.default.post(name: toggleTracking, object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if States.Activity.track {
+            
+            setBlack()
+        } else {
+            setWhite()
+        }
+    } 
+    
+    
     func setBlack() {
         //bars
         self.bottomBar.backgroundColor = Colors.purple
@@ -116,7 +127,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         self.greyBoxOne.backgroundColor = Colors.darkGrey
         self.greyBoxTwo.backgroundColor = Colors.darkGrey
         
-        
         //text
         self.cityHeader.textColor = Colors.white
         self.bottomTrackingStatus.text = "Tracking..."
@@ -124,6 +134,11 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         self.vehicleHeader.textColor = Colors.white
         self.connectionTypeSubHeader.textColor = Colors.darkGrey
         self.vehicleSubHeader.textColor = Colors.darkGrey
+        
+        //button
+        bottomStartStopTrackingButton.setTitle("Stop", for: .normal)
+
+        
 
     }
     
@@ -133,17 +148,19 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         self.view.backgroundColor = Colors.white
         
         //grey images
-        self.greyBoxOne.backgroundColor = Colors.darkGrey
-        self.greyBoxTwo.backgroundColor = Colors.darkGrey
-        
+        self.greyBoxOne.backgroundColor = Colors.lightGrey
+        self.greyBoxTwo.backgroundColor = Colors.lightGrey
         
         //text
         self.cityHeader.textColor = Colors.black
         self.bottomTrackingStatus.text = "Not Tracking"
         self.connectionTypeHeader.textColor = Colors.black
         self.vehicleHeader.textColor = Colors.black
-        self.connectionTypeSubHeader.textColor = Colors.lightGrey
-        self.vehicleSubHeader.textColor = Colors.lightGrey
+        self.connectionTypeSubHeader.textColor = Colors.darkGrey
+        self.vehicleSubHeader.textColor = Colors.darkGrey
+        
+        //button
+        bottomStartStopTrackingButton.setTitle("Start", for: .normal)
     }
     
     // MARK: NSNotification Listeners
@@ -156,9 +173,9 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     //TODO: Change Administrative Area in short_name
     func geocoder() {
         let geocoder = GMSGeocoder()
-        var result = "geocode"
+        var result = ""
         
-        var tempLatLong = CLLocationCoordinate2D(latitude: 47.608013, longitude: -122.335167)
+        let tempLatLong = CLLocationCoordinate2D(latitude: 47.608013, longitude: -122.335167)
         geocoder.reverseGeocodeCoordinate(tempLatLong) {
             response , error in
             if let address = response?.firstResult() {
@@ -169,7 +186,7 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
                     result = "\(address.locality!), \(address.administrativeArea!)"
                 }
             }
-            self.cityHeader.text = result
+            //self.cityHeader.text = result
         }
         
     }

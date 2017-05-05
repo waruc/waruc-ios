@@ -2,7 +2,7 @@
 //  TripTableViewCell.swift
 //  ios-app
 //
-//  Created by ishansaksena on 5/2/17.
+//  Created by Nicholas Nordale on 5/2/17.
 //  Copyright © 2017 Nicholas Nordale. All rights reserved.
 //
 
@@ -29,5 +29,4 @@ class TripTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }

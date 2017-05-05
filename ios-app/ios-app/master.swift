@@ -28,7 +28,7 @@ struct States {
                     
                     //attempt to call method from TripsViewController
                     let trips = TripsViewController()
-                    trips.sayHi()
+                    //trips.sayHi()
                     //^ sayHi() methods works fine because all it does is print hello. Issue comes when
                     // I try to call setBlack(), gives optional error of some sort. I think it has to do
                     //with access view.backgroundColor, specifically the "view" part. Not sure why.
@@ -48,6 +48,7 @@ struct Colors {
     static let green = UIColor(red:0.22, green:0.78, blue:0.51, alpha:1.0)
     static let backgroundBlack = UIColor(red:0.13, green:0.13, blue:0.15, alpha:1.0)
     static let white = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
-    static let lightGrey = UIColor(red:0.61, green:0.61, blue:0.61, alpha:1.0)
+    static let lightGrey = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
     static let darkGrey = UIColor(red:0.61, green:0.61, blue:0.61, alpha:1.0)
+    
 }
