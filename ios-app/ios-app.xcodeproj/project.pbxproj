@@ -27,6 +27,9 @@
 		9D36AB7C1EBD0F1C00F15F93 /* userRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D36AB7B1EBD0F1C00F15F93 /* userRegistrationViewController.swift */; };
 		A43687021EB69AD500933684 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43687011EB69AD500933684 /* TabBarViewController.swift */; };
 		A43687051EB6B68F00933684 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43687041EB6B68F00933684 /* Trip.swift */; };
+		A48181811EBD140C005E66EA /* VehicleRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48181801EBD140C005E66EA /* VehicleRegistrationViewController.swift */; };
+		A48181831EBD14EA005E66EA /* OBDInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48181821EBD14EA005E66EA /* OBDInformationViewController.swift */; };
+		A48181851EBD17E4005E66EA /* OBDConnectReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48181841EBD17E4005E66EA /* OBDConnectReviewViewController.swift */; };
 		A4CC56451EBB009B002F00E8 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CC56441EBB009B002F00E8 /* SettingsTableViewCell.swift */; };
 		A4CC564D1EBB0F92002F00E8 /* master.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CC564C1EBB0F92002F00E8 /* master.swift */; };
 /* End PBXBuildFile section */
@@ -77,6 +80,9 @@
 		9D36AB7B1EBD0F1C00F15F93 /* userRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userRegistrationViewController.swift; sourceTree = "<group>"; };
 		A43687011EB69AD500933684 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		A43687041EB6B68F00933684 /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
+		A48181801EBD140C005E66EA /* VehicleRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleRegistrationViewController.swift; sourceTree = "<group>"; };
+		A48181821EBD14EA005E66EA /* OBDInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBDInformationViewController.swift; sourceTree = "<group>"; };
+		A48181841EBD17E4005E66EA /* OBDConnectReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBDConnectReviewViewController.swift; sourceTree = "<group>"; };
 		A4CC56441EBB009B002F00E8 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		A4CC564C1EBB0F92002F00E8 /* master.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = master.swift; sourceTree = "<group>"; };
 		A5A29964B8F0B4C2F0A0FF7EA8C97BC6 /* ios_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_appUITests.swift; sourceTree = "<group>"; };
@@ -162,9 +168,9 @@
 				3305255BB889E3EE7EE20FF3E663EF64 /* Info.plist */,
 				B7C665298DB176695132B2F26FA1F9E6 /* ios_app.xcdatamodeld */,
 				310A98B6D9A1D63714EED01519D53367 /* LaunchScreen.storyboard */,
-				9D36AB741EBD0D4200F15F93 /* Onboarding.storyboard */,
 				6E8A69A91EB67D56005CC6FE /* Main.storyboard */,
 				A4CC564C1EBB0F92002F00E8 /* master.swift */,
+				9D36AB741EBD0D4200F15F93 /* Onboarding.storyboard */,
 				6E6FF06C1E99B6F7002D67E7 /* ViewControllers */,
 				9D36AB761EBD0DAF00F15F93 /* OnboardingViewControllers */,
 			);
@@ -200,6 +206,9 @@
 				9D36AB771EBD0DF200F15F93 /* initialViewController.swift */,
 				9D36AB791EBD0E8200F15F93 /* locationViewController.swift */,
 				9D36AB7B1EBD0F1C00F15F93 /* userRegistrationViewController.swift */,
+				A48181801EBD140C005E66EA /* VehicleRegistrationViewController.swift */,
+				A48181821EBD14EA005E66EA /* OBDInformationViewController.swift */,
+				A48181841EBD17E4005E66EA /* OBDConnectReviewViewController.swift */,
 			);
 			name = OnboardingViewControllers;
 			sourceTree = "<group>";
@@ -520,17 +529,20 @@
 			files = (
 				6E8A69AC1EB67F19005CC6FE /* TripsViewController.swift in Sources */,
 				A4CC564D1EBB0F92002F00E8 /* master.swift in Sources */,
+				A48181831EBD14EA005E66EA /* OBDInformationViewController.swift in Sources */,
 				63D41EA86ED1CCCE596BD598F48E4A3E /* AppDelegate.swift in Sources */,
 				9D36AB7A1EBD0E8200F15F93 /* locationViewController.swift in Sources */,
 				A4CC56451EBB009B002F00E8 /* SettingsTableViewCell.swift in Sources */,
 				6E1DBFF31E986A2900E29C42 /* DriveViewController.swift in Sources */,
 				63254EFE5F3EF2507A91392D2896E9C7 /* ios_app.xcdatamodeld in Sources */,
 				6E9958DE1EB928FA00FF9F25 /* TripTableViewCell.swift in Sources */,
+				A48181811EBD140C005E66EA /* VehicleRegistrationViewController.swift in Sources */,
 				9D36AB781EBD0DF200F15F93 /* initialViewController.swift in Sources */,
 				9D36AB7C1EBD0F1C00F15F93 /* userRegistrationViewController.swift in Sources */,
 				A43687021EB69AD500933684 /* TabBarViewController.swift in Sources */,
 				A43687051EB6B68F00933684 /* Trip.swift in Sources */,
 				6E1DBFFB1E986ED900E29C42 /* SettingsViewController.swift in Sources */,
+				A48181851EBD17E4005E66EA /* OBDConnectReviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
