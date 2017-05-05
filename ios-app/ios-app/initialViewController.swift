@@ -16,5 +16,11 @@ class initialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    @IBAction func login(_ sender: UIButton) {
+        //self.performSegue(withIdentifier: "startGame", sender: self)
+    }
 
+    @IBAction func signUp(_ sender: UIButton) {
+    }
 }

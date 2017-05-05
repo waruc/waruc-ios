@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="d8c-KX-9At">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,13 +21,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBz-No-TU8">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBz-No-TU8">
                                 <rect key="frame" x="160" y="606" width="55" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signUp:" destination="d8c-KX-9At" eventType="touchUpInside" id="rGE-xk-oPh"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0h-uG-4QW">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0h-uG-4QW">
                                 <rect key="frame" x="168" y="568" width="38" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="login:" destination="d8c-KX-9At" eventType="touchUpInside" id="dcS-nh-gze"/>
+                                    <segue destination="WTh-Td-SXi" kind="show" id="Z9C-Rs-duN"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WARUC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lpx-Vo-ggG">
                                 <rect key="frame" x="157" y="165" width="61" height="21"/>
@@ -38,10 +47,6 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="o0h-uG-4QW" firstAttribute="centerX" secondItem="M74-Nc-xyG" secondAttribute="centerX" id="nbn-WH-3Eq"/>
-                            <constraint firstItem="JBz-No-TU8" firstAttribute="centerX" secondItem="M74-Nc-xyG" secondAttribute="centerX" id="uib-MX-5rc"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="loginButton" destination="o0h-uG-4QW" id="7mh-2A-1RI"/>
@@ -68,6 +73,9 @@
                                 <rect key="frame" x="16" y="617" width="63" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Location "/>
+                                <connections>
+                                    <segue destination="OYY-Cz-uml" kind="show" id="fBJ-Xe-lx2"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Information about WARUC program" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5PM-PQ-ORk">
                                 <rect key="frame" x="52" y="187" width="271" height="21"/>
@@ -133,6 +141,7 @@
                                 <state key="normal" title="Next"/>
                                 <connections>
                                     <action selector="next:" destination="OYY-Cz-uml" eventType="touchUpInside" id="K0s-iy-aJt"/>
+                                    <segue destination="hbK-68-hBw" kind="show" id="upl-Q2-uhw"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Repeat password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOP-2j-RdU">
@@ -239,6 +248,7 @@
                                 <state key="normal" title="Next"/>
                                 <connections>
                                     <action selector="next:" destination="hbK-68-hBw" eventType="touchUpInside" id="tvb-Nw-8Hv"/>
+                                    <segue destination="Yqq-wU-qCh" kind="show" id="zk6-H3-mx0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ld-eY-a6g">
@@ -291,6 +301,7 @@
                                 <state key="normal" title="Connect to OBD-II"/>
                                 <connections>
                                     <action selector="connect:" destination="Yqq-wU-qCh" eventType="touchUpInside" id="4x2-ix-MYO"/>
+                                    <segue destination="e9H-I7-mtQ" kind="show" id="8uz-dP-7Ke"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RHN-Bv-TjT">
@@ -336,6 +347,13 @@
                                     <action selector="endOnboarding:" destination="e9H-I7-mtQ" eventType="touchUpInside" id="BEL-e0-qIn"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="start w/ app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZ7-1r-Rlt">
+                                <rect key="frame" x="36" y="302" width="303" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
