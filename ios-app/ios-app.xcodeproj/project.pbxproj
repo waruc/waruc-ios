@@ -21,6 +21,10 @@
 		6E9958DE1EB928FA00FF9F25 /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9958DD1EB928FA00FF9F25 /* TripTableViewCell.swift */; };
 		739359C72B85CE07A90DD687ABAC4321 /* ios_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A29964B8F0B4C2F0A0FF7EA8C97BC6 /* ios_appUITests.swift */; };
 		8CB62FE2D9ABB7DA9F53EC39 /* Pods_ios_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D956C7BCCEE0A3FA588490 /* Pods_ios_appTests.framework */; };
+		9D36AB751EBD0D4200F15F93 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D36AB741EBD0D4200F15F93 /* Onboarding.storyboard */; };
+		9D36AB781EBD0DF200F15F93 /* initialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D36AB771EBD0DF200F15F93 /* initialViewController.swift */; };
+		9D36AB7A1EBD0E8200F15F93 /* locationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D36AB791EBD0E8200F15F93 /* locationViewController.swift */; };
+		9D36AB7C1EBD0F1C00F15F93 /* userRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D36AB7B1EBD0F1C00F15F93 /* userRegistrationViewController.swift */; };
 		A43687021EB69AD500933684 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43687011EB69AD500933684 /* TabBarViewController.swift */; };
 		A43687051EB6B68F00933684 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43687041EB6B68F00933684 /* Trip.swift */; };
 		A4CC56451EBB009B002F00E8 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CC56441EBB009B002F00E8 /* SettingsTableViewCell.swift */; };
@@ -67,6 +71,10 @@
 		8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90546E978362BDA71A6885D2D3A81A98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		918D137FAF815A03D08FACD2 /* Pods_ios_appUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_appUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D36AB741EBD0D4200F15F93 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		9D36AB771EBD0DF200F15F93 /* initialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = initialViewController.swift; sourceTree = "<group>"; };
+		9D36AB791EBD0E8200F15F93 /* locationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = locationViewController.swift; sourceTree = "<group>"; };
+		9D36AB7B1EBD0F1C00F15F93 /* userRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userRegistrationViewController.swift; sourceTree = "<group>"; };
 		A43687011EB69AD500933684 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		A43687041EB6B68F00933684 /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		A4CC56441EBB009B002F00E8 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -152,11 +160,13 @@
 				CD4723942D8C35A66482A93661B91F5F /* AppDelegate.swift */,
 				8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */,
 				3305255BB889E3EE7EE20FF3E663EF64 /* Info.plist */,
-				310A98B6D9A1D63714EED01519D53367 /* LaunchScreen.storyboard */,
 				B7C665298DB176695132B2F26FA1F9E6 /* ios_app.xcdatamodeld */,
+				310A98B6D9A1D63714EED01519D53367 /* LaunchScreen.storyboard */,
+				9D36AB741EBD0D4200F15F93 /* Onboarding.storyboard */,
 				6E8A69A91EB67D56005CC6FE /* Main.storyboard */,
 				A4CC564C1EBB0F92002F00E8 /* master.swift */,
 				6E6FF06C1E99B6F7002D67E7 /* ViewControllers */,
+				9D36AB761EBD0DAF00F15F93 /* OnboardingViewControllers */,
 			);
 			path = "ios-app";
 			sourceTree = "<group>";
@@ -182,6 +192,16 @@
 				A4CC56441EBB009B002F00E8 /* SettingsTableViewCell.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9D36AB761EBD0DAF00F15F93 /* OnboardingViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9D36AB771EBD0DF200F15F93 /* initialViewController.swift */,
+				9D36AB791EBD0E8200F15F93 /* locationViewController.swift */,
+				9D36AB7B1EBD0F1C00F15F93 /* userRegistrationViewController.swift */,
+			);
+			name = OnboardingViewControllers;
 			sourceTree = "<group>";
 		};
 		A43687031EB6B66C00933684 /* Models */ = {
@@ -327,6 +347,7 @@
 				6E8A69AA1EB67D56005CC6FE /* Main.storyboard in Resources */,
 				06A9BD341A9B549B466826376A3D2413 /* Assets.xcassets in Resources */,
 				65800424BC4960FD24521EBFEE7E07C1 /* LaunchScreen.storyboard in Resources */,
+				9D36AB751EBD0D4200F15F93 /* Onboarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,10 +521,13 @@
 				6E8A69AC1EB67F19005CC6FE /* TripsViewController.swift in Sources */,
 				A4CC564D1EBB0F92002F00E8 /* master.swift in Sources */,
 				63D41EA86ED1CCCE596BD598F48E4A3E /* AppDelegate.swift in Sources */,
+				9D36AB7A1EBD0E8200F15F93 /* locationViewController.swift in Sources */,
 				A4CC56451EBB009B002F00E8 /* SettingsTableViewCell.swift in Sources */,
 				6E1DBFF31E986A2900E29C42 /* DriveViewController.swift in Sources */,
 				63254EFE5F3EF2507A91392D2896E9C7 /* ios_app.xcdatamodeld in Sources */,
 				6E9958DE1EB928FA00FF9F25 /* TripTableViewCell.swift in Sources */,
+				9D36AB781EBD0DF200F15F93 /* initialViewController.swift in Sources */,
+				9D36AB7C1EBD0F1C00F15F93 /* userRegistrationViewController.swift in Sources */,
 				A43687021EB69AD500933684 /* TabBarViewController.swift in Sources */,
 				A43687051EB6B68F00933684 /* Trip.swift in Sources */,
 				6E1DBFFB1E986ED900E29C42 /* SettingsViewController.swift in Sources */,
