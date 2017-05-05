@@ -399,6 +399,10 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="currentOption" destination="jC2-Fe-dsB" id="xgG-HQ-LLn"/>
+                                            <outlet property="settingType" destination="MkW-xb-Zh2" id="TTJ-kK-X32"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>

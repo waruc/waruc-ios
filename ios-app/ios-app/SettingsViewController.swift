@@ -103,7 +103,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: TableViewDelegate Methods     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Vehicles"
+        if section == 0 {
+            return "Vehicles"
+        } else {
+            return "Personal"
+        }
+        
+
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -112,15 +118,25 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     
+    var fakeNews = [["Vehicle", "BMW 725i"],
+                    ["Location", "On"],
+                    ["Units", "Miles"]]
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if section == 0 {
+            return 1
+        } else {
+            return 2
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.settingsTableView.dequeueReusableCell(withIdentifier: "settingCell", for: indexPath) as UITableViewCell
+        let cell = self.settingsTableView.dequeueReusableCell(withIdentifier: "settingCell", for: indexPath) as! SettingsTableViewCell
         
-        cell.textLabel?.text = "Setting" 
-        cell.detailTextLabel?.text = "Current"
+        var news = fakeNews[indexPath.row + indexPath.section]
+        cell.settingType.text = news[0]
+        cell.currentOption.text = news[1]
+        
         
         return cell
     }
