@@ -16,6 +16,7 @@
 		6758B89C58E917065AB65487 /* Pods_ios_appUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918D137FAF815A03D08FACD2 /* Pods_ios_appUITests.framework */; };
 		6E1DBFF31E986A2900E29C42 /* DriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1DBFF11E986A2800E29C42 /* DriveViewController.swift */; };
 		6E1DBFFB1E986ED900E29C42 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1DBFF91E986ED900E29C42 /* SettingsViewController.swift */; };
+		6E1E376A1EBD35CC00985259 /* BLERouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1E37691EBD35CC00985259 /* BLERouter.swift */; };
 		6E8A69AA1EB67D56005CC6FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E8A69A91EB67D56005CC6FE /* Main.storyboard */; };
 		6E8A69AC1EB67F19005CC6FE /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8A69AB1EB67F19005CC6FE /* TripsViewController.swift */; };
 		6E9958DE1EB928FA00FF9F25 /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9958DD1EB928FA00FF9F25 /* TripTableViewCell.swift */; };
@@ -64,6 +65,7 @@
 		6AFB18B80651F7E741CFF451 /* Pods_ios_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E1DBFF11E986A2800E29C42 /* DriveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriveViewController.swift; sourceTree = "<group>"; };
 		6E1DBFF91E986ED900E29C42 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		6E1E37691EBD35CC00985259 /* BLERouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLERouter.swift; sourceTree = "<group>"; };
 		6E8A69A91EB67D56005CC6FE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		6E8A69AB1EB67F19005CC6FE /* TripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsViewController.swift; sourceTree = "<group>"; };
 		6E9958DD1EB928FA00FF9F25 /* TripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
@@ -164,15 +166,14 @@
 			children = (
 				A43687031EB6B66C00933684 /* Models */,
 				CD4723942D8C35A66482A93661B91F5F /* AppDelegate.swift */,
+				A4CC564C1EBB0F92002F00E8 /* master.swift */,
 				8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */,
 				3305255BB889E3EE7EE20FF3E663EF64 /* Info.plist */,
 				B7C665298DB176695132B2F26FA1F9E6 /* ios_app.xcdatamodeld */,
-				310A98B6D9A1D63714EED01519D53367 /* LaunchScreen.storyboard */,
-				6E8A69A91EB67D56005CC6FE /* Main.storyboard */,
-				A4CC564C1EBB0F92002F00E8 /* master.swift */,
-				9D36AB741EBD0D4200F15F93 /* Onboarding.storyboard */,
+				6E1E37681EBD352400985259 /* Storyboards */,
 				6E6FF06C1E99B6F7002D67E7 /* ViewControllers */,
 				9D36AB761EBD0DAF00F15F93 /* OnboardingViewControllers */,
+				6E1E37691EBD35CC00985259 /* BLERouter.swift */,
 			);
 			path = "ios-app";
 			sourceTree = "<group>";
@@ -185,6 +186,16 @@
 				36EF0FD39F236A9DE223914449F299D3 /* ios-appUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6E1E37681EBD352400985259 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				310A98B6D9A1D63714EED01519D53367 /* LaunchScreen.storyboard */,
+				6E8A69A91EB67D56005CC6FE /* Main.storyboard */,
+				9D36AB741EBD0D4200F15F93 /* Onboarding.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		6E6FF06C1E99B6F7002D67E7 /* ViewControllers */ = {
@@ -311,7 +322,7 @@
 				TargetAttributes = {
 					4B7F7B27DA252087D73087D24E7742BA = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 4Q874DC73G;
+						DevelopmentTeam = K75D96Y95K;
 						ProvisioningStyle = Automatic;
 					};
 					A26F4000BB5354698DA5E0082DFB9B15 = {
@@ -536,6 +547,7 @@
 				6E1DBFF31E986A2900E29C42 /* DriveViewController.swift in Sources */,
 				63254EFE5F3EF2507A91392D2896E9C7 /* ios_app.xcdatamodeld in Sources */,
 				6E9958DE1EB928FA00FF9F25 /* TripTableViewCell.swift in Sources */,
+				6E1E376A1EBD35CC00985259 /* BLERouter.swift in Sources */,
 				A48181811EBD140C005E66EA /* VehicleRegistrationViewController.swift in Sources */,
 				9D36AB781EBD0DF200F15F93 /* initialViewController.swift in Sources */,
 				9D36AB7C1EBD0F1C00F15F93 /* userRegistrationViewController.swift in Sources */,
@@ -601,10 +613,10 @@
 			baseConfigurationReference = 08899C3F8A4DC92BBE8E1BFD /* Pods-ios-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 4Q874DC73G;
+				DEVELOPMENT_TEAM = K75D96Y95K;
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dylan.babbs.ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ishy.ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -615,10 +627,10 @@
 			baseConfigurationReference = 795BECD3F7BDDC7A07BAB855 /* Pods-ios-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 4Q874DC73G;
+				DEVELOPMENT_TEAM = K75D96Y95K;
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dylan.babbs.ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ishy.ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
