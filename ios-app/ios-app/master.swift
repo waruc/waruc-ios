@@ -42,6 +42,7 @@ struct States {
     }
 }
 
+// Global references for UI colors
 struct Colors {
     static let purple = UIColor(red:0.58, green:0.11, blue:1.00, alpha:1.0)
     static let black = UIColor(red:0.00, green:0.00, blue:0.00, alpha:1.0)
@@ -50,5 +51,4 @@ struct Colors {
     static let white = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
     static let lightGrey = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
     static let darkGrey = UIColor(red:0.61, green:0.61, blue:0.61, alpha:1.0)
-    
 }

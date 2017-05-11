@@ -27,7 +27,7 @@
 		9D36AB7A1EBD0E8200F15F93 /* locationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D36AB791EBD0E8200F15F93 /* locationViewController.swift */; };
 		9D36AB7C1EBD0F1C00F15F93 /* userRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D36AB7B1EBD0F1C00F15F93 /* userRegistrationViewController.swift */; };
 		A43687021EB69AD500933684 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43687011EB69AD500933684 /* TabBarViewController.swift */; };
-		A43687051EB6B68F00933684 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43687041EB6B68F00933684 /* Trip.swift */; };
+		A43687051EB6B68F00933684 /* RealmModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43687041EB6B68F00933684 /* RealmModels.swift */; };
 		A48181811EBD140C005E66EA /* VehicleRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48181801EBD140C005E66EA /* VehicleRegistrationViewController.swift */; };
 		A48181831EBD14EA005E66EA /* OBDInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48181821EBD14EA005E66EA /* OBDInformationViewController.swift */; };
 		A48181851EBD17E4005E66EA /* OBDConnectReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48181841EBD17E4005E66EA /* OBDConnectReviewViewController.swift */; };
@@ -81,7 +81,7 @@
 		9D36AB791EBD0E8200F15F93 /* locationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = locationViewController.swift; sourceTree = "<group>"; };
 		9D36AB7B1EBD0F1C00F15F93 /* userRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userRegistrationViewController.swift; sourceTree = "<group>"; };
 		A43687011EB69AD500933684 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		A43687041EB6B68F00933684 /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
+		A43687041EB6B68F00933684 /* RealmModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModels.swift; sourceTree = "<group>"; };
 		A48181801EBD140C005E66EA /* VehicleRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleRegistrationViewController.swift; sourceTree = "<group>"; };
 		A48181821EBD14EA005E66EA /* OBDInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBDInformationViewController.swift; sourceTree = "<group>"; };
 		A48181841EBD17E4005E66EA /* OBDConnectReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBDConnectReviewViewController.swift; sourceTree = "<group>"; };
@@ -164,16 +164,14 @@
 		4D2AB937E412FDB73D141FD1F00BF152 /* ios-app */ = {
 			isa = PBXGroup;
 			children = (
-				A43687031EB6B66C00933684 /* Models */,
 				CD4723942D8C35A66482A93661B91F5F /* AppDelegate.swift */,
-				A4CC564C1EBB0F92002F00E8 /* master.swift */,
-				8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */,
-				3305255BB889E3EE7EE20FF3E663EF64 /* Info.plist */,
-				B7C665298DB176695132B2F26FA1F9E6 /* ios_app.xcdatamodeld */,
+				A43687031EB6B66C00933684 /* Models */,
 				6E1E37681EBD352400985259 /* Storyboards */,
 				6E6FF06C1E99B6F7002D67E7 /* ViewControllers */,
 				9D36AB761EBD0DAF00F15F93 /* OnboardingViewControllers */,
-				6E1E37691EBD35CC00985259 /* BLERouter.swift */,
+				B7C665298DB176695132B2F26FA1F9E6 /* ios_app.xcdatamodeld */,
+				3305255BB889E3EE7EE20FF3E663EF64 /* Info.plist */,
+				8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */,
 			);
 			path = "ios-app";
 			sourceTree = "<group>";
@@ -227,7 +225,9 @@
 		A43687031EB6B66C00933684 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A43687041EB6B68F00933684 /* Trip.swift */,
+				A4CC564C1EBB0F92002F00E8 /* master.swift */,
+				A43687041EB6B68F00933684 /* RealmModels.swift */,
+				6E1E37691EBD35CC00985259 /* BLERouter.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -552,7 +552,7 @@
 				9D36AB781EBD0DF200F15F93 /* initialViewController.swift in Sources */,
 				9D36AB7C1EBD0F1C00F15F93 /* userRegistrationViewController.swift in Sources */,
 				A43687021EB69AD500933684 /* TabBarViewController.swift in Sources */,
-				A43687051EB6B68F00933684 /* Trip.swift in Sources */,
+				A43687051EB6B68F00933684 /* RealmModels.swift in Sources */,
 				6E1DBFFB1E986ED900E29C42 /* SettingsViewController.swift in Sources */,
 				A48181851EBD17E4005E66EA /* OBDConnectReviewViewController.swift in Sources */,
 			);
