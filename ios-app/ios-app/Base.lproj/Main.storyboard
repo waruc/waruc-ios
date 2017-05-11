@@ -121,7 +121,7 @@
         <!--View Controller-->
         <scene sceneID="fhY-gB-shR">
             <objects>
-                <viewController id="F1m-qk-X3n" sceneMemberID="viewController">
+                <viewController id="F1m-qk-X3n" customClass="ViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yiR-n4-2XV"/>
                         <viewControllerLayoutGuide type="bottom" id="5eP-1U-iyj"/>
@@ -131,17 +131,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HhY-V1-L2p">
-                                <rect key="frame" x="155.5" y="323.5" width="64.5" height="20.5"/>
+                                <rect key="frame" x="146" y="263.5" width="84" height="140.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xfj-NU-dl2">
-                                        <rect key="frame" x="0.0" y="0.0" width="64.5" height="20.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Xfj-NU-dl2">
+                                        <rect key="frame" x="0.0" y="0.0" width="84" height="140.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LmD-X2-crq">
-                                                <rect key="frame" x="0.0" y="0.0" width="64.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="84" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CM6-cG-ABp">
+                                                <rect key="frame" x="0.0" y="50.5" width="84" height="30"/>
+                                                <state key="normal" title="Log Out"/>
+                                                <connections>
+                                                    <action selector="logOutUser:" destination="F1m-qk-X3n" eventType="touchUpInside" id="NnY-U4-Kol"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcq-qz-mmR">
+                                                <rect key="frame" x="0.0" y="110.5" width="84" height="30"/>
+                                                <state key="normal" title="Back Button"/>
+                                                <connections>
+                                                    <action selector="backButtonAction:" destination="F1m-qk-X3n" eventType="touchUpInside" id="F40-pr-fwp"/>
+                                                    <action selector="backButtonTapped:" destination="F1m-qk-X3n" eventType="touchUpInside" id="PAY-wc-K3f"/>
+                                                    <action selector="backTapped:" destination="F1m-qk-X3n" eventType="touchUpInside" id="gyY-UT-3js"/>
+                                                    <action selector="backToHome:" destination="F1m-qk-X3n" eventType="touchUpInside" id="1Bs-p4-KRg"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -153,6 +170,11 @@
                             <constraint firstItem="HhY-V1-L2p" firstAttribute="centerX" secondItem="RGp-cl-FqU" secondAttribute="centerX" id="XB3-nN-tlg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backButton" destination="fcq-qz-mmR" id="FLM-SC-Fga"/>
+                        <outlet property="logOutButton" destination="CM6-cG-ABp" id="mgK-e3-TS6"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="returnHome" id="Fg1-Xk-xYN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kdh-nL-vMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -8,6 +8,8 @@ target 'ios-app' do
   
 pod 'Firebase/Core'	
 pod 'Firebase/Auth'
+pod 'Firebase/Database'
+pod 'SwiftyJSON'
 
   # Pods for ios-app
 
@@ -17,6 +19,8 @@ pod 'Firebase/Auth'
 
 pod 'Firebase/Core'	
 pod 'Firebase/Auth'
+pod 'Firebase/Database'
+pod 'SwiftyJSON'
   end
 
   target 'ios-appUITests' do
