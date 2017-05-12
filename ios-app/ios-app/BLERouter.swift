@@ -33,7 +33,7 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     
     var totalDist = 0.0;
     var aggDist = 0.0;
-    var countS = 0;
+    var tripSeconds = 0.0;
     
     var trips = [[String]]()
     
@@ -132,10 +132,10 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("*** 🐔Successfully connected!🦄")
-        //peripheral.discoverServices(nil)
         centralManager.stopScan()
         pauseScanTimer?.invalidate()
         resumeScanTimer?.invalidate()
+        peripheral.discoverServices(nil)
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?){
@@ -189,37 +189,30 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
             return
         }
         
-        var metric:Int?
+        var kph:Int?
+        var mph:Double = 0.0
         var returnedBytes = [UInt8](characteristic.value!)
-        //print(returnedBytes.map { String(UnicodeScalar($0)) }.joined())
+//        print(characteristic)
+//        print(returnedBytes.map { String(UnicodeScalar($0)) }.joined())
         if (returnedBytes.count == 7) {
-            metric = Int("\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 3])))\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 2])))", radix:16)
+            kph = Int("\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 3])))\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 2])))", radix:16)
         }
         
-        if (metric != nil) {
-            print("\n\n Current speed: \(String(format: "%.1f", Double(metric!) / 1.609344)) mph\n\n")
-            if (!tracking && metric! > 0) {
+        if (kph != nil) {
+            mph = Double(kph!) / 1.609344
+            print("\n\n Current speed: \(mph) mph\n\n")
+            if (!tracking && mph > 0) {
                 tracking = true
-                startTrip(spd: metric!)
-            } else if (tracking && metric! <= 0) {
+                totalDist = 0
+                tripSeconds = 0.0
+                recordSpeedUpdate(spd: mph)
+            } else if (tracking && mph <= 0) {
                 tracking = false
                 stopTrip()
             } else if (tracking) {
-                totalDist += (Double(metric!)/3600.0)
-                countS += 1
+                recordSpeedUpdate(spd: mph)
             }
         }
-        
-//        if (metric != nil) {
-//            totalDist += (Double(metric!)/3600.0)
-//            countS += 1
-//            print("\n\n Current speed: \(metric!) kph\n\n")
-//        }
-        
-//        if (countS >= 30) {
-//            print("\n\n Total distance traveled: \(totalDist) km\n\n")
-//            print()
-//        }
     }
     
     func monitorMetric(metricCmd: String, bleServiceCharacteristic: CBCharacteristic) {
@@ -241,11 +234,9 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         obd2?.writeValue(cmdBytes, for: bleServiceCharacteristic, type: .withResponse)
     }
     
-    func startTrip(spd: Int) {
-        totalDist = 0
-        countS = 0
-        totalDist += (Double(spd)/3600.0)
-        countS += 1
+    func recordSpeedUpdate(spd: Double) {
+        totalDist += spd * (Double(speedUpdateInterval)/3600.0)
+        tripSeconds += Double(speedUpdateInterval)
     }
     
     func stopTrip() {
@@ -261,7 +252,7 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
 //        let minutes = calendar.component(.minute, from: date)
 //        let seconds = calendar.component(.second, from: date)
         
-        trips.append(["\(day)", "\(String(format: "%.1f", (Double(countS)/60.0))) min", "\(String(format: "%.1f", totalDist)) miles", "\(month)"])
+        trips.append(["\(day)", "\(String(format: "%.1f", (tripSeconds/60.0))) min", "\(String(format: "%.1f", totalDist)) miles", "\(month)"])
     }
     
 }
