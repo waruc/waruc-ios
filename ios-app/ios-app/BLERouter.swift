@@ -207,6 +207,7 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         
         var metric:Int?
         var returnedBytes = [UInt8](characteristic.value!)
+        //print(returnedBytes.map { String(UnicodeScalar($0)) }.joined())
         if (returnedBytes.count == 7) {
             metric = Int("\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 3])))\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 2])))", radix:16)
         }
@@ -268,22 +269,18 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     }
     
     func stopTrip() {
-        
-//        print(totalDist)
-//        print(countS)
-//        print()
-        
         let date = Date()
         let calendar = Calendar.current
         
 //        let year = calendar.component(.year, from: date)
         let month = calendar.monthSymbols[calendar.component(.month, from: date) - 1]
         let day = calendar.component(.day, from: date)
-        let hour = calendar.component(.hour, from: date)
-        let minutes = calendar.component(.minute, from: date)
+//        let hour = calendar.component(.hour, from: date)
+//        let minutes = calendar.component(.minute, from: date)
 //        let seconds = calendar.component(.second, from: date)
         
-        trips.append(["\(day)", "\(hour):\(String(format: "%02d", minutes))", "\(String(format: "%.1f", totalDist)) km", "\(month)"])
+        //trips.append(["\(day)", "\(hour):\(String(format: "%02d", minutes))", "\(String(format: "%.1f", totalDist)) km", "\(month)"])
+        trips.append(["\(day)", "\(String(format: "%.1f", (Double(countS)/60.0))) min", "\(String(format: "%.1f", totalDist)) km", "\(month)"])
     }
     
 }
