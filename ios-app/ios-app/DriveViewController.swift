@@ -179,7 +179,7 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         geocoder.reverseGeocodeCoordinate(tempLatLong) {
             response , error in
             if let address = response?.firstResult() {
-                print("why didn't we get in here")
+                //print("why didn't we get in here")
                 if address.locality == nil || address.administrativeArea == nil {
                     result = "Somewhere on Planet Earth"
                 } else {

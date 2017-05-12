@@ -17,16 +17,17 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     var dataCharacteristic:CBCharacteristic?
     var peripherals = [CBPeripheral]()
     var readService:CBService?
-    var keepScanning = false
     
     let obd2TagName = "OBDBLE"
-    let obd2UUID = CBUUID(string: "DDEAF648-037B-46F4-9706-72DF00D8C8C3")
+    let obd2ServiceUUID = CBUUID(string: "B88BAB0E-3ABD-40F9-A816-7FB4FBE10E7E")
     
-    let timerPauseInterval:TimeInterval = 10.0
-    let timerScanInterval:TimeInterval = 2.0
+    let timerPauseInterval:TimeInterval = 10.0  // Duration in seconds of each "pause" between scans
+    let timerScanInterval:TimeInterval = 5.0    // Duration in seconds of each scan
+    var pauseScanTimer:Timer?
+    var resumeScanTimer:Timer?
     
     var timer = Timer()
-    let speedUpdateInterval:TimeInterval = 1.0 // Number of seconds between speed requests
+    let speedUpdateInterval:TimeInterval = 1.0  // Number of seconds between speed requests
     
     var tracking = false
     
@@ -81,62 +82,45 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         centralManager.cancelPeripheralConnection(peripheral)
     }
     
-    
-    @objc func pauseScan() {
-        print("*** Pausing Scanning ***")
-        _ = Timer(timeInterval: timerPauseInterval, target: self, selector: #selector(BLERouter.resumeScan), userInfo: nil, repeats: false)
-        centralManager.stopScan()
-    }
-    
-    @objc func resumeScan() {
-        if keepScanning {
-            print("*** Resuming Scanning ***")
-            _ = Timer(timeInterval: timerScanInterval, target: self, selector: #selector(pauseScan), userInfo: nil, repeats: false)
-            centralManager.scanForPeripherals(withServices: nil, options: nil)
-        } else {
-            
-        }
-    }
-    
-    
-    // MARK: CBCentralManagerDelegate functions
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         //var showAlert = true
-        var message = ""
         
         switch central.state {
         case .poweredOff:
-            message = "Bluetooth on this device is currently powered off."
+            print("Bluetooth on this device is currently powered off.")
         case .unsupported:
-            message = "This device does not support Bluetooth Low Energy."
+            print("This device does not support Bluetooth Low Energy.")
         case .unauthorized:
-            message = "This app is not authorized to use Bluetooth Low Energy."
+            print("This app is not authorized to use Bluetooth Low Energy.")
         case .resetting:
-            message = "The BLE Manager is resetting; a state update is pending."
+            print("The BLE Manager is resetting; a state update is pending.")
         case .unknown:
-            message = "The state of the BLE Manager is unknown."
+            print("The state of the BLE Manager is unknown.")
         case .poweredOn:
             //showAlert = false
-            message = "Bluetooth LE is turned on and ready for communication."
-            
-            print(message)
-            
-            keepScanning = true
-            //_ = Timer(timeInterval: timerScanInterval, target: self, selector: #selector(pauseScan), userInfo: nil, repeats: false)
-            
-            centralManager.scanForPeripherals(withServices: nil, options: nil)
+            print("Bluetooth LE is turned on and ready for communication.")
+            scan()
         }
+    }
+    
+    @objc func pauseScan() {
+        print("*** Pausing Scanning")
+        pauseScanTimer = Timer.scheduledTimer(timeInterval: timerPauseInterval, target: self, selector: #selector(scan), userInfo: nil, repeats: false)
+        centralManager.stopScan()
+    }
+    
+    @objc func scan() {
+        print("*** Scanning")
+        resumeScanTimer = Timer.scheduledTimer(timeInterval: timerScanInterval, target: self, selector: #selector(pauseScan), userInfo: nil, repeats: false)
+        
+        //centralManager.scanForPeripherals(withServices: [obd2UUID], options: nil)
+        centralManager.scanForPeripherals(withServices: nil, options: nil)
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
-            print("NEXT PERIPHERAL NAME: \(peripheralName)")
-            print("NEXT PERIPHERAL UUID: \(peripheral.identifier.uuidString)")
-            
             if peripheralName == obd2TagName {
-                print("*** FOUND OBDBLE! Attempting to connect now! ***")
-                keepScanning = false
-                
+                print("*** FOUND OBDBLE! Attempting to connect now!")
                 self.obd2 = peripheral
                 self.obd2!.delegate = self
                 peripherals.append(peripheral)
@@ -147,30 +131,28 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("**** 🐔Successfully connected!🦄 ****")
-        peripheral.discoverServices(nil)
+        print("*** 🐔Successfully connected!🦄")
+        //peripheral.discoverServices(nil)
+        centralManager.stopScan()
+        pauseScanTimer?.invalidate()
+        resumeScanTimer?.invalidate()
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?){
-        print("*** Failed to Connect! ***")
+        print("*** Failed to Connect!")
     }
-    
-
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        print("**** Disconnected from Peripheral")
-        print("Peripheral name: \(String(describing: peripheral.name))")
+        print("*** Disconnected from Peripheral: \(peripheral.name!)")
         
         if error != nil {
-            print("****** DISCONNECTION DETAILS: \(error!.localizedDescription)")
+            print("*** DISCONNECTION DETAILS: \(error!.localizedDescription)")
         }
-        self.obd2 = nil
         
-        keepScanning = true
-        resumeScan()
+        self.obd2 = nil
+        scan()
     }
     
-    // MARK: CBCentralPeripheral functions
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if error != nil {
             print("ERROR DISCOVERING SERVICES: \(String(describing: error?.localizedDescription))")
@@ -238,8 +220,6 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
 //            print("\n\n Total distance traveled: \(totalDist) km\n\n")
 //            print()
 //        }
-        
-//        NotificationCenter.default.post(name: newValueNotification, object: ["value": metric!])
     }
     
     func monitorMetric(metricCmd: String, bleServiceCharacteristic: CBCharacteristic) {
@@ -259,8 +239,6 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         let cmdBytes = cmd.hexadecimal()!
         obd2?.setNotifyValue(true, for: bleServiceCharacteristic)
         obd2?.writeValue(cmdBytes, for: bleServiceCharacteristic, type: .withResponse)
-        
-//        NotificationCenter.default.addObserver(self, selector: #selector(getNewValue), name: newValueNotification, object: nil)
     }
     
     func startTrip(spd: Int) {
@@ -283,7 +261,6 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
 //        let minutes = calendar.component(.minute, from: date)
 //        let seconds = calendar.component(.second, from: date)
         
-        //trips.append(["\(day)", "\(hour):\(String(format: "%02d", minutes))", "\(String(format: "%.1f", totalDist)) km", "\(month)"])
         trips.append(["\(day)", "\(String(format: "%.1f", (Double(countS)/60.0))) min", "\(String(format: "%.1f", totalDist)) miles", "\(month)"])
     }
     
