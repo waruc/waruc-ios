@@ -9,6 +9,12 @@ target 'ios-app' do
 
   # Pods for ios-app
   pod 'RealmSwift'
+  
+  #Firebase related pods
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'SwiftyJSON'
 
   target 'ios-appTests' do
     inherit! :search_paths

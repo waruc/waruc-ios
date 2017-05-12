@@ -18,9 +18,10 @@ class initialViewController: UIViewController {
     }
     
     @IBAction func login(_ sender: UIButton) {
-        //self.performSegue(withIdentifier: "startGame", sender: self)
+        self.performSegue(withIdentifier: "goToLogin", sender: self)
     }
 
     @IBAction func signUp(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "goToSignUp", sender: self)
     }
 }
