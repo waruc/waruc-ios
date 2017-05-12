@@ -28,7 +28,6 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     var timer = Timer()
     let speedUpdateInterval:TimeInterval = 1.0 // Number of seconds between speed requests
     
-    // Tracking a trip right now
     var tracking = false
     
     var totalDist = 0.0;
@@ -37,7 +36,6 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     
     var trips = [[String]]()
     
-    // MARK: Upper level operations
     override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
@@ -167,6 +165,9 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
             print("****** DISCONNECTION DETAILS: \(error!.localizedDescription)")
         }
         self.obd2 = nil
+        
+        keepScanning = true
+        resumeScan()
     }
     
     // MARK: CBCentralPeripheral functions
