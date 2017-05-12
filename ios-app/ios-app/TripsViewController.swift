@@ -10,31 +10,46 @@ import UIKit
 
 class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // MARK: References
-    
-    
-    //Header
     @IBOutlet weak var mytripsHeader: UILabel!
     @IBOutlet weak var mileCountLabel: UILabel!
     @IBOutlet weak var totalMilesLabel: UILabel!
     
-    
-    
-    //Bottom area
     @IBOutlet weak var bottomBar: UIView!
     @IBOutlet weak var trackingStatusLabel: UILabel!
 
-    
     @IBOutlet weak var tripTableView: UITableView!
     
     @IBOutlet weak var bottomStartStopTrackingButton: UIButton!
     
+    var fakeNews = [[String]]()
+    
+    let delegate = UIApplication.shared.delegate as! AppDelegate
+    
+    private let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fakeNews = delegate.router.trips
+        
         // Table view setup 
-        tripTableView.delegate = self
-        tripTableView.dataSource = self
+        self.tripTableView.delegate = self
+        self.tripTableView.dataSource = self
+        
+        self.tripTableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(self.refreshData(sender:)), for: .valueChanged)
+        
+        loadFeed()
+    }
+    
+    func refreshData(sender: UIRefreshControl) {
+        loadFeed()
+        self.refreshControl.endRefreshing()
+    }
+    
+    func loadFeed() {
+        self.fakeNews = delegate.router.trips
+        self.tripTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,34 +101,16 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         bottomStartStopTrackingButton.setTitle("Start", for: .normal)
     }
     
-    
-    
     // NSNotification for starting/stopping tracking
     let toggleTracking = Notification.Name(rawValue: "toggleTracking")
 
     // MARK: TableViewDelegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return fakeNews.count
     }
-    
-    var fakeNews = [["8", "7:32 a.m.", "7.82 miles", "April"],
-                    ["12", "8:46 a.m.", "9.87 miles", "April"],
-                    ["13", "5:00 p.m.", "17.34 miles", "April"],
-                    ["15", "7:00 a.m.", "4.36 miles", "April"],
-                    ["24", "7:00 p.m.", "101.75 miles", "April"],
-                    ["8", "7:32 a.m.", "7.82 miles", "March"],
-                    ["12", "8:46 a.m.", "9.87 miles", "March"],
-                    ["13", "5:00 p.m.", "17.34 miles", "March"],
-                    ["15", "7:00 a.m.", "4.36 miles", "March"],
-                    ["24", "7:00 p.m.", "101.75 miles", "March"]]
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tripTableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as! TripTableViewCell
-        
-//        cell.dayLabel?.text = "14"
-//        cell.timeLabel?.text = "7:00 a.m."
-//        cell.distanceLabel?.text = "7.82 miles"
-//        cell.monthLabel?.text = "June"
         
         var news = fakeNews[indexPath.row]
         

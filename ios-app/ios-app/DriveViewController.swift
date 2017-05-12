@@ -39,9 +39,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     //Location services
     var locationManager: CLLocationManager!
     
-    // Bluetooth connection 
-    var router = BLERouter()
-    
     // MARK: Setup
     override func viewDidLoad() {
         super.viewDidLoad()

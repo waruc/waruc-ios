@@ -12,8 +12,6 @@ import CoreBluetooth
 
 final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
-    
-    // MARK: References
     var centralManager: CBCentralManager!
     var obd2: CBPeripheral?
     var dataCharacteristic:CBCharacteristic?
@@ -33,14 +31,15 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     // Tracking a trip right now
     var tracking = false
     
+    var totalDist = 0.0;
+    var countS = 0;
+    
+    var trips = [[String]]()
+    
     // MARK: Upper level operations
     override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
-    }
-    
-    func connect() {
-    
     }
     
     // Disconnect from the OBD
@@ -214,9 +213,30 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         
         if (metric != nil) {
             print("\n\n Current speed: \(metric!) kph\n\n")
+            if (!tracking && metric! > 0) {
+                tracking = true
+                startTrip(spd: metric!)
+            } else if (tracking && metric! <= 0) {
+                tracking = false
+                stopTrip()
+            } else if (tracking) {
+                totalDist += (Double(metric!)/3600.0)
+                countS += 1
+            }
         }
         
-        //        NotificationCenter.default.post(name: newValueNotification, object: ["value": metric!])
+//        if (metric != nil) {
+//            totalDist += (Double(metric!)/3600.0)
+//            countS += 1
+//            print("\n\n Current speed: \(metric!) kph\n\n")
+//        }
+        
+//        if (countS >= 30) {
+//            print("\n\n Total distance traveled: \(totalDist) km\n\n")
+//            print()
+//        }
+        
+//        NotificationCenter.default.post(name: newValueNotification, object: ["value": metric!])
     }
     
     func monitorMetric(metricCmd: String, bleServiceCharacteristic: CBCharacteristic) {
@@ -237,7 +257,33 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         obd2?.setNotifyValue(true, for: bleServiceCharacteristic)
         obd2?.writeValue(cmdBytes, for: bleServiceCharacteristic, type: .withResponse)
         
-        // NotificationCenter.default.addObserver(self, selector: #selector(getNewValue), name: newValueNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(getNewValue), name: newValueNotification, object: nil)
+    }
+    
+    func startTrip(spd: Int) {
+        totalDist = 0
+        countS = 0
+        totalDist += (Double(spd)/3600.0)
+        countS += 1
+    }
+    
+    func stopTrip() {
+        
+//        print(totalDist)
+//        print(countS)
+//        print()
+        
+        let date = Date()
+        let calendar = Calendar.current
+        
+//        let year = calendar.component(.year, from: date)
+        let month = calendar.monthSymbols[calendar.component(.month, from: date) - 1]
+        let day = calendar.component(.day, from: date)
+        let hour = calendar.component(.hour, from: date)
+        let minutes = calendar.component(.minute, from: date)
+//        let seconds = calendar.component(.second, from: date)
+        
+        trips.append(["\(day)", "\(hour):\(String(format: "%02d", minutes))", "\(String(format: "%.1f", totalDist)) km", "\(month)"])
     }
     
 }
