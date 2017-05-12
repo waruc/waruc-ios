@@ -42,6 +42,14 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         refreshControl.addTarget(self, action: #selector(self.refreshData(sender:)), for: .valueChanged)
         
         loadFeed()
+        
+        
+        // Realm trial
+        let d = Date(timeIntervalSince1970: 0)
+        writeTrip(date: d, distance: 5.0, deviceID: "1")
+        let trips = readTrip()
+        print(trips[0])
+        
     }
     
     func refreshData(sender: UIRefreshControl) {
