@@ -32,6 +32,7 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     var tracking = false
     
     var totalDist = 0.0;
+    var aggDist = 0.0;
     var countS = 0;
     
     var trips = [[String]]()
@@ -213,7 +214,7 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         }
         
         if (metric != nil) {
-            print("\n\n Current speed: \(metric!) kph\n\n")
+            print("\n\n Current speed: \(String(format: "%.1f", Double(metric!) / 1.609344)) mph\n\n")
             if (!tracking && metric! > 0) {
                 tracking = true
                 startTrip(spd: metric!)
@@ -269,6 +270,8 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     }
     
     func stopTrip() {
+        aggDist += totalDist
+        
         let date = Date()
         let calendar = Calendar.current
         
@@ -280,7 +283,7 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
 //        let seconds = calendar.component(.second, from: date)
         
         //trips.append(["\(day)", "\(hour):\(String(format: "%02d", minutes))", "\(String(format: "%.1f", totalDist)) km", "\(month)"])
-        trips.append(["\(day)", "\(String(format: "%.1f", (Double(countS)/60.0))) min", "\(String(format: "%.1f", totalDist)) km", "\(month)"])
+        trips.append(["\(day)", "\(String(format: "%.1f", (Double(countS)/60.0))) min", "\(String(format: "%.1f", totalDist)) miles", "\(month)"])
     }
     
 }

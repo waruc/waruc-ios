@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -31,6 +32,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         
         fakeNews = delegate.router.trips
+        self.mileCountLabel.text = "\(Int(delegate.router.aggDist.rounded(.toNearestOrAwayFromZero)))"
         
         // Table view setup 
         self.tripTableView.delegate = self
