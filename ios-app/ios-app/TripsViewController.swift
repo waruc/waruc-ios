@@ -43,7 +43,6 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         loadFeed()
         
-        
         // Realm trial
         let d = Date(timeIntervalSince1970: 0)
         writeTrip(date: d, distance: 5.0, deviceID: "1")
@@ -59,6 +58,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func loadFeed() {
         self.fakeNews = delegate.router.trips
+        self.mileCountLabel.text = "\(Int(delegate.router.aggDist.rounded(.toNearestOrAwayFromZero)))"
         self.tripTableView.reloadData()
     }
     
