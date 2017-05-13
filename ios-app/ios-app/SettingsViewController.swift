@@ -98,12 +98,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         //Status bar
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
-        
+
         //Transitions
         transition(item: self.view)
         transition(item: (self.tabBarController?.tabBar)!)
-        
     }
+    
     func setWhite() {
         //Main and header
         view.backgroundColor = UIColor.white

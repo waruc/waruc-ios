@@ -15,6 +15,7 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: References
     //Main header
     @IBOutlet weak var cityHeader: UILabel!
+    @IBOutlet weak var locationIcon: UIImageView!
     
     //Pairing area
     @IBOutlet weak var connectionTypeHeader: UILabel!
@@ -33,11 +34,10 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var bottomStartStopTrackingButton: UIButton!
     @IBOutlet weak var bottomBar: UIView!
 
-    // NSNotification for starting/stopping tracking
-    let toggleTracking = Notification.Name(rawValue: "toggleTracking")
-    
+
     //Location services
-    var locationManager: CLLocationManager!
+    var locationManager: CLLocationManager = CLLocationManager()
+    var startLocation: CLLocation!
     
     // MARK: Setup
     override func viewDidLoad() {
@@ -49,48 +49,31 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         self.greyBoxOne.clipsToBounds = true
         self.greyBoxTwo.layer.cornerRadius = 6.0
         self.greyBoxTwo.clipsToBounds = true
-
         
         self.bottomBar.backgroundColor = Colors.green
-        
-        // NSNotificationCenter for starting and stopping tracking setup
-        // Register to receive notification
-        NotificationCenter.default.addObserver(self, selector: #selector(DriveViewController.didToggleTracking), name: toggleTracking, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.didToggleTracking), name: toggleTracking, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(TripsViewController.didToggleTracking), name: toggleTracking, object: nil)
+        locationIcon.isHidden = true
         
         //debug:
         print("on start \(States.Activity.track)")
         
         //Location services:
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
+        //locationManager = CLLocationManager()
+
+        //Change below to kCLLocationAccuracyBestForNavigation if we need location tracking
         
-        geocoder()
+        
+        location()
         
 
     }
-    
+
     func startScanning() {
         let uuid = UUID(uuidString: "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5")!
         let beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: 123, minor: 456, identifier: "MyBeacon")
-        
         locationManager.startMonitoring(for: beaconRegion)
         locationManager.startRangingBeacons(in: beaconRegion)
     }
     
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedAlways {
-            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
-                if CLLocationManager.isRangingAvailable() {
-                    startScanning()
-                }
-            }
-        }
-    }
     
     @IBAction public func send(_ sender: UIButton) {
         States.Activity.track = !States.Activity.track
@@ -101,10 +84,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
             setWhite()
         }
         
-
-        
-        // Post toggle tracking notification
-        NotificationCenter.default.post(name: toggleTracking, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,27 +94,16 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         }
     } 
     
-    func transition(item: UIView) {
-        UIView.transition(with: item,
-                          duration: Colors.transitionTime,
-                          options: .transitionCrossDissolve,
-                          animations: nil,
-                          completion: nil)
-    }
     
-       
     
     func setBlack() {
-        
         //bars
         self.bottomBar.backgroundColor = Colors.purple
         self.view.backgroundColor = Colors.backgroundBlack
-        
 
         //grey images
         self.greyBoxOne.backgroundColor = Colors.darkGrey
         self.greyBoxTwo.backgroundColor = Colors.darkGrey
-
         
         //text
         self.cityHeader.textColor = Colors.white
@@ -160,8 +128,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         //Transitions
         transition(item: self.view)
         transition(item: (self.tabBarController?.tabBar)!)
-
-
     }
     
     func setWhite() {
@@ -197,31 +163,68 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         transition(item: (self.tabBarController?.tabBar)!)
     }
     
-    // MARK: NSNotification Listeners
-    // The user started or stopped tracking 
-    func didToggleTracking() {
-        //print("Did toggle tracking distance in drive view Controller")
+    func transition(item: UIView) {
+        UIView.transition(with: item,
+                          duration: Colors.transitionTime,
+                          options: .transitionCrossDissolve,
+                          animations: nil,
+                          completion: nil)
     }
     
-    
-    //TODO: Change Administrative Area in short_name
-    func geocoder() {
-        let geocoder = GMSGeocoder()
-        var result = ""
+    func location() {
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.distanceFilter = 1500.0
         
-        let tempLatLong = CLLocationCoordinate2D(latitude: 47.608013, longitude: -122.335167)
-        geocoder.reverseGeocodeCoordinate(tempLatLong) {
-            response , error in
-            if let address = response?.firstResult() {
-                //print("why didn't we get in here")
-                if address.locality == nil || address.administrativeArea == nil {
-                    result = "Somewhere on Planet Earth"
-                } else {
-                    result = "\(address.locality!), \(address.administrativeArea!)"
-                }
-            }
-            //self.cityHeader.text = result
+        locationManager.delegate = self
+        
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        startLocation = nil
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        // App may no longer be authorized to obtain location
+        //information. Check status here and respond accordingly
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let latestLocation: CLLocation = locations[locations.count - 1]
+        var currentLatitude:Double = latestLocation.coordinate.latitude
+        var currentLongitude:Double = latestLocation.coordinate.longitude
+        
+        if startLocation == nil {
+            startLocation = latestLocation
         }
         
+        //Geocoder:
+        let geocoder = GMSGeocoder()
+        var result = "result"
+        var temp = CLLocationCoordinate2D(latitude: currentLatitude, longitude: currentLongitude)
+        geocoder.reverseGeocodeCoordinate(temp) {
+            response , error in
+            if let address = response?.firstResult() {
+                if address.locality == nil || address.administrativeArea == nil {
+                    result = "Unknown, USA"
+                } else {
+                    
+                    if address.administrativeArea! != "Washington" {
+                        let city = "\(address.locality!), \(address.administrativeArea!)"
+                        result = "Outside of WA"
+                    } else {
+                        result = "\(address.locality!), WA"
+                    }
+                    print("CITY: \(result)")
+                }
+            }
+            self.cityHeader.text = result
+            self.locationIcon.isHidden = false
+            self.transition(item: self.locationIcon)
+            self.transition(item: self.cityHeader)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        // Handle errors here 
     }
 }
