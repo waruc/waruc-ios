@@ -80,6 +80,14 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    func transition(item: UIView) {
+        UIView.transition(with: item,
+                          duration: Colors.transitionTime,
+                          options: .transitionCrossDissolve,
+                          animations: nil,
+                          completion: nil)
+    }
+    
     func setBlack() {
         //Main and header
         view.backgroundColor = Colors.backgroundBlack
@@ -101,6 +109,10 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         //Status bar
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        
+        //Transitions
+        transition(item: self.view)
+        transition(item: (self.tabBarController?.tabBar)!)
     }
     
     func setWhite() {
@@ -123,6 +135,10 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         //Status bar
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: true)
+        
+        //Transitions
+        transition(item: self.view)
+        transition(item: (self.tabBarController?.tabBar)!)
     }
     
     // NSNotification for starting/stopping tracking

@@ -109,26 +109,38 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         if States.Activity.track {
-            
             setBlack()
         } else {
             setWhite()
         }
     } 
     
+    func transition(item: UIView) {
+        UIView.transition(with: item,
+                          duration: Colors.transitionTime,
+                          options: .transitionCrossDissolve,
+                          animations: nil,
+                          completion: nil)
+    }
+    
+       
     
     func setBlack() {
+        
         //bars
         self.bottomBar.backgroundColor = Colors.purple
         self.view.backgroundColor = Colors.backgroundBlack
         
+
         //grey images
         self.greyBoxOne.backgroundColor = Colors.darkGrey
         self.greyBoxTwo.backgroundColor = Colors.darkGrey
+
         
         //text
         self.cityHeader.textColor = Colors.white
         self.bottomTrackingStatus.text = "Tracking..."
+
         self.connectionTypeHeader.textColor = Colors.white
         self.vehicleHeader.textColor = Colors.white
         self.connectionTypeSubHeader.textColor = Colors.darkGrey
@@ -141,8 +153,14 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         self.tabBarController?.tabBar.backgroundColor = Colors.backgroundBlack
         self.tabBarController?.tabBar.barTintColor = Colors.backgroundBlack
         
+        
         //Status bar
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        
+        //Transitions
+        transition(item: self.view)
+        transition(item: (self.tabBarController?.tabBar)!)
+
 
     }
     
@@ -150,6 +168,7 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         //bars
         self.bottomBar.backgroundColor = Colors.green
         self.view.backgroundColor = Colors.white
+        
         
         //grey images
         self.greyBoxOne.backgroundColor = Colors.lightGrey
@@ -172,6 +191,10 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         
         //Status bar
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: true)
+        
+        //Transitions
+        transition(item: self.view)
+        transition(item: (self.tabBarController?.tabBar)!)
     }
     
     // MARK: NSNotification Listeners

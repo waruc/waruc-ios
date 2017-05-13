@@ -67,6 +67,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    func transition(item: UIView) {
+        UIView.transition(with: item,
+                          duration: Colors.transitionTime,
+                          options: .transitionCrossDissolve,
+                          animations: nil,
+                          completion: nil)
+    }
+    
    
     
     func setBlack() {
@@ -91,6 +99,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         //Status bar
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
         
+        //Transitions
+        transition(item: self.view)
+        transition(item: (self.tabBarController?.tabBar)!)
+        
     }
     func setWhite() {
         //Main and header
@@ -113,6 +125,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         //Status bar
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: true)
+        
+        //Transitions
+        transition(item: self.view)
+        transition(item: (self.tabBarController?.tabBar)!)
         
     }
     
