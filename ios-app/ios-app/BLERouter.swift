@@ -42,46 +42,6 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
-    // Disconnect from the OBD
-    func disconnect() {
-        // Verify we have a peripheral
-        guard let peripheral = self.obd2 else {
-            print("No peripheral available to disconnect.")
-            return
-        }
-        
-        // Don't do anything if we're not connected
-        if peripheral.state != .connected {
-            print("Peripheral is not connected.")
-            self.obd2 = nil
-            return
-        }
-        
-        // Disconnect directly
-        guard let services = peripheral.services else {
-            centralManager.cancelPeripheralConnection(peripheral)
-            return
-        }
-        
-        // Iterate through services
-        for service in services {
-            // Iterate through characteristics
-            if let characteristics = service.characteristics {
-                for characteristic in characteristics {
-                    // find the Transfer Characteristic we defined in our Device struct
-                    if characteristic.uuid == CBUUID.init(string: "FFE1") {
-                        // Turn off notifications
-                        peripheral.setNotifyValue(false, for: characteristic)
-                        return
-                    }
-                }
-            }
-        } 
-        
-        // Disconnect from peripheral
-        centralManager.cancelPeripheralConnection(peripheral)
-    }
-    
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         //var showAlert = true
         
@@ -115,6 +75,55 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         
         //centralManager.scanForPeripherals(withServices: [obd2UUID], options: nil)
         centralManager.scanForPeripherals(withServices: nil, options: nil)
+    }
+    
+//    // Disconnect from the OBD
+//    func disconnect() {
+//        // Verify we have a peripheral
+//        guard let peripheral = self.obd2 else {
+//            print("No peripheral available to disconnect.")
+//            return
+//        }
+//
+//        // Don't do anything if we're not connected
+//        if peripheral.state != .connected {
+//            print("Peripheral is not connected.")
+//            self.obd2 = nil
+//            return
+//        }
+//
+//        // Disconnect directly
+//        guard let services = peripheral.services else {
+//            centralManager.cancelPeripheralConnection(peripheral)
+//            return
+//        }
+//
+//        // Iterate through services
+//        for service in services {
+//            // Iterate through characteristics
+//            if let characteristics = service.characteristics {
+//                for characteristic in characteristics {
+//                    // find the Transfer Characteristic we defined in our Device struct
+//                    if characteristic.uuid == CBUUID.init(string: "FFE1") {
+//                        // Turn off notifications
+//                        peripheral.setNotifyValue(false, for: characteristic)
+//                        return
+//                    }
+//                }
+//            }
+//        }
+//        
+//        // Disconnect from peripheral
+//        centralManager.cancelPeripheralConnection(peripheral)
+//    }
+    
+    func configureOBD() {
+        obd2?.writeValue(Data(bytes: Array("ATE0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+        obd2?.writeValue(Data(bytes: Array("ATH0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+        obd2?.writeValue(Data(bytes: Array("ATS0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+        obd2?.writeValue(Data(bytes: Array("ATL0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+        obd2?.writeValue(Data(bytes: Array("ATSP0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+        obd2?.writeValue(Data(bytes: Array("ATSP7\r".utf8)), for: dataCharacteristic!, type: .withResponse)
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
@@ -179,7 +188,11 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         
         if (service.uuid.uuidString == "FFE0" && service.characteristics![0].uuid.uuidString == "FFE1") {
             // Found OBD-II input/output service & characteristic
-            monitorMetric(metricCmd: "010D\n\r", bleServiceCharacteristic: service.characteristics![0])
+            dataCharacteristic = service.characteristics![0]
+            
+            obd2?.setNotifyValue(true, for: dataCharacteristic!)
+            configureOBD()
+            monitorMetric(metricCmd: "010D\r", bleServiceCharacteristic: dataCharacteristic!)
         }
     }
     
@@ -192,10 +205,10 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         var kph:Int?
         var mph:Double = 0.0
         var returnedBytes = [UInt8](characteristic.value!)
-//        print(characteristic)
-//        print(returnedBytes.map { String(UnicodeScalar($0)) }.joined())
-        if (returnedBytes.count == 7) {
-            kph = Int("\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 3])))\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 2])))", radix:16)
+        
+        // 20 byte arrays are ones containing usable data
+        if (returnedBytes.count == 20) {
+            kph = Int("\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 2])))\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 1])))", radix:16)
         }
         
         if (kph != nil) {
@@ -229,9 +242,7 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     }
     
     func requestMetric(cmd: String, bleServiceCharacteristic: CBCharacteristic) {
-        let cmdBytes = cmd.hexadecimal()!
-        obd2?.setNotifyValue(true, for: bleServiceCharacteristic)
-        obd2?.writeValue(cmdBytes, for: bleServiceCharacteristic, type: .withResponse)
+        obd2?.writeValue(Data(bytes: Array(cmd.utf8)), for: bleServiceCharacteristic, type: .withResponse)
     }
     
     func recordSpeedUpdate(spd: Double) {
@@ -256,24 +267,3 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     }
     
 }
-
-// Easy conversion of Hexadecimal data from OBD
-extension String {
-    func hexadecimal() -> Data? {
-        var data = Data(capacity: characters.count / 2)
-        
-        let regex = try! NSRegularExpression(pattern: "[0-9a-f]{1,2}", options: .caseInsensitive)
-        regex.enumerateMatches(in: self, options: [], range: NSMakeRange(0, characters.count)) { match, flags, stop in
-            let byteString = (self as NSString).substring(with: match!.range)
-            var num = UInt8(byteString, radix: 16)!
-            data.append(&num, count: 1)
-        }
-        
-        guard data.count > 0 else {
-            return nil
-        }
-        return data
-    }
-}
-
-
