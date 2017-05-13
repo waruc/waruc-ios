@@ -22,7 +22,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var bottomStartStopTrackingButton: UIButton!
     
-    var fakeNews = [[String]]()
+    var realmTrips = [Trip]()
     
     let delegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -31,8 +31,8 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fakeNews = delegate.router.trips
-        self.mileCountLabel.text = "\(Int(delegate.router.aggDist.rounded(.toNearestOrAwayFromZero)))"
+        realmTrips = Array(readTrip())
+        self.mileCountLabel.text = "\(Int(getTotalMiles().rounded(.toNearestOrAwayFromZero)))"
         
         // Table view setup 
         self.tripTableView.delegate = self
@@ -42,13 +42,6 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         refreshControl.addTarget(self, action: #selector(self.refreshData(sender:)), for: .valueChanged)
         
         loadFeed()
-        
-        // Realm trial
-        let d = Date(timeIntervalSince1970: 0)
-        writeTrip(date: d, distance: 5.0, deviceID: "1")
-        let trips = readTrip()
-        print(trips[0])
-        
     }
     
     func refreshData(sender: UIRefreshControl) {
@@ -57,8 +50,8 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func loadFeed() {
-        self.fakeNews = delegate.router.trips
-        self.mileCountLabel.text = "\(Int(delegate.router.aggDist.rounded(.toNearestOrAwayFromZero)))"
+        self.realmTrips = Array(readTrip())
+        self.mileCountLabel.text = "\(Int(getTotalMiles().rounded(.toNearestOrAwayFromZero)))"
         self.tripTableView.reloadData()
     }
     
@@ -146,19 +139,21 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     // MARK: TableViewDelegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fakeNews.count
+        return realmTrips.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tripTableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as! TripTableViewCell
         
-        var news = fakeNews[indexPath.row]
+        let currTrip = realmTrips[indexPath.row]
         
-        cell.dayLabel?.text = news[0]
-        cell.timeLabel?.text = news[1]
-        cell.distanceLabel?.text = news[2]
-        cell.monthLabel?.text = news[3]
+        let calendar = Calendar.current
+        let date = Date.init(timeIntervalSince1970: TimeInterval(currTrip.ts))
         
+        cell.dayLabel?.text = "\(calendar.component(.day, from: date))"
+        cell.timeLabel?.text = "\((((currTrip.duration / 60.0) * 10).rounded() / 10)) min"
+        cell.distanceLabel?.text = "\(((currTrip.distance * 10).rounded() / 10)) miles"
+        cell.monthLabel?.text = "\(calendar.monthSymbols[calendar.component(.month, from: date) - 1])"
         
         //cell.contentView.backgroundColor = Colors.backgroundBlack
         
@@ -184,5 +179,9 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // The user started or stopped tracking 
     func didToggleTracking() {
         print("Did toggle tracking distance in TripsViewController")
+    }
+    
+    func getTotalMiles() -> Double {
+        return realmTrips.map { $0.distance }.reduce(0.0, +)
     }
 }
