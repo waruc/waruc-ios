@@ -21,7 +21,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Colors.green)
         // Do any additional setup after loading the view from its nib.
     }
     
