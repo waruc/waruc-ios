@@ -117,15 +117,6 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
 //        centralManager.cancelPeripheralConnection(peripheral)
 //    }
     
-    func configureOBD() {
-        obd2?.writeValue(Data(bytes: Array("ATE0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
-        obd2?.writeValue(Data(bytes: Array("ATH0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
-        obd2?.writeValue(Data(bytes: Array("ATS0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
-        obd2?.writeValue(Data(bytes: Array("ATL0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
-        obd2?.writeValue(Data(bytes: Array("ATSP0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
-        obd2?.writeValue(Data(bytes: Array("ATSP7\r".utf8)), for: dataCharacteristic!, type: .withResponse)
-    }
-    
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
             if peripheralName == obd2TagName {
@@ -226,6 +217,15 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
                 recordSpeedUpdate(spd: mph)
             }
         }
+    }
+    
+    func configureOBD() {
+        obd2?.writeValue(Data(bytes: Array("ATE0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+        obd2?.writeValue(Data(bytes: Array("ATH0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+        obd2?.writeValue(Data(bytes: Array("ATS0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+        obd2?.writeValue(Data(bytes: Array("ATL0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+        obd2?.writeValue(Data(bytes: Array("ATSP0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+        obd2?.writeValue(Data(bytes: Array("ATSP7\r".utf8)), for: dataCharacteristic!, type: .withResponse)
     }
     
     func monitorMetric(metricCmd: String, bleServiceCharacteristic: CBCharacteristic) {
