@@ -17,128 +17,110 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     var dataCharacteristic:CBCharacteristic?
     var peripherals = [CBPeripheral]()
     var readService:CBService?
-    var keepScanning = false
     
     let obd2TagName = "OBDBLE"
-    let obd2UUID = CBUUID(string: "DDEAF648-037B-46F4-9706-72DF00D8C8C3")
+    let obd2ServiceUUID = CBUUID(string: "B88BAB0E-3ABD-40F9-A816-7FB4FBE10E7E")
     
-    let timerPauseInterval:TimeInterval = 10.0
-    let timerScanInterval:TimeInterval = 2.0
+    let timerPauseInterval:TimeInterval = 10.0  // Duration in seconds of each "pause" between scans
+    let timerScanInterval:TimeInterval = 5.0    // Duration in seconds of each scan
+    var pauseScanTimer:Timer?
+    var resumeScanTimer:Timer?
     
     var timer = Timer()
-    let speedUpdateInterval:TimeInterval = 1.0 // Number of seconds between speed requests
+    let speedUpdateInterval:TimeInterval = 1.0  // Number of seconds between speed requests
     
-    // Tracking a trip right now
     var tracking = false
     
     var totalDist = 0.0;
     var aggDist = 0.0;
-    var countS = 0;
+    var tripSeconds = 0.0;
     
     var trips = [[String]]()
     
-    // MARK: Upper level operations
     override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
-    // Disconnect from the OBD
-    func disconnect() {
-        // Verify we have a peripheral
-        guard let peripheral = self.obd2 else {
-            print("No peripheral available to disconnect.")
-            return
-        }
-        
-        // Don't do anything if we're not connected
-        if peripheral.state != .connected {
-            print("Peripheral is not connected.")
-            self.obd2 = nil
-            return
-        }
-        
-        // Disconnect directly
-        guard let services = peripheral.services else {
-            centralManager.cancelPeripheralConnection(peripheral)
-            return
-        }
-        
-        // Iterate through services
-        for service in services {
-            // Iterate through characteristics
-            if let characteristics = service.characteristics {
-                for characteristic in characteristics {
-                    // find the Transfer Characteristic we defined in our Device struct
-                    if characteristic.uuid == CBUUID.init(string: "FFE1") {
-                        // Turn off notifications
-                        peripheral.setNotifyValue(false, for: characteristic)
-                        return
-                    }
-                }
-            }
-        } 
-        
-        // Disconnect from peripheral
-        centralManager.cancelPeripheralConnection(peripheral)
-    }
-    
-    
-    @objc func pauseScan() {
-        print("*** Pausing Scanning ***")
-        _ = Timer(timeInterval: timerPauseInterval, target: self, selector: #selector(BLERouter.resumeScan), userInfo: nil, repeats: false)
-        centralManager.stopScan()
-    }
-    
-    @objc func resumeScan() {
-        if keepScanning {
-            print("*** Resuming Scanning ***")
-            _ = Timer(timeInterval: timerScanInterval, target: self, selector: #selector(pauseScan), userInfo: nil, repeats: false)
-            centralManager.scanForPeripherals(withServices: nil, options: nil)
-        } else {
-            
-        }
-    }
-    
-    
-    // MARK: CBCentralManagerDelegate functions
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         //var showAlert = true
-        var message = ""
         
         switch central.state {
         case .poweredOff:
-            message = "Bluetooth on this device is currently powered off."
+            print("Bluetooth on this device is currently powered off.")
         case .unsupported:
-            message = "This device does not support Bluetooth Low Energy."
+            print("This device does not support Bluetooth Low Energy.")
         case .unauthorized:
-            message = "This app is not authorized to use Bluetooth Low Energy."
+            print("This app is not authorized to use Bluetooth Low Energy.")
         case .resetting:
-            message = "The BLE Manager is resetting; a state update is pending."
+            print("The BLE Manager is resetting; a state update is pending.")
         case .unknown:
-            message = "The state of the BLE Manager is unknown."
+            print("The state of the BLE Manager is unknown.")
         case .poweredOn:
             //showAlert = false
-            message = "Bluetooth LE is turned on and ready for communication."
-            
-            print(message)
-            
-            keepScanning = true
-            //_ = Timer(timeInterval: timerScanInterval, target: self, selector: #selector(pauseScan), userInfo: nil, repeats: false)
-            
-            centralManager.scanForPeripherals(withServices: nil, options: nil)
+            print("Bluetooth LE is turned on and ready for communication.")
+            scan()
         }
     }
     
+    @objc func pauseScan() {
+        print("*** Pausing Scanning")
+        pauseScanTimer = Timer.scheduledTimer(timeInterval: timerPauseInterval, target: self, selector: #selector(scan), userInfo: nil, repeats: false)
+        centralManager.stopScan()
+    }
+    
+    @objc func scan() {
+        print("*** Scanning")
+        resumeScanTimer = Timer.scheduledTimer(timeInterval: timerScanInterval, target: self, selector: #selector(pauseScan), userInfo: nil, repeats: false)
+        
+        //centralManager.scanForPeripherals(withServices: [obd2UUID], options: nil)
+        centralManager.scanForPeripherals(withServices: nil, options: nil)
+    }
+    
+//    // Disconnect from the OBD
+//    func disconnect() {
+//        // Verify we have a peripheral
+//        guard let peripheral = self.obd2 else {
+//            print("No peripheral available to disconnect.")
+//            return
+//        }
+//
+//        // Don't do anything if we're not connected
+//        if peripheral.state != .connected {
+//            print("Peripheral is not connected.")
+//            self.obd2 = nil
+//            return
+//        }
+//
+//        // Disconnect directly
+//        guard let services = peripheral.services else {
+//            centralManager.cancelPeripheralConnection(peripheral)
+//            return
+//        }
+//
+//        // Iterate through services
+//        for service in services {
+//            // Iterate through characteristics
+//            if let characteristics = service.characteristics {
+//                for characteristic in characteristics {
+//                    // find the Transfer Characteristic we defined in our Device struct
+//                    if characteristic.uuid == CBUUID.init(string: "FFE1") {
+//                        // Turn off notifications
+//                        peripheral.setNotifyValue(false, for: characteristic)
+//                        return
+//                    }
+//                }
+//            }
+//        }
+//        
+//        // Disconnect from peripheral
+//        centralManager.cancelPeripheralConnection(peripheral)
+//    }
+    
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
-            print("NEXT PERIPHERAL NAME: \(peripheralName)")
-            print("NEXT PERIPHERAL UUID: \(peripheral.identifier.uuidString)")
-            
             if peripheralName == obd2TagName {
-                print("*** FOUND OBDBLE! Attempting to connect now! ***")
-                keepScanning = false
-                
+                print("*** FOUND OBDBLE! Attempting to connect now!")
                 self.obd2 = peripheral
                 self.obd2!.delegate = self
                 peripherals.append(peripheral)
@@ -149,27 +131,28 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("**** 🐔Successfully connected!🦄 ****")
+        print("*** 🐔Successfully connected!🦄")
+        centralManager.stopScan()
+        pauseScanTimer?.invalidate()
+        resumeScanTimer?.invalidate()
         peripheral.discoverServices(nil)
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?){
-        print("*** Failed to Connect! ***")
+        print("*** Failed to Connect!")
     }
-    
-
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        print("**** Disconnected from Peripheral")
-        print("Peripheral name: \(String(describing: peripheral.name))")
+        print("*** Disconnected from Peripheral: \(peripheral.name!)")
         
         if error != nil {
-            print("****** DISCONNECTION DETAILS: \(error!.localizedDescription)")
+            print("*** DISCONNECTION DETAILS: \(error!.localizedDescription)")
         }
+        
         self.obd2 = nil
+        scan()
     }
     
-    // MARK: CBCentralPeripheral functions
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if error != nil {
             print("ERROR DISCOVERING SERVICES: \(String(describing: error?.localizedDescription))")
@@ -196,7 +179,11 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         
         if (service.uuid.uuidString == "FFE0" && service.characteristics![0].uuid.uuidString == "FFE1") {
             // Found OBD-II input/output service & characteristic
-            monitorMetric(metricCmd: "010D\n\r", bleServiceCharacteristic: service.characteristics![0])
+            dataCharacteristic = service.characteristics![0]
+            
+            obd2?.setNotifyValue(true, for: dataCharacteristic!)
+            configureOBD()
+            monitorMetric(metricCmd: "010D\r", bleServiceCharacteristic: dataCharacteristic!)
         }
     }
     
@@ -206,39 +193,39 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
             return
         }
         
-        var metric:Int?
+        var kph:Int?
+        var mph:Double = 0.0
         var returnedBytes = [UInt8](characteristic.value!)
-        //print(returnedBytes.map { String(UnicodeScalar($0)) }.joined())
-        if (returnedBytes.count == 7) {
-            metric = Int("\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 3])))\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 2])))", radix:16)
+        
+        // 20 byte arrays are ones containing usable data
+        if (returnedBytes.count == 20) {
+            kph = Int("\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 2])))\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 1])))", radix:16)
         }
         
-        if (metric != nil) {
-            print("\n\n Current speed: \(String(format: "%.1f", Double(metric!) / 1.609344)) mph\n\n")
-            if (!tracking && metric! > 0) {
+        if (kph != nil) {
+            mph = Double(kph!) / 1.609344
+            print("\n\n Current speed: \(mph) mph\n\n")
+            if (!tracking && mph > 0) {
                 tracking = true
-                startTrip(spd: metric!)
-            } else if (tracking && metric! <= 0) {
+                totalDist = 0
+                tripSeconds = 0.0
+                recordSpeedUpdate(spd: mph)
+            } else if (tracking && mph <= 0) {
                 tracking = false
                 stopTrip()
             } else if (tracking) {
-                totalDist += (Double(metric!)/3600.0)
-                countS += 1
+                recordSpeedUpdate(spd: mph)
             }
         }
-        
-//        if (metric != nil) {
-//            totalDist += (Double(metric!)/3600.0)
-//            countS += 1
-//            print("\n\n Current speed: \(metric!) kph\n\n")
-//        }
-        
-//        if (countS >= 30) {
-//            print("\n\n Total distance traveled: \(totalDist) km\n\n")
-//            print()
-//        }
-        
-//        NotificationCenter.default.post(name: newValueNotification, object: ["value": metric!])
+    }
+    
+    func configureOBD() {
+        obd2?.writeValue(Data(bytes: Array("ATE0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+        obd2?.writeValue(Data(bytes: Array("ATH0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+        obd2?.writeValue(Data(bytes: Array("ATS0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+        obd2?.writeValue(Data(bytes: Array("ATL0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+        obd2?.writeValue(Data(bytes: Array("ATSP0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+        obd2?.writeValue(Data(bytes: Array("ATSP7\r".utf8)), for: dataCharacteristic!, type: .withResponse)
     }
     
     func monitorMetric(metricCmd: String, bleServiceCharacteristic: CBCharacteristic) {
@@ -255,18 +242,12 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     }
     
     func requestMetric(cmd: String, bleServiceCharacteristic: CBCharacteristic) {
-        let cmdBytes = cmd.hexadecimal()!
-        obd2?.setNotifyValue(true, for: bleServiceCharacteristic)
-        obd2?.writeValue(cmdBytes, for: bleServiceCharacteristic, type: .withResponse)
-        
-//        NotificationCenter.default.addObserver(self, selector: #selector(getNewValue), name: newValueNotification, object: nil)
+        obd2?.writeValue(Data(bytes: Array(cmd.utf8)), for: bleServiceCharacteristic, type: .withResponse)
     }
     
-    func startTrip(spd: Int) {
-        totalDist = 0
-        countS = 0
-        totalDist += (Double(spd)/3600.0)
-        countS += 1
+    func recordSpeedUpdate(spd: Double) {
+        totalDist += spd * (Double(speedUpdateInterval)/3600.0)
+        tripSeconds += Double(speedUpdateInterval)
     }
     
     func stopTrip() {
@@ -282,29 +263,7 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
 //        let minutes = calendar.component(.minute, from: date)
 //        let seconds = calendar.component(.second, from: date)
         
-        //trips.append(["\(day)", "\(hour):\(String(format: "%02d", minutes))", "\(String(format: "%.1f", totalDist)) km", "\(month)"])
-        trips.append(["\(day)", "\(String(format: "%.1f", (Double(countS)/60.0))) min", "\(String(format: "%.1f", totalDist)) miles", "\(month)"])
+        trips.append(["\(day)", "\(String(format: "%.1f", (tripSeconds/60.0))) min", "\(String(format: "%.1f", totalDist)) miles", "\(month)"])
     }
     
 }
-
-// Easy conversion of Hexadecimal data from OBD
-extension String {
-    func hexadecimal() -> Data? {
-        var data = Data(capacity: characters.count / 2)
-        
-        let regex = try! NSRegularExpression(pattern: "[0-9a-f]{1,2}", options: .caseInsensitive)
-        regex.enumerateMatches(in: self, options: [], range: NSMakeRange(0, characters.count)) { match, flags, stop in
-            let byteString = (self as NSString).substring(with: match!.range)
-            var num = UInt8(byteString, radix: 16)!
-            data.append(&num, count: 1)
-        }
-        
-        guard data.count > 0 else {
-            return nil
-        }
-        return data
-    }
-}
-
-
