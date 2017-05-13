@@ -71,7 +71,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         
         geocoder()
         
-        
 
     }
     
@@ -137,8 +136,13 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         
         //button
         bottomStartStopTrackingButton.setTitle("Stop", for: .normal)
-
         
+        //Tab Bar
+        self.tabBarController?.tabBar.backgroundColor = Colors.backgroundBlack
+        self.tabBarController?.tabBar.barTintColor = Colors.backgroundBlack
+        
+        //Status bar
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
 
     }
     
@@ -161,6 +165,13 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         
         //button
         bottomStartStopTrackingButton.setTitle("Start", for: .normal)
+        
+        //Tab bar
+        self.tabBarController?.tabBar.backgroundColor = UIColor.white
+        self.tabBarController?.tabBar.barTintColor = UIColor.white
+        
+        //Status bar
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: true)
     }
     
     // MARK: NSNotification Listeners

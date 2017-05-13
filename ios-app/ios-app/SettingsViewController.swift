@@ -48,23 +48,23 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        if States.Activity.track {
-//            setBlack()
-//        } else {
-//            setWhite()
-//        }
+        if States.Activity.track {
+            setBlack()
+        } else {
+            setWhite()
+        }
     } 
     
     
     //Below code is work in progress from master.swift trying to update color
     @IBAction func send(_ sender: UIButton) {
         States.Activity.track = !States.Activity.track
-//        print("Settings state switched to \(States.Activity.track)")
-//        if (States.Activity.track) {
-//            setBlack()
-//        } else {
-//            setWhite()
-//        }
+        print("Settings state switched to \(States.Activity.track)")
+        if (States.Activity.track) {
+            setBlack()
+        } else {
+            setWhite()
+        }
     }
     
    
@@ -84,6 +84,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         //button
         bottomStartStopTrackingButton.setTitle("Stop", for: .normal)
         
+        //Tab Bar
+        self.tabBarController?.tabBar.backgroundColor = Colors.backgroundBlack
+        self.tabBarController?.tabBar.barTintColor = Colors.backgroundBlack
+        
+        //Status bar
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        
     }
     func setWhite() {
         //Main and header
@@ -99,6 +106,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         //button
         bottomStartStopTrackingButton.setTitle("Start", for: .normal)
+        
+        //Tab bar
+        self.tabBarController?.tabBar.backgroundColor = UIColor.white
+        self.tabBarController?.tabBar.barTintColor = UIColor.white
+        
+        //Status bar
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: true)
+        
     }
     
     // MARK: TableViewDelegate Methods     

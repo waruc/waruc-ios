@@ -7,10 +7,12 @@
     },
     {
       "idiom" : "universal",
+      "filename" : "Artboardtrips_medium.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Artboardtrips_large.png",
       "scale" : "3x"
     }
   ],

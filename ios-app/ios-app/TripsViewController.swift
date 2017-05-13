@@ -63,24 +63,24 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        if States.Activity.track {
-//            setBlack()
-//        } else {
-//            setWhite()
-//        }
+        if States.Activity.track {
+            setBlack()
+        } else {
+            setWhite()
+        }
     }    
 
     @IBAction func send(_ sender: UIButton) {
         States.Activity.track = !States.Activity.track
-//        print("Trips switched to \(States.Activity.track)")
-//        if (States.Activity.track) {
-//            setBlack()
-//        } else {
-//            setWhite()
-//        }
+        print("Trips switched to \(States.Activity.track)")
+        if (States.Activity.track) {
+            setBlack()
+        } else {
+            setWhite()
+        }
     }
     
-    public func setBlack() {
+    func setBlack() {
         //Main and header
         view.backgroundColor = Colors.backgroundBlack
         mytripsHeader.textColor = Colors.white
@@ -94,6 +94,13 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         trackingStatusLabel.text = "Tracking..."
         
         bottomStartStopTrackingButton.setTitle("Stop", for: .normal)
+        
+        //Tab Bar
+        self.tabBarController?.tabBar.backgroundColor = Colors.backgroundBlack
+        self.tabBarController?.tabBar.barTintColor = Colors.backgroundBlack
+        
+        //Status bar
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
     }
     
     func setWhite() {
@@ -109,6 +116,13 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         bottomBar.backgroundColor = Colors.green
         trackingStatusLabel.text = "Not Tracking"
         bottomStartStopTrackingButton.setTitle("Start", for: .normal)
+
+        //Tab bar
+        self.tabBarController?.tabBar.backgroundColor = UIColor.white
+        self.tabBarController?.tabBar.barTintColor = UIColor.white
+        
+        //Status bar
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: true)
     }
     
     // NSNotification for starting/stopping tracking
