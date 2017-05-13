@@ -35,16 +35,12 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     var aggDist = 0.0;
     var tripSeconds = 0.0;
     
-    var trips = [[String]]()
-    
     override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        //var showAlert = true
-        
         switch central.state {
         case .poweredOff:
             print("Bluetooth on this device is currently powered off.")
@@ -57,7 +53,6 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         case .unknown:
             print("The state of the BLE Manager is unknown.")
         case .poweredOn:
-            //showAlert = false
             print("Bluetooth LE is turned on and ready for communication.")
             scan()
         }
@@ -76,46 +71,6 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         //centralManager.scanForPeripherals(withServices: [obd2UUID], options: nil)
         centralManager.scanForPeripherals(withServices: nil, options: nil)
     }
-    
-//    // Disconnect from the OBD
-//    func disconnect() {
-//        // Verify we have a peripheral
-//        guard let peripheral = self.obd2 else {
-//            print("No peripheral available to disconnect.")
-//            return
-//        }
-//
-//        // Don't do anything if we're not connected
-//        if peripheral.state != .connected {
-//            print("Peripheral is not connected.")
-//            self.obd2 = nil
-//            return
-//        }
-//
-//        // Disconnect directly
-//        guard let services = peripheral.services else {
-//            centralManager.cancelPeripheralConnection(peripheral)
-//            return
-//        }
-//
-//        // Iterate through services
-//        for service in services {
-//            // Iterate through characteristics
-//            if let characteristics = service.characteristics {
-//                for characteristic in characteristics {
-//                    // find the Transfer Characteristic we defined in our Device struct
-//                    if characteristic.uuid == CBUUID.init(string: "FFE1") {
-//                        // Turn off notifications
-//                        peripheral.setNotifyValue(false, for: characteristic)
-//                        return
-//                    }
-//                }
-//            }
-//        }
-//        
-//        // Disconnect from peripheral
-//        centralManager.cancelPeripheralConnection(peripheral)
-//    }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
@@ -149,8 +104,13 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
             print("*** DISCONNECTION DETAILS: \(error!.localizedDescription)")
         }
         
-        self.obd2 = nil
-        scan()
+        if peripheral.name! == obd2TagName {
+            tracking = false
+            stopTrip()
+            
+            self.obd2 = nil
+            scan()
+        }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
@@ -210,9 +170,6 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
                 totalDist = 0
                 tripSeconds = 0.0
                 recordSpeedUpdate(spd: mph)
-            } else if (tracking && mph <= 0) {
-                tracking = false
-                stopTrip()
             } else if (tracking) {
                 recordSpeedUpdate(spd: mph)
             }
