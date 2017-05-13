@@ -9,40 +9,28 @@
 import Foundation
 import RealmSwift
 
-
-// MARK: Models
 class Trip: Object {
-    // Date and time
-    dynamic var date = Date()
-    // Distance travelled in this trip
+    dynamic var ts = 0
     dynamic var distance = 0.0
-    // ID for iPhone from Firebase
-    dynamic var deviceID = ""
+    dynamic var duration = 0.0
 }
 
-// MARK: Writing
 let realm = try! Realm()
 
-func writeTrip(date: Date, distance: Double, deviceID: String) {
-    // Construct Realm model
+func writeTrip(ts: Int, distance: Double, duration: Double) {
     let trip = Trip()
-    trip.date = date
+    trip.ts = ts
     trip.distance = distance
-    trip.deviceID = deviceID
+    trip.duration = duration
     
-    // Write object
     try! realm.write {
         realm.add(trip)
     }
 }
 
-// MARK: Reading
-// Returns a Realm results object
-// List of Trip objects
-// Sorted by date of trip -> Most recent first
+// Returns a Realm results object w/ trips sorted by ts
 func readTrip() -> Results<Trip> {
-    // Query Realm for all trips
-    let trips = realm.objects(Trip.self).sorted(byKeyPath: "date", ascending: false)
+    let trips = realm.objects(Trip.self).sorted(byKeyPath: "ts", ascending: false)
     print("Read \(trips.count) trips for Realm")
     return trips
 }

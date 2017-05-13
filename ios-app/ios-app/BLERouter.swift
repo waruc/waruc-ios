@@ -254,16 +254,9 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         aggDist += totalDist
         
         let date = Date()
-        let calendar = Calendar.current
+        let ts = Int(date.timeIntervalSince1970.rounded())
         
-//        let year = calendar.component(.year, from: date)
-        let month = calendar.monthSymbols[calendar.component(.month, from: date) - 1]
-        let day = calendar.component(.day, from: date)
-//        let hour = calendar.component(.hour, from: date)
-//        let minutes = calendar.component(.minute, from: date)
-//        let seconds = calendar.component(.second, from: date)
-        
-        trips.append(["\(day)", "\(String(format: "%.1f", (tripSeconds/60.0))) min", "\(String(format: "%.1f", totalDist)) miles", "\(month)"])
+        writeTrip(ts: ts, distance: totalDist, duration: tripSeconds)
     }
     
 }
