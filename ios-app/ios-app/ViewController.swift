@@ -17,11 +17,19 @@ class ViewController: UIViewController {
     // Outlets
     @IBOutlet weak var signinSelector: UISegmentedControl!
     @IBOutlet weak var signInLabel: UILabel!
+    
+    // Outlet Textfields
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var brandTextField: UITextField!
+    @IBOutlet weak var modelTextField: UITextField!
+    @IBOutlet weak var yearTextField: UITextField!
+    
+    // Outlet buttons
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var logOutButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var submitButton: UIButton!
     
     var ref: FIRDatabaseReference!
     var isSignIn:Bool = true
@@ -31,15 +39,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         ref = FIRDatabase.database().reference()
 //        getUserVechiles()
-//        getUserProfile()
-//        trobuleShoot()
-        troubleV2()
+        if FIRAuth.auth()?.currentUser?.uid != nil {
+            getUserData()
+        }
     }
     
 
 
     @IBAction func backButtonTapped(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "returnHome", sender: self)
     }
+    
     @IBAction func signInSelectorChanged(_ sender: UISegmentedControl) {
     
         isSignIn = !isSignIn
@@ -62,14 +72,14 @@ class ViewController: UIViewController {
             if isSignIn {
                 // Sign in with Firebase
                 FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
-                    
                     //check that user is not nill
                     if let u = user {
                         // User is found
+                        print("S--s-s-egue")
                         self.performSegue(withIdentifier: "goToSuccess", sender: self)
                     }
                     else {
-                        print("Troubles in Paradise")
+                        print("No user Sign In")
                     }
                     
                 })
@@ -81,11 +91,12 @@ class ViewController: UIViewController {
                 FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user, error) in
                     if let u = user {
                         // User is found
+                        print("S--s-s-egue")
                         self.performSegue(withIdentifier: "goToSuccess", sender: self)
                     }
                     else {
                         // display error
-                        print("You done fucked up")
+                        print("No Create User")
                     }
                 })
             }
@@ -102,11 +113,15 @@ class ViewController: UIViewController {
             print (logoutError)
         }
     }
+    
+    
+    @IBAction func submittButtonTapped(_ sender: UIButton) {
+        createVehicle()
+    }
 
 
-    // Remove on iPhone keyboard. Quality of life dev tool
+    // Remove on iPhone keyboard. Quality of life dev function
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         // Dismiss the keyboard when the view is tapped on
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
@@ -131,39 +146,7 @@ class ViewController: UIViewController {
         return []
     }
     
-    func getUserProfile() {
-        if FIRAuth.auth()?.currentUser?.uid != nil {
-            let uid = FIRAuth.auth()?.currentUser?.uid
-            ref.child("vehicles/0/users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-//                print(snapshot.value)
-                let dic = snapshot.value as? [String: AnyObject]
-                let values = dic!["devices"] as? NSArray
-                print(values!)
-//                print(dic!)
-//                print(values!.value)
-                
-            }, withCancel: nil)
-            
-        }
-    }
-    
-    func trobuleShoot() {
-        if FIRAuth.auth()?.currentUser?.uid != nil {
-            let uid = FIRAuth.auth()?.currentUser?.uid
-            ref.child("vehicles").observeSingleEvent(of: .value, with: { (snapshot) in
-               let enumerator = snapshot.children
-                while let rest = enumerator.nextObject() as? FIRDataSnapshot {
-                    if rest.hasChild("users/" + uid!) {
-                        let child_snap = rest.childSnapshot(forPath: "users/" + uid!)
-                    }
-                }
-                
-            }, withCancel: nil)
-            
-        }
-    }
-    
-    func troubleV2() {
+    func getUserData() { //need to ensure that a uID is not null and is in the databaes
         let uid = FIRAuth.auth()?.currentUser?.uid //function argument
         let dummy_keys: [String] = ["0", "1", "2"] // will call getUserVechiles()
 
@@ -171,18 +154,44 @@ class ViewController: UIViewController {
             ref.child("vehicles/" + key + "/users/" + uid!).observeSingleEvent(of: .value, with: { (snapshot) in
 //                print(snapshot.ref)
                 let user_json = JSON(snapshot.value)
-                print(user_json)
+//                print(user_json)
             }, withCancel: nil)
             
             ref.child("vehicles/" + key).observeSingleEvent(of: .value, with: { (snapshot) in
                 var vehicle_json = JSON(snapshot.value)
                 vehicle_json.dictionaryObject?.removeValue(forKey: "users")
-                print(vehicle_json)
+//                print(vehicle_json)
             }, withCancel: nil)
         }
     }
     
+    func createVehicle() {
+        if FIRAuth.auth()?.currentUser?.uid != nil {
+            let uid = FIRAuth.auth()?.currentUser?.uid
     
+            let brand = brandTextField.text
+            let model = modelTextField.text
+            let year = yearTextField.text  //need to preform forum validation
+            
+            let model_count = model!.characters.count
+            let brand_count = brand!.characters.count
+            let year_count = year!.characters.count
+            
+        
+            if model_count > 0, brand_count > 0, year_count > 0{
+                // Read and Update index_vechile
+                ref.child("index_vehicle").observeSingleEvent(of: .value, with: { (snapshot) in
+                    var total_vehicle = snapshot.value as? Int
+                    let new_total = total_vehicle! + 1
+                    self.ref.child("index_vehicle").setValue(new_total)
+                    self.ref.child("userVehicles/" + uid! + "/vehicles").updateChildValues([String(new_total) : "owner / user"])
+                    let new_values = ["brand": brand!, "model": model!, "year" : year!]
+                    self.ref.child("vehicles/" + String(new_total)).setValue(new_values)
+                    
+                }, withCancel: nil)
+            }
+        }
+    }    
 }
 
 
@@ -200,6 +209,7 @@ class ViewController: UIViewController {
 //                print(json)
 //let enumerator = snapshot.children
 //while let rest = enumerator.nextObject() as? FIRDataSnapshot {}
+//let key = self.ref.child("index_vehicle").childByAutoId().key // auto-generates a hash
 
 
 

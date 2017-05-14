@@ -83,6 +83,7 @@
                                                 <state key="normal" title="Sign in "/>
                                                 <connections>
                                                     <action selector="signInButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XnG-fb-9sB"/>
+                                                    <segue destination="4gI-oE-kVy" kind="show" identifier="goToSuccess" id="Dx5-hR-IaQ"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -98,7 +99,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.991720391016776" green="1" blue="0.9521361040366032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.53269434319999998" green="1" blue="0.53137165870000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Mko-qO-ewH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="2ob-3X-3BR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Mko-qO-ewH" secondAttribute="trailing" id="Fsz-4W-0b8"/>
@@ -111,12 +112,88 @@
                         <outlet property="signInButton" destination="kXK-hs-ZF0" id="deT-bz-CIV"/>
                         <outlet property="signInLabel" destination="ruC-Uj-39o" id="05J-Hl-N5t"/>
                         <outlet property="signinSelector" destination="yPE-b0-pG7" id="Euz-Vg-C8D"/>
-                        <segue destination="F1m-qk-X3n" kind="show" identifier="goToSuccess" id="Fv4-ye-D8c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="keo-Ud-SUn">
+            <objects>
+                <viewController id="4gI-oE-kVy" customClass="ViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Dx8-23-mM6"/>
+                        <viewControllerLayoutGuide type="bottom" id="AhY-nE-bKh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ugl-kl-9fb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Brand" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFF-DY-UwY">
+                                <rect key="frame" x="16" y="187" width="109" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Model" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMf-Mm-8Ch">
+                                <rect key="frame" x="16" y="323" width="80" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZ4-fX-xYB">
+                                <rect key="frame" x="16" y="428" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5ee-l0-xem">
+                                <rect key="frame" x="94" y="178" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Nr-vk-oN8">
+                                <rect key="frame" x="94" y="318" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j5a-Dq-CaC">
+                                <rect key="frame" x="94" y="424" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nVs-Zh-h7h">
+                                <rect key="frame" x="123" y="531" width="129" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submittButtonTapped:" destination="4gI-oE-kVy" eventType="touchUpInside" id="7uQ-yw-M7h"/>
+                                    <segue destination="F1m-qk-X3n" kind="show" identifier="goToFinal" id="bPv-kY-zCf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.53269434319410536" green="1" blue="0.53137165871268643" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="brandTextField" destination="5ee-l0-xem" id="Mye-mJ-xXK"/>
+                        <outlet property="modelTextField" destination="8Nr-vk-oN8" id="dv6-Ot-xkc"/>
+                        <outlet property="submitButton" destination="nVs-Zh-h7h" id="e19-PB-F8C"/>
+                        <outlet property="yearTextField" destination="j5a-Dq-CaC" id="Vae-2D-yaz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qga-0b-KO5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1062" y="139"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="fhY-gB-shR">
@@ -157,6 +234,7 @@
                                                     <action selector="backButtonTapped:" destination="F1m-qk-X3n" eventType="touchUpInside" id="PAY-wc-K3f"/>
                                                     <action selector="backTapped:" destination="F1m-qk-X3n" eventType="touchUpInside" id="gyY-UT-3js"/>
                                                     <action selector="backToHome:" destination="F1m-qk-X3n" eventType="touchUpInside" id="1Bs-p4-KRg"/>
+                                                    <segue destination="BYZ-38-t0r" kind="show" identifier="returnHome" id="KUh-6y-lOt"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -164,7 +242,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.98770123529439802" green="1" blue="0.92478085629919693" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.53269434319999998" green="1" blue="0.53137165870000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="HhY-V1-L2p" firstAttribute="centerY" secondItem="RGp-cl-FqU" secondAttribute="centerY" id="V6z-Hg-hcK"/>
                             <constraint firstItem="HhY-V1-L2p" firstAttribute="centerX" secondItem="RGp-cl-FqU" secondAttribute="centerX" id="XB3-nN-tlg"/>
@@ -173,12 +251,11 @@
                     <connections>
                         <outlet property="backButton" destination="fcq-qz-mmR" id="FLM-SC-Fga"/>
                         <outlet property="logOutButton" destination="CM6-cG-ABp" id="mgK-e3-TS6"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="returnHome" id="Fg1-Xk-xYN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kdh-nL-vMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="865" y="139"/>
+            <point key="canvasLocation" x="1855" y="139"/>
         </scene>
     </scenes>
 </document>
