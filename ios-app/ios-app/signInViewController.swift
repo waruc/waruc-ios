@@ -19,13 +19,13 @@ class signInViewController: UIViewController {
     @IBOutlet weak var logInButton: UIButton!
     
     // Class Variables
-    //var ref: FIRDatabaseReference!
+    var ref: FIRDatabaseReference!
     
     let delegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //ref = FIRDatabase.database().reference()
+        ref = FIRDatabase.database().reference()
         //getUserJSON()
     }
 
@@ -49,7 +49,7 @@ class signInViewController: UIViewController {
         if FIRAuth.auth()?.currentUser?.uid != nil {
             // fetch data from Firebase
             let uid = FIRAuth.auth()?.currentUser?.uid
-            delegate.ref!.child("userVehicles").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            ref!.child("userVehicles").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
                 var vhecile_keys = [String]()
                 let enumerator = snapshot.children
                 while let rest = enumerator.nextObject() as? FIRDataSnapshot{
@@ -69,12 +69,12 @@ class signInViewController: UIViewController {
         let dummy_keys: [String] = ["0", "1", "2"] // will call getUserVechiles()
         
         for key in dummy_keys {
-            delegate.ref!.child("vehicles/" + key + "/users/" + uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            ref!.child("vehicles/" + key + "/users/" + uid!).observeSingleEvent(of: .value, with: { (snapshot) in
                 let user_json = JSON(snapshot.value!)
                 print(user_json)
             }, withCancel: nil)
             
-            delegate.ref!.child("vehicles/" + key).observeSingleEvent(of: .value, with: { (snapshot) in
+            ref!.child("vehicles/" + key).observeSingleEvent(of: .value, with: { (snapshot) in
                 var vehicle_json = JSON(snapshot.value!)
                 vehicle_json.dictionaryObject?.removeValue(forKey: "users")
                 print(vehicle_json)

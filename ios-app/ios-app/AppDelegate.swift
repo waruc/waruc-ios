@@ -16,9 +16,6 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-    // Class Variables
-    var ref: FIRDatabaseReference?
 
     // Bluetooth connection
     var router = BLERouter()
@@ -29,11 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         
-        print("AYYYYYYYYY")
-        if FIRAuth.auth()?.currentUser != nil {
-        //if true {
+        //if FIRAuth.auth()?.currentUser != nil {
+        if true {
             print("User is signed in")
-            ref = FIRDatabase.database().reference()
             self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "TabBar") as! UITabBarController
         }
         
