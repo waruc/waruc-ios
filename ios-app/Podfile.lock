@@ -1,4 +1,5 @@
 PODS:
+  - Eureka (3.0.0)
   - Firebase/Auth (3.17.0):
     - Firebase/Core
     - FirebaseAuth (= 3.1.1)
@@ -48,6 +49,7 @@ PODS:
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
+  - Eureka
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -57,6 +59,7 @@ DEPENDENCIES:
   - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Eureka: f36fd440c3ebb7bfea0a4fbe6f16a05f1cb35906
   Firebase: 4b66b5b59c43edac745b87f0c87e42cdd0279c13
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
@@ -71,6 +74,6 @@ SPEC CHECKSUMS:
   RealmSwift: 9f1a8f624f2f153410115c2cb7d486be9976565d
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: a9618005abba8002521bcf8e6ba4bbbbb2b0fa3c
+PODFILE CHECKSUM: 82ddef67b46e5d938d95b0c7352fbb2fd17f3bf7
 
 COCOAPODS: 1.2.1

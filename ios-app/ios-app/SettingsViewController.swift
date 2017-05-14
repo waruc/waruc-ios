@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SettingsViewController: UIViewController {
     // MARK: References
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var settingsHeader: UILabel!
     @IBOutlet weak var bottomBar: UIView!
-    @IBOutlet weak var settingsTableView: UITableView!
+    //@IBOutlet weak var settingsTableView: UITableView!
     
     @IBOutlet weak var trackingStatusLabel: UILabel!
     
@@ -33,11 +33,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         self.profileImage.clipsToBounds = true
         
         self.bottomBar.backgroundColor = Colors.green
-        
-        
-        // Table View set up
-        self.settingsTableView.delegate = self
-        self.settingsTableView.dataSource = self
+
         
         // NSNotificationCenter for starting and stopping tracking setup
         // Register to receive notification
@@ -129,50 +125,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         //Transitions
         transition(item: self.view)
         transition(item: (self.tabBarController?.tabBar)!)
-        
-    }
-    
-    // MARK: TableViewDelegate Methods     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Vehicles"
-        } else {
-            return "Personal"
-        }
-        
-
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 2
-    }
-
-    
-    var fakeNews = [["Vehicle", "BMW 725i"],
-                    ["Location", "On"],
-                    ["Units", "Miles"]]
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else {
-            return 2
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.settingsTableView.dequeueReusableCell(withIdentifier: "settingCell", for: indexPath) as! SettingsTableViewCell
-        
-        var news = fakeNews[indexPath.row + indexPath.section]
-        cell.settingType.text = news[0]
-        cell.currentOption.text = news[1]
-        
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
     

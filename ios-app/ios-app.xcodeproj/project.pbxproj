@@ -14,11 +14,11 @@
 		38D5CCA17DA10FC2BB5F74A48E6A8A13 /* ios_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E36859A2066CF7E2A4E86B5C221357 /* ios_appTests.swift */; };
 		4E0CD37CBC72C156B52DC9628D9E9C56 /* DriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626147F27F3DDAE6969CD5185FC91B66 /* DriveViewController.swift */; };
 		55AE7C5FDA0DF7DCC6C71BAE9C32A0D3 /* signInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579291A869CEE3D6234B1B346CB2B1D3 /* signInViewController.swift */; };
-		5693E0EBAFFD4CBD7B9A15DB3005EEB5 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E4F3C4DC8798A0F36865BDA77FD49 /* SettingsTableViewCell.swift */; };
 		618640CF7052C844C7A8DD0BEB8AE954 /* Pods_ios_appUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B3F91C09AB653384F396AA380C4D2E /* Pods_ios_appUITests.framework */; };
 		63254EFE5F3EF2507A91392D2896E9C7 /* ios_app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7C665298DB176695132B2F26FA1F9E6 /* ios_app.xcdatamodeld */; };
 		63701A70CEFD0B5BDAE74604FE4A50A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11160A8E6C999C1B1CB46BB32990AE7 /* Main.storyboard */; };
 		63D41EA86ED1CCCE596BD598F48E4A3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4723942D8C35A66482A93661B91F5F /* AppDelegate.swift */; };
+		6ECE786E1EC839AB009F5370 /* SettingsFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECE786D1EC839AB009F5370 /* SettingsFormViewController.swift */; };
 		739359C72B85CE07A90DD687ABAC4321 /* ios_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A29964B8F0B4C2F0A0FF7EA8C97BC6 /* ios_appUITests.swift */; };
 		8D6753A5485200478635E2B752B36AAF /* OBDInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CC221AC0187FD7AB3CE552C29D5CEA /* OBDInformationViewController.swift */; };
 		9344BFC53DD62E2B252A09F182675EE1 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880EB9519B5038CA89CEE75133D7E0B2 /* TabBarViewController.swift */; };
@@ -55,7 +55,6 @@
 /* Begin PBXFileReference section */
 		00992823807C74F5E0C484B8117A65A5 /* TripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		013A9B4DE67988F68090F821C40F92E1 /* Pods-ios-appUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-appUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-appUITests/Pods-ios-appUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		089E4F3C4DC8798A0F36865BDA77FD49 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		0B2669E0AC51EF94156CBA67F82FABE1 /* Pods-ios-appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-appTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-appTests/Pods-ios-appTests.release.xcconfig"; sourceTree = "<group>"; };
 		1C382CED79453FBA8144FB1EFAD89693 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22B3F91C09AB653384F396AA380C4D2E /* Pods_ios_appUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_appUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +72,7 @@
 		57CC221AC0187FD7AB3CE552C29D5CEA /* OBDInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBDInformationViewController.swift; sourceTree = "<group>"; };
 		626147F27F3DDAE6969CD5185FC91B66 /* DriveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriveViewController.swift; sourceTree = "<group>"; };
 		6E9A1FCD73154548F0E3181D2893E3B1 /* locationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = locationViewController.swift; sourceTree = "<group>"; };
+		6ECE786D1EC839AB009F5370 /* SettingsFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsFormViewController.swift; sourceTree = "<group>"; };
 		7155F0AF2F917F34B10454E020C1E03E /* Pods-ios-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-app/Pods-ios-app.debug.xcconfig"; sourceTree = "<group>"; };
 		7B7FB9104AE8A001DF3C179095EA76F9 /* Pods-ios-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-app/Pods-ios-app.release.xcconfig"; sourceTree = "<group>"; };
 		81F6DF939BAEA04952A2FEC910611DF5 /* ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,11 +212,11 @@
 			isa = PBXGroup;
 			children = (
 				626147F27F3DDAE6969CD5185FC91B66 /* DriveViewController.swift */,
-				089E4F3C4DC8798A0F36865BDA77FD49 /* SettingsTableViewCell.swift */,
 				E01B774056617283E4F8DAD7F8198590 /* SettingsViewController.swift */,
 				880EB9519B5038CA89CEE75133D7E0B2 /* TabBarViewController.swift */,
 				00992823807C74F5E0C484B8117A65A5 /* TripTableViewCell.swift */,
 				24409AEF74396A96DB5940F12EF83B3E /* TripsViewController.swift */,
+				6ECE786D1EC839AB009F5370 /* SettingsFormViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -322,7 +322,7 @@
 				TargetAttributes = {
 					4B7F7B27DA252087D73087D24E7742BA = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = MYKB4J9SMT;
+						DevelopmentTeam = K75D96Y95K;
 						ProvisioningStyle = Automatic;
 					};
 					A26F4000BB5354698DA5E0082DFB9B15 = {
@@ -402,21 +402,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		DA2E98F4DE765A3952420007BCE792FE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		2C5D5C28F8F646971325CA376740A57D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -462,6 +447,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios-appTests/Pods-ios-appTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		81101E0130C92C69257028CCE7A02D5F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		CCD0F365FDEFB098DA4C826029837C60 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -492,6 +492,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios-app/Pods-ios-app-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DA2E98F4DE765A3952420007BCE792FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		DE2CD81EC1CD7A652A3425064E9A59B3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -505,21 +520,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios-appTests/Pods-ios-appTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		81101E0130C92C69257028CCE7A02D5F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -538,12 +538,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				63D41EA86ED1CCCE596BD598F48E4A3E /* AppDelegate.swift in Sources */,
+				6ECE786E1EC839AB009F5370 /* SettingsFormViewController.swift in Sources */,
 				BDA701ECBCC0400339E51B59EB70FFF8 /* BLERouter.swift in Sources */,
 				4E0CD37CBC72C156B52DC9628D9E9C56 /* DriveViewController.swift in Sources */,
 				EB87D52E39925843455D8E8248DB69CF /* OBDConnectReviewViewController.swift in Sources */,
 				8D6753A5485200478635E2B752B36AAF /* OBDInformationViewController.swift in Sources */,
 				02EEA82F412946F6A47400F0707E32B4 /* RealmModels.swift in Sources */,
-				5693E0EBAFFD4CBD7B9A15DB3005EEB5 /* SettingsTableViewCell.swift in Sources */,
 				C01E2D6FD39B48F9667FD3FF37276071 /* SettingsViewController.swift in Sources */,
 				9344BFC53DD62E2B252A09F182675EE1 /* TabBarViewController.swift in Sources */,
 				DF2FC0F47FE27BBE18E0F1AB22F48DFF /* TripTableViewCell.swift in Sources */,
@@ -689,10 +689,10 @@
 			baseConfigurationReference = 7155F0AF2F917F34B10454E020C1E03E /* Pods-ios-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MYKB4J9SMT;
+				DEVELOPMENT_TEAM = K75D96Y95K;
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nn.ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.waruc.ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -754,10 +754,10 @@
 			baseConfigurationReference = 7B7FB9104AE8A001DF3C179095EA76F9 /* Pods-ios-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MYKB4J9SMT;
+				DEVELOPMENT_TEAM = K75D96Y95K;
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nn.ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.waruc.ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
