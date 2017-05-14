@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import CoreLocation
+import NVActivityIndicatorView
 
 class DriveViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -33,17 +34,26 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var bottomTrackingStatus: UILabel!
     @IBOutlet weak var bottomStartStopTrackingButton: UIButton!
     @IBOutlet weak var bottomBar: UIView!
-
+    
+    @IBOutlet weak var animationView: UIView!
+    
+    var searchingAnimation: NVActivityIndicatorView?
 
     //Location services
     var locationManager: CLLocationManager = CLLocationManager()
     var startLocation: CLLocation!
     
+    let delegate = UIApplication.shared.delegate as! AppDelegate
+    
     // MARK: Setup
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* TODO: Get user data */
+        searchingAnimation = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 54, height: 27))
+        searchingAnimation!.color = UIColor.black
+        //searchingAnimation = .ballScaleRippleMultiple
+        searchingAnimation!.startAnimating()
+        self.animationView.addSubview(searchingAnimation!)
         
         self.greyBoxOne.layer.cornerRadius = 6.0
         self.greyBoxOne.clipsToBounds = true
@@ -61,10 +71,10 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
 
         //Change below to kCLLocationAccuracyBestForNavigation if we need location tracking
         
-        
         location()
         
-
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateConnection),
+                                               name: delegate.router.connectionTypeNotification, object: nil)
     }
 
     func startScanning() {
@@ -83,7 +93,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         } else {
             setWhite()
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,8 +102,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
             setWhite()
         }
     } 
-    
-    
     
     func setBlack() {
         //bars
@@ -109,6 +116,8 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         self.cityHeader.textColor = Colors.white
         self.bottomTrackingStatus.text = "Tracking..."
 
+        self.searchingAnimation!.color = UIColor.white
+        self.searchingAnimation!.startAnimating()
         self.connectionTypeHeader.textColor = Colors.white
         self.vehicleHeader.textColor = Colors.white
         self.connectionTypeSubHeader.textColor = Colors.darkGrey
@@ -120,7 +129,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         //Tab Bar
         self.tabBarController?.tabBar.backgroundColor = Colors.backgroundBlack
         self.tabBarController?.tabBar.barTintColor = Colors.backgroundBlack
-        
         
         //Status bar
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
@@ -135,7 +143,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         self.bottomBar.backgroundColor = Colors.green
         self.view.backgroundColor = Colors.white
         
-        
         //grey images
         self.greyBoxOne.backgroundColor = Colors.lightGrey
         self.greyBoxTwo.backgroundColor = Colors.lightGrey
@@ -143,6 +150,9 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         //text
         self.cityHeader.textColor = Colors.black
         self.bottomTrackingStatus.text = "Not Tracking"
+        
+        self.searchingAnimation!.color = UIColor.black
+        self.searchingAnimation!.startAnimating()
         self.connectionTypeHeader.textColor = Colors.black
         self.vehicleHeader.textColor = Colors.black
         self.connectionTypeSubHeader.textColor = Colors.darkGrey
@@ -226,5 +236,15 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         // Handle errors here 
+    }
+    
+    func updateConnection() {
+        if delegate.router.connectionType != nil {
+            self.searchingAnimation?.stopAnimating()
+            self.connectionTypeHeader.text = delegate.router.connectionType
+        } else {
+            self.searchingAnimation?.startAnimating()
+            self.connectionTypeHeader.text = "Searching"
+        }
     }
 }

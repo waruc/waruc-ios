@@ -16,6 +16,8 @@ target 'ios-app' do
   pod 'Firebase/Database'
   pod 'SwiftyJSON'
 
+  pod 'NVActivityIndicatorView'
+
   target 'ios-appTests' do
     inherit! :search_paths
     # Pods for testing

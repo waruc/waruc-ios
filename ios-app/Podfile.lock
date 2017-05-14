@@ -40,6 +40,7 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.9)
+  - NVActivityIndicatorView (3.6.1)
   - Realm (2.5.0):
     - Realm/Headers (= 2.5.0)
   - Realm/Headers (2.5.0)
@@ -53,6 +54,7 @@ DEPENDENCIES:
   - Firebase/Database
   - GoogleMaps
   - GooglePlaces
+  - NVActivityIndicatorView
   - RealmSwift
   - SwiftyJSON
 
@@ -67,10 +69,11 @@ SPEC CHECKSUMS:
   GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
+  NVActivityIndicatorView: 9f52a7f84bf5c6a798722c450fe3c198e01c56ed
   Realm: 62abce501668580092d2be9b6ba7324a3d5f906a
   RealmSwift: 9f1a8f624f2f153410115c2cb7d486be9976565d
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: a9618005abba8002521bcf8e6ba4bbbbb2b0fa3c
+PODFILE CHECKSUM: 44afe8aa6d584f3d4f88d7912c9042f908ceaacd
 
 COCOAPODS: 1.2.1
