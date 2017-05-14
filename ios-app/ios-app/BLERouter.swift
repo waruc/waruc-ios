@@ -31,9 +31,13 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     
     var tracking = false
     
-    var totalDist = 0.0;
-    var aggDist = 0.0;
-    var tripSeconds = 0.0;
+    var totalDist = 0.0
+    var aggDist = 0.0
+    var tripSeconds = 0.0
+    var connectionType:String?
+    
+    // Define identifier
+    let connectionTypeNotification = Notification.Name("connectionTypeNotificationIdentifier")
     
     override init() {
         super.init()
@@ -87,10 +91,15 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("*** 🐔Successfully connected!🦄")
+        
         centralManager.stopScan()
         pauseScanTimer?.invalidate()
         resumeScanTimer?.invalidate()
         peripheral.discoverServices(nil)
+        
+        // Update connection type
+        connectionType = "Bluetooth Low Energy"
+        NotificationCenter.default.post(name: connectionTypeNotification, object: nil)
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?){
@@ -109,6 +118,11 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
             stopTrip()
             
             self.obd2 = nil
+            
+            // Update connection type
+            connectionType = nil
+            NotificationCenter.default.post(name: connectionTypeNotification, object: nil)
+            
             scan()
         }
     }
