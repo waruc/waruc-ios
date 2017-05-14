@@ -22,11 +22,6 @@ class VehicleRegistrationViewController: UIViewController {
     @IBOutlet weak var yearField: UITextField!
     @IBOutlet weak var vehicleNicknameField: UITextField!
 
-    
-    
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

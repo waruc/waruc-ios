@@ -21,7 +21,6 @@ class OBDInformationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
     //connect to OBD-II
     @IBAction func connect(_ sender: UIButton) {
         
@@ -31,8 +30,6 @@ class OBDInformationViewController: UIViewController {
     @IBAction func later(_ sender: UIButton) {
     }
     
-    
-
     /*
     // MARK: - Navigation
 

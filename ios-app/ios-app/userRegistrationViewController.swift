@@ -9,9 +9,6 @@
 import UIKit
 import FirebaseAuth
 
-
-
-
 class userRegistrationViewController: UIViewController {
 
     //Labels
