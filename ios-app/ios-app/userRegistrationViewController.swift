@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class userRegistrationViewController: UIViewController {
 
@@ -22,9 +23,10 @@ class userRegistrationViewController: UIViewController {
     @IBOutlet weak var passwordRepeatField: UITextField!
     
     
-    
+    var ref: FIRDatabaseReference!
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = FIRDatabase.database().reference()
     }
 
     func createUser() {
@@ -34,19 +36,11 @@ class userRegistrationViewController: UIViewController {
         
         if password == password_verify {
             FIRAuth.auth()?.createUser(withEmail: email!, password: password!, completion: { (user, error) in
-                let uid = user?.uid != nil
+                let uid = FIRAuth.auth()?.currentUser?.uid
                 if uid != nil {
                     //Create the user in the database
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    print(user?.uid)
+                    let values = ["OTHER_INFO": "placeholder", "name": "placeholder", "vehicles": ["placeholder": "na"]] as [String : Any]
+                    self.ref.child("userVehicles/").updateChildValues([String(uid!): values])
                     self.performSegue(withIdentifier: "goToSignUp", sender: self)
                 } else {
                     print("Create User error")
