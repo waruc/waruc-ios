@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class userRegistrationViewController: UIViewController {
+class userRegistrationViewController: UIViewController, UITextFieldDelegate {
 
     //Labels
     @IBOutlet weak var emailLabel: UILabel!
@@ -22,11 +22,27 @@ class userRegistrationViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var passwordRepeatField: UITextField!
     
+    @IBOutlet weak var createAccountButton: UIButton!
     
     var ref: FIRDatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.passwordRepeatField.delegate = self
+        self.createAccountButton.layer.cornerRadius = 10
+        
         ref = FIRDatabase.database().reference()
+    }
+    
+    @IBAction func createAccountButtonTouched(_ sender: UIButton) {
+        createUser()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        passwordRepeatField.resignFirstResponder()
+        createUser()
+        return true
     }
 
     func createUser() {
@@ -41,7 +57,7 @@ class userRegistrationViewController: UIViewController {
                     //Create the user in the database
                     let values = ["OTHER_INFO": "placeholder", "name": "placeholder", "vehicles": ["placeholder": "na"]] as [String : Any]
                     self.ref.child("userVehicles/").updateChildValues([String(uid!): values])
-                    self.performSegue(withIdentifier: "goToSignUp", sender: self)
+                    self.performSegue(withIdentifier: "accountCreatedSuccessfully", sender: self)
                 } else {
                     print("Create User error")
                 }
@@ -49,9 +65,4 @@ class userRegistrationViewController: UIViewController {
         }
         
     }
-    
-    @IBAction func next(_ sender: UIButton) {
-        createUser()
-    }
-    
 }
