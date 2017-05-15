@@ -24,10 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyB4KKkw7xZWUYxbwtY_6Nlr5RXAf_0jzcU")
         GMSPlacesClient.provideAPIKey("AIzaSyB4KKkw7xZWUYxbwtY_6Nlr5RXAf_0jzcU")
         
+        FIRApp.configure()
+        
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         
-        //if FIRAuth.auth()?.currentUser != nil {
-        if false {
+        if FIRAuth.auth()?.currentUser != nil {
             print("User is signed in")
             self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "TabBar") as! UITabBarController
         }
