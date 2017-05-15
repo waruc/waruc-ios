@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import SwiftyJSON
 
-class signInViewController: UIViewController {
+class signInViewController: UIViewController, UITextFieldDelegate {
 
     // Outlets
     @IBOutlet weak var emailText: UITextField!
@@ -25,23 +25,34 @@ class signInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.passwordText.delegate = self
+        self.logInButton.layer.cornerRadius = 10
+        
         ref = FIRDatabase.database().reference()
         //getUserJSON()
     }
-
+    
     @IBAction func logInButtonTouched(_ sender: UIButton) {
+        login()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        passwordText.resignFirstResponder()
+        login()
+        return true
+    }
+    
+    func login() {
         if let email = emailText.text, let pass = passwordText.text {
-            // Sign in with Firebase
             FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
-                //check that user is not nill
-                if let u = user {
-                    // User is found
-                    self.performSegue(withIdentifier: "goToSuccess", sender: self)
+                if user != nil {
+                    self.performSegue(withIdentifier: "authenticationComplete", sender: self)
                 } else {
-                        print("Error in Sign In")
-                    }
-                    
-                })
+                    print("Sign In Error")
+                }
+                
+            })
         }
     }
     
