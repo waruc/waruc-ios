@@ -89,9 +89,12 @@ class ViewController: UIViewController {
             else {
                 // Register the user with Firebase
                 FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user, error) in
-                    if let u = user {
-                        // User is found
-                        print("S--s-s-egue")
+                    let uid = FIRAuth.auth()?.currentUser?.uid
+                    
+                    //
+                    if uid != nil {
+                        let values = ["OTHER_INFO": "placeholder", "name": "placeholder", "vehicles": ["placeholder": "na"]] as [String : Any]
+                        self.ref.child("userVehicles/").updateChildValues([String(uid!): values])
                         self.performSegue(withIdentifier: "goToSuccess", sender: self)
                     }
                     else {
