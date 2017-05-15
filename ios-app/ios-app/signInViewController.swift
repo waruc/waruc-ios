@@ -50,12 +50,12 @@ class signInViewController: UIViewController {
             // fetch data from Firebase
             let uid = FIRAuth.auth()?.currentUser?.uid
             ref!.child("userVehicles").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-                var vhecile_keys = [String]()
+                var vehicle_keys = [String]()
                 let enumerator = snapshot.children
                 while let rest = enumerator.nextObject() as? FIRDataSnapshot{
-                    vhecile_keys.append(rest.key)
+                    vehicle_keys.append(rest.key)
                 }
-                print(vhecile_keys)
+                print(vehicle_keys)
             }, withCancel: nil)
         } else {
             print("Error fetching user vehicles")

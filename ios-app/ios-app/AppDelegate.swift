@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         
         //if FIRAuth.auth()?.currentUser != nil {
-        if true {
+        if false {
             print("User is signed in")
             self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "TabBar") as! UITabBarController
         }

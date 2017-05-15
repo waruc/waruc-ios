@@ -27,17 +27,37 @@ class userRegistrationViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    @IBAction func next(_ sender: UIButton) {
-        if let email = emailField.text, let pass = passwordField.text{
-            FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user, error) in
-                if let u = user {
+    func createUser() {
+        let password = passwordField.text
+        let password_verify = passwordRepeatField.text
+        let email = emailField.text
+        
+        if password == password_verify {
+            FIRAuth.auth()?.createUser(withEmail: email!, password: password!, completion: { (user, error) in
+                let uid = user?.uid != nil
+                if uid != nil {
+                    //Create the user in the database
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    print(user?.uid)
                     self.performSegue(withIdentifier: "goToSignUp", sender: self)
-                }
-                else {
-                    print("Create User Error")
+                } else {
+                    print("Create User error")
                 }
             })
         }
+        
+    }
+    
+    @IBAction func next(_ sender: UIButton) {
+        createUser()
     }
     
 }
