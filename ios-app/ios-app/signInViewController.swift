@@ -48,7 +48,7 @@ class signInViewController: UIViewController, UITextFieldDelegate {
         login()
         return true
     }
-    d
+    
     func login() {
         if let email = emailText.text, let pass = passwordText.text {
             FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
