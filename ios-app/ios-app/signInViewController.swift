@@ -21,6 +21,8 @@ class signInViewController: UIViewController, UITextFieldDelegate {
     // Class Variables
     var ref: FIRDatabaseReference!
     
+    let loginErrorAlert = UIAlertController(title: "Error", message: "That email & password combination is not valid!", preferredStyle: UIAlertControllerStyle.alert)
+    
     let delegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
@@ -31,6 +33,10 @@ class signInViewController: UIViewController, UITextFieldDelegate {
         
         ref = FIRDatabase.database().reference()
         //getUserJSON()
+        
+        loginErrorAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            //print("Handle Ok logic here")
+        }))
     }
     
     @IBAction func logInButtonTouched(_ sender: UIButton) {
@@ -42,7 +48,7 @@ class signInViewController: UIViewController, UITextFieldDelegate {
         login()
         return true
     }
-    
+    d
     func login() {
         if let email = emailText.text, let pass = passwordText.text {
             FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
@@ -50,6 +56,7 @@ class signInViewController: UIViewController, UITextFieldDelegate {
                     self.performSegue(withIdentifier: "authenticationComplete", sender: self)
                 } else {
                     print("Sign In Error")
+                    self.present(self.loginErrorAlert, animated: true, completion: nil)
                 }
                 
             })

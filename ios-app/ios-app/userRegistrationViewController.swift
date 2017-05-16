@@ -26,6 +26,8 @@ class userRegistrationViewController: UIViewController, UITextFieldDelegate {
     
     var ref: FIRDatabaseReference!
     
+    let passwordErrorAlert = UIAlertController(title: "Error", message: "Passwords do not match!", preferredStyle: UIAlertControllerStyle.alert)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,6 +35,10 @@ class userRegistrationViewController: UIViewController, UITextFieldDelegate {
         self.createAccountButton.layer.cornerRadius = 10
         
         ref = FIRDatabase.database().reference()
+        
+        passwordErrorAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            //print("Handle Ok logic here")
+        }))
     }
     
     @IBAction func createAccountButtonTouched(_ sender: UIButton) {
@@ -46,12 +52,12 @@ class userRegistrationViewController: UIViewController, UITextFieldDelegate {
     }
 
     func createUser() {
-        let password = passwordField.text
-        let password_verify = passwordRepeatField.text
-        let email = emailField.text
+        let password = passwordField.text!
+        let password_verify = passwordRepeatField.text!
+        let email = emailField.text!
         
         if password == password_verify {
-            FIRAuth.auth()?.createUser(withEmail: email!, password: password!, completion: { (user, error) in
+            FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
                 let uid = FIRAuth.auth()?.currentUser?.uid
                 if uid != nil {
                     //Create the user in the database
@@ -62,6 +68,8 @@ class userRegistrationViewController: UIViewController, UITextFieldDelegate {
                     print("Create User error")
                 }
             })
+        } else {
+            present(passwordErrorAlert, animated: true, completion: nil)
         }
         
     }
