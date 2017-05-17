@@ -119,7 +119,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func submittButtonTapped(_ sender: UIButton) {
-        createVehicle()
+        createVehicle_v2(vin: "123456", make: "Ford", model: "F150", year: "1996")
     }
 
 
@@ -194,7 +194,37 @@ class ViewController: UIViewController {
                 }, withCancel: nil)
             }
         }
-    }    
+    }
+    
+    func createVehicle_v2(vin: String, make: String, model: String, year: String) {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        let key = self.ref.child("vehicles").childByAutoId().key
+        
+        let vehicle_values = [
+            "brand" : make,
+            "model": model,
+            "year": year,
+            "users": uid!,
+            "vin": vin,
+            "startDatetime": FIRServerValue.timestamp()
+            ] as [String : Any]
+        
+        let user_values = [
+            "trips": ["placeholder": "na"],
+            "total_mileage": 0,
+            
+        ] as [String : Any]
+
+        ref.child("vehicles").updateChildValues([key : vehicle_values])
+        ref.child("vehicles/" + key + "/users").updateChildValues([uid! : user_values])
+        updateUserVehicles(key: key, uid: uid!)
+        
+    }
+    
+    func updateUserVehicles(key: String, uid: String) {
+        ref.child("userVehicles/" + uid + "/vehicles").updateChildValues([key: "owner"])
+    }
+
 }
 
 
