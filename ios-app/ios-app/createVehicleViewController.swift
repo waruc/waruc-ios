@@ -11,7 +11,6 @@ import FirebaseCore
 import FirebaseDatabase
 import FirebaseAuth
 
-
 class createVehicleViewController: UIViewController {
 
     // Outlets
@@ -28,7 +27,6 @@ class createVehicleViewController: UIViewController {
         ref = FIRDatabase.database().reference()
 
     }
-
     func registerVehicle(vin: String, make: String, model: String, year: String) {
         let uid = FIRAuth.auth()?.currentUser?.uid
         let key = self.ref.child("vehicles").childByAutoId().key
