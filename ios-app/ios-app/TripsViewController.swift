@@ -42,6 +42,11 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         refreshControl.addTarget(self, action: #selector(self.refreshData(sender:)), for: .valueChanged)
         
         loadFeed()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.updateColorScheme),
+                                               name: delegate.router.colorUpdateNotification,
+                                               object: nil)
     }
     
     func refreshData(sender: UIRefreshControl) {
@@ -56,17 +61,20 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if States.Activity.track {
+        if self.delegate.router.tracking {
             setBlack()
         } else {
             setWhite()
         }
-    }    
+    }
 
     @IBAction func send(_ sender: UIButton) {
-        States.Activity.track = !States.Activity.track
-        print("Trips switched to \(States.Activity.track)")
-        if (States.Activity.track) {
+        self.delegate.router.tracking = !self.delegate.router.tracking
+        updateColorScheme()
+    }
+    
+    func updateColorScheme() {
+        if self.delegate.router.tracking {
             setBlack()
         } else {
             setWhite()
@@ -169,7 +177,6 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //            cell.contentView.backgroundColor = Colors.white
 //        }
     }
-
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

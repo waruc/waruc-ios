@@ -25,6 +25,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     // NSNotification for starting/stopping tracking
     let toggleTracking = Notification.Name(rawValue: "toggleTracking")
     
+    let delegate = UIApplication.shared.delegate as! AppDelegate
+    
     // MARK: Setup 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,33 +36,32 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.bottomBar.backgroundColor = Colors.green
         
-        
         // Table View set up
         self.settingsTableView.delegate = self
         self.settingsTableView.dataSource = self
         
-        // NSNotificationCenter for starting and stopping tracking setup
-        // Register to receive notification
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.didToggleTracking), name: toggleTracking, object: nil)
-        print("Settings state is \(States.Activity.track)")
-        //Set black/white UI
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.updateColorScheme),
+                                               name: delegate.router.colorUpdateNotification,
+                                               object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if States.Activity.track {
+        if self.delegate.router.tracking {
             setBlack()
         } else {
             setWhite()
         }
-    } 
-    
+    }
     
     //Below code is work in progress from master.swift trying to update color
     @IBAction func send(_ sender: UIButton) {
-        States.Activity.track = !States.Activity.track
-        print("Settings state switched to \(States.Activity.track)")
-        if (States.Activity.track) {
+        self.delegate.router.tracking = !self.delegate.router.tracking
+        updateColorScheme()
+    }
+    
+    func updateColorScheme() {
+        if self.delegate.router.tracking {
             setBlack()
         } else {
             setWhite()
@@ -74,8 +75,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                           animations: nil,
                           completion: nil)
     }
-    
-   
     
     func setBlack() {
         //Main and header
@@ -139,8 +138,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             return "Personal"
         }
-        
-
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -148,7 +145,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         return 2
     }
 
-    
     var fakeNews = [["Vehicle", "BMW 725i"],
                     ["Location", "On"],
                     ["Units", "Miles"]]
@@ -168,7 +164,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         cell.settingType.text = news[0]
         cell.currentOption.text = news[1]
         
-        
         return cell
     }
     
@@ -176,11 +171,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-    // MARK: NSNotification Listeners
-    // The user started or stopped tracking 
-    func didToggleTracking() {
-        print("Did toggle tracking distance in Settings View Controller")
-    }
     
-    
+
 }
