@@ -16,6 +16,8 @@ target 'ios-app' do
   pod 'Firebase/Database'
   pod 'SwiftyJSON'
 
+  pod 'Alamofire'
+
   pod 'NVActivityIndicatorView'
 
   target 'ios-appTests' do

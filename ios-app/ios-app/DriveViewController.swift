@@ -79,6 +79,11 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
                                                selector: #selector(self.updateColorScheme),
                                                name: delegate.router.colorUpdateNotification,
                                                object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.displayVehicleInfo),
+                                               name: delegate.router.vehicleInfoNotification,
+                                               object: nil)
     }
 
     func startScanning() {
@@ -256,5 +261,10 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
             self.searchingAnimation?.startAnimating()
             self.connectionTypeHeader.text = "Searching"
         }
+    }
+    
+    func displayVehicleInfo() {
+        vehicleHeader.text = "\(self.delegate.router.vehicleInfo["Make"]!.capitalized)"
+        vehicleSubHeader.text = "\(self.delegate.router.vehicleInfo["Year"]!) \(self.delegate.router.vehicleInfo["Model"]!)"
     }
 }
