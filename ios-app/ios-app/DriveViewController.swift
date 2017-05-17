@@ -63,9 +63,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         self.bottomBar.backgroundColor = Colors.green
         locationIcon.isHidden = true
         
-        //debug:
-        print("on start \(States.Activity.track)")
-        
         //Location services:
         //locationManager = CLLocationManager()
 
@@ -73,8 +70,15 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         
         location()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateConnection),
-                                               name: delegate.router.connectionTypeNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.updateConnection),
+                                               name: delegate.router.connectionTypeNotification,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.updateColorScheme),
+                                               name: delegate.router.colorUpdateNotification,
+                                               object: nil)
     }
 
     func startScanning() {
@@ -84,24 +88,26 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startRangingBeacons(in: beaconRegion)
     }
     
-    
-    @IBAction public func send(_ sender: UIButton) {
-        States.Activity.track = !States.Activity.track
-        print("Drives state switch to \(States.Activity.track)")
-        if (States.Activity.track) {
+    override func viewWillAppear(_ animated: Bool) {
+        if self.delegate.router.tracking {
             setBlack()
         } else {
             setWhite()
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        if States.Activity.track {
+    @IBAction public func send(_ sender: UIButton) {
+        self.delegate.router.tracking = !self.delegate.router.tracking
+        updateColorScheme()
+    }
+    
+    func updateColorScheme() {
+        if self.delegate.router.tracking {
             setBlack()
         } else {
             setWhite()
         }
-    } 
+    }
     
     func setBlack() {
         //bars

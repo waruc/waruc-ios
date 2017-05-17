@@ -36,8 +36,8 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     var tripSeconds = 0.0
     var connectionType:String?
     
-    // Define identifier
     let connectionTypeNotification = Notification.Name("connectionTypeNotificationIdentifier")
+    let colorUpdateNotification = Notification.Name("colorUpdateNotification")
     
     override init() {
         super.init()
@@ -114,8 +114,12 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         }
         
         if peripheral.name! == obd2TagName {
-            tracking = false
-            stopTrip()
+            if tracking {
+                tracking = false
+                NotificationCenter.default.post(name: colorUpdateNotification, object: nil)
+                
+                stopTrip()
+            }
             
             self.obd2 = nil
             
@@ -181,6 +185,8 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
             print("\n\n Current speed: \(mph) mph\n\n")
             if (!tracking && mph > 0) {
                 tracking = true
+                NotificationCenter.default.post(name: colorUpdateNotification, object: nil)
+                
                 totalDist = 0
                 tripSeconds = 0.0
                 recordSpeedUpdate(spd: mph)
