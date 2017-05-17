@@ -40,6 +40,9 @@ class userRegistrationViewController: UIViewController, UITextFieldDelegate {
             //print("Handle Ok logic here")
         }))
     }
+    @IBAction func cheat(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "accountCreatedSuccessfully", sender: self)
+    }
     
     @IBAction func createAccountButtonTouched(_ sender: UIButton) {
         createUser()
