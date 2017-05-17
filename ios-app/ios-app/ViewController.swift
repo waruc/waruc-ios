@@ -223,6 +223,11 @@ class ViewController: UIViewController {
     
     func updateUserVehicles(key: String, uid: String) {
         ref.child("userVehicles/" + uid + "/vehicles").updateChildValues([key: "owner"])
+        ref.child("userVehicles/" + uid + "/vehicles").observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.hasChild("placeholder"){
+                self.ref.child("userVehicles/" + uid + "/vehicles/placeholder").removeValue()
+            }
+        }, withCancel: nil)
     }
 
 }
