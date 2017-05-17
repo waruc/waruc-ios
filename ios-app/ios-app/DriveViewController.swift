@@ -117,7 +117,9 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         self.bottomTrackingStatus.text = "Tracking..."
 
         self.searchingAnimation!.color = UIColor.white
-        self.searchingAnimation!.startAnimating()
+        if self.searchingAnimation!.animating {
+            self.searchingAnimation!.startAnimating()
+        }
         self.connectionTypeHeader.textColor = Colors.white
         self.vehicleHeader.textColor = Colors.white
         self.connectionTypeSubHeader.textColor = Colors.darkGrey
@@ -152,7 +154,9 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         self.bottomTrackingStatus.text = "Not Tracking"
         
         self.searchingAnimation!.color = UIColor.black
-        self.searchingAnimation!.startAnimating()
+        if self.searchingAnimation!.animating {
+            self.searchingAnimation!.startAnimating()
+        }
         self.connectionTypeHeader.textColor = Colors.black
         self.vehicleHeader.textColor = Colors.black
         self.connectionTypeSubHeader.textColor = Colors.darkGrey

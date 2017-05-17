@@ -18,7 +18,6 @@
 		63254EFE5F3EF2507A91392D2896E9C7 /* ios_app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7C665298DB176695132B2F26FA1F9E6 /* ios_app.xcdatamodeld */; };
 		63701A70CEFD0B5BDAE74604FE4A50A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11160A8E6C999C1B1CB46BB32990AE7 /* Main.storyboard */; };
 		63D41EA86ED1CCCE596BD598F48E4A3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4723942D8C35A66482A93661B91F5F /* AppDelegate.swift */; };
-		6E68DDCE1ECA83FC00118CDE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E68DDCD1ECA83FC00118CDE /* GoogleService-Info.plist */; };
 		739359C72B85CE07A90DD687ABAC4321 /* ios_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A29964B8F0B4C2F0A0FF7EA8C97BC6 /* ios_appUITests.swift */; };
 		9344BFC53DD62E2B252A09F182675EE1 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880EB9519B5038CA89CEE75133D7E0B2 /* TabBarViewController.swift */; };
 		9ABE3C681C81AF28509A365CC6922230 /* Pods_ios_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7AC5F3F506A9742D810760E2887AA2D /* Pods_ios_appTests.framework */; };
@@ -28,6 +27,7 @@
 		C01E2D6FD39B48F9667FD3FF37276071 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01B774056617283E4F8DAD7F8198590 /* SettingsViewController.swift */; };
 		C0FC7CE19C27944DDD4C65D4FEC49499 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1016BC43F87A95FCE9EAB7F978691D6 /* LaunchScreen.storyboard */; };
 		C29C1A46750FF6CEC150ED6ECEF8DA24 /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24409AEF74396A96DB5940F12EF83B3E /* TripsViewController.swift */; };
+		CE8166C3AFD2F1655EF4F81EEC59D712 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E96398BA6A81D66C17B1676202C4279 /* GoogleService-Info.plist */; };
 		D3841CBCDD5810EF6148CAD11529958C /* userRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BDFE1E5D4BA841F0266A5A4B50B006 /* userRegistrationViewController.swift */; };
 		DF2FC0F47FE27BBE18E0F1AB22F48DFF /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00992823807C74F5E0C484B8117A65A5 /* TripTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -55,6 +55,7 @@
 		089E4F3C4DC8798A0F36865BDA77FD49 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		0B2669E0AC51EF94156CBA67F82FABE1 /* Pods-ios-appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-appTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-appTests/Pods-ios-appTests.release.xcconfig"; sourceTree = "<group>"; };
 		1C382CED79453FBA8144FB1EFAD89693 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E96398BA6A81D66C17B1676202C4279 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22B3F91C09AB653384F396AA380C4D2E /* Pods_ios_appUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_appUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23BDFE1E5D4BA841F0266A5A4B50B006 /* userRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userRegistrationViewController.swift; sourceTree = "<group>"; };
 		24409AEF74396A96DB5940F12EF83B3E /* TripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsViewController.swift; sourceTree = "<group>"; };
@@ -68,7 +69,6 @@
 		578289527F9714E0BB9D02424C1DA42F /* ios_app.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ios_app.xcdatamodel; sourceTree = "<group>"; };
 		579291A869CEE3D6234B1B346CB2B1D3 /* signInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signInViewController.swift; sourceTree = "<group>"; };
 		626147F27F3DDAE6969CD5185FC91B66 /* DriveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriveViewController.swift; sourceTree = "<group>"; };
-		6E68DDCD1ECA83FC00118CDE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7155F0AF2F917F34B10454E020C1E03E /* Pods-ios-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-app/Pods-ios-app.debug.xcconfig"; sourceTree = "<group>"; };
 		7B7FB9104AE8A001DF3C179095EA76F9 /* Pods-ios-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-app/Pods-ios-app.release.xcconfig"; sourceTree = "<group>"; };
 		81F6DF939BAEA04952A2FEC910611DF5 /* ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,7 +154,7 @@
 				9C3678744F73B3BEDA7AFA6C4BCBEAF3 /* ViewControllers */,
 				CD4723942D8C35A66482A93661B91F5F /* AppDelegate.swift */,
 				8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */,
-				6E68DDCD1ECA83FC00118CDE /* GoogleService-Info.plist */,
+				1E96398BA6A81D66C17B1676202C4279 /* GoogleService-Info.plist */,
 				3305255BB889E3EE7EE20FF3E663EF64 /* Info.plist */,
 				B7C665298DB176695132B2F26FA1F9E6 /* ios_app.xcdatamodeld */,
 			);
@@ -356,7 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06A9BD341A9B549B466826376A3D2413 /* Assets.xcassets in Resources */,
-				6E68DDCE1ECA83FC00118CDE /* GoogleService-Info.plist in Resources */,
+				CE8166C3AFD2F1655EF4F81EEC59D712 /* GoogleService-Info.plist in Resources */,
 				C0FC7CE19C27944DDD4C65D4FEC49499 /* LaunchScreen.storyboard in Resources */,
 				63701A70CEFD0B5BDAE74604FE4A50A7 /* Main.storyboard in Resources */,
 			);
