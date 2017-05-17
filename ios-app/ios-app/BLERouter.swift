@@ -8,7 +8,8 @@
 
 import Foundation
 import CoreBluetooth
-
+import Alamofire
+import SwiftyJSON
 
 final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
@@ -38,6 +39,7 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     
     let connectionTypeNotification = Notification.Name("connectionTypeNotificationIdentifier")
     let colorUpdateNotification = Notification.Name("colorUpdateNotification")
+    let vehicleInfoNotification = Notification.Name("vehicleInfoNotification")
     
     var res:[UInt8] = []
     
@@ -45,6 +47,13 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     var setupComplete = false
     
     var vinNumber:String?
+    var vinData:[JSON] = []
+    var vehicleInfo:[String : String] = [
+        "Make": "",
+        "Manufacturer": "",
+        "Model": "",
+        "Year": ""
+    ]
     
     override init() {
         super.init()
@@ -222,6 +231,30 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
                     print("\nVIN Number: \(vinNumber!)")
                     
                     res = []
+                    
+                    Alamofire.request(vinLookupUrl(vin: vinNumber!), method: .get).validate().responseJSON { response in
+                        switch response.result {
+                        case .success(let value):
+                            let json = JSON(value)
+                            self.vinData = json["Results"].arrayValue.filter { [26, 27, 28, 29].contains($0["VariableId"].intValue) }
+                            
+                            self.vehicleInfo["Make"] = self.getVehicleAttrWithId(variableId: 26)
+                            self.vehicleInfo["Manufacturer"] = self.getVehicleAttrWithId(variableId: 27)
+                            self.vehicleInfo["Model"] = self.getVehicleAttrWithId(variableId: 28)
+                            self.vehicleInfo["Year"] = self.getVehicleAttrWithId(variableId: 29)
+                            
+                            print("Make: \(self.vehicleInfo["Make"]!)")
+                            print("Manufacturer Name: \(self.vehicleInfo["Manufacturer"]!)")
+                            print("Model: \(self.vehicleInfo["Model"]!)")
+                            print("Model Year: \(self.vehicleInfo["Year"]!)")
+                            
+                            NotificationCenter.default.post(name: self.vehicleInfoNotification, object: nil)
+                            
+                        case .failure(let error):
+                            print("VIN Lookup Failure:")
+                            print(error)
+                        }
+                    }
                 }
             } else {
                 // Setup complete and VIN Number is set.. Proceed with normal data collection
@@ -289,6 +322,14 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         let ts = Int(date.timeIntervalSince1970.rounded())
         
         writeTrip(ts: ts, distance: totalDist, duration: tripSeconds)
+    }
+    
+    func vinLookupUrl(vin: String) -> String {
+        return "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/\(vin)*BA?format=json"
+    }
+    
+    func getVehicleAttrWithId(variableId: Int) -> String {
+        return vinData.filter { $0["VariableId"].intValue == variableId }[0]["Value"].stringValue
     }
     
 }
