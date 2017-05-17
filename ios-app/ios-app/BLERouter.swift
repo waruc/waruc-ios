@@ -39,6 +39,13 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     let connectionTypeNotification = Notification.Name("connectionTypeNotificationIdentifier")
     let colorUpdateNotification = Notification.Name("colorUpdateNotification")
     
+    var res:[UInt8] = []
+    
+    let setupOutput = "ATE0\rOK\r\r>OK\r\r>OK\r\r>OK\r\r>OK\r\r>OK\r\r>"
+    var setupComplete = false
+    
+    var vinNumber:String?
+    
     override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
@@ -161,6 +168,9 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
             
             obd2?.setNotifyValue(true, for: dataCharacteristic!)
             configureOBD()
+            
+            obd2?.writeValue(Data(bytes: Array("0902\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+            
             monitorMetric(metricCmd: "010D\r", bleServiceCharacteristic: dataCharacteristic!)
         }
     }
@@ -171,27 +181,72 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
             return
         }
         
-        var kph:Int?
-        var mph:Double = 0.0
         var returnedBytes = [UInt8](characteristic.value!)
         
-        // 20 byte arrays are ones containing usable data
-        if (returnedBytes.count == 20) {
-            kph = Int("\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 2])))\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 1])))", radix:16)
+        res += returnedBytes
+        if (res.map { String(UnicodeScalar($0)) }).joined() == setupOutput {
+            print("\nOBD-II Setup is complete")
+            setupComplete = true
+            res = []
         }
         
-        if (kph != nil) {
-            mph = Double(kph!) / 1.609344
-            print("\n\n Current speed: \(mph) mph\n\n")
-            if (!tracking && mph > 0) {
-                tracking = true
-                NotificationCenter.default.post(name: colorUpdateNotification, object: nil)
+        if setupComplete {
+            if vinNumber == nil {
+                // Parse VIN Number response
+                if (Array(res.suffix(3)).map { String(UnicodeScalar($0)) }.joined()) == "\r\r>" {
+                    var vinString = ""
+                    
+                    var resultStrings = res.map { String(UnicodeScalar($0)) }.joined().components(separatedBy: "\r")
+                    
+                    // Ref: Pg 42 - https://www.elmelectronics.com/wp-content/uploads/2016/07/ELM327DS.pdf
+                    let
+                    line1 = resultStrings[1]
+                    let index1 = line1.index(line1.startIndex, offsetBy: 8)
+                    vinString += line1.substring(from: index1)
+                    
+                    let line2 = resultStrings[2]
+                    let index2 = line2.index(line2.startIndex, offsetBy: 2)
+                    vinString += line2.substring(from: index2)
+                    
+                    let line3 = resultStrings[3]
+                    let index3 = line3.index(line3.startIndex, offsetBy: 2)
+                    vinString += line3.substring(from: index3)
+                    
+                    let vinHexArray = Array(vinString.characters).splitBy(subSize: 2).map { String($0) }
+                    let vinCharArray = vinHexArray.map { char -> Character in
+                        let code = Int(strtoul(char, nil, 16))
+                        return Character(UnicodeScalar(code)!)
+                    }
+                    
+                    vinNumber = String(vinCharArray)
+                    print("\nVIN Number: \(vinNumber!)")
+                    
+                    res = []
+                }
+            } else {
+                // Setup complete and VIN Number is set.. Proceed with normal data collection
+                var kph:Int?
+                var mph:Double = 0.0
                 
-                totalDist = 0
-                tripSeconds = 0.0
-                recordSpeedUpdate(spd: mph)
-            } else if (tracking) {
-                recordSpeedUpdate(spd: mph)
+                // 20 byte arrays are ones containing usable data
+                if (returnedBytes.count == 20) {
+                    kph = Int("\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 2])))\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 1])))", radix:16)
+                }
+                
+                if (kph != nil) {
+                    mph = Double(kph!) / 1.609344
+                    print("\nCurrent speed: \(mph) mph")
+                    if (!tracking && mph > 0) {
+                        tracking = true
+                        NotificationCenter.default.post(name: colorUpdateNotification, object: nil)
+                        
+                        totalDist = 0
+                        tripSeconds = 0.0
+                        recordSpeedUpdate(spd: mph)
+                    } else if (tracking) {
+                        recordSpeedUpdate(spd: mph)
+                    }
+                }
             }
         }
     }
@@ -236,4 +291,15 @@ final class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         writeTrip(ts: ts, distance: totalDist, duration: tripSeconds)
     }
     
+}
+
+extension Array {
+    func splitBy(subSize: Int) -> [[Element]] {
+        return stride(from: 0, to: self.count, by: subSize).map { startIndex in
+            if let endIndex = self.index(startIndex, offsetBy: subSize, limitedBy: self.count) {
+                return Array(self[startIndex ..< endIndex])
+            }
+            return Array()
+        }
+    }
 }
