@@ -35,6 +35,31 @@ class DB {
     
     static let sharedInstance = DB()
     
+    func getUserVehicles() -> Array<Any> {
+        if FIRAuth.auth()?.currentUser?.uid != nil {
+            // fetch data from Firebase
+            let uid = FIRAuth.auth()?.currentUser?.uid
+            ref!.child("userVehicles").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+                var vehicle_keys = [String]()
+                let enumerator = snapshot.children
+                while let rest = enumerator.nextObject() as? FIRDataSnapshot{
+                    vehicle_keys.append(rest.key)
+                }
+                print(vehicle_keys)
+            }, withCancel: nil)
+        } else {
+            print("Error fetching user vehicles")
+        }
+        return []
+    }
+    
+    func addPlaceholderToUserVehicles() {
+        //Create the user in the database
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        let values = ["OTHER_INFO": "placeholder", "name": "placeholder", "vehicles": ["placeholder": "na"]] as [String : Any]
+        self.ref.child("userVehicles/").updateChildValues([uid!: values])
+    }
+    
     func registerVehicle(vin: String, make: String, model: String, year: String, nickname: String?) {
         let date = Date()
         let ts = Int(date.timeIntervalSince1970.rounded())
