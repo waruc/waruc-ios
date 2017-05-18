@@ -53,13 +53,6 @@ class DB {
         return []
     }
     
-    func addPlaceholderToUserVehicles() {
-        //Create the user in the database
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        let values = ["OTHER_INFO": "placeholder", "name": "placeholder", "vehicles": ["placeholder": "na"]] as [String : Any]
-        self.ref.child("userVehicles/").updateChildValues([uid!: values])
-    }
-    
     func registerVehicle(vin: String, make: String, model: String, year: String, nickname: String?) {
         let date = Date()
         let ts = Int(date.timeIntervalSince1970.rounded())
@@ -75,22 +68,7 @@ class DB {
             "cts": "\(ts)"
             ] as [String : Any]
         
-        let user_values = ["trips": [], "total_mileage": 0] as [String : Any]
-        
         ref.child("vehicles").updateChildValues([vin : vehicle_values])
-        ref.child("vehicles/\(vin)/users").updateChildValues([uid! : user_values])
-        updateUserVehicles(key: vin, uid: uid!)
-    }
-    
-    func updateUserVehicles(key: String, uid: String) {
-        ref.child("userVehicles/\(uid)/vehicles").updateChildValues([key: "owner"])
-        
-        // Remove an placeholder values that are created during the user onboarding process
-        ref.child("userVehicles/\(uid)/vehicles").observeSingleEvent(of: .value, with: { (snapshot) in
-            if snapshot.hasChild("placeholder"){
-                self.ref.child("userVehicles/\(uid)/vehicles/placeholder").removeValue()
-            }
-        }, withCancel: nil)
     }
     
     func createOrReturnVehicle(vin: String) {
@@ -103,6 +81,9 @@ class DB {
                 self.currVehicleInfo["model"] = (existingVehicleInfo["model"] as! String)
                 self.currVehicleInfo["year"] = (existingVehicleInfo["year"] as! String)
                 self.currVehicleInfo["nickname"] = (existingVehicleInfo["nickname"] as! String)
+                
+                self.updateVehicleUsers(vin: vin)
+                self.updateUserVehicles(vin: vin)
                 
                 NotificationCenter.default.post(name: self.vehicleInfoNotification, object: nil)
             } else {
@@ -124,6 +105,9 @@ class DB {
                                              year: self.currVehicleInfo["year"]!,
                                              nickname: self.currVehicleInfo["nickname"])
                         
+                        self.updateVehicleUsers(vin: vin)
+                        self.updateUserVehicles(vin: vin)
+                        
                         print("Make: \(self.currVehicleInfo["make"]!)")
                         print("Model: \(self.currVehicleInfo["model"]!)")
                         print("Model Year: \(self.currVehicleInfo["year"]!)")
@@ -135,6 +119,34 @@ class DB {
                         print(error)
                     }
                 }
+            }
+        })
+        
+    }
+    
+    func updateVehicleUsers(vin: String) {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        ref!.child("vehicles").child("\(vin)/users/\(uid!)").observeSingleEvent(of: .value, with: { snapshot in
+            if snapshot.exists() {
+                print("\nFound user for vehicle!")
+            } else {
+                print("\nCreating new user for vehicle...")
+                let user_values = ["total_mileage": 0]
+                self.ref.child("vehicles").child("\(vin)/users").updateChildValues([uid! : user_values])
+            }
+        })
+    }
+    
+    func updateUserVehicles(vin: String) {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        ref!.child("userVehicles").child("\(uid!)/vehicles/\(vin)").observeSingleEvent(of: .value, with: { snapshot in
+            if snapshot.exists() {
+                print("\nFound vehicle entry in user vehicles!")
+            } else {
+                print("\nCreating new entry in user vehicles...")
+                self.ref.child("userVehicles/\(uid!)/vehicles").updateChildValues([vin: "owner"])
             }
         })
     }
