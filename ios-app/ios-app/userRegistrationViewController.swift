@@ -45,7 +45,7 @@ class userRegistrationViewController: UIViewController, UITextFieldDelegate {
         createUser()
         return true
     }
-
+    
     func createUser() {
         let password = passwordField.text!
         let password_verify = passwordRepeatField.text!
@@ -63,6 +63,5 @@ class userRegistrationViewController: UIViewController, UITextFieldDelegate {
         } else {
             present(passwordErrorAlert, animated: true, completion: nil)
         }
-        
     }
 }
