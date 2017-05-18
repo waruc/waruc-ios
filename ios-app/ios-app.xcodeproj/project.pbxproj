@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01FE128E1ECD1ABF0048E388 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FE128D1ECD1ABF0048E388 /* DB.swift */; };
 		02EEA82F412946F6A47400F0707E32B4 /* RealmModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B891AA1372C994D4BC0A0DFF532C618A /* RealmModels.swift */; };
 		06A9BD341A9B549B466826376A3D2413 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */; };
 		269009B517D287693C1B11BB9692F195 /* Pods_ios_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B3B9338D030805225619B817B24C830 /* Pods_ios_app.framework */; };
@@ -53,6 +54,7 @@
 /* Begin PBXFileReference section */
 		00992823807C74F5E0C484B8117A65A5 /* TripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		013A9B4DE67988F68090F821C40F92E1 /* Pods-ios-appUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-appUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-appUITests/Pods-ios-appUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		01FE128D1ECD1ABF0048E388 /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		089E4F3C4DC8798A0F36865BDA77FD49 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		0B2669E0AC51EF94156CBA67F82FABE1 /* Pods-ios-appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-appTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-appTests/Pods-ios-appTests.release.xcconfig"; sourceTree = "<group>"; };
 		1C382CED79453FBA8144FB1EFAD89693 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				4AA5C6592E672205AE7042E0E9F73B84 /* BLERouter.swift */,
 				B891AA1372C994D4BC0A0DFF532C618A /* RealmModels.swift */,
 				99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */,
+				01FE128D1ECD1ABF0048E388 /* DB.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				9344BFC53DD62E2B252A09F182675EE1 /* TabBarViewController.swift in Sources */,
 				DF2FC0F47FE27BBE18E0F1AB22F48DFF /* TripTableViewCell.swift in Sources */,
 				C29C1A46750FF6CEC150ED6ECEF8DA24 /* TripsViewController.swift in Sources */,
+				01FE128E1ECD1ABF0048E388 /* DB.swift in Sources */,
 				BA8AD98CA2DFC64E2F586DDDC3C4A58B /* initialViewController.swift in Sources */,
 				63254EFE5F3EF2507A91392D2896E9C7 /* ios_app.xcdatamodeld in Sources */,
 				510490EB1ECBFBD200F34C39 /* createVehicleViewController.swift in Sources */,

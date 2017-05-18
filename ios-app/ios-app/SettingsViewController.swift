@@ -22,10 +22,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var trackingStatusLabel: UILabel!
     
     @IBOutlet weak var bottomStartStopTrackingButton: UIButton!
-    // NSNotification for starting/stopping tracking
-    let toggleTracking = Notification.Name(rawValue: "toggleTracking")
-    
-    let delegate = UIApplication.shared.delegate as! AppDelegate
     
     // MARK: Setup 
     override func viewDidLoad() {
@@ -42,12 +38,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.updateColorScheme),
-                                               name: delegate.router.colorUpdateNotification,
+                                               name: BLERouter.sharedInstance.colorUpdateNotification,
                                                object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if self.delegate.router.tracking {
+        if BLERouter.sharedInstance.tracking {
             setBlack()
         } else {
             setWhite()
@@ -56,12 +52,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     //Below code is work in progress from master.swift trying to update color
     @IBAction func send(_ sender: UIButton) {
-        self.delegate.router.tracking = !self.delegate.router.tracking
+        BLERouter.sharedInstance.tracking = !BLERouter.sharedInstance.tracking
         updateColorScheme()
     }
     
     func updateColorScheme() {
-        if self.delegate.router.tracking {
+        if BLERouter.sharedInstance.tracking {
             setBlack()
         } else {
             setWhite()

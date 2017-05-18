@@ -43,8 +43,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     var locationManager: CLLocationManager = CLLocationManager()
     var startLocation: CLLocation!
     
-    let delegate = UIApplication.shared.delegate as! AppDelegate
-    
     // MARK: Setup
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,17 +70,17 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.updateConnection),
-                                               name: delegate.router.connectionTypeNotification,
+                                               name: BLERouter.sharedInstance.connectionTypeNotification,
                                                object: nil)
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.updateColorScheme),
-                                               name: delegate.router.colorUpdateNotification,
+                                               name: BLERouter.sharedInstance.colorUpdateNotification,
                                                object: nil)
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.displayVehicleInfo),
-                                               name: delegate.router.vehicleInfoNotification,
+                                               name: DB.sharedInstance.vehicleInfoNotification,
                                                object: nil)
     }
 
@@ -94,7 +92,7 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if self.delegate.router.tracking {
+        if BLERouter.sharedInstance.tracking {
             setBlack()
         } else {
             setWhite()
@@ -102,12 +100,12 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction public func send(_ sender: UIButton) {
-        self.delegate.router.tracking = !self.delegate.router.tracking
+        BLERouter.sharedInstance.tracking = !BLERouter.sharedInstance.tracking
         updateColorScheme()
     }
     
     func updateColorScheme() {
-        if self.delegate.router.tracking {
+        if BLERouter.sharedInstance.tracking {
             setBlack()
         } else {
             setWhite()
@@ -199,9 +197,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     func location() {
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.distanceFilter = 1500.0
-        
-        locationManager.delegate = self
-        
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
@@ -232,7 +227,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
                 if address.locality == nil || address.administrativeArea == nil {
                     result = "Unknown, USA"
                 } else {
-                    
                     if address.administrativeArea! != "Washington" {
                         let city = "\(address.locality!), \(address.administrativeArea!)"
                         result = "Outside of WA"
@@ -254,9 +248,9 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func updateConnection() {
-        if delegate.router.connectionType != nil {
+        if BLERouter.sharedInstance.connectionType != nil {
             self.searchingAnimation?.stopAnimating()
-            self.connectionTypeHeader.text = delegate.router.connectionType
+            self.connectionTypeHeader.text = BLERouter.sharedInstance.connectionType
         } else {
             self.searchingAnimation?.startAnimating()
             self.connectionTypeHeader.text = "Searching"
@@ -264,7 +258,7 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func displayVehicleInfo() {
-        vehicleHeader.text = "\(self.delegate.router.vehicleInfo["Make"]!.capitalized)"
-        vehicleSubHeader.text = "\(self.delegate.router.vehicleInfo["Year"]!) \(self.delegate.router.vehicleInfo["Model"]!)"
+        vehicleHeader.text = "\(DB.sharedInstance.currVehicleInfo["make"]!.capitalized)"
+        vehicleSubHeader.text = "\(DB.sharedInstance.currVehicleInfo["year"]!) \(DB.sharedInstance.currVehicleInfo["model"]!)"
     }
 }
