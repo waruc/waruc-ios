@@ -116,7 +116,7 @@ class DB {
                         self.currVehicleInfo["make"] = self.getVehicleAttrWithId(variableId: 26).capitalized
                         self.currVehicleInfo["model"] = self.getVehicleAttrWithId(variableId: 28)
                         self.currVehicleInfo["year"] = self.getVehicleAttrWithId(variableId: 29)
-                        self.currVehicleInfo["nickname"] = "Nick's Car"
+                        //self.currVehicleInfo["nickname"] = "Nick's Car"
                         
                         self.registerVehicle(vin: vin,
                                              make: self.currVehicleInfo["make"]!,
