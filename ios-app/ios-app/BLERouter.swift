@@ -8,8 +8,6 @@
 
 import Foundation
 import CoreBluetooth
-import Alamofire
-import SwiftyJSON
 
 class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
