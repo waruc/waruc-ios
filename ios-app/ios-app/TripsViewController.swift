@@ -24,8 +24,6 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var realmTrips = [Trip]()
     
-    let delegate = UIApplication.shared.delegate as! AppDelegate
-    
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -45,7 +43,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.updateColorScheme),
-                                               name: delegate.router.colorUpdateNotification,
+                                               name: BLERouter.sharedInstance.colorUpdateNotification,
                                                object: nil)
     }
     
@@ -61,7 +59,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if self.delegate.router.tracking {
+        if BLERouter.sharedInstance.tracking {
             setBlack()
         } else {
             setWhite()
@@ -69,12 +67,12 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     @IBAction func send(_ sender: UIButton) {
-        self.delegate.router.tracking = !self.delegate.router.tracking
+        BLERouter.sharedInstance.tracking = !BLERouter.sharedInstance.tracking
         updateColorScheme()
     }
     
     func updateColorScheme() {
-        if self.delegate.router.tracking {
+        if BLERouter.sharedInstance.tracking {
             setBlack()
         } else {
             setWhite()

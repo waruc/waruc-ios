@@ -17,9 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    // Bluetooth connection
-    var router = BLERouter()
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey("AIzaSyB4KKkw7xZWUYxbwtY_6Nlr5RXAf_0jzcU")
         GMSPlacesClient.provideAPIKey("AIzaSyB4KKkw7xZWUYxbwtY_6Nlr5RXAf_0jzcU")
@@ -27,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        
+        // Uncomment this line to sign out before each session
+        //try! FIRAuth.auth()!.signOut()
         
         if FIRAuth.auth()?.currentUser != nil {
             print("User is signed in")
