@@ -55,7 +55,6 @@ class userRegistrationViewController: UIViewController, UITextFieldDelegate {
             FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
                 let uid = FIRAuth.auth()?.currentUser?.uid
                 if uid != nil {
-                    DB.sharedInstance.addPlaceholderToUserVehicles()
                     self.performSegue(withIdentifier: "accountCreatedSuccessfully", sender: self)
                 } else {
                     print("Create User error")
