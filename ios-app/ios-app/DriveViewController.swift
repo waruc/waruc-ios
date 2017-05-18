@@ -258,7 +258,12 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func displayVehicleInfo() {
-        vehicleHeader.text = "\(DB.sharedInstance.currVehicleInfo["make"]!.capitalized)"
-        vehicleSubHeader.text = "\(DB.sharedInstance.currVehicleInfo["year"]!) \(DB.sharedInstance.currVehicleInfo["model"]!)"
+        if DB.sharedInstance.currVehicleInfo["nickname"] == "" {
+            vehicleHeader.text = "\(DB.sharedInstance.currVehicleInfo["make"]!.capitalized)"
+            vehicleSubHeader.text = "\(DB.sharedInstance.currVehicleInfo["year"]!) \(DB.sharedInstance.currVehicleInfo["model"]!)"
+        } else {
+            vehicleHeader.text = "\(DB.sharedInstance.currVehicleInfo["nickname"]!)"
+            vehicleSubHeader.text = "\(DB.sharedInstance.currVehicleInfo["year"]!) \(DB.sharedInstance.currVehicleInfo["make"]!.capitalized) \(DB.sharedInstance.currVehicleInfo["model"]!)"
+        }
     }
 }
