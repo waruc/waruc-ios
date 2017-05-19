@@ -36,6 +36,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     var connectionType:String?
     
     let connectionTypeNotification = Notification.Name("connectionTypeNotificationIdentifier")
+    let connectionStrengthNotification = Notification.Name("connectionStrengthNotificationIdentifier")
     let colorUpdateNotification = Notification.Name("colorUpdateNotification")
     
     var res:[UInt8] = []
@@ -47,6 +48,8 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     var setupComplete = false
     
     var vinNumber:String?
+    
+    var bleConnectionStrength:String?
     
     override init() {
         super.init()
@@ -103,6 +106,8 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("*** 🐔Successfully connected!🦄")
         
+        obd2?.readRSSI()
+        
         centralManager.stopScan()
         pauseScanTimer?.invalidate()
         resumeScanTimer?.invalidate()
@@ -113,7 +118,24 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         NotificationCenter.default.post(name: connectionTypeNotification, object: nil)
     }
     
-    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?){
+    func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
+        print("\nRSSI: \(RSSI)")
+        switch Int(RSSI) {
+        case -70 ... Int.max:
+            bleConnectionStrength = "Strong connection"
+            print("Strong connection")
+        case Int.min ... -71:
+            bleConnectionStrength = "Weak connection"
+            print("Weak connection")
+        default:
+            bleConnectionStrength = "Error getting RSSI value."
+            print("Error getting RSSI value.")
+        }
+        
+        NotificationCenter.default.post(name: connectionStrengthNotification, object: nil)
+    }
+    
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print("*** Failed to Connect!")
     }
     

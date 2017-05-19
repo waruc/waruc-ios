@@ -139,9 +139,6 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         transition(item: self.view)
         transition(item: (self.tabBarController?.tabBar)!)
     }
-    
-    // NSNotification for starting/stopping tracking
-    let toggleTracking = Notification.Name(rawValue: "toggleTracking")
 
     // MARK: TableViewDelegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -178,12 +175,6 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-    }
-    
-    // MARK: NSNotification Listeners
-    // The user started or stopped tracking 
-    func didToggleTracking() {
-        print("Did toggle tracking distance in TripsViewController")
     }
     
     func getTotalMiles() -> Double {
