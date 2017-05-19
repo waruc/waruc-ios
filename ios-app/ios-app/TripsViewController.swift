@@ -32,6 +32,13 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         realmTrips = Array(readTrip())
         self.mileCountLabel.text = "\(Int(getTotalMiles().rounded(.toNearestOrAwayFromZero)))"
         
+        // Separator for top of first cell
+        let px = 1 / UIScreen.main.scale
+        let frame = CGRect(x: 0, y: 0, width: self.tripTableView.frame.size.width, height: px)
+        let line = UIView(frame: frame)
+        self.tripTableView.tableHeaderView = line
+        line.backgroundColor = self.tripTableView.separatorColor
+        
         // Table view setup 
         self.tripTableView.delegate = self
         self.tripTableView.dataSource = self
@@ -109,6 +116,10 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //Status bar
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
         
+        for cell in self.tripTableView.visibleCells as! Array<TripTableViewCell> {
+            cell.distanceLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
+        
         //Transitions
         transition(item: self.view)
         transition(item: (self.tabBarController?.tabBar)!)
@@ -134,6 +145,10 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         //Status bar
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: true)
+        
+        for cell in self.tripTableView.visibleCells as! Array<TripTableViewCell> {
+            cell.distanceLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        }
         
         //Transitions
         transition(item: self.view)
