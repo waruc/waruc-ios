@@ -9,6 +9,7 @@
 import UIKit
 import AVKit
 import AVFoundation
+import Eureka
 
 
 class initialViewController: UIViewController, UIScrollViewDelegate {
@@ -23,6 +24,16 @@ class initialViewController: UIViewController, UIScrollViewDelegate {
     var pageControl : UIPageControl = UIPageControl(frame:CGRect(x: 86, y: 550, width: 200, height: 50))
     
     var player: AVPlayer?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +56,7 @@ class initialViewController: UIViewController, UIScrollViewDelegate {
         self.scrollView.isPagingEnabled = true
         self.scrollView.contentSize = CGSize(width: self.scrollView.frame.size.width * 4, height: self.scrollView.frame.size.height)
         pageControl.addTarget(self, action: #selector(self.changePage(sender:)), for: UIControlEvents.valueChanged)
-
+        
     }
     
     func configurePageControl() {
@@ -113,5 +124,17 @@ class initialViewController: UIViewController, UIScrollViewDelegate {
         player?.play()
     }
     
-
+    @IBAction func loginForm(_ sender: Any) {
+        let vc = storyboard!.instantiateViewController(withIdentifier: "signIn") as! signInFormViewController
+        let navigationController = UINavigationController(rootViewController: vc)
+        self.present(navigationController, animated: true, completion: nil)
+    }
+    
+    @IBAction func signUpForm(_ sender: Any) {
+        let vc = storyboard!.instantiateViewController(withIdentifier: "signUp") as! userRegistrationFormViewController
+        let navigationController = UINavigationController(rootViewController: vc)
+        self.present(navigationController, animated: true, completion: nil)
+    }
+    
+    
 }

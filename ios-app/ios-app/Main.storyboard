@@ -617,7 +617,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="2Jz-Yw-0nz" kind="show" id="uS2-m5-HAI"/>
+                                    <action selector="loginForm:" destination="tZH-JL-lH1" eventType="touchUpInside" id="rs4-xb-3Vf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rb7-Jq-hvF">
@@ -628,12 +628,15 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="0qa-Ia-Afy" kind="show" id="Nvn-s2-n6v"/>
+                                    <action selector="signUpForm:" destination="tZH-JL-lH1" eventType="touchUpInside" id="vpQ-ss-syZ"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="tsE-IK-XIj">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Jnb-eK-ugO"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="loginButton" destination="ewi-6u-A8f" id="jgL-Zr-24E"/>
                         <outlet property="signupButton" destination="ptI-se-1eE" id="07S-Me-2Gb"/>
@@ -717,10 +720,10 @@
             </objects>
             <point key="canvasLocation" x="-1921" y="-643"/>
         </scene>
-        <!--User Registration Form View Controller-->
+        <!--signUp-->
         <scene sceneID="Rkc-D9-UkI">
             <objects>
-                <viewController id="0qa-Ia-Afy" customClass="userRegistrationFormViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signUp" title="signUp" id="0qa-Ia-Afy" customClass="userRegistrationFormViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pPO-BF-rfk"/>
                         <viewControllerLayoutGuide type="bottom" id="Idr-MQ-ti6"/>
@@ -730,10 +733,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Sign Up" id="Ezv-Y8-uTS">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="bq0-hR-sOD"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="li9-nV-As9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-257" y="-1263"/>
+            <point key="canvasLocation" x="-1124" y="-1292"/>
         </scene>
         <!--User Registration View Controller-->
         <scene sceneID="bkB-YZ-IS4">
@@ -828,19 +834,38 @@
             </objects>
             <point key="canvasLocation" x="-2895" y="-642"/>
         </scene>
-        <!--Sign In Form View Controller-->
+        <!--Sign In-->
+        <scene sceneID="w7g-hR-ZFG">
+            <objects>
+                <navigationController title="Sign In" id="UyF-qW-yMN" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="HT6-hd-UPG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="tZH-JL-lH1" kind="relationship" relationship="rootViewController" id="SRE-UG-dmE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="akY-9r-xVb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2103" y="-2416"/>
+        </scene>
+        <!--signIn-->
         <scene sceneID="UHP-9s-Sdq">
             <objects>
-                <viewController id="2Jz-Yw-0nz" customClass="signInFormViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signIn" title="signIn" id="2Jz-Yw-0nz" customClass="signInFormViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ta2-Vz-Pti">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Sign In" id="XNx-0D-IVX">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="0eB-Yh-bYL"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6qO-t4-fzI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-249" y="-1991"/>
+            <point key="canvasLocation" x="-1124" y="-1975"/>
         </scene>
     </scenes>
     <resources>
@@ -852,7 +877,7 @@
         <image name="steering-wheel" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MeN-7m-5Ms"/>
-        <segue reference="ngu-U2-mLo"/>
+        <segue reference="9Rd-rc-416"/>
+        <segue reference="SRE-UG-dmE"/>
     </inferredMetricsTieBreakers>
 </document>
