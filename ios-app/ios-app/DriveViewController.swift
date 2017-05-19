@@ -21,14 +21,14 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     //Pairing area
     @IBOutlet weak var connectionTypeHeader: UILabel!
     @IBOutlet weak var connectionTypeSubHeader: UILabel!
-    @IBOutlet weak var connectionImage: UIImageView!
     @IBOutlet weak var greyBoxOne: UILabel!
+    @IBOutlet weak var connectionTypeLogo: UIImageView!
     
     //Vehicle area
     @IBOutlet weak var vehicleHeader: UILabel!
     @IBOutlet weak var vehicleSubHeader: UILabel!
-    @IBOutlet weak var vehicleImage: UIImageView!
     @IBOutlet weak var greyBoxTwo: UILabel!
+    @IBOutlet weak var vehicleMakeLogo: UIImageView!
     
     //Bottom tracking bar
     @IBOutlet weak var bottomTrackingStatus: UILabel!
@@ -47,7 +47,7 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchingAnimation = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 54, height: 27))
+        searchingAnimation = NVActivityIndicatorView(frame: CGRect(x: 10, y: 10, width: 32, height: 32))
         searchingAnimation!.color = UIColor.black
         //searchingAnimation = .ballScaleRippleMultiple
         searchingAnimation!.startAnimating()
@@ -71,6 +71,11 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.updateConnection),
                                                name: BLERouter.sharedInstance.connectionTypeNotification,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.displayConnectionStrength),
+                                               name: BLERouter.sharedInstance.connectionStrengthNotification,
                                                object: nil)
         
         NotificationCenter.default.addObserver(self,
@@ -249,15 +254,32 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     
     func updateConnection() {
         if BLERouter.sharedInstance.connectionType != nil {
-            self.searchingAnimation?.stopAnimating()
-            self.connectionTypeHeader.text = BLERouter.sharedInstance.connectionType
+            connectionTypeLogo.image = #imageLiteral(resourceName: "bluetooth")
+            searchingAnimation?.stopAnimating()
+            
+            connectionTypeHeader.frame.origin.y = connectionTypeHeader.frame.origin.y - 12
+            connectionTypeHeader.text = BLERouter.sharedInstance.connectionType
         } else {
-            self.searchingAnimation?.startAnimating()
-            self.connectionTypeHeader.text = "Searching"
+            connectionTypeLogo.image = nil
+            connectionTypeSubHeader.text = ""
+            searchingAnimation?.startAnimating()
+            connectionTypeHeader.frame.origin.y = connectionTypeHeader.frame.origin.y + 12
+            connectionTypeHeader.text = "Searching"
+            
+            vehicleMakeLogo.image = nil
+            vehicleHeader.frame.origin.y = vehicleHeader.frame.origin.y + 12
+            vehicleHeader.text = "Vehicle not connected"
+            vehicleSubHeader.text = ""
         }
     }
     
+    func displayConnectionStrength() {
+        connectionTypeSubHeader.text = BLERouter.sharedInstance.bleConnectionStrength!
+    }
+    
     func displayVehicleInfo() {
+        vehicleMakeLogo.image = #imageLiteral(resourceName: "chevrolet")
+        vehicleHeader.frame.origin.y = vehicleHeader.frame.origin.y - 12
         if DB.sharedInstance.currVehicleInfo["nickname"] == "" {
             vehicleHeader.text = "\(DB.sharedInstance.currVehicleInfo["make"]!.capitalized)"
             vehicleSubHeader.text = "\(DB.sharedInstance.currVehicleInfo["year"]!) \(DB.sharedInstance.currVehicleInfo["model"]!)"
