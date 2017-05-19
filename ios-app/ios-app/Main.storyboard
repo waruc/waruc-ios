@@ -566,23 +566,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ptI-se-1eE">
-                                <rect key="frame" x="160" y="606" width="55" height="30"/>
+                                <rect key="frame" x="16" y="618" width="343" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign Up"/>
+                                <color key="backgroundColor" red="0.0" green="0.76470588235294112" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="signUp:" destination="tZH-JL-lH1" eventType="touchUpInside" id="US7-ly-ChM"/>
                                     <segue destination="leC-0c-han" kind="show" identifier="goToSignUp" id="hBY-DV-inE">
                                         <nil key="action"/>
                                     </segue>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewi-6u-A8f">
-                                <rect key="frame" x="168" y="568" width="38" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Login"/>
-                                <connections>
-                                    <action selector="login:" destination="tZH-JL-lH1" eventType="touchUpInside" id="55e-kC-ola"/>
-                                    <segue destination="Zub-Bt-I5O" kind="show" identifier="goToLogin" id="kmm-hu-p5q"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WARUC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXO-qX-EQ5">
@@ -593,11 +587,26 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENd-Md-J4W">
-                                <rect key="frame" x="167" y="410" width="41" height="30"/>
+                                <rect key="frame" x="146" y="413" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cheat"/>
+                                <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Cheat">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="49e-Tb-3d3" kind="show" id="9Rd-rc-416"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewi-6u-A8f">
+                                <rect key="frame" x="16" y="571" width="343" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.072654612362384796" green="0.20506688952445984" blue="0.15089935064315796" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="0.0" green="0.76470588240000004" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="login:" destination="tZH-JL-lH1" eventType="touchUpInside" id="55e-kC-ola"/>
+                                    <segue destination="Zub-Bt-I5O" kind="show" identifier="goToLogin" id="kmm-hu-p5q"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -610,7 +619,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rLV-xo-Pe9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2103" y="-1594"/>
+            <point key="canvasLocation" x="-2103.1999999999998" y="-1594.4527736131936"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="CG3-MB-TZW">
