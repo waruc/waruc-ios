@@ -322,7 +322,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         let date = Date()
         let ts = Int(date.timeIntervalSince1970.rounded())
         
-        writeTrip(ts: ts, distance: totalDist, duration: tripSeconds)
+        writeTrip(ts: ts, distance: totalDist, duration: tripSeconds, vehicleVIN: vinNumber!)
     }
     
 }

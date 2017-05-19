@@ -9,8 +9,9 @@
 import UIKit
 import Foundation
 
-class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    @IBOutlet var tripsView: UIView!
     @IBOutlet weak var mytripsHeader: UILabel!
     @IBOutlet weak var mileCountLabel: UILabel!
     @IBOutlet weak var totalMilesLabel: UILabel!
@@ -22,12 +23,25 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var bottomStartStopTrackingButton: UIButton!
     
+    @IBOutlet weak var vehicleDropdownButton: UIButton!
+    var vehiclePickerView:UIPickerView?
+    
     var realmTrips = [Trip]()
     
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if DB.sharedInstance.userVehicles.isEmpty {
+            vehicleDropdownButton.isHidden = true
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(self.createVehiclePicker),
+                                                   name: DB.sharedInstance.userVehiclesNotification,
+                                                   object: nil)
+        } else {
+            createVehiclePicker()
+        }
         
         realmTrips = Array(readTrip())
         self.mileCountLabel.text = "\(Int(getTotalMiles().rounded(.toNearestOrAwayFromZero)))"
@@ -173,19 +187,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.distanceLabel?.text = "\(((currTrip.distance * 10).rounded() / 10)) miles"
         cell.monthLabel?.text = "\(calendar.monthSymbols[calendar.component(.month, from: date) - 1])"
         
-        //cell.contentView.backgroundColor = Colors.backgroundBlack
-        
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        if States.Activity.track {
-//            //setBlack()
-//            cell.contentView.backgroundColor = Colors.backgroundBlack
-//        } else {
-//            //setWhite()
-//            cell.contentView.backgroundColor = Colors.white
-//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -194,5 +196,48 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func getTotalMiles() -> Double {
         return realmTrips.map { $0.distance }.reduce(0.0, +)
+    }
+    
+    func createVehiclePicker() {
+        print("createVehiclePicker")
+        vehiclePickerView = UIPickerView()
+        let pickerX = vehicleDropdownButton.frame.origin.x - 220
+        let pickerY = vehicleDropdownButton.frame.origin.y + vehicleDropdownButton.frame.height - 5
+        vehiclePickerView!.dataSource = self
+        vehiclePickerView!.delegate = self
+        vehiclePickerView!.frame = CGRect(x: pickerX, y: pickerY, width: 250, height: 100)
+        vehiclePickerView!.backgroundColor = UIColor.black
+        vehiclePickerView!.layer.borderColor = UIColor.white.cgColor
+        vehiclePickerView!.layer.cornerRadius = 5
+        vehiclePickerView!.layer.borderWidth = 1
+        vehiclePickerView!.isHidden = true
+        tripsView.addSubview(vehiclePickerView!)
+        
+        vehicleDropdownButton.isHidden = false
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return DB.sharedInstance.userVehicles.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        pickerLabel.text = DB.sharedInstance.userVehicles[row].values.joined(separator: " ")
+        pickerLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        pickerLabel.font = UIFont.systemFont(ofSize: 20)
+        pickerLabel.textAlignment = NSTextAlignment.center
+        return pickerLabel
+    }
+    
+    @IBAction func showVehicleDropdown(_ sender: Any) {
+        vehiclePickerView!.isHidden = !vehiclePickerView!.isHidden
     }
 }
