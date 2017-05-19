@@ -207,9 +207,8 @@
                                     <constraint firstItem="fP0-ax-haF" firstAttribute="centerY" secondItem="Skn-zG-87y" secondAttribute="centerY" id="v7b-Yt-UNn"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Trips" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gW2-u0-KgW">
-                                <rect key="frame" x="20" y="32" width="176" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Trips" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gW2-u0-KgW">
+                                <rect key="frame" x="21" y="30" width="153" height="45.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="38"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -291,16 +290,34 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRJ-J4-lyd">
+                                <rect key="frame" x="308" y="30" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="Vrw-rp-2pU"/>
+                                    <constraint firstAttribute="width" constant="46" id="zcy-og-F36"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="car"/>
+                                <connections>
+                                    <action selector="showVehicleDropdown:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="5oY-pQ-Qhq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="gW2-u0-KgW" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="10" id="1mb-jD-v8h"/>
                             <constraint firstItem="fUT-cY-Esr" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="2xS-CD-cJz"/>
                             <constraint firstItem="fUT-cY-Esr" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" constant="563" id="F88-Cz-VTt"/>
+                            <constraint firstItem="lRJ-J4-lyd" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="10" id="FiO-jm-EAh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lRJ-J4-lyd" secondAttribute="trailing" constant="5" id="FvN-A7-x08"/>
                             <constraint firstItem="fUT-cY-Esr" firstAttribute="bottom" secondItem="Djb-ko-YwX" secondAttribute="top" id="LLj-wn-RmQ"/>
+                            <constraint firstItem="gW2-u0-KgW" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="5" id="UpW-tO-Jbe"/>
+                            <constraint firstItem="lRJ-J4-lyd" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="10" id="VN0-QA-1EA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lRJ-J4-lyd" secondAttribute="trailing" constant="5" id="edk-Ej-BbE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fUT-cY-Esr" secondAttribute="trailing" constant="-16" id="pCb-dp-0Ld"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Trips" image="history" id="cPa-gy-q4n"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="bottomBar" destination="fUT-cY-Esr" id="fsx-GN-ieJ"/>
                         <outlet property="bottomStartStopTrackingButton" destination="Skn-zG-87y" id="Fcj-e9-P2L"/>
@@ -309,6 +326,8 @@
                         <outlet property="totalMilesLabel" destination="4No-sp-R2E" id="q76-z2-fFE"/>
                         <outlet property="trackingStatusLabel" destination="fP0-ax-haF" id="EUb-YS-pX3"/>
                         <outlet property="tripTableView" destination="kLe-jE-7fM" id="G3r-pa-ehb"/>
+                        <outlet property="tripsView" destination="QS5-Rx-YEW" id="4VM-uy-OaE"/>
+                        <outlet property="vehicleDropdownButton" destination="lRJ-J4-lyd" id="1Bp-9g-d1V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
@@ -842,7 +861,7 @@
         <scene sceneID="w7g-hR-ZFG">
             <objects>
                 <navigationController title="Sign In" id="UyF-qW-yMN" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="HT6-hd-UPG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HT6-hd-UPG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -877,6 +896,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="car" width="332" height="332"/>
         <image name="history" width="25" height="25"/>
         <image name="locationsmall" width="27" height="27"/>
         <image name="settings" width="25" height="25"/>
