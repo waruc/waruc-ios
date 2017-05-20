@@ -1,5 +1,5 @@
 //
-//  OnboardingEnableFeaturesViewController.swift
+//  OnboardingAccountDetailsViewController.swift
 //  ios-app
 //
 //  Created by Babbs, Dylan on 5/20/17.
@@ -8,17 +8,16 @@
 
 import UIKit
 
-class OnboardingEnableFeaturesViewController: UIViewController {
+class OnboardingAccountDetailsViewController: UIViewController {
 
-    @IBOutlet weak var okayButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.okayButton.layer.cornerRadius = 4
-        okayButton.clipsToBounds = true
-        
-        self.navigationController?.navigationBar.tintColor = Colors.green
 
+        self.nextButton.layer.cornerRadius = 4
+        nextButton.clipsToBounds = true
+        self.navigationController?.navigationBar.tintColor = Colors.green
+        
         // Do any additional setup after loading the view.
     }
 
