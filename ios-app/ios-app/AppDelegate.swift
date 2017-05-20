@@ -30,7 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if FIRAuth.auth()?.currentUser != nil {
             print("User is signed in")
-            DB.sharedInstance.getUserVehicles()
             self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "TabBar") as! UITabBarController
         }
         
