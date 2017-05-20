@@ -16,27 +16,39 @@ class OnboardingVehicleFormViewController: FormViewController {
 
         form +++ Section("Account")
             <<< TextRow() {
-                $0.title = "Car1"
+                $0.title = "Make"
                 $0.disabled = true
-                $0.value = "Car Value"
+                $0.value = DB.sharedInstance.currVehicleInfo["make"]
+                $0.tag = "account"
             }
         
             <<< TextRow() {
-                $0.title = "Car2"
+                $0.title = "Model"
                 $0.disabled = true
-                $0.value = "Car Value"
+                $0.value = DB.sharedInstance.currVehicleInfo["model"]
+                $0.tag = "model"
             }
         
             <<< TextRow() {
-                $0.title = "Car3"
+                $0.title = "Year"
                 $0.disabled = true
-                $0.value = "Car Value"
+                $0.value = DB.sharedInstance.currVehicleInfo["year"]
+                $0.tag = "year"
             }
         
             <<< TextRow() {
-                $0.title = "Car4"
+                $0.title = "Nickname"
                 $0.disabled = false
-                $0.value = "Car Value"
+                $0.value = ""
+                $0.tag = "nickname"
             }
+            .cellUpdate { cell, row in
+                DB.sharedInstance.currVehicleInfo["year"] = row.value
+            }
+    }
+    
+    // Returns the nickname currently filled out
+    func getNickname() {
+    
     }
 }
