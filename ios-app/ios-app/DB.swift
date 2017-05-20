@@ -19,12 +19,20 @@ class DB {
     var refreshFeed: Bool!
     
     let vehicleInfoNotification = Notification.Name("vehicleInfoNotification")
+    let fetchVehicleInfoNotification = Notification.Name("fetchVehicleInfoNotification")
     var vinData:[JSON] = []
     var currVehicleInfo:[String : String] = [
         "make": "",
         "model": "",
         "year": "",
         "nickname": ""
+    ]
+    
+    var fetchVinData:[JSON] = []
+    var fetchVehicleInfo:[String : String] = [
+        "make": "",
+        "model": "",
+        "year": ""
     ]
     
     init() {
@@ -122,6 +130,30 @@ class DB {
             }
         })
         
+    }
+    
+    func fetchVehicleInfo(vin: String) {
+        Alamofire.request(self.vinLookupUrl(vin: vin), method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                self.fetchVinData = json["Results"].arrayValue.filter { [26, 28, 29].contains($0["VariableId"].intValue) }
+                
+                self.fetchVehicleInfo["make"] = self.getVehicleAttrWithId(variableId: 26).capitalized
+                self.fetchVehicleInfo["model"] = self.getVehicleAttrWithId(variableId: 28)
+                self.fetchVehicleInfo["year"] = self.getVehicleAttrWithId(variableId: 29)
+                
+                print("Make: \(self.currVehicleInfo["make"]!)")
+                print("Model: \(self.currVehicleInfo["model"]!)")
+                print("Model Year: \(self.currVehicleInfo["year"]!)")
+                
+                NotificationCenter.default.post(name: self.fetchVehicleInfoNotification, object: nil)
+                
+            case .failure(let error):
+                print("VIN Lookup Failure:")
+                print(error)
+            }
+        }
     }
     
     func updateVehicleUsers(vin: String) {
