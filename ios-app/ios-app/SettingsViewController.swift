@@ -10,8 +10,6 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     // MARK: References
-    @IBOutlet weak var profileName: UILabel!
-    @IBOutlet weak var profileImage: UIImageView!
 
     @IBOutlet weak var profileInitials: UILabel!
     
@@ -26,9 +24,6 @@ class SettingsViewController: UIViewController {
     // MARK: Setup 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
-        self.profileImage.clipsToBounds = true
         
         self.bottomBar.backgroundColor = Colors.green
         
@@ -73,8 +68,6 @@ class SettingsViewController: UIViewController {
         view.backgroundColor = Colors.backgroundBlack
         settingsHeader.textColor = Colors.white
         
-        //Middle text
-        profileName.textColor = Colors.white
         
         //Bottom bar area
         bottomBar.backgroundColor = Colors.purple
@@ -100,9 +93,6 @@ class SettingsViewController: UIViewController {
         view.backgroundColor = UIColor.white
         settingsHeader.textColor = Colors.black
 
-        //Middle text
-        profileName.textColor = Colors.black
-        
         //Bottom bar area
         bottomBar.backgroundColor = Colors.green
         trackingStatusLabel.text = "Not Tracking"

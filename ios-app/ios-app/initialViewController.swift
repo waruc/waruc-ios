@@ -35,6 +35,11 @@ class initialViewController: UIViewController, UIScrollViewDelegate {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
+    @IBAction func signUpDylan(_ sender: UIButton) {
+        performSegue(withIdentifier: "toAbout", sender: self)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         video()

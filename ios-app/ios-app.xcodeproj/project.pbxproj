@@ -26,6 +26,10 @@
 		971CC6486EAECBE47A3296A67C2B80BA /* userRegistrationFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72162C848D2DB61A577392B1849EB990 /* userRegistrationFormViewController.swift */; };
 		9ABE3C681C81AF28509A365CC6922230 /* Pods_ios_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7AC5F3F506A9742D810760E2887AA2D /* Pods_ios_appTests.framework */; };
 		A243094A71AA77A242EF8C0948AEFF42 /* master.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */; };
+		A4773FC81ED0C63500CB1E0A /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FC71ED0C63500CB1E0A /* AboutViewController.swift */; };
+		A4773FF41ED0DFDF00CB1E0A /* OnboardingAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FF31ED0DFDF00CB1E0A /* OnboardingAboutViewController.swift */; };
+		A4773FF61ED0E0B800CB1E0A /* OnboardingTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FF51ED0E0B800CB1E0A /* OnboardingTermsViewController.swift */; };
+		A4773FFA1ED0EB8100CB1E0A /* OnboardingVehicleFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FF91ED0EB8100CB1E0A /* OnboardingVehicleFormViewController.swift */; };
 		B73D2FAD2D6D9F4CB0D7C76D92288E42 /* signInFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B5F478D766551AB92A3C8AB4808B0 /* signInFormViewController.swift */; };
 		BA8AD98CA2DFC64E2F586DDDC3C4A58B /* initialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44A28D9B88D33F110E14B474EDA94BB /* initialViewController.swift */; };
 		BDA701ECBCC0400339E51B59EB70FFF8 /* BLERouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5C6592E672205AE7042E0E9F73B84 /* BLERouter.swift */; };
@@ -88,6 +92,10 @@
 		8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = master.swift; sourceTree = "<group>"; };
 		9B3B9338D030805225619B817B24C830 /* Pods_ios_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4773FC71ED0C63500CB1E0A /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		A4773FF31ED0DFDF00CB1E0A /* OnboardingAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingAboutViewController.swift; sourceTree = "<group>"; };
+		A4773FF51ED0E0B800CB1E0A /* OnboardingTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingTermsViewController.swift; sourceTree = "<group>"; };
+		A4773FF91ED0EB8100CB1E0A /* OnboardingVehicleFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingVehicleFormViewController.swift; sourceTree = "<group>"; };
 		A5A29964B8F0B4C2F0A0FF7EA8C97BC6 /* ios_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_appUITests.swift; sourceTree = "<group>"; };
 		A7AC5F3F506A9742D810760E2887AA2D /* Pods_ios_appTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_appTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B891AA1372C994D4BC0A0DFF532C618A /* RealmModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModels.swift; sourceTree = "<group>"; };
@@ -218,6 +226,7 @@
 		9C3678744F73B3BEDA7AFA6C4BCBEAF3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A4773FC61ED0C61C00CB1E0A /* About */,
 				626147F27F3DDAE6969CD5185FC91B66 /* DriveViewController.swift */,
 				8C01EA1746B2B84168EF5A0DC378E02C /* SettingsFormViewController.swift */,
 				089E4F3C4DC8798A0F36865BDA77FD49 /* SettingsTableViewCell.swift */,
@@ -227,6 +236,14 @@
 				24409AEF74396A96DB5940F12EF83B3E /* TripsViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A4773FC61ED0C61C00CB1E0A /* About */ = {
+			isa = PBXGroup;
+			children = (
+				A4773FC71ED0C63500CB1E0A /* AboutViewController.swift */,
+			);
+			name = About;
 			sourceTree = "<group>";
 		};
 		E12960067B4BC9046B88D60180D21A75 /* Models */ = {
@@ -244,12 +261,15 @@
 		FA759E30E710B0DC2A47271BF9DA03F0 /* OnboardingViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A4773FF51ED0E0B800CB1E0A /* OnboardingTermsViewController.swift */,
+				A4773FF31ED0DFDF00CB1E0A /* OnboardingAboutViewController.swift */,
 				FA022D0FF84AD4F7B8B559030A02DDA4 /* createVehicleViewController.swift */,
 				D44A28D9B88D33F110E14B474EDA94BB /* initialViewController.swift */,
 				212B5F478D766551AB92A3C8AB4808B0 /* signInFormViewController.swift */,
 				579291A869CEE3D6234B1B346CB2B1D3 /* signInViewController.swift */,
 				72162C848D2DB61A577392B1849EB990 /* userRegistrationFormViewController.swift */,
 				23BDFE1E5D4BA841F0266A5A4B50B006 /* userRegistrationViewController.swift */,
+				A4773FF91ED0EB8100CB1E0A /* OnboardingVehicleFormViewController.swift */,
 			);
 			name = OnboardingViewControllers;
 			sourceTree = "<group>";
@@ -331,7 +351,7 @@
 				TargetAttributes = {
 					4B7F7B27DA252087D73087D24E7742BA = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = MYKB4J9SMT;
+						DevelopmentTeam = M6SMTA44W3;
 						ProvisioningStyle = Automatic;
 					};
 					A26F4000BB5354698DA5E0082DFB9B15 = {
@@ -555,6 +575,7 @@
 				02EEA82F412946F6A47400F0707E32B4 /* RealmModels.swift in Sources */,
 				233DCF1D5EDD9BB12974A644348B0491 /* SettingsFormViewController.swift in Sources */,
 				5693E0EBAFFD4CBD7B9A15DB3005EEB5 /* SettingsTableViewCell.swift in Sources */,
+				A4773FF61ED0E0B800CB1E0A /* OnboardingTermsViewController.swift in Sources */,
 				C01E2D6FD39B48F9667FD3FF37276071 /* SettingsViewController.swift in Sources */,
 				9344BFC53DD62E2B252A09F182675EE1 /* TabBarViewController.swift in Sources */,
 				DF2FC0F47FE27BBE18E0F1AB22F48DFF /* TripTableViewCell.swift in Sources */,
@@ -566,7 +587,10 @@
 				B73D2FAD2D6D9F4CB0D7C76D92288E42 /* signInFormViewController.swift in Sources */,
 				55AE7C5FDA0DF7DCC6C71BAE9C32A0D3 /* signInViewController.swift in Sources */,
 				971CC6486EAECBE47A3296A67C2B80BA /* userRegistrationFormViewController.swift in Sources */,
+				A4773FC81ED0C63500CB1E0A /* AboutViewController.swift in Sources */,
+				A4773FFA1ED0EB8100CB1E0A /* OnboardingVehicleFormViewController.swift in Sources */,
 				D3841CBCDD5810EF6148CAD11529958C /* userRegistrationViewController.swift in Sources */,
+				A4773FF41ED0DFDF00CB1E0A /* OnboardingAboutViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,10 +725,10 @@
 			baseConfigurationReference = 7155F0AF2F917F34B10454E020C1E03E /* Pods-ios-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MYKB4J9SMT;
+				DEVELOPMENT_TEAM = M6SMTA44W3;
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nn.ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.db.ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -766,10 +790,10 @@
 			baseConfigurationReference = 7B7FB9104AE8A001DF3C179095EA76F9 /* Pods-ios-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MYKB4J9SMT;
+				DEVELOPMENT_TEAM = M6SMTA44W3;
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nn.ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.db.ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
