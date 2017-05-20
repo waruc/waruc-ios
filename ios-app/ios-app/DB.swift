@@ -137,10 +137,7 @@ class DB {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print(json)
                 self.fetchVinData = json["Results"].arrayValue.filter { [26, 28, 29].contains($0["VariableId"].intValue) }
-                
-                print(self.fetchVinData)
                 
                 self.fetchVehicleInfo["make"] = self.getFetchVehicleAttrWithId(variableId: 26).capitalized
                 self.fetchVehicleInfo["model"] = self.getFetchVehicleAttrWithId(variableId: 28)
