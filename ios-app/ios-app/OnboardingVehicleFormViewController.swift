@@ -2,34 +2,41 @@
 //  OnboardingVehicleFormViewController.swift
 //  ios-app
 //
-//  Created by Babbs, Dylan on 5/20/17.
+//  Created by ishansaksena on 5/20/17.
 //  Copyright © 2017 Nicholas Nordale. All rights reserved.
 //
 
 import UIKit
+import Eureka
 
-class OnboardingVehicleFormViewController: UIViewController {
+class OnboardingVehicleFormViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        form +++ Section("Account")
+            <<< TextRow() {
+                $0.title = "Car1"
+                $0.disabled = true
+                $0.value = "Car Value"
+            }
+        
+            <<< TextRow() {
+                $0.title = "Car2"
+                $0.disabled = true
+                $0.value = "Car Value"
+            }
+        
+            <<< TextRow() {
+                $0.title = "Car3"
+                $0.disabled = true
+                $0.value = "Car Value"
+            }
+        
+            <<< TextRow() {
+                $0.title = "Car4"
+                $0.disabled = false
+                $0.value = "Car Value"
+            }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
