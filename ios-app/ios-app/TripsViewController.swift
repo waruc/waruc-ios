@@ -8,6 +8,10 @@
 
 import UIKit
 import Foundation
+import FirebaseCore
+import FirebaseAuth
+import FirebaseDatabase
+
 
 class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -25,9 +29,15 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var realmTrips = [Trip]()
     
     private let refreshControl = UIRefreshControl()
+    var ref: FIRDatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Call Firebase trips on app load
+        getTrips()
+        writeTrips()
+        ref = FIRDatabase.database().reference()
         
         realmTrips = Array(readTrip())
         self.mileCountLabel.text = "\(Int(getTotalMiles().rounded(.toNearestOrAwayFromZero)))"
@@ -195,4 +205,16 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func getTotalMiles() -> Double {
         return realmTrips.map { $0.distance }.reduce(0.0, +)
     }
+    
+    func getTrips() {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        
+    }
+    
+    func writeTrips() {
+        
+    }
+    
+    
 }
