@@ -9,12 +9,12 @@
 import UIKit
 
 class OnboardingAboutViewController: UIViewController {
-
-
+    
+    @IBOutlet weak var nextButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        // Do any additional setup after loading the view.
+        self.nextButton.layer.cornerRadius = nextButton.bounds.size.width
     }
  }

@@ -665,6 +665,14 @@
                                     <action selector="signUpDylan:" destination="tZH-JL-lH1" eventType="touchUpInside" id="kii-V7-cwu"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yxa-En-ro0">
+                                <rect key="frame" x="32" y="601" width="49" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="vehicle"/>
+                                <connections>
+                                    <segue destination="haP-8d-rx7" kind="show" id="99f-qq-NFp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -684,7 +692,7 @@
         <!--About the Program-->
         <scene sceneID="GUl-0y-Gl0">
             <objects>
-                <viewController title="About the Program" id="WO2-wb-6AY" customClass="OnboardingAboutViewController" sceneMemberID="viewController">
+                <viewController title="About the Program" id="WO2-wb-6AY" customClass="OnboardingAboutViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jw9-nF-4zy"/>
                         <viewControllerLayoutGuide type="bottom" id="O3d-1P-EeC"/>
@@ -708,13 +716,13 @@
                                 <state key="normal" title="NEXT">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="SJt-Zq-i0d" kind="show" id="pFc-4e-COJ"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="nextButton" destination="woy-vX-heW" id="SDi-OL-sFC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vmi-1o-gw2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -949,7 +957,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ycl-RW-dP2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4788" y="-1596"/>
+            <point key="canvasLocation" x="1740" y="-852"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="CG3-MB-TZW">
@@ -1186,7 +1194,8 @@
         <image name="steering-wheel" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ngu-U2-mLo"/>
         <segue reference="9Rd-rc-416"/>
+        <segue reference="ngu-U2-mLo"/>
+        <segue reference="99f-qq-NFp"/>
     </inferredMetricsTieBreakers>
 </document>
