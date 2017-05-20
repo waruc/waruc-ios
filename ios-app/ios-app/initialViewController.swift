@@ -48,15 +48,14 @@ class initialViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        video()
         greenLogIn.layer.cornerRadius = 4
         greenSignUp.layer.cornerRadius = 4
+        BLERouter.sharedInstance.scan()
         
-        video()
+        //configurePageControl()
         
-        //crap:
-//        configurePageControl()
-//        
 //        scrollView.delegate = self
 //        self.view.addSubview(scrollView)
 //        for index in 0..<4 {

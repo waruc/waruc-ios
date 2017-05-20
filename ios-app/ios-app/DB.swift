@@ -139,13 +139,13 @@ class DB {
                 let json = JSON(value)
                 self.fetchVinData = json["Results"].arrayValue.filter { [26, 28, 29].contains($0["VariableId"].intValue) }
                 
-                self.fetchVehicleInfo["make"] = self.getVehicleAttrWithId(variableId: 26).capitalized
-                self.fetchVehicleInfo["model"] = self.getVehicleAttrWithId(variableId: 28)
-                self.fetchVehicleInfo["year"] = self.getVehicleAttrWithId(variableId: 29)
+                self.fetchVehicleInfo["make"] = self.getFetchVehicleAttrWithId(variableId: 26).capitalized
+                self.fetchVehicleInfo["model"] = self.getFetchVehicleAttrWithId(variableId: 28)
+                self.fetchVehicleInfo["year"] = self.getFetchVehicleAttrWithId(variableId: 29)
                 
-                print("Make: \(self.currVehicleInfo["make"]!)")
-                print("Model: \(self.currVehicleInfo["model"]!)")
-                print("Model Year: \(self.currVehicleInfo["year"]!)")
+                print("Make: \(self.fetchVehicleInfo["make"]!)")
+                print("Model: \(self.fetchVehicleInfo["model"]!)")
+                print("Model Year: \(self.fetchVehicleInfo["year"]!)")
                 
                 NotificationCenter.default.post(name: self.fetchVehicleInfoNotification, object: nil)
                 
@@ -189,6 +189,10 @@ class DB {
     
     func getVehicleAttrWithId(variableId: Int) -> String {
         return vinData.filter { $0["VariableId"].intValue == variableId }[0]["Value"].stringValue
+    }
+    
+    func getFetchVehicleAttrWithId(variableId: Int) -> String {
+        return fetchVinData.filter { $0["VariableId"].intValue == variableId }[0]["Value"].stringValue
     }
     
     func writeTrip(ts: Int, miles:Double, vin: String, uid: String) {
