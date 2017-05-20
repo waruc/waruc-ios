@@ -72,7 +72,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             print("The state of the BLE Manager is unknown.")
         case .poweredOn:
             print("Bluetooth LE is turned on and ready for communication.")
-            scan()
+            //scan()
         }
     }
     
@@ -255,7 +255,9 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                     
                     res = []
                     
-                    DB.sharedInstance.createOrReturnVehicle(vin: vinNumber!)
+                    DB.sharedInstance.fetchVehicleInfo(vin: vinNumber!)
+                    
+                    //DB.sharedInstance.createOrReturnVehicle(vin: vinNumber!)
                 }
             } else {
                 // Setup complete and VIN Number is set.. Proceed with normal data collection

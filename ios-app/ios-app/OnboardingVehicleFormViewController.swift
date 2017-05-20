@@ -16,7 +16,7 @@ class OnboardingVehicleFormViewController: FormViewController {
         BLERouter.sharedInstance.scan()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.displayInfo),
-                                               name: DB.sharedInstance.vehicleInfoNotification,
+                                               name: DB.sharedInstance.fetchVehicleInfoNotification,
                                                object: nil)
         
         form +++ Section("Account")
@@ -58,8 +58,8 @@ class OnboardingVehicleFormViewController: FormViewController {
     }
     
     func displayInfo() {
-        print(BLERouter.sharedInstance.currVehicleInfo["make"])
-        print(BLERouter.sharedInstance.currVehicleInfo["model"])
-        print(BLERouter.sharedInstance.currVehicleInfo["year"])
+        print(DB.sharedInstance.fetchVehicleInfo["make"])
+        print(DB.sharedInstance.fetchVehicleInfo["model"])
+        print(DB.sharedInstance.fetchVehicleInfo["year"])
     }
 }
