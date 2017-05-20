@@ -38,10 +38,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = FIRDatabase.database().reference()
-//        getUserVechiles()
-        if FIRAuth.auth()?.currentUser?.uid != nil {
-            getUserData()
-        }
+        let date = Date()
+        let ts = Int(date.timeIntervalSince1970.rounded())
+        
+        
+        
+        
+        //        getUserVechiles()
+        writeTrip(ts: ts, miles: 53.6912, vin: "1G1JC5444R7252367", uid: "eE3ArfvjeoOcpijMEqLVHaI0lOG2")
+//        getTrips(vin:"1G1JC5444R7252367", uid: "eE3ArfvjeoOcpijMEqLVHaI0lOG2")
+//        if FIRAuth.auth()?.currentUser?.uid != nil {
+//            getUserData()
+//        }
     }
     
 
@@ -228,6 +236,27 @@ class ViewController: UIViewController {
                 self.ref.child("userVehicles/" + uid + "/vehicles/placeholder").removeValue()
             }
         }, withCancel: nil)
+    }
+    
+    func getTrips(vin: String, uid: String) {
+        ref.child("vehicles/\(vin)/users/\(uid)/trips").observeSingleEvent(of: .value, with: { (snapshot) in
+            print("Trips: \(snapshot.value!)")
+        }, withCancel: nil)
+    }
+    
+    func writeTrip(ts: Int, miles:Double, vin: String, uid: String) {
+        let key = self.ref.child("vehicles").childByAutoId().key
+        let values = ["timestamp": ts, "mileage:": miles] as [String : Any]
+        let updates = ["vehicles/\(vin)/users/\(uid)/trips/\(key)": values]
+        ref.updateChildValues(updates)
+        
+        
+        
+        ref.child("userVehicles/\(uid)/total_miles").observeSingleEvent(of: .value, with: { (snapshot) in
+            let total_miles = snapshot.value as! Double
+            self.ref.child("userVehicles/\(uid)/total_miles").setValue(total_miles + miles)
+        }, withCancel: nil)
+
     }
 
 }
