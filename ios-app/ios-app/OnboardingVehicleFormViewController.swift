@@ -13,13 +13,18 @@ class OnboardingVehicleFormViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        BLERouter.sharedInstance.scan()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.displayInfo),
+                                               name: DB.sharedInstance.vehicleInfoNotification,
+                                               object: nil)
+        
         form +++ Section("Account")
             <<< TextRow() {
                 $0.title = "Make"
-                $0.disabled = true
                 $0.value = DB.sharedInstance.currVehicleInfo["make"]
-                $0.tag = "account"
+                $0.disabled = true
+                $0.tag = "make"
             }
         
             <<< TextRow() {
@@ -50,5 +55,11 @@ class OnboardingVehicleFormViewController: FormViewController {
     // Returns the nickname currently filled out
     func getNickname() {
     
+    }
+    
+    func displayInfo() {
+        print(BLERouter.sharedInstance.currVehicleInfo["make"])
+        print(BLERouter.sharedInstance.currVehicleInfo["model"])
+        print(BLERouter.sharedInstance.currVehicleInfo["year"])
     }
 }

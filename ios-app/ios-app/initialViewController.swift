@@ -43,7 +43,7 @@ class initialViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         video()
-        
+        BLERouter.sharedInstance.scan()
         //crap:
         configurePageControl()
         
