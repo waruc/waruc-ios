@@ -18,10 +18,6 @@ class DB {
     var feedRad: Int
     var refreshFeed: Bool!
     
-    let userVehiclesNotification = Notification.Name("userVehiclesNotification")
-    var userVehicleKeys:[String] = []
-    var userVehicles:[[String: String]] = []
-    
     let vehicleInfoNotification = Notification.Name("vehicleInfoNotification")
     var vinData:[JSON] = []
     var currVehicleInfo:[String : String] = [
@@ -39,39 +35,22 @@ class DB {
     
     static let sharedInstance = DB()
     
-    func getUserVehicles() {
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        if uid != nil {
-            ref!.child("userVehicles").child("\(uid!)/vehicles").observeSingleEvent(of: .value, with: { (snapshot) in
-                let userVehicleArray = snapshot.value as! [String: String]
-                self.userVehicleKeys = [String](userVehicleArray.keys)
-                self.getUserVehicleInfo()
-            })
-        } else {
-            print("User isn't authenticated")
-        }
-    }
-    
-    func getUserVehicleInfo() {
-        self.userVehicles = []
-        for key in userVehicleKeys {
-            ref!.child("vehicles").child(key).observeSingleEvent(of: .value, with: { (snapshot) in
-                let existingVehicleInfo = snapshot.value as! [String: Any]
-                let vehicle:[String: String] = [
-                    "make": (existingVehicleInfo["make"] as! String),
-                    "model": (existingVehicleInfo["model"] as! String),
-                    "year": (existingVehicleInfo["year"] as! String),
-                    "nickname": (existingVehicleInfo["nickname"] as! String)
-                ]
-                
-                self.userVehicles.append(vehicle)
-                
-                if self.userVehicles.count == self.userVehicleKeys.count {
-                    print("Retrieved all user's vehicles")
-                    NotificationCenter.default.post(name: self.userVehiclesNotification, object: nil)
+    func getUserVehicles() -> Array<Any> {
+        if FIRAuth.auth()?.currentUser?.uid != nil {
+            // fetch data from Firebase
+            let uid = FIRAuth.auth()?.currentUser?.uid
+            ref!.child("userVehicles").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+                var vehicle_keys = [String]()
+                let enumerator = snapshot.children
+                while let rest = enumerator.nextObject() as? FIRDataSnapshot{
+                    vehicle_keys.append(rest.key)
                 }
-            })
+                print(vehicle_keys)
+            }, withCancel: nil)
+        } else {
+            print("Error fetching user vehicles")
         }
+        return []
     }
     
     func registerVehicle(vin: String, make: String, model: String, year: String, nickname: String?) {

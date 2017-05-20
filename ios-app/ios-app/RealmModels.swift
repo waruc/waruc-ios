@@ -13,17 +13,15 @@ class Trip: Object {
     dynamic var ts = 0
     dynamic var distance = 0.0
     dynamic var duration = 0.0
-    dynamic var vehicleVIN = ""
 }
 
 let realm = try! Realm()
 
-func writeTrip(ts: Int, distance: Double, duration: Double, vehicleVIN: String) {
+func writeTrip(ts: Int, distance: Double, duration: Double) {
     let trip = Trip()
     trip.ts = ts
     trip.distance = distance
     trip.duration = duration
-    trip.vehicleVIN = vehicleVIN
     
     try! realm.write {
         realm.add(trip)
