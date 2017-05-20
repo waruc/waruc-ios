@@ -413,7 +413,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="cRl-5Z-ong" kind="show" identifier="about" id="h2L-n3-V6m"/>
+                        <segue destination="cRl-5Z-ong" kind="show" identifier="aboutApp" id="h2L-n3-V6m"/>
+                        <segue destination="H5G-md-C11" kind="show" identifier="aboutProgram" id="5Mv-gu-QCK"/>
+                        <segue destination="7Lb-ae-XNf" kind="show" identifier="signOut" id="vqz-00-Jau"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6no-ca-nSC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -431,36 +433,30 @@
                     <view key="view" contentMode="scaleToFill" id="GYo-xc-RPm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="477"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jo2-AT-xu6">
-                                <rect key="frame" x="56" y="139" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bBP-pa-aYy">
-                                <rect key="frame" x="0.0" y="44" width="375" height="548"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aej-Qs-EYO">
-                                <rect key="frame" x="0.0" y="17" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="About the Program" id="tYt-lc-r2m">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="bqW-Rv-w17"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="web" destination="bBP-pa-aYy" id="HoF-QB-4xg"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gWA-Qj-omd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2212" y="731.78410794602701"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="149-jz-GsJ">
+            <objects>
+                <viewController id="H5G-md-C11" customClass="AboutViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MiQ-g2-zok"/>
+                        <viewControllerLayoutGuide type="bottom" id="TFp-yM-L24"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jqL-4J-oh3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="477"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ogi-AQ-3Sg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3011" y="807"/>
         </scene>
         <!--Create Vehicle View Controller-->
         <scene sceneID="U8c-hd-lEg">
@@ -648,6 +644,8 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="Jnb-eK-ugO"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="greenLogIn" destination="L6m-hZ-1NH" id="aKO-JF-Dzw"/>
+                        <outlet property="greenSignUp" destination="NG8-Ql-32Y" id="4lw-dS-aQ3"/>
                         <segue destination="WO2-wb-6AY" kind="show" identifier="toAbout" id="W6m-gl-cjA"/>
                     </connections>
                 </viewController>
@@ -1971,8 +1969,8 @@ Cg
         <image name="steering-wheel" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="vqz-00-Jau"/>
         <segue reference="9Rd-rc-416"/>
-        <segue reference="ngu-U2-mLo"/>
         <segue reference="99f-qq-NFp"/>
     </inferredMetricsTieBreakers>
 </document>

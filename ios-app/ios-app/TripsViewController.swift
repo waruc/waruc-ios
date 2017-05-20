@@ -66,13 +66,14 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         if BLERouter.sharedInstance.tracking {
             setBlack()
         } else {
             setWhite()
         }
     }
-
+    
     @IBAction func send(_ sender: UIButton) {
         BLERouter.sharedInstance.tracking = !BLERouter.sharedInstance.tracking
         updateColorScheme()

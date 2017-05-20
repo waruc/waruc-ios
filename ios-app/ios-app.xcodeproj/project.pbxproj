@@ -34,6 +34,7 @@
 		A4773FFE1ED0ECAD00CB1E0A /* OnboardingNextStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FFD1ED0ECAD00CB1E0A /* OnboardingNextStepsViewController.swift */; };
 		A47740001ED0ED4000CB1E0A /* OnboardingOBDIIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FFF1ED0ED4000CB1E0A /* OnboardingOBDIIViewController.swift */; };
 		A47740021ED0F93500CB1E0A /* OnboardingAccountDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47740011ED0F93500CB1E0A /* OnboardingAccountDetailsViewController.swift */; };
+		A47740041ED1082F00CB1E0A /* AboutProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47740031ED1082F00CB1E0A /* AboutProgramViewController.swift */; };
 		B73D2FAD2D6D9F4CB0D7C76D92288E42 /* signInFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B5F478D766551AB92A3C8AB4808B0 /* signInFormViewController.swift */; };
 		BA8AD98CA2DFC64E2F586DDDC3C4A58B /* initialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44A28D9B88D33F110E14B474EDA94BB /* initialViewController.swift */; };
 		BDA701ECBCC0400339E51B59EB70FFF8 /* BLERouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5C6592E672205AE7042E0E9F73B84 /* BLERouter.swift */; };
@@ -104,6 +105,7 @@
 		A4773FFD1ED0ECAD00CB1E0A /* OnboardingNextStepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingNextStepsViewController.swift; sourceTree = "<group>"; };
 		A4773FFF1ED0ED4000CB1E0A /* OnboardingOBDIIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingOBDIIViewController.swift; sourceTree = "<group>"; };
 		A47740011ED0F93500CB1E0A /* OnboardingAccountDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingAccountDetailsViewController.swift; sourceTree = "<group>"; };
+		A47740031ED1082F00CB1E0A /* AboutProgramViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutProgramViewController.swift; sourceTree = "<group>"; };
 		A5A29964B8F0B4C2F0A0FF7EA8C97BC6 /* ios_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_appUITests.swift; sourceTree = "<group>"; };
 		A7AC5F3F506A9742D810760E2887AA2D /* Pods_ios_appTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_appTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B891AA1372C994D4BC0A0DFF532C618A /* RealmModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModels.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				A4773FC71ED0C63500CB1E0A /* AboutViewController.swift */,
+				A47740031ED1082F00CB1E0A /* AboutProgramViewController.swift */,
 			);
 			name = About;
 			sourceTree = "<group>";
@@ -363,7 +366,7 @@
 				TargetAttributes = {
 					4B7F7B27DA252087D73087D24E7742BA = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = K75D96Y95K;
+						DevelopmentTeam = M6SMTA44W3;
 						ProvisioningStyle = Automatic;
 					};
 					A26F4000BB5354698DA5E0082DFB9B15 = {
@@ -590,6 +593,7 @@
 				5693E0EBAFFD4CBD7B9A15DB3005EEB5 /* SettingsTableViewCell.swift in Sources */,
 				A4773FFC1ED0EBD400CB1E0A /* OnboardingEnableFeaturesViewController.swift in Sources */,
 				A4773FF61ED0E0B800CB1E0A /* OnboardingTermsViewController.swift in Sources */,
+				A47740041ED1082F00CB1E0A /* AboutProgramViewController.swift in Sources */,
 				C01E2D6FD39B48F9667FD3FF37276071 /* SettingsViewController.swift in Sources */,
 				A47740001ED0ED4000CB1E0A /* OnboardingOBDIIViewController.swift in Sources */,
 				9344BFC53DD62E2B252A09F182675EE1 /* TabBarViewController.swift in Sources */,
@@ -741,7 +745,7 @@
 			baseConfigurationReference = 7155F0AF2F917F34B10454E020C1E03E /* Pods-ios-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = K75D96Y95K;
+				DEVELOPMENT_TEAM = M6SMTA44W3;
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.db.ios-app";
@@ -806,7 +810,7 @@
 			baseConfigurationReference = 7B7FB9104AE8A001DF3C179095EA76F9 /* Pods-ios-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = K75D96Y95K;
+				DEVELOPMENT_TEAM = M6SMTA44W3;
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.db.ios-app";
