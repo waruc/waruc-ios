@@ -35,8 +35,9 @@ class DB {
     
     static let sharedInstance = DB()
     
-    func getUserVehicles() -> Array<Any> {
+    func getUserVehicles(results : @escaping ((_ vehicles : Array<Any>) -> Void)){
         if FIRAuth.auth()?.currentUser?.uid != nil {
+            
             // fetch data from Firebase
             let uid = FIRAuth.auth()?.currentUser?.uid
             ref!.child("userVehicles").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -45,12 +46,11 @@ class DB {
                 while let rest = enumerator.nextObject() as? FIRDataSnapshot{
                     vehicle_keys.append(rest.key)
                 }
-                print(vehicle_keys)
+                results(vehicle_keys)
             }, withCancel: nil)
         } else {
             print("Error fetching user vehicles")
         }
-        return []
     }
     
     func registerVehicle(vin: String, make: String, model: String, year: String, nickname: String?) {
@@ -157,6 +157,28 @@ class DB {
     
     func getVehicleAttrWithId(variableId: Int) -> String {
         return vinData.filter { $0["VariableId"].intValue == variableId }[0]["Value"].stringValue
+    }
+    
+    func writeTrip(ts: Int, miles:Double, vin: String, uid: String) {
+        let key = self.ref.child("vehicles").childByAutoId().key
+        let values = ["timestamp": ts, "mileage:": miles] as [String : Any]
+        let updates = ["vehicles/\(vin)/users/\(uid)/trips/\(key)": values]
+        ref.updateChildValues(updates)
+        
+        // update user total miles based off of current trip
+        ref.child("userVehicles/\(uid)/total_miles").observeSingleEvent(of: .value, with: { (snapshot) in
+            let total_miles = snapshot.value as! Double
+            self.ref.child("userVehicles/\(uid)/total_miles").setValue(total_miles + miles)
+        }, withCancel: nil)
+        
+    }
+    
+    func getTrips(vin: String, uid: String, results : @escaping ((_ trips : JSON) -> Void)) {
+        ref.child("vehicles/\(vin)/users/\(uid)/trips").observeSingleEvent(of: .value, with: { (snapshot) in
+            let trip_json = JSON(snapshot.value as Any)
+            print("Trips: \(trip_json)")
+            results(trip_json)
+        }, withCancel: nil)
     }
 }
 
