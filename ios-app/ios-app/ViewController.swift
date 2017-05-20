@@ -45,8 +45,13 @@ class ViewController: UIViewController {
         
         
         //        getUserVechiles()
-        writeTrip(ts: ts, miles: 53.6912, vin: "1G1JC5444R7252367", uid: "eE3ArfvjeoOcpijMEqLVHaI0lOG2")
-//        getTrips(vin:"1G1JC5444R7252367", uid: "eE3ArfvjeoOcpijMEqLVHaI0lOG2")
+//        writeTrip(ts: ts, miles: 53.6912, vin: "1G1JC5444R7252367", uid: "eE3ArfvjeoOcpijMEqLVHaI0lOG2")
+//        getTrips(vin:"1G1JC5444R7252367", uid: "eE3ArfvjeoOcpijMEqLVHaI0lOG2", results: <#((JSON) -> Void)#>)
+        getTrips( {(vin: <#T##String#>, uid: <#T##String#>, results: <#T##((JSON) -> Void)##((JSON) -> Void)##(JSON) -> Void#>)
+            results; in print('bullshit')
+        
+        
+        }, uid: <#String#>)
 //        if FIRAuth.auth()?.currentUser?.uid != nil {
 //            getUserData()
 //        }
@@ -238,9 +243,11 @@ class ViewController: UIViewController {
         }, withCancel: nil)
     }
     
-    func getTrips(vin: String, uid: String) {
+    func getTrips(vin: String, uid: String, results : @escaping ((_ trips : JSON) -> Void)) {
         ref.child("vehicles/\(vin)/users/\(uid)/trips").observeSingleEvent(of: .value, with: { (snapshot) in
-            print("Trips: \(snapshot.value!)")
+            let trip_json = JSON(snapshot.value as Any)
+            print("Trips: \(trip_json)")
+            results(trip_json)
         }, withCancel: nil)
     }
     
@@ -250,8 +257,7 @@ class ViewController: UIViewController {
         let updates = ["vehicles/\(vin)/users/\(uid)/trips/\(key)": values]
         ref.updateChildValues(updates)
         
-        
-        
+        // update user total miles based off of current trip
         ref.child("userVehicles/\(uid)/total_miles").observeSingleEvent(of: .value, with: { (snapshot) in
             let total_miles = snapshot.value as! Double
             self.ref.child("userVehicles/\(uid)/total_miles").setValue(total_miles + miles)
