@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class userRegistrationViewController: UIViewController, UITextFieldDelegate {
 
@@ -25,9 +26,10 @@ class userRegistrationViewController: UIViewController, UITextFieldDelegate {
     
     let passwordErrorAlert = UIAlertController(title: "Error", message: "Passwords do not match!", preferredStyle: UIAlertControllerStyle.alert)
     
+    var ref: FIRDatabaseReference!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ref = FIRDatabase.database().reference()
         self.passwordRepeatField.delegate = self
         self.createAccountButton.layer.cornerRadius = 10
         
@@ -54,7 +56,9 @@ class userRegistrationViewController: UIViewController, UITextFieldDelegate {
         if password == password_verify {
             FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
                 let uid = FIRAuth.auth()?.currentUser?.uid
+                let values = ["total_miles": 0, "name": email] as [String : Any]
                 if uid != nil {
+                    self.ref.child("userVehicles/").updateChildValues([String(uid!): values])
                     self.performSegue(withIdentifier: "accountCreatedSuccessfully", sender: self)
                 } else {
                     print("Create User error")
