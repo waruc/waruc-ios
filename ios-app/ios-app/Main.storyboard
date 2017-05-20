@@ -591,32 +591,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ptI-se-1eE">
-                                <rect key="frame" x="16" y="618" width="159" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.76470588235294112" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Sign Up">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="signUp:" destination="tZH-JL-lH1" eventType="touchUpInside" id="US7-ly-ChM"/>
-                                    <segue destination="leC-0c-han" kind="show" identifier="goToSignUp" id="hBY-DV-inE">
-                                        <nil key="action"/>
-                                    </segue>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewi-6u-A8f">
-                                <rect key="frame" x="16" y="571" width="159" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.072654612362384796" green="0.20506688952445984" blue="0.15089935064315796" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleColor" red="0.0" green="0.76470588240000004" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="login:" destination="tZH-JL-lH1" eventType="touchUpInside" id="55e-kC-ola"/>
-                                    <segue destination="Zub-Bt-I5O" kind="show" identifier="goToLogin" id="kmm-hu-p5q"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WARUC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXO-qX-EQ5">
                                 <rect key="frame" x="157" y="165" width="61" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -635,42 +609,36 @@
                                     <segue destination="49e-Tb-3d3" kind="show" id="9Rd-rc-416"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKE-kL-xus">
-                                <rect key="frame" x="183" y="571" width="176" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.072654612362384796" green="0.20506688952445984" blue="0.15089935064315796" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="bad boi login">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginForm:" destination="tZH-JL-lH1" eventType="touchUpInside" id="rs4-xb-3Vf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rb7-Jq-hvF">
-                                <rect key="frame" x="183" y="617" width="176" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.76470588240000004" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="bad boi  sign up">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="signUpForm:" destination="tZH-JL-lH1" eventType="touchUpInside" id="vpQ-ss-syZ"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NG8-Ql-32Y">
-                                <rect key="frame" x="157" y="601" width="52" height="30"/>
+                                <rect key="frame" x="68" y="597" width="240" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign up"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.7843137255" blue="0.50980392159999999" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <state key="normal" title="SIGN UP">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="signUpDylan:" destination="tZH-JL-lH1" eventType="touchUpInside" id="kii-V7-cwu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yxa-En-ro0">
-                                <rect key="frame" x="32" y="601" width="49" height="30"/>
+                                <rect key="frame" x="16" y="572" width="49" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="vehicle"/>
                                 <connections>
                                     <segue destination="haP-8d-rx7" kind="show" id="99f-qq-NFp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6m-hZ-1NH">
+                                <rect key="frame" x="68" y="549" width="240" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.7843137255" blue="0.50980392159999999" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <state key="normal" title="LOG IN">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUpDylan:" destination="tZH-JL-lH1" eventType="touchUpInside" id="4ft-cg-Ves"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -680,8 +648,6 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="Jnb-eK-ugO"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="loginButton" destination="ewi-6u-A8f" id="jgL-Zr-24E"/>
-                        <outlet property="signupButton" destination="ptI-se-1eE" id="07S-Me-2Gb"/>
                         <segue destination="WO2-wb-6AY" kind="show" identifier="toAbout" id="W6m-gl-cjA"/>
                     </connections>
                 </viewController>
@@ -701,13 +667,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="View Controller 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4S-rk-KGK">
-                                <rect key="frame" x="123" y="170" width="129" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="woy-vX-heW">
                                 <rect key="frame" x="68" y="597" width="240" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -716,7 +675,37 @@
                                 <state key="normal" title="NEXT">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="SJt-Zq-i0d" kind="show" id="kCa-Kx-yXA"/>
+                                </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZWH-0W-BWQ">
+                                <rect key="frame" x="20" y="107" width="335" height="470"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program </string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="33" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Washington Road Usage Pilot Program" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hij-W8-gOK">
+                                <rect key="frame" x="16" y="72" width="343" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                <color key="textColor" red="0.2156862745" green="0.7843137255" blue="0.50980392159999999" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -740,13 +729,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="terms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y26-MX-48O">
-                                <rect key="frame" x="166" y="186" width="45" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtD-bZ-WG1">
                                 <rect key="frame" x="68" y="597" width="240" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -759,13 +741,782 @@
                                     <segue destination="QDr-mo-3Kl" kind="show" id="T7r-PR-pLP"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lTc-MB-2N6">
+                                <rect key="frame" x="20" y="107" width="335" height="470"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Washington Road Usage Pilot Program                  Privacy Notice
+This privacy notice discloses the privacy practices for the WARUC (Washington State Road Usage Charge) mobile application. This privacy notice applies solely to the data and information collected by this application. It will notify you of the following:
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="33" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">	1.	</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">What personally identifiable information is collected from your through the application, how it is used and with whom it may be shared. 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">	2.	</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">What choices are available to you regarding the use of your data. 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">	3.	</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">The security procedures in place to protect the misuse of your information. 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">	4.	</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">How you can correct any inaccuracies in the information. 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Information Collection, Use, and Sharing
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="25" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">The WARUC development team and the Washington State Department of Transportation are the shared owners of the information collected from this application. We will have access to or collect information that you give us and is generated from the application and connecting OBD-II vehicle attachment. We will not sell or rent this information to anyone.
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">We will use your information to track and record your mileage on a per vehicle basis. Additionally, the Washington State Department of Transportation may use the information to create public reports and analysis, to enact or change Washington State Transportation policy. Your information may be shared with other public agencies at the discretion of public officials. We will not share your information with any private parties outside of our organization, other than as necessary to fulfill your request, e.g. tax agency request of records.
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Unless you ask us not to, we may contact you via mail, or email in the future to notify you of new features, additions to service, or changes to this privacy policy.
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Your Access to and Control Over Information
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="25" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">All data generated from the application is subject to record for a minimum of ten (10) years. After which, the data can be requested to be removed from our records and databases. You can request to change the personally identifiable information you have previously given to us, e.g. request for email change. You can do the following at any time by contacting us via the email address capstone.waruc@gmail.com:
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">	•	</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">See what data we currently have about you, if any. 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">	•	</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Change/ correct any data we have about you. 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">	•	</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Have us delete any data about you, given the record is past ten (10) years old. 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">	•	</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Express any concern you have about our use of your data. 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Security
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="25" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">We take precautions to protect your information. When you submit sensitive information via the application, your data is protected both online and offline.
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Whenever we collect sensitive information (such as trip mileage data), that information is encrypted and transmitted to us in a secure way.
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">While we use encryption to protect sensitive information transmitted from the application to our databases, we also protect your information offline. Only employees of the organizations mentioned above who need the information to perform a specific job (for example, created a statewide driving analysis) are granted access to personally identifiable information. The computers/ servers in which we store personally identifiable information are kept in a secure environment. As a user, you should additionally take steps to secure your own device.
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">If you feel that we are not abiding by this privacy policy, you should contact us immediately via email at capstone.waruc@gmail.com
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Registration
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="25" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">In order to use this application, a user must first complete the registration forms and onboarding process available when launching the application. During user registration, a user is required to give certain information (such as an email address). This information is used to contact you about the products/ services of our application.
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Additionally, there is a vehicle registration and onboarding process available to establish a connection between a user and vehicle. During vehicle registration, a user is required to maintain a Bluetooth connection with the vehicle's OBD-II pairing device, and give an optional nickname to the vehicle after completion. This information is used to track and identify a vehicle for future connections and trip logging.
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Tokens
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="25" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">We use a stored authentication token on this application. A token is a piece of data stored on the device to remember login credentials to allow you to quickly access our application.
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Trips
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="25" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">A vehicle trip is a segment of data that stores the mileage of the vehicle's trip and the date-time of when the trip concluded. We generate these by connecting to the Bluetooth OBD-II device in the vehicle and recording the data that is transmitted while traveling. These trips are written and stored on the device until they are sent to our database. Once sent and written to our database they will be removed from your device and accessible by maintaining or reestablishing a database connection.
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="22" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Washington Road Usage Pilot Program" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uL-Vx-aKf">
+                                <rect key="frame" x="16" y="72" width="343" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                <color key="textColor" red="0.21568627450980393" green="0.78431372549019607" blue="0.50980392156862742" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="acceptButton" destination="vtD-bZ-WG1" id="p8f-GX-D7W"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gNj-gG-BEY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="651" y="-1593"/>
+            <point key="canvasLocation" x="650.39999999999998" y="-1593.5532233883059"/>
         </scene>
         <!--Enable All Features-->
         <scene sceneID="uF4-w8-gp4">
@@ -801,6 +1552,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="okayButton" destination="g20-mz-FKu" id="RYL-Cm-nl3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jz8-gG-DqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -809,7 +1563,7 @@
         <!--Account Details-->
         <scene sceneID="Goi-jQ-IZH">
             <objects>
-                <viewController title="Account Details" id="Wgp-Tw-7Lw" sceneMemberID="viewController">
+                <viewController title="Account Details" id="Wgp-Tw-7Lw" customClass="OnboardingAccountDetailsViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kSl-4x-vVv"/>
                         <viewControllerLayoutGuide type="bottom" id="WWe-Vq-EPD"/>
@@ -840,6 +1594,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="nextButton" destination="GK3-hC-CVk" id="Iih-yW-Pw9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sUR-np-CCK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -879,6 +1636,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="nextButton" destination="7HR-G0-VaJ" id="IAH-n9-MaG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9JS-cP-Y4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -918,6 +1678,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="nextButton" destination="pEV-kR-DdI" id="lOF-g2-21H"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ier-AN-FaZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

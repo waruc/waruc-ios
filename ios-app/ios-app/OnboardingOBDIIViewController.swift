@@ -9,12 +9,24 @@
 import UIKit
 
 class OnboardingOBDIIViewController: UIViewController {
+    @IBOutlet weak var nextButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.nextButton.layer.cornerRadius = 4
+        nextButton.clipsToBounds = true
         // Do any additional setup after loading the view.
+        
+        self.navigationController?.navigationBar.tintColor = Colors.green
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
