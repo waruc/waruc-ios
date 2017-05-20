@@ -30,6 +30,9 @@
 		A4773FF41ED0DFDF00CB1E0A /* OnboardingAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FF31ED0DFDF00CB1E0A /* OnboardingAboutViewController.swift */; };
 		A4773FF61ED0E0B800CB1E0A /* OnboardingTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FF51ED0E0B800CB1E0A /* OnboardingTermsViewController.swift */; };
 		A4773FFA1ED0EB8100CB1E0A /* OnboardingVehicleFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FF91ED0EB8100CB1E0A /* OnboardingVehicleFormViewController.swift */; };
+		A4773FFC1ED0EBD400CB1E0A /* OnboardingEnableFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FFB1ED0EBD400CB1E0A /* OnboardingEnableFeaturesViewController.swift */; };
+		A4773FFE1ED0ECAD00CB1E0A /* OnboardingNextStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FFD1ED0ECAD00CB1E0A /* OnboardingNextStepsViewController.swift */; };
+		A47740001ED0ED4000CB1E0A /* OnboardingOBDIIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FFF1ED0ED4000CB1E0A /* OnboardingOBDIIViewController.swift */; };
 		B73D2FAD2D6D9F4CB0D7C76D92288E42 /* signInFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B5F478D766551AB92A3C8AB4808B0 /* signInFormViewController.swift */; };
 		BA8AD98CA2DFC64E2F586DDDC3C4A58B /* initialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44A28D9B88D33F110E14B474EDA94BB /* initialViewController.swift */; };
 		BDA701ECBCC0400339E51B59EB70FFF8 /* BLERouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5C6592E672205AE7042E0E9F73B84 /* BLERouter.swift */; };
@@ -96,6 +99,9 @@
 		A4773FF31ED0DFDF00CB1E0A /* OnboardingAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingAboutViewController.swift; sourceTree = "<group>"; };
 		A4773FF51ED0E0B800CB1E0A /* OnboardingTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingTermsViewController.swift; sourceTree = "<group>"; };
 		A4773FF91ED0EB8100CB1E0A /* OnboardingVehicleFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingVehicleFormViewController.swift; sourceTree = "<group>"; };
+		A4773FFB1ED0EBD400CB1E0A /* OnboardingEnableFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingEnableFeaturesViewController.swift; sourceTree = "<group>"; };
+		A4773FFD1ED0ECAD00CB1E0A /* OnboardingNextStepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingNextStepsViewController.swift; sourceTree = "<group>"; };
+		A4773FFF1ED0ED4000CB1E0A /* OnboardingOBDIIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingOBDIIViewController.swift; sourceTree = "<group>"; };
 		A5A29964B8F0B4C2F0A0FF7EA8C97BC6 /* ios_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_appUITests.swift; sourceTree = "<group>"; };
 		A7AC5F3F506A9742D810760E2887AA2D /* Pods_ios_appTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_appTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B891AA1372C994D4BC0A0DFF532C618A /* RealmModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModels.swift; sourceTree = "<group>"; };
@@ -261,6 +267,9 @@
 		FA759E30E710B0DC2A47271BF9DA03F0 /* OnboardingViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A4773FFF1ED0ED4000CB1E0A /* OnboardingOBDIIViewController.swift */,
+				A4773FFD1ED0ECAD00CB1E0A /* OnboardingNextStepsViewController.swift */,
+				A4773FFB1ED0EBD400CB1E0A /* OnboardingEnableFeaturesViewController.swift */,
 				A4773FF51ED0E0B800CB1E0A /* OnboardingTermsViewController.swift */,
 				A4773FF31ED0DFDF00CB1E0A /* OnboardingAboutViewController.swift */,
 				FA022D0FF84AD4F7B8B559030A02DDA4 /* createVehicleViewController.swift */,
@@ -568,6 +577,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4773FFE1ED0ECAD00CB1E0A /* OnboardingNextStepsViewController.swift in Sources */,
 				63D41EA86ED1CCCE596BD598F48E4A3E /* AppDelegate.swift in Sources */,
 				BDA701ECBCC0400339E51B59EB70FFF8 /* BLERouter.swift in Sources */,
 				91996BDB2963FBF2FF8EC8E8B8649406 /* DB.swift in Sources */,
@@ -575,8 +585,10 @@
 				02EEA82F412946F6A47400F0707E32B4 /* RealmModels.swift in Sources */,
 				233DCF1D5EDD9BB12974A644348B0491 /* SettingsFormViewController.swift in Sources */,
 				5693E0EBAFFD4CBD7B9A15DB3005EEB5 /* SettingsTableViewCell.swift in Sources */,
+				A4773FFC1ED0EBD400CB1E0A /* OnboardingEnableFeaturesViewController.swift in Sources */,
 				A4773FF61ED0E0B800CB1E0A /* OnboardingTermsViewController.swift in Sources */,
 				C01E2D6FD39B48F9667FD3FF37276071 /* SettingsViewController.swift in Sources */,
+				A47740001ED0ED4000CB1E0A /* OnboardingOBDIIViewController.swift in Sources */,
 				9344BFC53DD62E2B252A09F182675EE1 /* TabBarViewController.swift in Sources */,
 				DF2FC0F47FE27BBE18E0F1AB22F48DFF /* TripTableViewCell.swift in Sources */,
 				C29C1A46750FF6CEC150ED6ECEF8DA24 /* TripsViewController.swift in Sources */,
