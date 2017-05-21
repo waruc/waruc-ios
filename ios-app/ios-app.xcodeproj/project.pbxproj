@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		06A9BD341A9B549B466826376A3D2413 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */; };
 		07BAD7A5A0A28269DB78BA71601F6283 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2224BD8C5EC75F0CABF4F24562833293 /* AboutViewController.swift */; };
-		0A7E756A32AC6979C9943E18644AC353 /* video.mov in Resources */ = {isa = PBXBuildFile; fileRef = 58AEEE0BD8CA18FDD2C028F69E5EEBBE /* video.mov */; };
 		233DCF1D5EDD9BB12974A644348B0491 /* SettingsFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C01EA1746B2B84168EF5A0DC378E02C /* SettingsFormViewController.swift */; };
 		269009B517D287693C1B11BB9692F195 /* Pods_ios_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B3B9338D030805225619B817B24C830 /* Pods_ios_app.framework */; };
 		38D5CCA17DA10FC2BB5F74A48E6A8A13 /* ios_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E36859A2066CF7E2A4E86B5C221357 /* ios_appTests.swift */; };
@@ -87,7 +86,6 @@
 		53503EBC5433A018AA0C72B1285DD994 /* ios-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		578289527F9714E0BB9D02424C1DA42F /* ios_app.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ios_app.xcdatamodel; sourceTree = "<group>"; };
 		579291A869CEE3D6234B1B346CB2B1D3 /* signInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signInViewController.swift; sourceTree = "<group>"; };
-		58AEEE0BD8CA18FDD2C028F69E5EEBBE /* video.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = video.mov; sourceTree = "<group>"; };
 		626147F27F3DDAE6969CD5185FC91B66 /* DriveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriveViewController.swift; sourceTree = "<group>"; };
 		6E84142E1ED153BE00A77108 /* signInContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signInContainerViewController.swift; sourceTree = "<group>"; };
 		7155F0AF2F917F34B10454E020C1E03E /* Pods-ios-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-app/Pods-ios-app.debug.xcconfig"; sourceTree = "<group>"; };
@@ -265,7 +263,6 @@
 				4AA5C6592E672205AE7042E0E9F73B84 /* BLERouter.swift */,
 				7B8B5BC677B1038566550CB03EFFEBB4 /* DB.swift */,
 				99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */,
-				58AEEE0BD8CA18FDD2C028F69E5EEBBE /* video.mov */,
 				A4C28E971ED13EE200741F3D /* seattle.mov */,
 				A4C28E9B1ED1450500741F3D /* ProgressHUD.swift */,
 			);
@@ -369,7 +366,7 @@
 				TargetAttributes = {
 					4B7F7B27DA252087D73087D24E7742BA = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = K75D96Y95K;
+						DevelopmentTeam = M6SMTA44W3;
 						ProvisioningStyle = Automatic;
 					};
 					A26F4000BB5354698DA5E0082DFB9B15 = {
@@ -415,7 +412,6 @@
 				CE8166C3AFD2F1655EF4F81EEC59D712 /* GoogleService-Info.plist in Resources */,
 				C0FC7CE19C27944DDD4C65D4FEC49499 /* LaunchScreen.storyboard in Resources */,
 				63701A70CEFD0B5BDAE74604FE4A50A7 /* Main.storyboard in Resources */,
-				0A7E756A32AC6979C9943E18644AC353 /* video.mov in Resources */,
 				A4C28E981ED13EE200741F3D /* seattle.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -749,10 +745,10 @@
 			baseConfigurationReference = 7155F0AF2F917F34B10454E020C1E03E /* Pods-ios-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = K75D96Y95K;
+				DEVELOPMENT_TEAM = M6SMTA44W3;
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ishy.ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.babbs.ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -814,10 +810,10 @@
 			baseConfigurationReference = 7B7FB9104AE8A001DF3C179095EA76F9 /* Pods-ios-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = K75D96Y95K;
+				DEVELOPMENT_TEAM = M6SMTA44W3;
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ishy.ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.babbs.ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
