@@ -7,8 +7,11 @@
 //
 
 import Eureka
+import FirebaseAuth
+import MessageUI
 
-class SettingsFormViewController: FormViewController {
+
+class SettingsFormViewController: FormViewController, MFMailComposeViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +82,8 @@ class SettingsFormViewController: FormViewController {
                     $0.title = "Sign out"
                 }
                 .onCellSelection {  cell, row in  //sign out
+                    try! FIRAuth.auth()!.signOut()
+                    self.performSegue(withIdentifier: "signOut", sender: self)
             }
                     
             
@@ -89,15 +94,18 @@ class SettingsFormViewController: FormViewController {
             //This doesn't work yet
             <<< ButtonRow("About the App") {
                 $0.title = $0.tag
-                $0.presentationMode = .segueName(segueName: "about", onDismiss: nil)
+                $0.presentationMode = .segueName(segueName: "aboutApp", onDismiss: nil)
             } 
             <<< ButtonRow("About the Program") {
                 $0.title = $0.tag
-                $0.presentationMode = .segueName(segueName: "about", onDismiss: nil)
+                $0.presentationMode = .segueName(segueName: "aboutProgram", onDismiss: nil)
             } 
             <<< ButtonRow("Report an Issue") {
                 $0.title = $0.tag
-                $0.presentationMode = .segueName(segueName: "about", onDismiss: nil)
+                
+                }
+                .onCellSelection { cell, row in 
+                    self.sendEmail()
             }
             <<< ButtonRow("Rate us in the App Store") {
                 $0.title = $0.tag
@@ -111,4 +119,28 @@ class SettingsFormViewController: FormViewController {
             } 
         
     }
+    
+    func sendEmail() {      
+        let composeVC = MFMailComposeViewController()
+        composeVC.mailComposeDelegate = self
+        // Configure the fields of the interface.
+        composeVC.setToRecipients(["address@example.com"])
+        composeVC.setSubject("Hello!")
+        composeVC.setMessageBody("Hello this is my message body!", isHTML: false)
+        // Present the view controller modally.
+        self.present(composeVC, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController,
+                               didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        // Check the result or perform other tasks.
+        // Dismiss the mail compose view controller.
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
 }

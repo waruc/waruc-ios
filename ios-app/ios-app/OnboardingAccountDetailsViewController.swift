@@ -9,6 +9,8 @@
 import UIKit
 
 class OnboardingAccountDetailsViewController: UIViewController {
+    
+    
 
     @IBOutlet weak var nextButton: UIButton!
     override func viewDidLoad() {

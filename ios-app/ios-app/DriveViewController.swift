@@ -97,6 +97,7 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         if BLERouter.sharedInstance.tracking {
             setBlack()
         } else {
