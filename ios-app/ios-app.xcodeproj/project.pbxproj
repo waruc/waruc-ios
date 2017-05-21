@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		02EEA82F412946F6A47400F0707E32B4 /* RealmModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B891AA1372C994D4BC0A0DFF532C618A /* RealmModels.swift */; };
 		06A9BD341A9B549B466826376A3D2413 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */; };
+		07BAD7A5A0A28269DB78BA71601F6283 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2224BD8C5EC75F0CABF4F24562833293 /* AboutViewController.swift */; };
 		0A7E756A32AC6979C9943E18644AC353 /* video.mov in Resources */ = {isa = PBXBuildFile; fileRef = 58AEEE0BD8CA18FDD2C028F69E5EEBBE /* video.mov */; };
 		233DCF1D5EDD9BB12974A644348B0491 /* SettingsFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C01EA1746B2B84168EF5A0DC378E02C /* SettingsFormViewController.swift */; };
 		269009B517D287693C1B11BB9692F195 /* Pods_ios_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B3B9338D030805225619B817B24C830 /* Pods_ios_app.framework */; };
@@ -21,29 +22,28 @@
 		63701A70CEFD0B5BDAE74604FE4A50A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11160A8E6C999C1B1CB46BB32990AE7 /* Main.storyboard */; };
 		63D41EA86ED1CCCE596BD598F48E4A3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4723942D8C35A66482A93661B91F5F /* AppDelegate.swift */; };
 		739359C72B85CE07A90DD687ABAC4321 /* ios_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A29964B8F0B4C2F0A0FF7EA8C97BC6 /* ios_appUITests.swift */; };
+		89C5314C8ACC42F27CDFF82EBDD903E1 /* OnboardingVehicleFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE668904159116B8DE719A74826E423 /* OnboardingVehicleFormViewController.swift */; };
+		8CCBFC4B0280459A31E0445B928B9BEC /* OnboardingAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF0DCF6EA7AB223AB3317B56B0B7A9E /* OnboardingAboutViewController.swift */; };
+		8D1B2E3DF83CAF25062D87CD2C1213C6 /* OnboardingTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D148EF1F5F60A6A173A833C60630772 /* OnboardingTermsViewController.swift */; };
 		91996BDB2963FBF2FF8EC8E8B8649406 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8B5BC677B1038566550CB03EFFEBB4 /* DB.swift */; };
 		9344BFC53DD62E2B252A09F182675EE1 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880EB9519B5038CA89CEE75133D7E0B2 /* TabBarViewController.swift */; };
 		971CC6486EAECBE47A3296A67C2B80BA /* userRegistrationFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72162C848D2DB61A577392B1849EB990 /* userRegistrationFormViewController.swift */; };
 		9ABE3C681C81AF28509A365CC6922230 /* Pods_ios_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7AC5F3F506A9742D810760E2887AA2D /* Pods_ios_appTests.framework */; };
 		A243094A71AA77A242EF8C0948AEFF42 /* master.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */; };
-		A4773FC81ED0C63500CB1E0A /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FC71ED0C63500CB1E0A /* AboutViewController.swift */; };
-		A4773FF41ED0DFDF00CB1E0A /* OnboardingAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FF31ED0DFDF00CB1E0A /* OnboardingAboutViewController.swift */; };
-		A4773FF61ED0E0B800CB1E0A /* OnboardingTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FF51ED0E0B800CB1E0A /* OnboardingTermsViewController.swift */; };
-		A4773FFA1ED0EB8100CB1E0A /* OnboardingVehicleFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FF91ED0EB8100CB1E0A /* OnboardingVehicleFormViewController.swift */; };
-		A4773FFC1ED0EBD400CB1E0A /* OnboardingEnableFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FFB1ED0EBD400CB1E0A /* OnboardingEnableFeaturesViewController.swift */; };
-		A4773FFE1ED0ECAD00CB1E0A /* OnboardingNextStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FFD1ED0ECAD00CB1E0A /* OnboardingNextStepsViewController.swift */; };
-		A47740001ED0ED4000CB1E0A /* OnboardingOBDIIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4773FFF1ED0ED4000CB1E0A /* OnboardingOBDIIViewController.swift */; };
-		A47740021ED0F93500CB1E0A /* OnboardingAccountDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47740011ED0F93500CB1E0A /* OnboardingAccountDetailsViewController.swift */; };
-		A47740041ED1082F00CB1E0A /* AboutProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47740031ED1082F00CB1E0A /* AboutProgramViewController.swift */; };
+		A73F3F550889FDD784BB1E5A35D0EE75 /* OnboardingNextStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56801B1B6DE73A986B646151F11B371 /* OnboardingNextStepsViewController.swift */; };
 		B73D2FAD2D6D9F4CB0D7C76D92288E42 /* signInFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B5F478D766551AB92A3C8AB4808B0 /* signInFormViewController.swift */; };
 		BA8AD98CA2DFC64E2F586DDDC3C4A58B /* initialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44A28D9B88D33F110E14B474EDA94BB /* initialViewController.swift */; };
 		BDA701ECBCC0400339E51B59EB70FFF8 /* BLERouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5C6592E672205AE7042E0E9F73B84 /* BLERouter.swift */; };
 		C01E2D6FD39B48F9667FD3FF37276071 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01B774056617283E4F8DAD7F8198590 /* SettingsViewController.swift */; };
 		C0FC7CE19C27944DDD4C65D4FEC49499 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1016BC43F87A95FCE9EAB7F978691D6 /* LaunchScreen.storyboard */; };
+		C1BD8E44F38868604C3072654A54CE64 /* OnboardingOBDIIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726912D30FAE771354D27173DC9E3319 /* OnboardingOBDIIViewController.swift */; };
 		C29C1A46750FF6CEC150ED6ECEF8DA24 /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24409AEF74396A96DB5940F12EF83B3E /* TripsViewController.swift */; };
+		C62ED54BCF7EC6DD1BAAB340734366AB /* OnboardingAccountDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E5F06A9ED0DFE06BBF8B3F19B8F1F /* OnboardingAccountDetailsViewController.swift */; };
+		C9D14AE50F89765BDCD18F72A68DF624 /* AboutProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510D5C58C27B3B424624D2055CB5C9B6 /* AboutProgramViewController.swift */; };
 		CE8166C3AFD2F1655EF4F81EEC59D712 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E96398BA6A81D66C17B1676202C4279 /* GoogleService-Info.plist */; };
 		D3841CBCDD5810EF6148CAD11529958C /* userRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BDFE1E5D4BA841F0266A5A4B50B006 /* userRegistrationViewController.swift */; };
 		DF2FC0F47FE27BBE18E0F1AB22F48DFF /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00992823807C74F5E0C484B8117A65A5 /* TripTableViewCell.swift */; };
+		E273EC3DEAB56CC0A0BCC3D8B059BA99 /* OnboardingEnableFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0A5586F2B7638A92DC89C91088E985 /* OnboardingEnableFeaturesViewController.swift */; };
 		F7289C35D3F4E06D2258B932F03ABE0F /* createVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA022D0FF84AD4F7B8B559030A02DDA4 /* createVehicleViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,15 +72,18 @@
 		1C382CED79453FBA8144FB1EFAD89693 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E96398BA6A81D66C17B1676202C4279 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		212B5F478D766551AB92A3C8AB4808B0 /* signInFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signInFormViewController.swift; sourceTree = "<group>"; };
+		2224BD8C5EC75F0CABF4F24562833293 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		22B3F91C09AB653384F396AA380C4D2E /* Pods_ios_appUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_appUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23BDFE1E5D4BA841F0266A5A4B50B006 /* userRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userRegistrationViewController.swift; sourceTree = "<group>"; };
 		24409AEF74396A96DB5940F12EF83B3E /* TripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsViewController.swift; sourceTree = "<group>"; };
 		3305255BB889E3EE7EE20FF3E663EF64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		354E5F06A9ED0DFE06BBF8B3F19B8F1F /* OnboardingAccountDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingAccountDetailsViewController.swift; sourceTree = "<group>"; };
 		35A666A6F093DED3BCAECBD92C8664E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		36EF0FD39F236A9DE223914449F299D3 /* ios-appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-appUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C3D8F4835EAA11FD5C32E6F125EF6A5 /* Pods-ios-appTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-appTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-appTests/Pods-ios-appTests.debug.xcconfig"; sourceTree = "<group>"; };
 		40B687E7761B32C937C275BE963E3053 /* Pods-ios-appUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-appUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-appUITests/Pods-ios-appUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4AA5C6592E672205AE7042E0E9F73B84 /* BLERouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLERouter.swift; sourceTree = "<group>"; };
+		510D5C58C27B3B424624D2055CB5C9B6 /* AboutProgramViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutProgramViewController.swift; sourceTree = "<group>"; };
 		53503EBC5433A018AA0C72B1285DD994 /* ios-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		578289527F9714E0BB9D02424C1DA42F /* ios_app.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ios_app.xcdatamodel; sourceTree = "<group>"; };
 		579291A869CEE3D6234B1B346CB2B1D3 /* signInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signInViewController.swift; sourceTree = "<group>"; };
@@ -88,33 +91,30 @@
 		626147F27F3DDAE6969CD5185FC91B66 /* DriveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriveViewController.swift; sourceTree = "<group>"; };
 		7155F0AF2F917F34B10454E020C1E03E /* Pods-ios-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-app/Pods-ios-app.debug.xcconfig"; sourceTree = "<group>"; };
 		72162C848D2DB61A577392B1849EB990 /* userRegistrationFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userRegistrationFormViewController.swift; sourceTree = "<group>"; };
+		726912D30FAE771354D27173DC9E3319 /* OnboardingOBDIIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingOBDIIViewController.swift; sourceTree = "<group>"; };
 		7B7FB9104AE8A001DF3C179095EA76F9 /* Pods-ios-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-app/Pods-ios-app.release.xcconfig"; sourceTree = "<group>"; };
 		7B8B5BC677B1038566550CB03EFFEBB4 /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		81F6DF939BAEA04952A2FEC910611DF5 /* ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83E36859A2066CF7E2A4E86B5C221357 /* ios_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_appTests.swift; sourceTree = "<group>"; };
 		880EB9519B5038CA89CEE75133D7E0B2 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		8BE668904159116B8DE719A74826E423 /* OnboardingVehicleFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingVehicleFormViewController.swift; sourceTree = "<group>"; };
 		8C01EA1746B2B84168EF5A0DC378E02C /* SettingsFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsFormViewController.swift; sourceTree = "<group>"; };
+		8D148EF1F5F60A6A173A833C60630772 /* OnboardingTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingTermsViewController.swift; sourceTree = "<group>"; };
 		8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = master.swift; sourceTree = "<group>"; };
 		9B3B9338D030805225619B817B24C830 /* Pods_ios_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4773FC71ED0C63500CB1E0A /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		A4773FF31ED0DFDF00CB1E0A /* OnboardingAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingAboutViewController.swift; sourceTree = "<group>"; };
-		A4773FF51ED0E0B800CB1E0A /* OnboardingTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingTermsViewController.swift; sourceTree = "<group>"; };
-		A4773FF91ED0EB8100CB1E0A /* OnboardingVehicleFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingVehicleFormViewController.swift; sourceTree = "<group>"; };
-		A4773FFB1ED0EBD400CB1E0A /* OnboardingEnableFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingEnableFeaturesViewController.swift; sourceTree = "<group>"; };
-		A4773FFD1ED0ECAD00CB1E0A /* OnboardingNextStepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingNextStepsViewController.swift; sourceTree = "<group>"; };
-		A4773FFF1ED0ED4000CB1E0A /* OnboardingOBDIIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingOBDIIViewController.swift; sourceTree = "<group>"; };
-		A47740011ED0F93500CB1E0A /* OnboardingAccountDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingAccountDetailsViewController.swift; sourceTree = "<group>"; };
-		A47740031ED1082F00CB1E0A /* AboutProgramViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutProgramViewController.swift; sourceTree = "<group>"; };
 		A5A29964B8F0B4C2F0A0FF7EA8C97BC6 /* ios_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_appUITests.swift; sourceTree = "<group>"; };
 		A7AC5F3F506A9742D810760E2887AA2D /* Pods_ios_appTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_appTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B891AA1372C994D4BC0A0DFF532C618A /* RealmModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModels.swift; sourceTree = "<group>"; };
+		CC0A5586F2B7638A92DC89C91088E985 /* OnboardingEnableFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingEnableFeaturesViewController.swift; sourceTree = "<group>"; };
 		CD4723942D8C35A66482A93661B91F5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D44A28D9B88D33F110E14B474EDA94BB /* initialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = initialViewController.swift; sourceTree = "<group>"; };
 		E01B774056617283E4F8DAD7F8198590 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E11160A8E6C999C1B1CB46BB32990AE7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		F56801B1B6DE73A986B646151F11B371 /* OnboardingNextStepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingNextStepsViewController.swift; sourceTree = "<group>"; };
 		FA022D0FF84AD4F7B8B559030A02DDA4 /* createVehicleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createVehicleViewController.swift; sourceTree = "<group>"; };
 		FD4BECC19EFB2E7BB06F244D3954808B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FDF0DCF6EA7AB223AB3317B56B0B7A9E /* OnboardingAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingAboutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,7 +236,7 @@
 		9C3678744F73B3BEDA7AFA6C4BCBEAF3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A4773FC61ED0C61C00CB1E0A /* About */,
+				6062FB61E66D219CB922370BA68A75CA /* About */,
 				626147F27F3DDAE6969CD5185FC91B66 /* DriveViewController.swift */,
 				8C01EA1746B2B84168EF5A0DC378E02C /* SettingsFormViewController.swift */,
 				089E4F3C4DC8798A0F36865BDA77FD49 /* SettingsTableViewCell.swift */,
@@ -248,11 +248,11 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		A4773FC61ED0C61C00CB1E0A /* About */ = {
+		6062FB61E66D219CB922370BA68A75CA /* About */ = {
 			isa = PBXGroup;
 			children = (
-				A4773FC71ED0C63500CB1E0A /* AboutViewController.swift */,
-				A47740031ED1082F00CB1E0A /* AboutProgramViewController.swift */,
+				510D5C58C27B3B424624D2055CB5C9B6 /* AboutProgramViewController.swift */,
+				2224BD8C5EC75F0CABF4F24562833293 /* AboutViewController.swift */,
 			);
 			name = About;
 			sourceTree = "<group>";
@@ -272,19 +272,19 @@
 		FA759E30E710B0DC2A47271BF9DA03F0 /* OnboardingViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A4773FFF1ED0ED4000CB1E0A /* OnboardingOBDIIViewController.swift */,
-				A4773FFD1ED0ECAD00CB1E0A /* OnboardingNextStepsViewController.swift */,
-				A4773FFB1ED0EBD400CB1E0A /* OnboardingEnableFeaturesViewController.swift */,
-				A4773FF51ED0E0B800CB1E0A /* OnboardingTermsViewController.swift */,
-				A4773FF31ED0DFDF00CB1E0A /* OnboardingAboutViewController.swift */,
+				FDF0DCF6EA7AB223AB3317B56B0B7A9E /* OnboardingAboutViewController.swift */,
+				354E5F06A9ED0DFE06BBF8B3F19B8F1F /* OnboardingAccountDetailsViewController.swift */,
+				CC0A5586F2B7638A92DC89C91088E985 /* OnboardingEnableFeaturesViewController.swift */,
+				F56801B1B6DE73A986B646151F11B371 /* OnboardingNextStepsViewController.swift */,
+				726912D30FAE771354D27173DC9E3319 /* OnboardingOBDIIViewController.swift */,
+				8D148EF1F5F60A6A173A833C60630772 /* OnboardingTermsViewController.swift */,
+				8BE668904159116B8DE719A74826E423 /* OnboardingVehicleFormViewController.swift */,
 				FA022D0FF84AD4F7B8B559030A02DDA4 /* createVehicleViewController.swift */,
 				D44A28D9B88D33F110E14B474EDA94BB /* initialViewController.swift */,
 				212B5F478D766551AB92A3C8AB4808B0 /* signInFormViewController.swift */,
 				579291A869CEE3D6234B1B346CB2B1D3 /* signInViewController.swift */,
 				72162C848D2DB61A577392B1849EB990 /* userRegistrationFormViewController.swift */,
 				23BDFE1E5D4BA841F0266A5A4B50B006 /* userRegistrationViewController.swift */,
-				A4773FF91ED0EB8100CB1E0A /* OnboardingVehicleFormViewController.swift */,
-				A47740011ED0F93500CB1E0A /* OnboardingAccountDetailsViewController.swift */,
 			);
 			name = OnboardingViewControllers;
 			sourceTree = "<group>";
@@ -366,7 +366,9 @@
 				TargetAttributes = {
 					4B7F7B27DA252087D73087D24E7742BA = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = M6SMTA44W3;
+
+						DevelopmentTeam = MYKB4J9SMT;
+
 						ProvisioningStyle = Automatic;
 					};
 					A26F4000BB5354698DA5E0082DFB9B15 = {
@@ -583,22 +585,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4773FFE1ED0ECAD00CB1E0A /* OnboardingNextStepsViewController.swift in Sources */,
+				C9D14AE50F89765BDCD18F72A68DF624 /* AboutProgramViewController.swift in Sources */,
+				07BAD7A5A0A28269DB78BA71601F6283 /* AboutViewController.swift in Sources */,
 				63D41EA86ED1CCCE596BD598F48E4A3E /* AppDelegate.swift in Sources */,
 				BDA701ECBCC0400339E51B59EB70FFF8 /* BLERouter.swift in Sources */,
 				91996BDB2963FBF2FF8EC8E8B8649406 /* DB.swift in Sources */,
 				4E0CD37CBC72C156B52DC9628D9E9C56 /* DriveViewController.swift in Sources */,
+				8CCBFC4B0280459A31E0445B928B9BEC /* OnboardingAboutViewController.swift in Sources */,
+				C62ED54BCF7EC6DD1BAAB340734366AB /* OnboardingAccountDetailsViewController.swift in Sources */,
+				E273EC3DEAB56CC0A0BCC3D8B059BA99 /* OnboardingEnableFeaturesViewController.swift in Sources */,
+				A73F3F550889FDD784BB1E5A35D0EE75 /* OnboardingNextStepsViewController.swift in Sources */,
+				C1BD8E44F38868604C3072654A54CE64 /* OnboardingOBDIIViewController.swift in Sources */,
+				8D1B2E3DF83CAF25062D87CD2C1213C6 /* OnboardingTermsViewController.swift in Sources */,
+				89C5314C8ACC42F27CDFF82EBDD903E1 /* OnboardingVehicleFormViewController.swift in Sources */,
 				02EEA82F412946F6A47400F0707E32B4 /* RealmModels.swift in Sources */,
 				233DCF1D5EDD9BB12974A644348B0491 /* SettingsFormViewController.swift in Sources */,
 				5693E0EBAFFD4CBD7B9A15DB3005EEB5 /* SettingsTableViewCell.swift in Sources */,
-				A4773FFC1ED0EBD400CB1E0A /* OnboardingEnableFeaturesViewController.swift in Sources */,
-				A4773FF61ED0E0B800CB1E0A /* OnboardingTermsViewController.swift in Sources */,
-				A47740041ED1082F00CB1E0A /* AboutProgramViewController.swift in Sources */,
 				C01E2D6FD39B48F9667FD3FF37276071 /* SettingsViewController.swift in Sources */,
-				A47740001ED0ED4000CB1E0A /* OnboardingOBDIIViewController.swift in Sources */,
 				9344BFC53DD62E2B252A09F182675EE1 /* TabBarViewController.swift in Sources */,
 				DF2FC0F47FE27BBE18E0F1AB22F48DFF /* TripTableViewCell.swift in Sources */,
-				A47740021ED0F93500CB1E0A /* OnboardingAccountDetailsViewController.swift in Sources */,
 				C29C1A46750FF6CEC150ED6ECEF8DA24 /* TripsViewController.swift in Sources */,
 				F7289C35D3F4E06D2258B932F03ABE0F /* createVehicleViewController.swift in Sources */,
 				BA8AD98CA2DFC64E2F586DDDC3C4A58B /* initialViewController.swift in Sources */,
@@ -607,10 +612,7 @@
 				B73D2FAD2D6D9F4CB0D7C76D92288E42 /* signInFormViewController.swift in Sources */,
 				55AE7C5FDA0DF7DCC6C71BAE9C32A0D3 /* signInViewController.swift in Sources */,
 				971CC6486EAECBE47A3296A67C2B80BA /* userRegistrationFormViewController.swift in Sources */,
-				A4773FC81ED0C63500CB1E0A /* AboutViewController.swift in Sources */,
-				A4773FFA1ED0EB8100CB1E0A /* OnboardingVehicleFormViewController.swift in Sources */,
 				D3841CBCDD5810EF6148CAD11529958C /* userRegistrationViewController.swift in Sources */,
-				A4773FF41ED0DFDF00CB1E0A /* OnboardingAboutViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -745,10 +747,12 @@
 			baseConfigurationReference = 7155F0AF2F917F34B10454E020C1E03E /* Pods-ios-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = M6SMTA44W3;
+
+				DEVELOPMENT_TEAM = MYKB4J9SMT;
+
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.db.ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nn.ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -810,10 +814,12 @@
 			baseConfigurationReference = 7B7FB9104AE8A001DF3C179095EA76F9 /* Pods-ios-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = M6SMTA44W3;
+
+				DEVELOPMENT_TEAM = MYKB4J9SMT;
+
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.db.ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nn.ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
