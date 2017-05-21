@@ -7,8 +7,21 @@
 //
 
 import UIKit
+import CoreBluetooth
+import CoreLocation
 
-class OnboardingEnableFeaturesViewController: UIViewController {
+class OnboardingEnableFeaturesViewController: UIViewController, CLLocationManagerDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
+
+    
+    
+
+    
+    //location
+    var locationManager: CLLocationManager = CLLocationManager()
+    var startLocation: CLLocation!
+    
+    var centralManager: CBCentralManager!
+    var peripheral: CBPeripheral!
 
     @IBOutlet weak var okayButton: UIButton!
     override func viewDidLoad() {
@@ -33,6 +46,21 @@ class OnboardingEnableFeaturesViewController: UIViewController {
         navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
     }
     
+    @available(iOS 5.0, *)
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        print("hi")
+    }
+    
+    @IBAction func enableServices(_ sender: UIButton) {
+        //location
+        locationManager.requestWhenInUseAuthorization()
+        
+        //bluetooth
+        centralManager = CBCentralManager(delegate: self, queue: nil)
+        
+        self.performSegue(withIdentifier: "toDetails", sender: nil)
+        
+    }
 
     /*
     // MARK: - Navigation
@@ -45,3 +73,4 @@ class OnboardingEnableFeaturesViewController: UIViewController {
     */
 
 }
+

@@ -48,11 +48,17 @@ class initialViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         video()
 
         greenLogIn.layer.cornerRadius = 4
         greenSignUp.layer.cornerRadius = 4
+        
+        greenLogIn.layer.borderWidth = 2
+        greenLogIn.layer.borderColor = Colors.green.cgColor
+        //BLERouter.sharedInstance.scan()
+
         
         //configurePageControl()
         
@@ -106,7 +112,7 @@ class initialViewController: UIViewController, UIScrollViewDelegate {
     
     func video() {
         // Load the video from the app bundle.
-        let videoURL: URL = Bundle.main.url(forResource: "video", withExtension: "mov")!
+        let videoURL: URL = Bundle.main.url(forResource: "seattle", withExtension: "mov")!
         
         player = AVPlayer(url: videoURL)
         player?.actionAtItemEnd = .none

@@ -29,6 +29,9 @@
 		971CC6486EAECBE47A3296A67C2B80BA /* userRegistrationFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72162C848D2DB61A577392B1849EB990 /* userRegistrationFormViewController.swift */; };
 		9ABE3C681C81AF28509A365CC6922230 /* Pods_ios_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7AC5F3F506A9742D810760E2887AA2D /* Pods_ios_appTests.framework */; };
 		A243094A71AA77A242EF8C0948AEFF42 /* master.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */; };
+		A4C28E961ED1388600741F3D /* OnboardingVehicleInputFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C28E951ED1388600741F3D /* OnboardingVehicleInputFrameViewController.swift */; };
+		A4C28E981ED13EE200741F3D /* seattle.mov in Resources */ = {isa = PBXBuildFile; fileRef = A4C28E971ED13EE200741F3D /* seattle.mov */; };
+		A4C28E9C1ED1450500741F3D /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C28E9B1ED1450500741F3D /* ProgressHUD.swift */; };
 		A73F3F550889FDD784BB1E5A35D0EE75 /* OnboardingNextStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56801B1B6DE73A986B646151F11B371 /* OnboardingNextStepsViewController.swift */; };
 		B73D2FAD2D6D9F4CB0D7C76D92288E42 /* signInFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B5F478D766551AB92A3C8AB4808B0 /* signInFormViewController.swift */; };
 		BA8AD98CA2DFC64E2F586DDDC3C4A58B /* initialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44A28D9B88D33F110E14B474EDA94BB /* initialViewController.swift */; };
@@ -102,6 +105,9 @@
 		8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = master.swift; sourceTree = "<group>"; };
 		9B3B9338D030805225619B817B24C830 /* Pods_ios_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4C28E951ED1388600741F3D /* OnboardingVehicleInputFrameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingVehicleInputFrameViewController.swift; sourceTree = "<group>"; };
+		A4C28E971ED13EE200741F3D /* seattle.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = seattle.mov; sourceTree = "<group>"; };
+		A4C28E9B1ED1450500741F3D /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		A5A29964B8F0B4C2F0A0FF7EA8C97BC6 /* ios_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_appUITests.swift; sourceTree = "<group>"; };
 		A7AC5F3F506A9742D810760E2887AA2D /* Pods_ios_appTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_appTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0A5586F2B7638A92DC89C91088E985 /* OnboardingEnableFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingEnableFeaturesViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +268,8 @@
 				7B8B5BC677B1038566550CB03EFFEBB4 /* DB.swift */,
 				99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */,
 				58AEEE0BD8CA18FDD2C028F69E5EEBBE /* video.mov */,
+				A4C28E971ED13EE200741F3D /* seattle.mov */,
+				A4C28E9B1ED1450500741F3D /* ProgressHUD.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -269,6 +277,7 @@
 		FA759E30E710B0DC2A47271BF9DA03F0 /* OnboardingViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A4C28E951ED1388600741F3D /* OnboardingVehicleInputFrameViewController.swift */,
 				FDF0DCF6EA7AB223AB3317B56B0B7A9E /* OnboardingAboutViewController.swift */,
 				354E5F06A9ED0DFE06BBF8B3F19B8F1F /* OnboardingAccountDetailsViewController.swift */,
 				CC0A5586F2B7638A92DC89C91088E985 /* OnboardingEnableFeaturesViewController.swift */,
@@ -363,7 +372,9 @@
 				TargetAttributes = {
 					4B7F7B27DA252087D73087D24E7742BA = {
 						CreatedOnToolsVersion = 8.3;
+
 						DevelopmentTeam = MYKB4J9SMT;
+
 						ProvisioningStyle = Automatic;
 					};
 					A26F4000BB5354698DA5E0082DFB9B15 = {
@@ -410,6 +421,7 @@
 				C0FC7CE19C27944DDD4C65D4FEC49499 /* LaunchScreen.storyboard in Resources */,
 				63701A70CEFD0B5BDAE74604FE4A50A7 /* Main.storyboard in Resources */,
 				0A7E756A32AC6979C9943E18644AC353 /* video.mov in Resources */,
+				A4C28E981ED13EE200741F3D /* seattle.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,7 +598,9 @@
 				BDA701ECBCC0400339E51B59EB70FFF8 /* BLERouter.swift in Sources */,
 				91996BDB2963FBF2FF8EC8E8B8649406 /* DB.swift in Sources */,
 				4E0CD37CBC72C156B52DC9628D9E9C56 /* DriveViewController.swift in Sources */,
+				A4C28E961ED1388600741F3D /* OnboardingVehicleInputFrameViewController.swift in Sources */,
 				8CCBFC4B0280459A31E0445B928B9BEC /* OnboardingAboutViewController.swift in Sources */,
+				A4C28E9C1ED1450500741F3D /* ProgressHUD.swift in Sources */,
 				C62ED54BCF7EC6DD1BAAB340734366AB /* OnboardingAccountDetailsViewController.swift in Sources */,
 				E273EC3DEAB56CC0A0BCC3D8B059BA99 /* OnboardingEnableFeaturesViewController.swift in Sources */,
 				A73F3F550889FDD784BB1E5A35D0EE75 /* OnboardingNextStepsViewController.swift in Sources */,
@@ -741,10 +755,12 @@
 			baseConfigurationReference = 7155F0AF2F917F34B10454E020C1E03E /* Pods-ios-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+
 				DEVELOPMENT_TEAM = MYKB4J9SMT;
+
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nn.ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.db.ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -806,10 +822,12 @@
 			baseConfigurationReference = 7B7FB9104AE8A001DF3C179095EA76F9 /* Pods-ios-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+
 				DEVELOPMENT_TEAM = MYKB4J9SMT;
+
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nn.ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.db.ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
