@@ -256,8 +256,6 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                     
                     res = []
                     
-                    DB.sharedInstance.fetchVehicleInfo(vin: vinNumber!)
-                    
                     DB.sharedInstance.createOrReturnVehicle(vin: vinNumber!)
                 }
             } else {

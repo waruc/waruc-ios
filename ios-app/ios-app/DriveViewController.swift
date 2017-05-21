@@ -83,10 +83,17 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
                                                name: BLERouter.sharedInstance.colorUpdateNotification,
                                                object: nil)
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.displayVehicleInfo),
-                                               name: DB.sharedInstance.vehicleInfoNotification,
-                                               object: nil)
+        if DB.sharedInstance.currVehicleInfo == nil {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(self.displayVehicleInfo),
+                                                   name: DB.sharedInstance.existingVehicleInfoNotification,
+                                                   object: nil)
+            
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(self.displayVehicleInfo),
+                                                   name: DB.sharedInstance.newVehicleInfoNotification,
+                                                   object: nil)
+        }
     }
 
     func startScanning() {
@@ -281,12 +288,12 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     func displayVehicleInfo() {
         vehicleMakeLogo.image = #imageLiteral(resourceName: "chevrolet")
         vehicleHeader.frame.origin.y = vehicleHeader.frame.origin.y - 12
-        if DB.sharedInstance.currVehicleInfo["nickname"] == "" {
-            vehicleHeader.text = "\(DB.sharedInstance.currVehicleInfo["make"]!.capitalized)"
-            vehicleSubHeader.text = "\(DB.sharedInstance.currVehicleInfo["year"]!) \(DB.sharedInstance.currVehicleInfo["model"]!)"
+        if DB.sharedInstance.currVehicleInfo!["nickname"] == nil {
+            vehicleHeader.text = "\(DB.sharedInstance.currVehicleInfo!["make"]!.capitalized)"
+            vehicleSubHeader.text = "\(DB.sharedInstance.currVehicleInfo!["year"]!) \(DB.sharedInstance.currVehicleInfo!["model"]!)"
         } else {
-            vehicleHeader.text = "\(DB.sharedInstance.currVehicleInfo["nickname"]!)"
-            vehicleSubHeader.text = "\(DB.sharedInstance.currVehicleInfo["year"]!) \(DB.sharedInstance.currVehicleInfo["make"]!.capitalized) \(DB.sharedInstance.currVehicleInfo["model"]!)"
+            vehicleHeader.text = "\(DB.sharedInstance.currVehicleInfo!["nickname"]!)"
+            vehicleSubHeader.text = "\(DB.sharedInstance.currVehicleInfo!["year"]!) \(DB.sharedInstance.currVehicleInfo!["make"]!.capitalized) \(DB.sharedInstance.currVehicleInfo!["model"]!)"
         }
     }
 }

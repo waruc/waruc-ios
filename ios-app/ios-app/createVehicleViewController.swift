@@ -27,10 +27,10 @@ class createVehicleViewController: UIViewController, UITextFieldDelegate {
         
         nicknameTextInput.delegate = self
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.displayVehicleInfo),
-                                               name: DB.sharedInstance.vehicleInfoNotification,
-                                               object: nil)
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(self.displayVehicleInfo),
+//                                               name: DB.sharedInstance.vehicleInfoNotification,
+//                                               object: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -44,18 +44,18 @@ class createVehicleViewController: UIViewController, UITextFieldDelegate {
     }
     
     func displayVehicleInfo() {
-        makeOBD.text = DB.sharedInstance.currVehicleInfo["make"]
-        modelOBD.text = DB.sharedInstance.currVehicleInfo["model"]
-        yearOBD.text = DB.sharedInstance.currVehicleInfo["year"]
+        makeOBD.text = DB.sharedInstance.currVehicleInfo!["make"]!
+        modelOBD.text = DB.sharedInstance.currVehicleInfo!["model"]!
+        yearOBD.text = DB.sharedInstance.currVehicleInfo!["year"]!
         submitButton.isEnabled = true
         nicknameTextInput.isEnabled = true
     }
     
     func createVehicle() {
-        DB.sharedInstance.registerVehicle(vin: BLERouter.sharedInstance.vinNumber!,
-                                          make: makeOBD.text!,
-                                          model: modelOBD.text!,
-                                          year: yearOBD.text!,
-                                          nickname: nicknameTextInput.text)
+//        DB.sharedInstance.registerVehicle(vin: BLERouter.sharedInstance.vinNumber!,
+//                                          make: makeOBD.text!,
+//                                          model: modelOBD.text!,
+//                                          year: yearOBD.text!,
+//                                          nickname: nicknameTextInput.text)
     }
 }
