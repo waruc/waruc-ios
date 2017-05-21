@@ -18,27 +18,15 @@ class DB {
     var feedRad: Int
     var refreshFeed: Bool!
     
+    let tripsNotification = Notification.Name("tripsNotification")
+    let existingVehicleInfoNotification = Notification.Name("existingVehicleInfoNotification")
+    let newVehicleInfoNotification = Notification.Name("newVehicleInfoNotification")
+    
     var userVehicleKeys:[String] = []
     var userVehicles:[[String: String]] = []
     
-    let tripsNotification = Notification.Name("tripsNotification")
-    let vehicleInfoNotification = Notification.Name("vehicleInfoNotification")
-    let fetchVehicleInfoNotification = Notification.Name("fetchVehicleInfoNotification")
-    
     var vinData:[JSON] = []
-    var currVehicleInfo:[String : String] = [
-        "make": "",
-        "model": "",
-        "year": "",
-        "nickname": ""
-    ]
-    
-    var fetchVinData:[JSON] = []
-    var fetchVehicleInfo:[String : String] = [
-        "make": "",
-        "model": "",
-        "year": ""
-    ]
+    var currVehicleInfo:[String: String]?
     
     var userTrips:[[String: Any]] = []
     
@@ -113,23 +101,23 @@ class DB {
         }
     }
     
-    func registerVehicle(vin: String, make: String, model: String, year: String, nickname: String?) {
+    func registerVehicle(nickname: String?) {
         let date = Date()
         let ts = Int(date.timeIntervalSince1970.rounded())
         
         let uid = FIRAuth.auth()?.currentUser?.uid
         
         let vehicle_values = [
-            "make" : make,
-            "model": model,
-            "year": year,
+            "make" : currVehicleInfo!["make"]!,
+            "model": currVehicleInfo!["model"]!,
+            "year": currVehicleInfo!["year"]!,
             "users": uid!,
             "nickname": nickname ?? "",
             "vehicle_mileage": 0.0,
             "cts": "\(ts)"
             ] as [String : Any]
         
-        ref.child("vehicles").updateChildValues([vin : vehicle_values])
+        ref.child("vehicles").updateChildValues([currVehicleInfo!["vin"]! : vehicle_values])
     }
     
     func createOrReturnVehicle(vin: String) {
@@ -138,49 +126,21 @@ class DB {
                 print("\nFound existing vehicle!")
                 let existingVehicleInfo = snapshot.value as! [String: Any]
                 
-                self.currVehicleInfo["make"] = (existingVehicleInfo["make"] as! String)
-                self.currVehicleInfo["model"] = (existingVehicleInfo["model"] as! String)
-                self.currVehicleInfo["year"] = (existingVehicleInfo["year"] as! String)
-                self.currVehicleInfo["nickname"] = (existingVehicleInfo["nickname"] as! String)
+                self.currVehicleInfo = [String: String]()
+                self.currVehicleInfo!["vin"] = vin
+                self.currVehicleInfo!["make"] = (existingVehicleInfo["make"] as! String)
+                self.currVehicleInfo!["model"] = (existingVehicleInfo["model"] as! String)
+                self.currVehicleInfo!["year"] = (existingVehicleInfo["year"] as! String)
+                self.currVehicleInfo!["nickname"] = (existingVehicleInfo["nickname"] as! String) == "" ? nil : (existingVehicleInfo["nickname"] as! String)
                 
-                self.updateVehicleUsers(vin: vin)
-                self.updateUserVehicles(vin: vin)
-                
-                NotificationCenter.default.post(name: self.vehicleInfoNotification, object: nil)
+                NotificationCenter.default.post(name: self.existingVehicleInfoNotification, object: nil)
             } else {
                 print("\nCreating new vehicle...")
-                Alamofire.request(self.vinLookupUrl(vin: vin), method: .get).validate().responseJSON { response in
-                    switch response.result {
-                    case .success(let value):
-                        let json = JSON(value)
-                        self.vinData = json["Results"].arrayValue.filter { [26, 28, 29].contains($0["VariableId"].intValue) }
-                        
-                        self.currVehicleInfo["make"] = self.getVehicleAttrWithId(variableId: 26).capitalized
-                        self.currVehicleInfo["model"] = self.getVehicleAttrWithId(variableId: 28)
-                        self.currVehicleInfo["year"] = self.getVehicleAttrWithId(variableId: 29)
-                        //self.currVehicleInfo["nickname"] = "Nick's Car"
-                        
-                        self.registerVehicle(vin: vin,
-                                             make: self.currVehicleInfo["make"]!,
-                                             model: self.currVehicleInfo["model"]!,
-                                             year: self.currVehicleInfo["year"]!,
-                                             nickname: self.currVehicleInfo["nickname"])
-                        
-                        self.updateVehicleUsers(vin: vin)
-                        self.updateUserVehicles(vin: vin)
-                        
-                        print("Make: \(self.currVehicleInfo["make"]!)")
-                        print("Model: \(self.currVehicleInfo["model"]!)")
-                        print("Model Year: \(self.currVehicleInfo["year"]!)")
-                        
-                        NotificationCenter.default.post(name: self.vehicleInfoNotification, object: nil)
-                        
-                    case .failure(let error):
-                        print("VIN Lookup Failure:")
-                        print(error)
-                    }
-                }
+                self.fetchVehicleInfo(vin: vin)
             }
+            
+            self.updateVehicleUsers(vin: vin)
+            self.updateUserVehicles(vin: vin)
         })
         
     }
@@ -190,17 +150,18 @@ class DB {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                self.fetchVinData = json["Results"].arrayValue.filter { [26, 28, 29].contains($0["VariableId"].intValue) }
+                self.vinData = json["Results"].arrayValue.filter { [26, 28, 29].contains($0["VariableId"].intValue) }
                 
-                self.fetchVehicleInfo["make"] = self.getFetchVehicleAttrWithId(variableId: 26).capitalized
-                self.fetchVehicleInfo["model"] = self.getFetchVehicleAttrWithId(variableId: 28)
-                self.fetchVehicleInfo["year"] = self.getFetchVehicleAttrWithId(variableId: 29)
+                self.currVehicleInfo = [String: String]()
+                self.currVehicleInfo!["make"] = self.getVehicleAttrWithId(variableId: 26).capitalized
+                self.currVehicleInfo!["model"] = self.getVehicleAttrWithId(variableId: 28)
+                self.currVehicleInfo!["year"] = self.getVehicleAttrWithId(variableId: 29)
                 
-                print("Make: \(self.fetchVehicleInfo["make"]!)")
-                print("Model: \(self.fetchVehicleInfo["model"]!)")
-                print("Model Year: \(self.fetchVehicleInfo["year"]!)")
+                print("Make: \(self.currVehicleInfo!["make"]!)")
+                print("Model: \(self.currVehicleInfo!["model"]!)")
+                print("Model Year: \(self.currVehicleInfo!["year"]!)")
                 
-                NotificationCenter.default.post(name: self.fetchVehicleInfoNotification, object: nil)
+                NotificationCenter.default.post(name: self.newVehicleInfoNotification, object: nil)
                 
             case .failure(let error):
                 print("VIN Lookup Failure:")
@@ -243,10 +204,6 @@ class DB {
     
     func getVehicleAttrWithId(variableId: Int) -> String {
         return vinData.filter { $0["VariableId"].intValue == variableId }[0]["Value"].stringValue
-    }
-    
-    func getFetchVehicleAttrWithId(variableId: Int) -> String {
-        return fetchVinData.filter { $0["VariableId"].intValue == variableId }[0]["Value"].stringValue
     }
     
     func writeTrip(ts: Int, miles: Double, vin: String) {
