@@ -22,15 +22,14 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var bottomStartStopTrackingButton: UIButton!
     
-    var realmTrips = [Trip]()
+    var firebaseTrips = [[String: Any]]()
     
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        realmTrips = Array(readTrip())
-        self.mileCountLabel.text = "\(Int(getTotalMiles().rounded(.toNearestOrAwayFromZero)))"
+        DB.sharedInstance.getTrips()
         
         // Separator for top of first cell
         let px = 1 / UIScreen.main.scale
@@ -46,22 +45,24 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tripTableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(self.refreshData(sender:)), for: .valueChanged)
         
-        loadFeed()
-        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.updateColorScheme),
                                                name: BLERouter.sharedInstance.colorUpdateNotification,
                                                object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.updateTripsTable),
+                                               name: DB.sharedInstance.tripsNotification,
+                                               object: nil)
     }
     
     func refreshData(sender: UIRefreshControl) {
-        loadFeed()
-        self.refreshControl.endRefreshing()
+        DB.sharedInstance.getTrips()
     }
     
-    func loadFeed() {
-        self.realmTrips = Array(readTrip())
-        self.mileCountLabel.text = "\(Int(getTotalMiles().rounded(.toNearestOrAwayFromZero)))"
+    func updateTripsTable() {
+        self.mileCountLabel.text = "\(Int(DB.sharedInstance.userTrips.map { ($0["distance"] as! Double) }.reduce(0.0, +).rounded(.toNearestOrAwayFromZero)))"
+        self.refreshControl.endRefreshing()
         self.tripTableView.reloadData()
     }
     
@@ -158,42 +159,35 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     // MARK: TableViewDelegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return realmTrips.count
+        return DB.sharedInstance.userTrips.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tripTableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as! TripTableViewCell
         
-        let currTrip = realmTrips[indexPath.row]
+        let currTrip = DB.sharedInstance.userTrips[indexPath.row]
         
         let calendar = Calendar.current
-        let date = Date.init(timeIntervalSince1970: TimeInterval(currTrip.ts))
+        let date = Date.init(timeIntervalSince1970: TimeInterval((currTrip["ts"] as! Int)))
+        
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(abbreviation: "PST")!
+        formatter.dateFormat = "h:mm a"
         
         cell.dayLabel?.text = "\(calendar.component(.day, from: date))"
-        cell.timeLabel?.text = "\((((currTrip.duration / 60.0) * 10).rounded() / 10)) min"
-        cell.distanceLabel?.text = "\(((currTrip.distance * 10).rounded() / 10)) miles"
+        cell.timeLabel?.text = "\(formatter.string(from: date))"
+        cell.distanceLabel?.text = "\((((currTrip["distance"] as! Double) * 10).rounded() / 10)) miles"
         cell.monthLabel?.text = "\(calendar.monthSymbols[calendar.component(.month, from: date) - 1])"
         
-        //cell.contentView.backgroundColor = Colors.backgroundBlack
-        
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        if States.Activity.track {
-//            //setBlack()
-//            cell.contentView.backgroundColor = Colors.backgroundBlack
-//        } else {
-//            //setWhite()
-//            cell.contentView.backgroundColor = Colors.white
-//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
     
-    func getTotalMiles() -> Double {
-        return realmTrips.map { $0.distance }.reduce(0.0, +)
+    func updateTotalMiles() {
+        self.mileCountLabel.text = "\(Int(DB.sharedInstance.userTotalMiles!.rounded(.toNearestOrAwayFromZero)))"
     }
+    
 }
