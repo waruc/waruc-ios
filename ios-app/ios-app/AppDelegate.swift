@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 import GoogleMaps
-import GooglePlaces
 import Firebase
 
 @UIApplicationMain
@@ -19,14 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey("AIzaSyB4KKkw7xZWUYxbwtY_6Nlr5RXAf_0jzcU")
-        GMSPlacesClient.provideAPIKey("AIzaSyB4KKkw7xZWUYxbwtY_6Nlr5RXAf_0jzcU")
         
         FIRApp.configure()
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         
         // Uncomment this line to sign out before each session
-        //try! FIRAuth.auth()!.signOut()
+        try! FIRAuth.auth()!.signOut()
         
         if FIRAuth.auth()?.currentUser != nil {
             print("User is signed in")

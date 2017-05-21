@@ -52,8 +52,8 @@ class initialViewController: UIViewController, UIScrollViewDelegate {
 
         video()
 
-        greenLogIn.layer.cornerRadius = 4
-        greenSignUp.layer.cornerRadius = 4
+        greenLogIn.layer.cornerRadius = CGFloat(Constants.round)
+        greenSignUp.layer.cornerRadius = CGFloat(Constants.round)
         
         greenLogIn.layer.borderWidth = 2
         greenLogIn.layer.borderColor = Colors.green.cgColor

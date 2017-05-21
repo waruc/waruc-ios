@@ -15,7 +15,7 @@ class OnboardingVehicleInputFrameViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        doneButton.layer.cornerRadius = 4
+        doneButton.layer.cornerRadius = CGFloat(Constants.round)
     }
 
     override func didReceiveMemoryWarning() {

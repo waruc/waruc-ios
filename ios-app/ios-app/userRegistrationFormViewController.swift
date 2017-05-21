@@ -43,7 +43,6 @@ class userRegistrationFormViewController: FormViewController {
                 $0.title = "Password"
                 $0.tag = "pass1"
                 $0.add(rule: RuleMinLength(minLength: 8))
-                //$0.add(rule: RuleMaxLength(maxLength: 13))
                 }
                 .cellUpdate { cell, row in
                     if !row.isValid {
@@ -55,7 +54,6 @@ class userRegistrationFormViewController: FormViewController {
                 $0.title = "Retype Password"
                 $0.tag = "pass2"
                 $0.add(rule: RuleMinLength(minLength: 8))
-                //$0.add(rule: RuleMaxLength(maxLength: 13))
                 }
                 .cellUpdate { cell, row in
                     if !row.isValid {

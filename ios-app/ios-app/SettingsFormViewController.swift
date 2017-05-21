@@ -25,9 +25,12 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 row.options = ["BMW 725i", "Hummer H2", "Ferrari 458 Italia"]
                 row.value = row.options[0]
             }
-            <<< TextRow(){ row in
-                row.title = "Add New Vehicle"
-                row.placeholder = "Vehicle Name"
+            
+            <<< ButtonRow() { 
+                $0.title = "Add New Vehicle"
+                }
+                .onCellSelection {  cell, row in  //sign out
+                    self.performSegue(withIdentifier: "newVehicle", sender: self)
             }
             
             +++ Section(header: "Tracking Type", footer: "In-vehicle tracking requires the use of an OBD-II port. Location tracking involves the use of your device's GPS.")

@@ -13,7 +13,7 @@ class OnboardingOBDIIViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.nextButton.layer.cornerRadius = 4
+        self.nextButton.layer.cornerRadius = CGFloat(Constants.round)
         nextButton.clipsToBounds = true
         // Do any additional setup after loading the view.
         

@@ -55,3 +55,7 @@ struct Colors {
     
     static let transitionTime = 0.5
 }
+
+struct Constants {
+    static let round = 20
+} 

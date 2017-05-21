@@ -15,7 +15,7 @@ class OnboardingAboutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.nextButton.layer.cornerRadius = 4
+        self.nextButton.layer.cornerRadius = CGFloat(Constants.round)
         nextButton.clipsToBounds = true
         
         self.navigationController?.navigationBar.tintColor = Colors.green

@@ -14,7 +14,7 @@ class OnboardingTermsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.acceptButton.layer.cornerRadius = 4
+        self.acceptButton.layer.cornerRadius = CGFloat(Constants.round)
         acceptButton.clipsToBounds = true
         
         self.navigationController?.navigationBar.tintColor = Colors.green

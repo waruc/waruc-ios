@@ -21,7 +21,7 @@ class OnboardingAccountDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.nextButton.layer.cornerRadius = 4
+        self.nextButton.layer.cornerRadius = CGFloat(Constants.round)
         nextButton.clipsToBounds = true
         self.navigationController?.navigationBar.tintColor = Colors.green
     }
@@ -46,6 +46,8 @@ class OnboardingAccountDetailsViewController: UIViewController {
     }
     
     func createUser(values: [String: Any?]) {
+        
+        
         let password = values["pass1"] as! String
         let password_verify = values["pass2"] as! String
         let email = values["email"] as! String

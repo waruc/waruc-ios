@@ -27,7 +27,7 @@ class OnboardingEnableFeaturesViewController: UIViewController, CLLocationManage
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.okayButton.layer.cornerRadius = 4
+        self.okayButton.layer.cornerRadius = CGFloat(Constants.round)
         okayButton.clipsToBounds = true
         
         self.navigationController?.navigationBar.tintColor = Colors.green
