@@ -52,7 +52,7 @@ class initialViewController: UIViewController, UIScrollViewDelegate {
         video()
         greenLogIn.layer.cornerRadius = 4
         greenSignUp.layer.cornerRadius = 4
-        BLERouter.sharedInstance.scan()
+        //BLERouter.sharedInstance.scan()
         
         //configurePageControl()
         

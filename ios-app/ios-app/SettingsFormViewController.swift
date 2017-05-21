@@ -100,6 +100,20 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 $0.title = $0.tag
                 $0.presentationMode = .segueName(segueName: "aboutProgram", onDismiss: nil)
             } 
+            
+            <<< ButtonRow("Privacy Policy") {
+                $0.title = $0.tag
+                $0.presentationMode = .segueName(segueName: "about", onDismiss: nil)
+            } 
+            <<< ButtonRow("Rate us in the App Store") {
+                $0.title = $0.tag
+                }
+                .onCellSelection { cell, row in 
+                    
+                    self.rateApp(appId: "id389801252") { success in
+                        print("RateApp \(success)")
+                    }
+            }
             <<< ButtonRow("Report an Issue") {
                 $0.title = $0.tag
                 
@@ -107,16 +121,6 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 .onCellSelection { cell, row in 
                     self.sendEmail()
             }
-            <<< ButtonRow("Rate us in the App Store") {
-                $0.title = $0.tag
-                $0.presentationMode = .segueName(segueName: "about", onDismiss: nil)
-                //itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=YOUR_APP_ID&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software
-
-            }
-            <<< ButtonRow("Privacy Policy") {
-                $0.title = $0.tag
-                $0.presentationMode = .segueName(segueName: "about", onDismiss: nil)
-            } 
         
     }
     
@@ -124,16 +128,16 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
         let composeVC = MFMailComposeViewController()
         composeVC.mailComposeDelegate = self
         // Configure the fields of the interface.
-        composeVC.setToRecipients(["address@example.com"])
-        composeVC.setSubject("Hello!")
-        composeVC.setMessageBody("Hello this is my message body!", isHTML: false)
+        composeVC.setToRecipients(["capstone.waruc@gmail.com"])
+        composeVC.setSubject("WARUC App Bug")
+        composeVC.setMessageBody("Hello, I've found an issue with the WARUC app.", isHTML: false)
         // Present the view controller modally.
         self.present(composeVC, animated: true, completion: nil)
     }
     
-    func mailComposeController(controller: MFMailComposeViewController,
-                               didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        // Check the result or perform other tasks.
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
         // Dismiss the mail compose view controller.
         controller.dismiss(animated: true, completion: nil)
     }
@@ -141,6 +145,18 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func rateApp(appId: String, completion: @escaping ((_ success: Bool)->())) {
+        guard let url = URL(string : "itms-apps://itunes.apple.com/app/" + appId) else {
+            completion(false)
+            return
+        }
+        guard #available(iOS 10, *) else {
+            completion(UIApplication.shared.openURL(url))
+            return
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: completion)
     }
     
 }
