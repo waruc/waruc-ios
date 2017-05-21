@@ -11,16 +11,22 @@ import FirebaseAuth
 
 class signInContainerViewController: UIViewController {
 
-    var formViewController: userRegistrationFormViewController!
+    @IBOutlet weak var nextButton: UIButton!
+    var formViewController: signInFormViewController!
+    
     let loginErrorAlert = UIAlertController(title: "Error", message: "That email & password combination is not valid!", preferredStyle: UIAlertControllerStyle.alert)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.tintColor = Colors.green
+        nextButton.layer.cornerRadius = CGFloat(Constants.round)
     }
     
+    // Get a reference to the embedded view controller for the form
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "userRegistration" {
-            let connectContainerViewController = segue.destination as! userRegistrationFormViewController
+        if segue.identifier == "userSignIn" {
+            let connectContainerViewController = segue.destination as! signInFormViewController
             formViewController = connectContainerViewController
         }
     }
@@ -32,7 +38,7 @@ class signInContainerViewController: UIViewController {
         }
     }
 
-    
+    // Attempt firbase login 
     func login(values: [String: Any?]) {
         let email = values["email"] as! String
         let pass = values["pass"] as! String

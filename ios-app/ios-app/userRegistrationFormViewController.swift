@@ -60,16 +60,5 @@ class userRegistrationFormViewController: FormViewController {
                         cell.titleLabel?.textColor = .red
                     }
             }
-            
-            +++ Section()
-            <<< ButtonRow() { (row: ButtonRow) -> Void in
-                row.title = "Login"
-                }
-                .cellSetup() { cell, row in
-                    cell.backgroundColor = UIColor.clear
-                }
-                .onCellSelection { [weak self] (cell, row) in
-                    print("Logging In")
-        }
     }
 }

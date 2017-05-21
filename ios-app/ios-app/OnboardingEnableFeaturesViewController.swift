@@ -12,18 +12,16 @@ import CoreLocation
 
 class OnboardingEnableFeaturesViewController: UIViewController, CLLocationManagerDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
 
-    
-    
-
-    
     //location
     var locationManager: CLLocationManager = CLLocationManager()
     var startLocation: CLLocation!
     
+    // Bluetooth 
     var centralManager: CBCentralManager!
     var peripheral: CBPeripheral!
 
     @IBOutlet weak var okayButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,15 +29,8 @@ class OnboardingEnableFeaturesViewController: UIViewController, CLLocationManage
         okayButton.clipsToBounds = true
         
         self.navigationController?.navigationBar.tintColor = Colors.green
-
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
@@ -47,9 +38,7 @@ class OnboardingEnableFeaturesViewController: UIViewController, CLLocationManage
     }
     
     @available(iOS 5.0, *)
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        print("hi")
-    }
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {}
     
     @IBAction func enableServices(_ sender: UIButton) {
         //location
@@ -59,18 +48,6 @@ class OnboardingEnableFeaturesViewController: UIViewController, CLLocationManage
         centralManager = CBCentralManager(delegate: self, queue: nil)
         
         self.performSegue(withIdentifier: "toDetails", sender: nil)
-        
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 

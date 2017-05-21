@@ -18,7 +18,6 @@ class TripTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
         self.orangeCalendarBox.layer.cornerRadius = 6.0
         self.orangeCalendarBox.clipsToBounds = true
@@ -26,7 +25,5 @@ class TripTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 }

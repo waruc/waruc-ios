@@ -106,7 +106,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             
             <<< ButtonRow("Privacy Policy") {
                 $0.title = $0.tag
-                $0.presentationMode = .segueName(segueName: "about", onDismiss: nil)
+                $0.presentationMode = .segueName(segueName: "privacyPolicy", onDismiss: nil)
             } 
             <<< ButtonRow("Rate us in the App Store") {
                 $0.title = $0.tag
@@ -144,12 +144,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
         // Dismiss the mail compose view controller.
         controller.dismiss(animated: true, completion: nil)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     func rateApp(appId: String, completion: @escaping ((_ success: Bool)->())) {
         guard let url = URL(string : "itms-apps://itunes.apple.com/app/" + appId) else {
             completion(false)
@@ -161,5 +156,4 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
         }
         UIApplication.shared.open(url, options: [:], completionHandler: completion)
     }
-    
 }

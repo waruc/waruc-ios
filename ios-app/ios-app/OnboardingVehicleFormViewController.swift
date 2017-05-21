@@ -26,11 +26,6 @@ class OnboardingVehicleFormViewController: FormViewController {
                                                object: nil)
     }
     
-    // Returns the nickname currently filled out
-    func getNickname() {
-    
-    }
-    
     func displayInfo() { 
         progressHUD.hide()
         form +++ Section("Account")

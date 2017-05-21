@@ -16,12 +16,8 @@ class initialViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var greenLogIn: UIButton!
     @IBOutlet weak var greenSignUp: UIButton!
-
-
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var signupButton: UIButton!
     
-    //crap:
+//    Scrolling:
 //    let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 375, height: 550))
 //    var colors:[UIColor] = [UIColor.clear, UIColor.clear, UIColor.clear, UIColor.clear]
 //    var frame: CGRect = CGRect(x: 0, y: 0, width: 0, height: 0)

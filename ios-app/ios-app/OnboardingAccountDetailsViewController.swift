@@ -46,8 +46,6 @@ class OnboardingAccountDetailsViewController: UIViewController {
     }
     
     func createUser(values: [String: Any?]) {
-        
-        
         let password = values["pass1"] as! String
         let password_verify = values["pass2"] as! String
         let email = values["email"] as! String
@@ -67,5 +65,4 @@ class OnboardingAccountDetailsViewController: UIViewController {
             present(passwordErrorAlert, animated: true, completion: nil)
         }
     }
-
 }
