@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Lb-ae-XNf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Lb-ae-XNf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -457,98 +457,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ogi-AQ-3Sg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3011" y="807"/>
-        </scene>
-        <!--Create Vehicle View Controller-->
-        <scene sceneID="U8c-hd-lEg">
-            <objects>
-                <viewController id="dEm-eM-ywo" customClass="createVehicleViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gxs-aj-ALf"/>
-                        <viewControllerLayoutGuide type="bottom" id="grE-PZ-Pu8"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="MXH-0E-t0J">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Make" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jch-8e-8EZ">
-                                <rect key="frame" x="16" y="38" width="94" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Model" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YE9-Wu-uht">
-                                <rect key="frame" x="16" y="112" width="94" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDG-dN-YCk">
-                                <rect key="frame" x="16" y="193" width="94" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZ7-zN-8oh">
-                                <rect key="frame" x="16" y="259" width="94" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PMR-c3-V8r">
-                                <rect key="frame" x="129" y="255" width="230" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Year OBD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7t-lh-lbo">
-                                <rect key="frame" x="129" y="193" width="230" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Model OBD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxd-fU-4MA">
-                                <rect key="frame" x="129" y="112" width="230" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Make OBD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6z-EA-Kxa">
-                                <rect key="frame" x="129" y="38" width="230" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Kj-ZH-mBw">
-                                <rect key="frame" x="138" y="311" width="98" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Submitt"/>
-                                <connections>
-                                    <action selector="submittTapped:" destination="dEm-eM-ywo" eventType="touchUpInside" id="hjJ-oz-yuT"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="brandOBD" destination="R6z-EA-Kxa" id="Lge-tJ-BoB"/>
-                        <outlet property="makeOBD" destination="R6z-EA-Kxa" id="LM0-ex-cvg"/>
-                        <outlet property="modelOBD" destination="qxd-fU-4MA" id="mNA-ZS-6bb"/>
-                        <outlet property="nicknameTextInput" destination="PMR-c3-V8r" id="YMd-lu-Kj1"/>
-                        <outlet property="submitButton" destination="1Kj-ZH-mBw" id="2n2-6r-ciD"/>
-                        <outlet property="yearOBD" destination="q7t-lh-lbo" id="5HU-S0-bpY"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YEj-Qx-Gw6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2889" y="0.0"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -1019,7 +927,7 @@ Cg
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">The WARUC development team and the Washington State Department of Transportation are the shared owners of the information collected from this application. We will have access to or collect information that you give us and is generated from the application and connecting OBD-II vehicle attachment. We will not sell or rent this information to anyone.</mutableString>
+                                        <string key="content">The WARUC development team and the Washington State Department of Transportation are the shared owners of the information collected from this application. We will have access to or collect information that you give us and is generated from the application and connecting OBD-II vehicle attachment. We will not sell or rent this information to anyone.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                             <font key="NSFont" size="12" name="ArialMT"/>
@@ -1062,7 +970,7 @@ Cg
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">We will use your information to track and record your mileage on a per vehicle basis. Additionally, the Washington State Department of Transportation may use the information to create public reports and analysis, to enact or change Washington State Transportation policy. Your information may be shared with other public agencies at the discretion of public officials. We will not share your information with any private parties outside of our organization, other than as necessary to fulfill your request, e.g. tax agency request of records.</mutableString>
+                                        <string key="content">We will use your information to track and record your mileage on a per vehicle basis. Additionally, the Washington State Department of Transportation may use the information to create public reports and analysis, to enact or change Washington State Transportation policy. Your information may be shared with other public agencies at the discretion of public officials. We will not share your information with any private parties outside of our organization, other than as necessary to fulfill your request, e.g. tax agency request of records.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                             <font key="NSFont" size="12" name="ArialMT"/>
@@ -1175,7 +1083,7 @@ Cg
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">All data generated from the application is subject to record for a minimum of ten (10) years. After which, the data can be requested to be removed from our records and databases. You can request to change the personally identifiable information you have previously given to us, e.g. request for email change. You can do the following at any time by contacting us via the email address capstone.waruc@gmail.com:</mutableString>
+                                        <string key="content">All data generated from the application is subject to record for a minimum of ten (10) years. After which, the data can be requested to be removed from our records and databases. You can request to change the personally identifiable information you have previously given to us, e.g. request for email change. You can do the following at any time by contacting us via the email address capstone.waruc@gmail.com:</string>
                                         <attributes>
                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                             <font key="NSFont" size="12" name="ArialMT"/>
@@ -1483,7 +1391,7 @@ Cg
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">While we use encryption to protect sensitive information transmitted from the application to our databases, we also protect your information offline. Only employees of the organizations mentioned above who need the information to perform a specific job (for example, created a statewide driving analysis) are granted access to personally identifiable information. The computers/ servers in which we store personally identifiable information are kept in a secure environment. As a user, you should additionally take steps to secure your own device.</mutableString>
+                                        <string key="content">While we use encryption to protect sensitive information transmitted from the application to our databases, we also protect your information offline. Only employees of the organizations mentioned above who need the information to perform a specific job (for example, created a statewide driving analysis) are granted access to personally identifiable information. The computers/ servers in which we store personally identifiable information are kept in a secure environment. As a user, you should additionally take steps to secure your own device.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                             <font key="NSFont" size="12" name="ArialMT"/>
@@ -1596,7 +1504,7 @@ Cg
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">In order to use this application, a user must first complete the registration forms and onboarding process available when launching the application. During user registration, a user is required to give certain information (such as an email address). This information is used to contact you about the products/ services of our application.</mutableString>
+                                        <string key="content">In order to use this application, a user must first complete the registration forms and onboarding process available when launching the application. During user registration, a user is required to give certain information (such as an email address). This information is used to contact you about the products/ services of our application.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                             <font key="NSFont" size="12" name="ArialMT"/>
@@ -1639,7 +1547,7 @@ Cg
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">Additionally, there is a vehicle registration and onboarding process available to establish a connection between a user and vehicle. During vehicle registration, a user is required to maintain a Bluetooth connection with the vehicle's OBD-II pairing device, and give an optional nickname to the vehicle after completion. This information is used to track and identify a vehicle for future connections and trip logging.</mutableString>
+                                        <string key="content">Additionally, there is a vehicle registration and onboarding process available to establish a connection between a user and vehicle. During vehicle registration, a user is required to maintain a Bluetooth connection with the vehicle's OBD-II pairing device, and give an optional nickname to the vehicle after completion. This information is used to track and identify a vehicle for future connections and trip logging.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                             <font key="NSFont" size="12" name="ArialMT"/>
@@ -1779,7 +1687,7 @@ Cg
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">A vehicle trip is a segment of data that stores the mileage of the vehicle's trip and the date-time of when the trip concluded. We generate these by connecting to the Bluetooth OBD-II device in the vehicle and recording the data that is transmitted while traveling. These trips are written and stored on the device until they are sent to our database. Once sent and written to our database they will be removed from your device and accessible by maintaining or reestablishing a database connection.</mutableString>
+                                        <string key="content">A vehicle trip is a segment of data that stores the mileage of the vehicle's trip and the date-time of when the trip concluded. We generate these by connecting to the Bluetooth OBD-II device in the vehicle and recording the data that is transmitted while traveling. These trips are written and stored on the device until they are sent to our database. Once sent and written to our database they will be removed from your device and accessible by maintaining or reestablishing a database connection.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                             <font key="NSFont" size="12" name="ArialMT"/>
@@ -1953,7 +1861,6 @@ Cg
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="formContainer" destination="ESk-KN-SRI" id="Je2-FT-Fhx"/>
                         <outlet property="nextButton" destination="GK3-hC-CVk" id="Iih-yW-Pw9"/>
                     </connections>
                 </viewController>
@@ -2214,126 +2121,12 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P7C-r3-tX9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1921" y="-643"/>
-        </scene>
-        <!--signUp-->
-        <scene sceneID="Rkc-D9-UkI">
-            <objects>
-                <viewController storyboardIdentifier="signUp" title="signUp" id="0qa-Ia-Afy" customClass="userRegistrationFormViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pPO-BF-rfk"/>
-                        <viewControllerLayoutGuide type="bottom" id="Idr-MQ-ti6"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tPi-82-i2c">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Sign Up" id="Ezv-Y8-uTS">
-                        <barButtonItem key="backBarButtonItem" title="Cancel" id="bq0-hR-sOD"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="li9-nV-As9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1986" y="-2256"/>
-        </scene>
-        <!--User Registration View Controller-->
-        <scene sceneID="bkB-YZ-IS4">
-            <objects>
-                <viewController id="leC-0c-han" customClass="userRegistrationViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="uwe-L7-5uN"/>
-                        <viewControllerLayoutGuide type="bottom" id="pvs-Fi-Dqr"/>
-                    </layoutGuides>
-                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="z0X-13-kmz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lnz-27-EvO">
-                                <rect key="frame" x="31" y="80" width="37" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wvn-sq-QGk">
-                                <rect key="frame" x="31" y="138" width="66" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confirm Password" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYr-iE-iMT">
-                                <rect key="frame" x="31" y="196" width="125" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oei-Zl-Vq5">
-                                <rect key="frame" x="108" y="75" width="231" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YSG-dD-2TJ">
-                                <rect key="frame" x="137" y="132" width="202" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l1b-fE-oUf">
-                                <rect key="frame" x="196" y="190" width="143" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3QS-C8-N8z">
-                                <rect key="frame" x="91" y="270" width="193" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Create Account">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="createAccountButtonTouched:" destination="leC-0c-han" eventType="touchUpInside" id="Uds-Kf-U3c"/>
-                                    <action selector="logInButtonTouched:" destination="Zub-Bt-I5O" eventType="touchUpInside" id="a7x-0u-Gol"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2M-TM-oSd">
-                                <rect key="frame" x="12" y="20" width="55" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="&lt;- Back"/>
-                                <connections>
-                                    <segue destination="7Lb-ae-XNf" kind="show" id="48h-zV-8Fx"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="createAccountButton" destination="3QS-C8-N8z" id="MBO-gQ-hUD"/>
-                        <outlet property="emailField" destination="Oei-Zl-Vq5" id="OK0-7I-2rd"/>
-                        <outlet property="emailLabel" destination="Lnz-27-EvO" id="Ogr-6l-pfk"/>
-                        <outlet property="passwordField" destination="YSG-dD-2TJ" id="lft-Lc-Dqb"/>
-                        <outlet property="passwordLabel" destination="Wvn-sq-QGk" id="Uxw-gr-aEz"/>
-                        <outlet property="passwordRepeatField" destination="l1b-fE-oUf" id="3iw-xr-a5O"/>
-                        <outlet property="passwordRepeatLabel" destination="wYr-iE-iMT" id="IPi-55-jH6"/>
-                        <segue destination="49e-Tb-3d3" kind="show" identifier="accountCreatedSuccessfully" id="HoC-mk-j0F"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Q7x-aJ-G7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2895" y="-642"/>
+            <point key="canvasLocation" x="-2103" y="-925"/>
         </scene>
         <!--signIn-->
         <scene sceneID="UHP-9s-Sdq">
             <objects>
-                <viewController storyboardIdentifier="signIn" title="signIn" id="2Jz-Yw-0nz" customClass="signInFormViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signIn" title="signIn" id="2Jz-Yw-0nz" customClass="signInContainerViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lbF-cN-oPj"/>
                         <viewControllerLayoutGuide type="bottom" id="Cif-JB-o7g"/>
@@ -2341,6 +2134,28 @@ Cg
                     <view key="view" contentMode="scaleToFill" id="ta2-Vz-Pti">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdO-X2-RfR">
+                                <rect key="frame" x="67" y="607" width="240" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.7843137255" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <state key="normal" title="NEXT">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextPressed:" destination="2Jz-Yw-0nz" eventType="touchUpInside" id="UbD-YS-ecH"/>
+                                    <segue destination="49e-Tb-3d3" kind="show" identifier="authorized" id="B6C-JD-Fy3"/>
+                                </connections>
+                            </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MOD-Jc-5WW">
+                                <rect key="frame" x="0.0" y="64" width="375" height="528"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="R8l-tO-QeG" kind="embed" id="T1Q-S3-iJQ"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Sign In" id="XNx-0D-IVX">
@@ -2349,7 +2164,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6qO-t4-fzI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1015" y="-643"/>
+            <point key="canvasLocation" x="-1015.2" y="-643.62818590704649"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C43-lh-RTQ">
@@ -2391,6 +2206,10 @@ Cg
         <scene sceneID="I4o-Q3-1Gc">
             <objects>
                 <viewController id="unF-7a-18m" customClass="userRegistrationFormViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yIh-YO-3qZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="0bB-vp-FlF"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1MP-hN-wiA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="525"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2399,7 +2218,25 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KRH-5T-vl1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3036" y="-2210"/>
+            <point key="canvasLocation" x="2233" y="-2275"/>
+        </scene>
+        <!--Sign In Form View Controller-->
+        <scene sceneID="MAo-xk-tQe">
+            <objects>
+                <viewController id="R8l-tO-QeG" customClass="signInFormViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sd8-Yr-pd0"/>
+                        <viewControllerLayoutGuide type="bottom" id="lGe-LC-Gsa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y1u-ea-JPD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="528"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jxx-RS-NgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1015" y="55"/>
         </scene>
     </scenes>
     <resources>
@@ -2413,8 +2250,8 @@ Cg
         <image name="wheel" width="147" height="147"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="B6C-JD-Fy3"/>
+        <segue reference="ngu-U2-mLo"/>
         <segue reference="ws9-I2-c5Z"/>
-        <segue reference="vqz-00-Jau"/>
-        <segue reference="9Rd-rc-416"/>
     </inferredMetricsTieBreakers>
 </document>

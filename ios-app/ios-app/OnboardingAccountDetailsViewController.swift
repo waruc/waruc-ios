@@ -12,8 +12,6 @@ import Firebase
 
 class OnboardingAccountDetailsViewController: UIViewController {
     
-    
-    @IBOutlet weak var formContainer: UIView!
     @IBOutlet weak var nextButton: UIButton!
     
     var formViewController: userRegistrationFormViewController!

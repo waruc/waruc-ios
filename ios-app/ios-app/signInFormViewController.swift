@@ -8,6 +8,7 @@
 
 import UIKit
 import Eureka
+import FirebaseAuth
 
 class signInFormViewController: FormViewController {
     
@@ -18,6 +19,7 @@ class signInFormViewController: FormViewController {
             
             <<< TextRow() {
                 $0.title = "Email"
+                $0.tag = "email"
                 $0.add(rule: RuleRequired())
                 var ruleSet = RuleSet<String>()
                 ruleSet.add(rule: RuleRequired())
@@ -34,6 +36,7 @@ class signInFormViewController: FormViewController {
         
         <<< PasswordRow() {
             $0.title = "Password"
+            $0.tag = "pass"
             $0.add(rule: RuleMinLength(minLength: 8))
             //$0.add(rule: RuleMaxLength(maxLength: 13))
             }
