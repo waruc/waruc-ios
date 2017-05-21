@@ -15,15 +15,14 @@ class OnboardingVehicleFormViewController: FormViewController {
     let progressHUD = ProgressHUD(text: "Loading")
     override func viewDidLoad() {
         super.viewDidLoad()
-        //BLERouter.sharedInstance.scan()
-        
         
         self.view.addSubview(progressHUD)
             
-        DB.sharedInstance.fetchVehicleInfo(vin: "1G1JC5444R7252367")
+        BLERouter.sharedInstance.scan()
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.displayInfo),
-                                               name: DB.sharedInstance.fetchVehicleInfoNotification,
+                                               name: DB.sharedInstance.newVehicleInfoNotification,
                                                object: nil)
     }
     
@@ -37,7 +36,7 @@ class OnboardingVehicleFormViewController: FormViewController {
         form +++ Section("Account")
             <<< TextRow() {
                 $0.title = "Make"
-                $0.value = DB.sharedInstance.fetchVehicleInfo["make"]
+                $0.value = DB.sharedInstance.currVehicleInfo!["make"]
                 $0.disabled = true
                 $0.tag = "make"
             }
@@ -45,25 +44,38 @@ class OnboardingVehicleFormViewController: FormViewController {
             <<< TextRow() {
                 $0.title = "Model"
                 $0.disabled = true
-                $0.value = DB.sharedInstance.fetchVehicleInfo["model"]
+                $0.value = DB.sharedInstance.currVehicleInfo!["model"]
                 $0.tag = "model"
             }
             
             <<< TextRow() {
                 $0.title = "Year"
                 $0.disabled = true
-                $0.value = DB.sharedInstance.fetchVehicleInfo["year"]
+                $0.value = DB.sharedInstance.currVehicleInfo!["year"]
                 $0.tag = "year"
             }
             
-            <<< TextRow() {
+            <<< TextRow("Nickname") {
                 $0.title = "Nickname"
                 $0.disabled = false
                 $0.value = ""
                 $0.tag = "nickname"
                 }
                 .cellUpdate { cell, row in
-                    DB.sharedInstance.currVehicleInfo["year"] = row.value
+                    DB.sharedInstance.currVehicleInfo!["year"] = row.value
+            }
+            
+            +++ Section("Submit")
+            <<< ButtonRow() { (row: ButtonRow) -> Void in
+                    row.title = "Done"
+                }
+                .cellSetup() { cell, row in
+                    cell.backgroundColor = UIColor.clear
+                }
+                .onCellSelection { [weak self] (cell, row) in
+                    print("Creating vehicle")
+                    let row: TextRow? = self?.form.rowBy(tag: "Nickname")
+                    DB.sharedInstance.registerVehicle(nickname: row?.value)
         }
     }
 }
