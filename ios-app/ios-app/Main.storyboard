@@ -594,6 +594,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENd-Md-J4W">
+                                <rect key="frame" x="304" y="637" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cheat">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="49e-Tb-3d3" kind="show" id="9Rd-rc-416"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NG8-Ql-32Y">
                                 <rect key="frame" x="68" y="597" width="240" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -618,14 +628,20 @@
                                     <segue destination="2Jz-Yw-0nz" kind="show" id="Hfn-UP-KoV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENd-Md-J4W">
-                                <rect key="frame" x="304" y="637" width="71" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVp-9L-XaZ">
+                                <rect key="frame" x="8" y="465" width="127" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cheat">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
+                                <state key="normal" title="Non-fuckboi log in"/>
                                 <connections>
-                                    <segue destination="49e-Tb-3d3" kind="show" id="9Rd-rc-416"/>
+                                    <segue destination="Zub-Bt-I5O" kind="show" id="v9I-gN-3v4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjC-u2-MI5">
+                                <rect key="frame" x="192" y="465" width="140" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Non-fuckboi sign up"/>
+                                <connections>
+                                    <segue destination="leC-0c-han" kind="show" id="aEc-pN-VAJ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -674,15 +690,31 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <string key="content">Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program Miscellaneous text about the program </string>
+                                        <string key="content">Gas tax revenue will continue to decline as more fuel-efficient, hybrid, or all-electric vehicles are added to our roadways and with 60% of our state transportation infrastructure budget from gas taxes, we have to make a change if our transportation systems are going to survive long-term. Our solution and approach to the problem was to build a mobile application that utilizes modern vehicle technology to track and record road usage with minimal impact on your driving experience. WARUC secures a long-term solution for the future of our infrastructure.</string>
                                         <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="14.666666984558105" name="ArialMT"/>
                                             <real key="NSKern" value="0.0"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="33" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="12" name="Times-Roman"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <real key="NSStrokeWidth" value="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -1819,7 +1851,7 @@ Cg
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Wgp-Tw-7Lw" kind="show" id="iBz-AU-VIx"/>
+                                    <action selector="enableServices:" destination="QDr-mo-3Kl" eventType="touchUpInside" id="BQx-lk-zET"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1827,6 +1859,7 @@ Cg
                     </view>
                     <connections>
                         <outlet property="okayButton" destination="g20-mz-FKu" id="RYL-Cm-nl3"/>
+                        <segue destination="Wgp-Tw-7Lw" kind="show" identifier="toDetails" id="Q4D-mg-9lA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jz8-gG-DqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2088,7 +2121,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="li9-nV-As9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-377" y="-2303"/>
+            <point key="canvasLocation" x="1986" y="-2256"/>
         </scene>
         <!--User Registration View Controller-->
         <scene sceneID="bkB-YZ-IS4">
