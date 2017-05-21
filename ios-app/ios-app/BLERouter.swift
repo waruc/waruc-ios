@@ -35,6 +35,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     var tripSeconds = 0.0
     var connectionType:String?
     
+    let sharedInstanceReadyNotification = Notification.Name("sharedInstanceReadyNotification")
     let connectionTypeNotification = Notification.Name("connectionTypeNotificationIdentifier")
     let connectionStrengthNotification = Notification.Name("connectionStrengthNotificationIdentifier")
     let colorUpdateNotification = Notification.Name("colorUpdateNotification")
@@ -72,7 +73,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             print("The state of the BLE Manager is unknown.")
         case .poweredOn:
             print("Bluetooth LE is turned on and ready for communication.")
-            //scan()
+            NotificationCenter.default.post(name: sharedInstanceReadyNotification, object: nil)
         }
     }
     
@@ -257,7 +258,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                     
                     DB.sharedInstance.fetchVehicleInfo(vin: vinNumber!)
                     
-                    //DB.sharedInstance.createOrReturnVehicle(vin: vinNumber!)
+                    DB.sharedInstance.createOrReturnVehicle(vin: vinNumber!)
                 }
             } else {
                 // Setup complete and VIN Number is set.. Proceed with normal data collection
@@ -325,6 +326,8 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         let ts = Int(date.timeIntervalSince1970.rounded())
         
         writeTrip(ts: ts, distance: totalDist, duration: tripSeconds)
+        
+        DB.sharedInstance.writeTrip(ts: ts, miles: totalDist, vin: vinNumber!)
     }
     
 }

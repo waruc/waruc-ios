@@ -137,10 +137,7 @@ class DB {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print(json)
                 self.fetchVinData = json["Results"].arrayValue.filter { [26, 28, 29].contains($0["VariableId"].intValue) }
-                
-                print(self.fetchVinData)
                 
                 self.fetchVehicleInfo["make"] = self.getFetchVehicleAttrWithId(variableId: 26).capitalized
                 self.fetchVehicleInfo["model"] = self.getFetchVehicleAttrWithId(variableId: 28)
@@ -167,7 +164,7 @@ class DB {
                 print("\nFound user for vehicle!")
             } else {
                 print("\nCreating new user for vehicle...")
-                let user_values = ["total_mileage": 0]
+                let user_values = ["vehicle_mileage": 0]
                 self.ref.child("vehicles").child("\(vin)/users").updateChildValues([uid! : user_values])
             }
         })
@@ -181,6 +178,7 @@ class DB {
                 print("\nFound vehicle entry in user vehicles!")
             } else {
                 print("\nCreating new entry in user vehicles...")
+                self.ref.child("userVehicles/\(uid!)").updateChildValues(["user_mileage": 0.0])
                 self.ref.child("userVehicles/\(uid!)/vehicles").updateChildValues([vin: "owner"])
             }
         })
@@ -198,18 +196,24 @@ class DB {
         return fetchVinData.filter { $0["VariableId"].intValue == variableId }[0]["Value"].stringValue
     }
     
-    func writeTrip(ts: Int, miles:Double, vin: String, uid: String) {
+    func writeTrip(ts: Int, miles: Double, vin: String) {
+        let uid = FIRAuth.auth()?.currentUser?.uid
         let key = self.ref.child("vehicles").childByAutoId().key
         let values = ["timestamp": ts, "mileage:": miles] as [String : Any]
-        let updates = ["vehicles/\(vin)/users/\(uid)/trips/\(key)": values]
+        let updates = ["vehicles/\(vin)/users/\(uid!)/trips/\(key)": values]
         ref.updateChildValues(updates)
         
-        // update user total miles based off of current trip
-        ref.child("userVehicles/\(uid)/total_miles").observeSingleEvent(of: .value, with: { (snapshot) in
-            let total_miles = snapshot.value as! Double
-            self.ref.child("userVehicles/\(uid)/total_miles").setValue(total_miles + miles)
-        }, withCancel: nil)
+        // update vehicle/user total miles based off of current trip
+        ref.child("vehicles/\(vin)/users/\(uid!)/vehicle_mileage").observeSingleEvent(of: .value, with: { (snapshot) in
+            let vehicle_miles = snapshot.value as! Double
+            self.ref.child("vehicles/\(vin)/users/\(uid!)/vehicle_mileage").setValue(vehicle_miles + miles)
+        })
         
+        // update user total miles based off of current trip
+        ref.child("userVehicles/\(uid!)/user_mileage").observeSingleEvent(of: .value, with: { (snapshot) in
+            let total_miles = snapshot.value as! Double
+            self.ref.child("userVehicles/\(uid!)/user_mileage").setValue(total_miles + miles)
+        })
     }
     
     func getTrips(vin: String, uid: String, results : @escaping ((_ trips : JSON) -> Void)) {
