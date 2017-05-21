@@ -50,9 +50,9 @@ class initialViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
 
         video()
+
         greenLogIn.layer.cornerRadius = 4
         greenSignUp.layer.cornerRadius = 4
-        BLERouter.sharedInstance.scan()
         
         //configurePageControl()
         
