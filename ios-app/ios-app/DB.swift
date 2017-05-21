@@ -18,8 +18,13 @@ class DB {
     var feedRad: Int
     var refreshFeed: Bool!
     
+    var userVehicleKeys:[String] = []
+    var userVehicles:[[String: String]] = []
+    
+    let tripsNotification = Notification.Name("tripsNotification")
     let vehicleInfoNotification = Notification.Name("vehicleInfoNotification")
     let fetchVehicleInfoNotification = Notification.Name("fetchVehicleInfoNotification")
+    
     var vinData:[JSON] = []
     var currVehicleInfo:[String : String] = [
         "make": "",
@@ -35,6 +40,11 @@ class DB {
         "year": ""
     ]
     
+    var userTrips:[[String: Any]] = []
+    
+    var userTotalMiles:Double?
+    var userTripCount:Int?
+    
     init() {
         self.ref = FIRDatabase.database().reference()
         self.feedRad = 5500
@@ -43,21 +53,63 @@ class DB {
     
     static let sharedInstance = DB()
     
-    func getUserVehicles(results : @escaping ((_ vehicles : Array<Any>) -> Void)){
-        if FIRAuth.auth()?.currentUser?.uid != nil {
-            
-            // fetch data from Firebase
-            let uid = FIRAuth.auth()?.currentUser?.uid
+    func getUserVehicles() {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        if uid != nil {
             ref!.child("userVehicles").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-                var vehicle_keys = [String]()
-                let enumerator = snapshot.children
-                while let rest = enumerator.nextObject() as? FIRDataSnapshot{
-                    vehicle_keys.append(rest.key)
-                }
-                results(vehicle_keys)
-            }, withCancel: nil)
+                let userObj = snapshot.value as! [String: Any]
+                self.userTripCount = (userObj["trips"] as! Int)
+                
+                let userVehicleArray = userObj["vehicles"] as! [String: String]
+                self.userVehicleKeys = [String](userVehicleArray.keys)
+                self.getTrips()
+                self.getUserVehicleInfo()
+            })
         } else {
-            print("Error fetching user vehicles")
+            print("User isn't authenticated")
+        }
+    }
+    
+    func getTrips() {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        self.userTrips = []
+        for key in userVehicleKeys {
+            ref.child("vehicles/\(key)/users/\(uid!)/trips").observeSingleEvent(of: .value, with: { (snapshot) in
+                let returnedTrips = (snapshot.value as! [String: Any])
+                
+                for (_, value) in returnedTrips {
+                    var trip = (value as! [String: Any])
+                    trip = ["ts": trip["timestamp"]!, "distance": (trip["mileage"]! as! Double)]
+                    self.userTrips.append(trip)
+                }
+                
+                if self.userTrips.count == self.userTripCount {
+                    self.userTrips = self.userTrips.sorted(by: { ($0["ts"]! as! Int) > ($1["ts"]! as! Int) })
+                    NotificationCenter.default.post(name: self.tripsNotification, object: nil)
+                    print("\nRetrieved all user's trips")
+                }
+            })
+        }
+    }
+    
+    func getUserVehicleInfo() {
+        self.userVehicles = []
+        for key in userVehicleKeys {
+            ref!.child("vehicles").child(key).observeSingleEvent(of: .value, with: { (snapshot) in
+                let existingVehicleInfo = snapshot.value as! [String: Any]
+                let vehicle:[String: String] = [
+                    "make": (existingVehicleInfo["make"] as! String),
+                    "model": (existingVehicleInfo["model"] as! String),
+                    "year": (existingVehicleInfo["year"] as! String),
+                    "nickname": (existingVehicleInfo["nickname"] as! String)
+                ]
+                
+                self.userVehicles.append(vehicle)
+                
+                if self.userVehicles.count == self.userVehicleKeys.count {
+                    print("\nRetrieved all user's vehicles")
+                }
+            })
         }
     }
     
@@ -73,6 +125,7 @@ class DB {
             "year": year,
             "users": uid!,
             "nickname": nickname ?? "",
+            "vehicle_mileage": 0.0,
             "cts": "\(ts)"
             ] as [String : Any]
         
@@ -164,7 +217,7 @@ class DB {
                 print("\nFound user for vehicle!")
             } else {
                 print("\nCreating new user for vehicle...")
-                let user_values = ["vehicle_mileage": 0]
+                let user_values = ["vehicle_user_mileage": 0]
                 self.ref.child("vehicles").child("\(vin)/users").updateChildValues([uid! : user_values])
             }
         })
@@ -178,7 +231,7 @@ class DB {
                 print("\nFound vehicle entry in user vehicles!")
             } else {
                 print("\nCreating new entry in user vehicles...")
-                self.ref.child("userVehicles/\(uid!)").updateChildValues(["user_mileage": 0.0])
+                self.ref.child("userVehicles/\(uid!)").updateChildValues(["user_mileage": 0.0, "trips": 0])
                 self.ref.child("userVehicles/\(uid!)/vehicles").updateChildValues([vin: "owner"])
             }
         })
@@ -197,31 +250,33 @@ class DB {
     }
     
     func writeTrip(ts: Int, miles: Double, vin: String) {
+        userTripCount! += 1
+        
         let uid = FIRAuth.auth()?.currentUser?.uid
         let key = self.ref.child("vehicles").childByAutoId().key
-        let values = ["timestamp": ts, "mileage:": miles] as [String : Any]
+        let values = ["timestamp": ts, "mileage": miles] as [String : Any]
         let updates = ["vehicles/\(vin)/users/\(uid!)/trips/\(key)": values]
         ref.updateChildValues(updates)
         
+        // update vehicle total miles based off of current trip
+        ref.child("vehicles/\(vin)/vehicle_mileage").observeSingleEvent(of: .value, with: { (snapshot) in
+            let vehicle_mileage = snapshot.value as! Double
+            self.ref.child("vehicles/\(vin)/vehicle_mileage").setValue(vehicle_mileage + miles)
+        })
+        
         // update vehicle/user total miles based off of current trip
-        ref.child("vehicles/\(vin)/users/\(uid!)/vehicle_mileage").observeSingleEvent(of: .value, with: { (snapshot) in
-            let vehicle_miles = snapshot.value as! Double
-            self.ref.child("vehicles/\(vin)/users/\(uid!)/vehicle_mileage").setValue(vehicle_miles + miles)
+        ref.child("vehicles/\(vin)/users/\(uid!)/vehicle_user_mileage").observeSingleEvent(of: .value, with: { (snapshot) in
+            let vehicle_user_mileage = snapshot.value as! Double
+            self.ref.child("vehicles/\(vin)/users/\(uid!)/vehicle_user_mileage").setValue(vehicle_user_mileage + miles)
         })
         
         // update user total miles based off of current trip
-        ref.child("userVehicles/\(uid!)/user_mileage").observeSingleEvent(of: .value, with: { (snapshot) in
-            let total_miles = snapshot.value as! Double
-            self.ref.child("userVehicles/\(uid!)/user_mileage").setValue(total_miles + miles)
+        ref.child("userVehicles/\(uid!)").observeSingleEvent(of: .value, with: { (snapshot) in
+            let user_obj = snapshot.value as! [String: Any]
+            self.ref.child("userVehicles/\(uid!)/user_mileage").setValue((user_obj["user_mileage"] as! Double) + miles)
+            self.ref.child("userVehicles/\(uid!)/trips").setValue((user_obj["trips"] as! Int) + 1)
         })
     }
     
-    func getTrips(vin: String, uid: String, results : @escaping ((_ trips : JSON) -> Void)) {
-        ref.child("vehicles/\(vin)/users/\(uid)/trips").observeSingleEvent(of: .value, with: { (snapshot) in
-            let trip_json = JSON(snapshot.value as Any)
-            print("Trips: \(trip_json)")
-            results(trip_json)
-        }, withCancel: nil)
-    }
 }
 

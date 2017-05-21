@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02EEA82F412946F6A47400F0707E32B4 /* RealmModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B891AA1372C994D4BC0A0DFF532C618A /* RealmModels.swift */; };
 		06A9BD341A9B549B466826376A3D2413 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */; };
 		07BAD7A5A0A28269DB78BA71601F6283 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2224BD8C5EC75F0CABF4F24562833293 /* AboutViewController.swift */; };
 		0A7E756A32AC6979C9943E18644AC353 /* video.mov in Resources */ = {isa = PBXBuildFile; fileRef = 58AEEE0BD8CA18FDD2C028F69E5EEBBE /* video.mov */; };
@@ -105,7 +104,6 @@
 		9B3B9338D030805225619B817B24C830 /* Pods_ios_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5A29964B8F0B4C2F0A0FF7EA8C97BC6 /* ios_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_appUITests.swift; sourceTree = "<group>"; };
 		A7AC5F3F506A9742D810760E2887AA2D /* Pods_ios_appTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_appTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B891AA1372C994D4BC0A0DFF532C618A /* RealmModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModels.swift; sourceTree = "<group>"; };
 		CC0A5586F2B7638A92DC89C91088E985 /* OnboardingEnableFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingEnableFeaturesViewController.swift; sourceTree = "<group>"; };
 		CD4723942D8C35A66482A93661B91F5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D44A28D9B88D33F110E14B474EDA94BB /* initialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = initialViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +199,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6062FB61E66D219CB922370BA68A75CA /* About */ = {
+			isa = PBXGroup;
+			children = (
+				510D5C58C27B3B424624D2055CB5C9B6 /* AboutProgramViewController.swift */,
+				2224BD8C5EC75F0CABF4F24562833293 /* AboutViewController.swift */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
 		638B160FEBAFF11C15AA151F1726C446 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,21 +255,11 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		6062FB61E66D219CB922370BA68A75CA /* About */ = {
-			isa = PBXGroup;
-			children = (
-				510D5C58C27B3B424624D2055CB5C9B6 /* AboutProgramViewController.swift */,
-				2224BD8C5EC75F0CABF4F24562833293 /* AboutViewController.swift */,
-			);
-			name = About;
-			sourceTree = "<group>";
-		};
 		E12960067B4BC9046B88D60180D21A75 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				4AA5C6592E672205AE7042E0E9F73B84 /* BLERouter.swift */,
 				7B8B5BC677B1038566550CB03EFFEBB4 /* DB.swift */,
-				B891AA1372C994D4BC0A0DFF532C618A /* RealmModels.swift */,
 				99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */,
 				58AEEE0BD8CA18FDD2C028F69E5EEBBE /* video.mov */,
 			);
@@ -366,9 +363,7 @@
 				TargetAttributes = {
 					4B7F7B27DA252087D73087D24E7742BA = {
 						CreatedOnToolsVersion = 8.3;
-
 						DevelopmentTeam = MYKB4J9SMT;
-
 						ProvisioningStyle = Automatic;
 					};
 					A26F4000BB5354698DA5E0082DFB9B15 = {
@@ -598,7 +593,6 @@
 				C1BD8E44F38868604C3072654A54CE64 /* OnboardingOBDIIViewController.swift in Sources */,
 				8D1B2E3DF83CAF25062D87CD2C1213C6 /* OnboardingTermsViewController.swift in Sources */,
 				89C5314C8ACC42F27CDFF82EBDD903E1 /* OnboardingVehicleFormViewController.swift in Sources */,
-				02EEA82F412946F6A47400F0707E32B4 /* RealmModels.swift in Sources */,
 				233DCF1D5EDD9BB12974A644348B0491 /* SettingsFormViewController.swift in Sources */,
 				5693E0EBAFFD4CBD7B9A15DB3005EEB5 /* SettingsTableViewCell.swift in Sources */,
 				C01E2D6FD39B48F9667FD3FF37276071 /* SettingsViewController.swift in Sources */,
@@ -747,9 +741,7 @@
 			baseConfigurationReference = 7155F0AF2F917F34B10454E020C1E03E /* Pods-ios-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-
 				DEVELOPMENT_TEAM = MYKB4J9SMT;
-
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nn.ios-app";
@@ -814,9 +806,7 @@
 			baseConfigurationReference = 7B7FB9104AE8A001DF3C179095EA76F9 /* Pods-ios-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-
 				DEVELOPMENT_TEAM = MYKB4J9SMT;
-
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nn.ios-app";
