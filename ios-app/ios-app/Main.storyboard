@@ -1878,13 +1878,6 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="add accountdetails" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbX-I1-gE0">
-                                <rect key="frame" x="114" y="285" width="146" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GK3-hC-CVk">
                                 <rect key="frame" x="68" y="597" width="240" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1894,13 +1887,22 @@ Cg
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="jaA-wA-FsY" kind="show" id="ELX-bN-gJ6"/>
+                                    <action selector="nextButtonPressed:" destination="Wgp-Tw-7Lw" eventType="touchUpInside" id="OqJ-Mu-lBj"/>
+                                    <segue destination="jaA-wA-FsY" kind="show" identifier="accountCreatedSuccessfully" id="ELX-bN-gJ6"/>
                                 </connections>
                             </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ESk-KN-SRI">
+                                <rect key="frame" x="0.0" y="72" width="375" height="517"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="unF-7a-18m" kind="embed" identifier="userRegistration" id="ic7-Hh-AQZ"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="formContainer" destination="ESk-KN-SRI" id="Je2-FT-Fhx"/>
                         <outlet property="nextButton" destination="GK3-hC-CVk" id="Iih-yW-Pw9"/>
                     </connections>
                 </viewController>
@@ -2272,6 +2274,20 @@ Cg
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vTZ-Pe-ssA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2546" y="-852"/>
+        </scene>
+        <!--User Registration Form View Controller-->
+        <scene sceneID="I4o-Q3-1Gc">
+            <objects>
+                <viewController id="unF-7a-18m" customClass="userRegistrationFormViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1MP-hN-wiA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="517"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KRH-5T-vl1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3036" y="-2210"/>
         </scene>
     </scenes>
     <resources>
