@@ -53,7 +53,7 @@ class OnboardingAccountDetailsViewController: UIViewController {
         if password == password_verify {
             FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
                 let uid = FIRAuth.auth()?.currentUser?.uid
-                let values = ["total_miles": 0, "name": email] as [String : Any]
+                let values = ["trips": 0, "user_mileage": 0.0, "name": email] as [String : Any]
                 if uid != nil {
                     DB.sharedInstance.ref.child("userVehicles/").updateChildValues([String(uid!): values])
                     self.performSegue(withIdentifier: "accountCreatedSuccessfully", sender: self)
