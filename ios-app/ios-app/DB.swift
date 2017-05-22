@@ -105,6 +105,7 @@ class DB {
     }
     
     func registerVehicle() {
+        print("Creating new vehicle...")
         let date = Date()
         let ts = Int(date.timeIntervalSince1970.rounded())
         
@@ -152,7 +153,7 @@ class DB {
                 NotificationCenter.default.post(name: self.existingVehicleInfoNotification, object: nil)
                 NotificationCenter.default.post(name: self.newVehicleInfoNotification, object: nil)
             } else {
-                print("\nCreating new vehicle...")
+                print("Fetching new vehicle info...")
                 self.fetchVehicleInfo()
             }
         })
