@@ -44,8 +44,8 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     // setupOutput is expected output from device after reset (no prior configuration)
     // partialsetupOutput is expected output from device without reset (device remained configured from previous run)
-    let setupOutput = "ATE0\rOK\r\r>OK\r\r>OK\r\r>OK\r\r>OK\r\r>OK\r\r>"
-    let partialsetupOutput = "OK\r\r>OK\r\r>OK\r\r>OK\r\r>OK\r\r>OK\r\r>"
+    let setupOutput = "ATE0\rOK\r\r>OK\r\r>OK\r\r>OK\r\r>OK\r\r>"
+    let partialsetupOutput = "OK\r\r>OK\r\r>OK\r\r>OK\r\r>OK\r\r>"
     var setupComplete = false
     
     var vinNumber:String?
@@ -202,9 +202,6 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             
             // Get VIN Number
             obd2?.writeValue(Data(bytes: Array("0902\r".utf8)), for: dataCharacteristic!, type: .withResponse)
-            
-            // Monitor speed
-            monitorMetric(metricCmd: "010D\r", bleServiceCharacteristic: dataCharacteristic!)
         }
     }
     
@@ -233,15 +230,15 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                     
                     // Ref: Pg 42 - https://www.elmelectronics.com/wp-content/uploads/2016/07/ELM327DS.pdf
                     let
-                    line1 = resultStrings[1]
+                    line1 = resultStrings[2]
                     let index1 = line1.index(line1.startIndex, offsetBy: 8)
                     vinString += line1.substring(from: index1)
                     
-                    let line2 = resultStrings[2]
+                    let line2 = resultStrings[3]
                     let index2 = line2.index(line2.startIndex, offsetBy: 2)
                     vinString += line2.substring(from: index2)
                     
-                    let line3 = resultStrings[3]
+                    let line3 = resultStrings[4]
                     let index3 = line3.index(line3.startIndex, offsetBy: 2)
                     vinString += line3.substring(from: index3)
                     
@@ -256,31 +253,30 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                     
                     res = []
                     
+                    // Monitor speed
+                    monitorMetric(metricCmd: "010D\r", bleServiceCharacteristic: dataCharacteristic!)
+                    
                     DB.sharedInstance.createOrReturnVehicle(vin: vinNumber!)
                 }
             } else {
-                // Setup complete and VIN Number is set.. Proceed with normal data collection
-                var kph:Int?
-                var mph:Double = 0.0
-                
-                // 20 byte arrays are ones containing usable data
-                if (returnedBytes.count == 20) {
-                    kph = Int("\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 2])))\(String(UnicodeScalar(returnedBytes[returnedBytes.count - 1])))", radix:16)
-                }
-                
-                if (kph != nil) {
-                    mph = Double(kph!) / 1.609344
-                    print("\nCurrent speed: \(mph) mph")
-                    if (!tracking && mph > 0) {
-                        tracking = true
-                        NotificationCenter.default.post(name: colorUpdateNotification, object: nil)
-                        
-                        totalDist = 0
-                        tripSeconds = 0.0
-                        recordSpeedUpdate(spd: mph)
-                    } else if (tracking) {
-                        recordSpeedUpdate(spd: mph)
+                if (Array(res.suffix(3)).map { String(UnicodeScalar($0)) }.joined()) == "\r\r>" {
+                    if (res.map { String(UnicodeScalar($0)) }).joined() != "NO DATA\r\r>" {
+                        // Setup complete and VIN Number is set.. Proceed with normal data collection
+                        let kph = Int("\(String(UnicodeScalar(res[res.count - 5])))\(String(UnicodeScalar(res[res.count - 4])))", radix:16)
+                        let mph = Double(kph!) / 1.609344
+                        print("\nCurrent speed: \(mph) mph")
+                        if (!tracking && mph > 0) {
+                            tracking = true
+                            NotificationCenter.default.post(name: colorUpdateNotification, object: nil)
+                            
+                            totalDist = 0
+                            tripSeconds = 0.0
+                            recordSpeedUpdate(spd: mph)
+                        } else if (tracking) {
+                            recordSpeedUpdate(spd: mph)
+                        }
                     }
+                    res = []
                 }
             }
         }
@@ -292,7 +288,6 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         obd2?.writeValue(Data(bytes: Array("ATS0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
         obd2?.writeValue(Data(bytes: Array("ATL0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
         obd2?.writeValue(Data(bytes: Array("ATSP0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
-        obd2?.writeValue(Data(bytes: Array("ATSP7\r".utf8)), for: dataCharacteristic!, type: .withResponse)
     }
     
     func monitorMetric(metricCmd: String, bleServiceCharacteristic: CBCharacteristic) {
