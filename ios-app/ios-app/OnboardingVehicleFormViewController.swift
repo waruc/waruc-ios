@@ -22,7 +22,7 @@ class OnboardingVehicleFormViewController: FormViewController {
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.displayInfo),
-                                               name: DB.sharedInstance.newVehicleInfoNotification,
+                                               name: DB.sharedInstance.vehicleInfoNotification,
                                                object: nil)
     }
     

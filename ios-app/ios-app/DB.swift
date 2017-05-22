@@ -19,8 +19,7 @@ class DB {
     var refreshFeed: Bool!
     
     let tripsNotification = Notification.Name("tripsNotification")
-    let existingVehicleInfoNotification = Notification.Name("existingVehicleInfoNotification")
-    let newVehicleInfoNotification = Notification.Name("newVehicleInfoNotification")
+    let vehicleInfoNotification = Notification.Name("vehicleInfoNotification")
     
     var userVehicleKeys:[String] = []
     var userVehicles:[[String: String]] = []
@@ -133,7 +132,7 @@ class DB {
                 self.currVehicleInfo!["year"] = (existingVehicleInfo["year"] as! String)
                 self.currVehicleInfo!["nickname"] = (existingVehicleInfo["nickname"] as! String) == "" ? nil : (existingVehicleInfo["nickname"] as! String)
                 
-                NotificationCenter.default.post(name: self.existingVehicleInfoNotification, object: nil)
+                NotificationCenter.default.post(name: self.vehicleInfoNotification, object: nil)
             } else {
                 print("\nCreating new vehicle...")
                 self.fetchVehicleInfo(vin: vin)
@@ -161,7 +160,7 @@ class DB {
                 print("Model: \(self.currVehicleInfo!["model"]!)")
                 print("Model Year: \(self.currVehicleInfo!["year"]!)")
                 
-                NotificationCenter.default.post(name: self.newVehicleInfoNotification, object: nil)
+                NotificationCenter.default.post(name: self.vehicleInfoNotification, object: nil)
                 
             case .failure(let error):
                 print("VIN Lookup Failure:")
@@ -179,7 +178,7 @@ class DB {
             } else {
                 print("\nCreating new user for vehicle...")
                 let user_values = ["vehicle_user_mileage": 0]
-                self.ref.child("vehicles").child("\(vin)/users").updateChildValues([uid! : user_values])
+                self.ref.child("vehicles").child("\(vin)/users/\(uid!)").setValue(user_values)
             }
         })
     }

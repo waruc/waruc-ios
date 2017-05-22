@@ -86,12 +86,7 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         if DB.sharedInstance.currVehicleInfo == nil {
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(self.displayVehicleInfo),
-                                                   name: DB.sharedInstance.existingVehicleInfoNotification,
-                                                   object: nil)
-            
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(self.displayVehicleInfo),
-                                                   name: DB.sharedInstance.newVehicleInfoNotification,
+                                                   name: DB.sharedInstance.vehicleInfoNotification,
                                                    object: nil)
         }
     }
