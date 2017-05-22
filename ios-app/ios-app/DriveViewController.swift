@@ -291,7 +291,7 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func displayVehicleInfo() {
-        vehicleMakeLogo.image = #imageLiteral(resourceName: "chevrolet")
+        vehicleMakeLogo.image = UIImage(named: "\(DB.sharedInstance.currVehicleInfo!["make"]!.lowercased())_logo_small")
         vehicleHeader.frame.origin.y = vehicleHeader.frame.origin.y - 12
         if DB.sharedInstance.currVehicleInfo!["nickname"] == nil {
             vehicleHeader.text = "\(DB.sharedInstance.currVehicleInfo!["make"]!.capitalized)"
