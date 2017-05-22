@@ -1597,7 +1597,7 @@ Cg
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.13725490196078433" green="0.12941176470588234" blue="0.21176470588235294" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.13725490196078433" green="0.12941176470588234" blue="0.21176470588235294" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WARUC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXO-qX-EQ5">
                                 <rect key="frame" x="20" y="36" width="209" height="46"/>
@@ -3269,7 +3269,7 @@ Cg
         <image name="wheel" width="147" height="147"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="9Rd-rc-416"/>
         <segue reference="ws9-I2-c5Z"/>
-        <segue reference="Bxj-1H-fHk"/>
     </inferredMetricsTieBreakers>
 </document>
