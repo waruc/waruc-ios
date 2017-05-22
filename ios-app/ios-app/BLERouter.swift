@@ -20,7 +20,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     let obd2TagName = "OBDBLE"
     let obd2ServiceUUID = CBUUID(string: "B88BAB0E-3ABD-40F9-A816-7FB4FBE10E7E")
     
-    let timerPauseInterval:TimeInterval = 1.0  // Duration in seconds of each "pause" between scans
+    let timerPauseInterval:TimeInterval = 10.0  // Duration in seconds of each "pause" between scans
     let timerScanInterval:TimeInterval = 5.0    // Duration in seconds of each scan
     var pauseScanTimer:Timer?
     var resumeScanTimer:Timer?
