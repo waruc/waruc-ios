@@ -83,11 +83,21 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
                                                name: BLERouter.sharedInstance.colorUpdateNotification,
                                                object: nil)
         
-        if DB.sharedInstance.currVehicleInfo == nil {
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(self.displayVehicleInfo),
-                                                   name: DB.sharedInstance.vehicleInfoNotification,
-                                                   object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.displayVehicleInfo),
+                                               name: DB.sharedInstance.existingVehicleInfoNotification,
+                                               object: nil)
+        
+        if BLERouter.sharedInstance.connectionType != nil {
+            updateConnection()
+        }
+        
+        if BLERouter.sharedInstance.bleConnectionStrength != nil {
+            displayConnectionStrength()
+        }
+        
+        if DB.sharedInstance.currVehicleInfo != nil {
+            displayVehicleInfo()
         }
     }
 

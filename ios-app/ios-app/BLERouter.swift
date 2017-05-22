@@ -20,6 +20,8 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     let obd2TagName = "OBDBLE"
     let obd2ServiceUUID = CBUUID(string: "B88BAB0E-3ABD-40F9-A816-7FB4FBE10E7E")
     
+    let speedCommand = "010D\r"
+    
     let timerPauseInterval:TimeInterval = 10.0  // Duration in seconds of each "pause" between scans
     let timerScanInterval:TimeInterval = 5.0    // Duration in seconds of each scan
     var pauseScanTimer:Timer?
@@ -254,7 +256,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                     res = []
                     
                     // Monitor speed
-                    monitorMetric(metricCmd: "010D\r", bleServiceCharacteristic: dataCharacteristic!)
+                    monitorSpeed()
                     
                     DB.sharedInstance.createOrReturnVehicle(vin: vinNumber!)
                 }
@@ -290,21 +292,16 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         obd2?.writeValue(Data(bytes: Array("ATSP0\r".utf8)), for: dataCharacteristic!, type: .withResponse)
     }
     
-    func monitorMetric(metricCmd: String, bleServiceCharacteristic: CBCharacteristic) {
+    func monitorSpeed() {
         speedUpdateTimer = Timer.scheduledTimer(timeInterval: speedUpdateInterval,
                                                 target: self,
-                                                selector: #selector(monitorMetricRequest),
-                                                userInfo: ["cmd": metricCmd, "bleServiceCharacteristic": bleServiceCharacteristic],
+                                                selector: #selector(requestSpeed),
+                                                userInfo: nil,
                                                 repeats: true)
     }
     
-    func monitorMetricRequest(timer: Timer) {
-        let userInfoDict = timer.userInfo as! Dictionary<String, Any>
-        requestMetric(cmd: userInfoDict["cmd"] as! String, bleServiceCharacteristic: userInfoDict["bleServiceCharacteristic"] as! CBCharacteristic)
-    }
-    
-    func requestMetric(cmd: String, bleServiceCharacteristic: CBCharacteristic) {
-        obd2?.writeValue(Data(bytes: Array(cmd.utf8)), for: bleServiceCharacteristic, type: .withResponse)
+    func requestSpeed() {
+        obd2?.writeValue(Data(bytes: Array(speedCommand.utf8)), for: dataCharacteristic!, type: .withResponse)
     }
     
     func recordSpeedUpdate(spd: Double) {

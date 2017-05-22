@@ -11,22 +11,31 @@ import Eureka
 
 class OnboardingVehicleFormViewController: FormViewController {
 
-
     let progressHUD = ProgressHUD(text: "Loading")
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        DB.sharedInstance.getUserVehicles()
+        
         self.view.addSubview(progressHUD)
-            
-        BLERouter.sharedInstance.scan()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.startBLEScan),
+                                               name: BLERouter.sharedInstance.sharedInstanceReadyNotification,
+                                               object: nil)
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.displayInfo),
-                                               name: DB.sharedInstance.vehicleInfoNotification,
+                                               name: DB.sharedInstance.newVehicleInfoNotification,
                                                object: nil)
     }
     
-    func displayInfo() { 
+    func startBLEScan() {
+        BLERouter.sharedInstance.scan()
+    }
+    
+    func displayInfo() {
+        NotificationCenter.default.removeObserver(self, name: DB.sharedInstance.newVehicleInfoNotification, object: nil)
         progressHUD.hide()
         form +++ Section("Account")
             <<< TextRow() {
@@ -57,7 +66,7 @@ class OnboardingVehicleFormViewController: FormViewController {
                 $0.tag = "nickname"
                 }
                 .cellUpdate { cell, row in
-                    DB.sharedInstance.currVehicleInfo!["year"] = row.value
+                    DB.sharedInstance.currVehicleInfo!["nickname"] = row.value
             }
             
             +++ Section("Submit")
@@ -68,9 +77,7 @@ class OnboardingVehicleFormViewController: FormViewController {
                     cell.backgroundColor = UIColor.clear
                 }
                 .onCellSelection { [weak self] (cell, row) in
-                    print("Creating vehicle")
-                    let row: TextRow? = self?.form.rowBy(tag: "Nickname")
-                    DB.sharedInstance.registerVehicle(nickname: row?.value)
+                    DB.sharedInstance.registerVehicle()
         }
     }
 }

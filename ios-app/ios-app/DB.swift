@@ -19,7 +19,8 @@ class DB {
     var refreshFeed: Bool!
     
     let tripsNotification = Notification.Name("tripsNotification")
-    let vehicleInfoNotification = Notification.Name("vehicleInfoNotification")
+    let existingVehicleInfoNotification = Notification.Name("existingVehicleInfoNotification")
+    let newVehicleInfoNotification = Notification.Name("newVehicleInfoNotification")
     
     var userVehicleKeys:[String] = []
     var userVehicles:[[String: String]] = []
@@ -47,10 +48,11 @@ class DB {
                 let userObj = snapshot.value as! [String: Any]
                 self.userTripCount = (userObj["trips"] as! Int)
                 
-                let userVehicleArray = userObj["vehicles"] as! [String: String]
-                self.userVehicleKeys = [String](userVehicleArray.keys)
-                self.getTrips()
-                self.getUserVehicleInfo()
+                if let userVehicleArray = userObj["vehicles"] as? [String: String] {
+                    self.userVehicleKeys = [String](userVehicleArray.keys)
+                    self.getTrips()
+                    self.getUserVehicleInfo()
+                }
             })
         } else {
             print("User isn't authenticated")
@@ -62,18 +64,20 @@ class DB {
         self.userTrips = []
         for key in userVehicleKeys {
             ref.child("vehicles/\(key)/users/\(uid!)/trips").observeSingleEvent(of: .value, with: { (snapshot) in
-                let returnedTrips = (snapshot.value as! [String: Any])
-                
-                for (_, value) in returnedTrips {
-                    var trip = (value as! [String: Any])
-                    trip = ["ts": trip["timestamp"]!, "distance": (trip["mileage"]! as! Double)]
-                    self.userTrips.append(trip)
-                }
-                
-                if self.userTrips.count == self.userTripCount {
-                    self.userTrips = self.userTrips.sorted(by: { ($0["ts"]! as! Int) > ($1["ts"]! as! Int) })
-                    NotificationCenter.default.post(name: self.tripsNotification, object: nil)
-                    print("\nRetrieved all user's trips")
+                if snapshot.exists() {
+                    let returnedTrips = (snapshot.value as! [String: Any])
+                    
+                    for (_, value) in returnedTrips {
+                        var trip = (value as! [String: Any])
+                        trip = ["ts": trip["timestamp"]!, "distance": (trip["mileage"]! as! Double)]
+                        self.userTrips.append(trip)
+                    }
+                    
+                    if self.userTrips.count == self.userTripCount {
+                        self.userTrips = self.userTrips.sorted(by: { ($0["ts"]! as! Int) > ($1["ts"]! as! Int) })
+                        NotificationCenter.default.post(name: self.tripsNotification, object: nil)
+                        print("\nRetrieved all user's trips")
+                    }
                 }
             })
         }
@@ -100,7 +104,7 @@ class DB {
         }
     }
     
-    func registerVehicle(nickname: String?) {
+    func registerVehicle() {
         let date = Date()
         let ts = Int(date.timeIntervalSince1970.rounded())
         
@@ -111,56 +115,67 @@ class DB {
             "model": currVehicleInfo!["model"]!,
             "year": currVehicleInfo!["year"]!,
             "users": uid!,
-            "nickname": nickname ?? "",
+            "nickname": currVehicleInfo!["nickname"] ?? "",
             "vehicle_mileage": 0.0,
             "cts": "\(ts)"
             ] as [String : Any]
         
         ref.child("vehicles").updateChildValues([currVehicleInfo!["vin"]! : vehicle_values])
+        
+        updateVehicleUsers()
+        updateUserVehicles()
     }
     
     func createOrReturnVehicle(vin: String) {
+        self.currVehicleInfo = [String: String]()
+        self.currVehicleInfo!["vin"] = vin
         ref!.child("vehicles").child(vin).observeSingleEvent(of: .value, with: { snapshot in
             if snapshot.exists() {
                 print("\nFound existing vehicle!")
                 let existingVehicleInfo = snapshot.value as! [String: Any]
                 
-                self.currVehicleInfo = [String: String]()
-                self.currVehicleInfo!["vin"] = vin
                 self.currVehicleInfo!["make"] = (existingVehicleInfo["make"] as! String)
                 self.currVehicleInfo!["model"] = (existingVehicleInfo["model"] as! String)
                 self.currVehicleInfo!["year"] = (existingVehicleInfo["year"] as! String)
                 self.currVehicleInfo!["nickname"] = (existingVehicleInfo["nickname"] as! String) == "" ? nil : (existingVehicleInfo["nickname"] as! String)
                 
-                NotificationCenter.default.post(name: self.vehicleInfoNotification, object: nil)
+                self.updateVehicleUsers()
+                self.updateUserVehicles()
+                
+                print("\nMake: \(self.currVehicleInfo!["make"]!)")
+                print("Model: \(self.currVehicleInfo!["model"]!)")
+                print("Model Year: \(self.currVehicleInfo!["year"]!)")
+                if self.currVehicleInfo!["nickname"] != nil {
+                    print("Vehicle Nickname: \(self.currVehicleInfo!["nickname"]!)")
+                }
+                
+                NotificationCenter.default.post(name: self.existingVehicleInfoNotification, object: nil)
+                NotificationCenter.default.post(name: self.newVehicleInfoNotification, object: nil)
             } else {
                 print("\nCreating new vehicle...")
-                self.fetchVehicleInfo(vin: vin)
+                self.fetchVehicleInfo()
             }
-            
-            self.updateVehicleUsers(vin: vin)
-            self.updateUserVehicles(vin: vin)
         })
         
     }
     
-    func fetchVehicleInfo(vin: String) {
-        Alamofire.request(self.vinLookupUrl(vin: vin), method: .get).validate().responseJSON { response in
+    func fetchVehicleInfo() {
+        Alamofire.request(self.vinLookupUrl(vin: self.currVehicleInfo!["vin"]!), method: .get).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
                 self.vinData = json["Results"].arrayValue.filter { [26, 28, 29].contains($0["VariableId"].intValue) }
                 
-                self.currVehicleInfo = [String: String]()
                 self.currVehicleInfo!["make"] = self.getVehicleAttrWithId(variableId: 26).capitalized
                 self.currVehicleInfo!["model"] = self.getVehicleAttrWithId(variableId: 28)
                 self.currVehicleInfo!["year"] = self.getVehicleAttrWithId(variableId: 29)
                 
-                print("Make: \(self.currVehicleInfo!["make"]!)")
+                print("\nMake: \(self.currVehicleInfo!["make"]!)")
                 print("Model: \(self.currVehicleInfo!["model"]!)")
                 print("Model Year: \(self.currVehicleInfo!["year"]!)")
                 
-                NotificationCenter.default.post(name: self.vehicleInfoNotification, object: nil)
+                NotificationCenter.default.post(name: self.existingVehicleInfoNotification, object: nil)
+                NotificationCenter.default.post(name: self.newVehicleInfoNotification, object: nil)
                 
             case .failure(let error):
                 print("VIN Lookup Failure:")
@@ -169,30 +184,27 @@ class DB {
         }
     }
     
-    func updateVehicleUsers(vin: String) {
+    func updateVehicleUsers() {
         let uid = FIRAuth.auth()?.currentUser?.uid
-        
-        ref!.child("vehicles").child("\(vin)/users/\(uid!)").observeSingleEvent(of: .value, with: { snapshot in
+        ref!.child("vehicles").child("\(self.currVehicleInfo!["vin"]!)/users/\(uid!)").observeSingleEvent(of: .value, with: { snapshot in
             if snapshot.exists() {
                 print("\nFound user for vehicle!")
             } else {
                 print("\nCreating new user for vehicle...")
                 let user_values = ["vehicle_user_mileage": 0]
-                self.ref.child("vehicles").child("\(vin)/users/\(uid!)").setValue(user_values)
+                self.ref.child("vehicles").child("\(self.currVehicleInfo!["vin"]!)/users/\(uid!)").setValue(user_values)
             }
         })
     }
     
-    func updateUserVehicles(vin: String) {
+    func updateUserVehicles() {
         let uid = FIRAuth.auth()?.currentUser?.uid
-        
-        ref!.child("userVehicles").child("\(uid!)/vehicles/\(vin)").observeSingleEvent(of: .value, with: { snapshot in
+        ref!.child("userVehicles").child("\(uid!)/vehicles/\(self.currVehicleInfo!["vin"]!)").observeSingleEvent(of: .value, with: { snapshot in
             if snapshot.exists() {
                 print("\nFound vehicle entry in user vehicles!")
             } else {
                 print("\nCreating new entry in user vehicles...")
-                self.ref.child("userVehicles/\(uid!)").updateChildValues(["user_mileage": 0.0, "trips": 0])
-                self.ref.child("userVehicles/\(uid!)/vehicles").updateChildValues([vin: "owner"])
+                self.ref.child("userVehicles/\(uid!)/vehicles").updateChildValues([self.currVehicleInfo!["vin"]!: "owner"])
             }
         })
     }
