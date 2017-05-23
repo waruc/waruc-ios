@@ -15,7 +15,7 @@ class signInFormViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        form +++ Section("Account") {section in
+        form +++ Section("Account") { section in
                 section.tag = "account"
             }
             

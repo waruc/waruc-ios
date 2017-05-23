@@ -20,7 +20,9 @@ class userRegistrationFormViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        form +++ Section("Sign Up")
+        form +++ Section("Sign Up") { section in
+                section.tag = "account"
+            }
             
             <<< TextRow() {
                 $0.title = "Email"
