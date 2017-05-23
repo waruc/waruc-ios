@@ -33,6 +33,8 @@ class DB {
     var userTotalMiles:Double?
     var userTripCount:Int?
     
+    var newVehicle = false
+    
     init() {
         self.ref = FIRDatabase.database().reference()
         self.feedRad = 5500
@@ -153,7 +155,8 @@ class DB {
                 NotificationCenter.default.post(name: self.existingVehicleInfoNotification, object: nil)
                 NotificationCenter.default.post(name: self.newVehicleInfoNotification, object: nil)
             } else {
-                print("Fetching new vehicle info...")
+                print("\nFetching new vehicle info...")
+                self.newVehicle = true
                 self.fetchVehicleInfo()
             }
         })
