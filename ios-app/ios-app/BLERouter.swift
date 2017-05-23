@@ -11,21 +11,17 @@ import CoreBluetooth
 
 class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
+    let warucRestoreId = "waruc.98105.BLERouter"
+    
     var centralManager: CBCentralManager!
     var obd2: CBPeripheral?
     var dataCharacteristic:CBCharacteristic?
-    var peripherals = [CBPeripheral]()
     var readService:CBService?
     
     let obd2TagName = "OBDBLE"
     let obd2ServiceUUID = CBUUID(string: "B88BAB0E-3ABD-40F9-A816-7FB4FBE10E7E")
     
     let speedCommand = "010D\r"
-    
-    let timerPauseInterval:TimeInterval = 10.0  // Duration in seconds of each "pause" between scans
-    let timerScanInterval:TimeInterval = 5.0    // Duration in seconds of each scan
-    var pauseScanTimer:Timer?
-    var resumeScanTimer:Timer?
     
     var speedUpdateTimer = Timer()
     let speedUpdateInterval:TimeInterval = 1.0  // Number of seconds between speed requests
@@ -46,6 +42,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     // setupOutput is expected output from device after reset (no prior configuration)
     // partialsetupOutput is expected output from device without reset (device remained configured from previous run)
+    let restartSetupOutput = "\r\rELM327 v1.5\r\r>ATE0\rOK\r\r>OK\r\r>OK\r\r>OK\r\r>OK\r\r>"
     let setupOutput = "ATE0\rOK\r\r>OK\r\r>OK\r\r>OK\r\r>OK\r\r>"
     let partialsetupOutput = "OK\r\r>OK\r\r>OK\r\r>OK\r\r>OK\r\r>"
     var setupComplete = false
@@ -56,7 +53,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     override init() {
         super.init()
-        self.centralManager = CBCentralManager(delegate: self, queue: nil)
+        self.centralManager = CBCentralManager(delegate: self, queue: nil, options: [CBCentralManagerOptionRestoreIdentifierKey : warucRestoreId])
     }
     
     static let sharedInstance = BLERouter()
@@ -79,18 +76,14 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
     }
     
-    @objc func pauseScan() {
-        print("*** Pausing Scanning")
-        pauseScanTimer = Timer.scheduledTimer(timeInterval: timerPauseInterval, target: self, selector: #selector(scan), userInfo: nil, repeats: false)
-        centralManager.stopScan()
-    }
-    
-    @objc func scan() {
-        print("*** Scanning")
-        resumeScanTimer = Timer.scheduledTimer(timeInterval: timerScanInterval, target: self, selector: #selector(pauseScan), userInfo: nil, repeats: false)
-        
-        //centralManager.scanForPeripherals(withServices: [obd2UUID], options: nil)
-        centralManager.scanForPeripherals(withServices: nil, options: nil)
+    func centralManager(_ central: CBCentralManager, willRestoreState dict: [String : Any]) {
+        if let peripheralsObject = dict[CBCentralManagerRestoredStatePeripheralsKey] {
+            let peripherals = peripheralsObject as! Array<CBPeripheral>
+            if peripherals.count > 0 {
+                self.obd2 = peripherals[0]
+                self.obd2!.delegate = self
+            }
+        }
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
@@ -99,7 +92,6 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                 print("*** FOUND OBDBLE! Attempting to connect now!")
                 self.obd2 = peripheral
                 self.obd2!.delegate = self
-                peripherals.append(peripheral)
                 
                 centralManager.connect(obd2!, options: nil)
             }
@@ -112,8 +104,6 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         obd2?.readRSSI()
         
         centralManager.stopScan()
-        pauseScanTimer?.invalidate()
-        resumeScanTimer?.invalidate()
         peripheral.discoverServices(nil)
         
         // Update connection type
@@ -157,7 +147,6 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                 stopTrip()
             }
             
-            self.obd2 = nil
             setupComplete = false
             vinNumber = nil
             res = []
@@ -167,7 +156,12 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             connectionType = nil
             NotificationCenter.default.post(name: connectionTypeNotification, object: nil)
             
-            scan()
+            if DB.sharedInstance.currVehicleInfo != nil {
+                DB.sharedInstance.currVehicleInfo = nil
+                NotificationCenter.default.post(name: DB.sharedInstance.existingVehicleInfoNotification, object: nil)
+            }
+            
+            centralManager.connect(peripheral, options: nil)
         }
     }
     
@@ -196,8 +190,10 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
         
         if (service.uuid.uuidString == "FFE0" && service.characteristics![0].uuid.uuidString == "FFE1") {
-            // Found OBD-II input/output service & characteristic
+            print("Found OBD-II input/output service & characteristic")
             dataCharacteristic = service.characteristics![0]
+            
+            res = []
             
             obd2?.setNotifyValue(true, for: dataCharacteristic!)
             configureOBD()
@@ -213,10 +209,13 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             return
         }
         
-        var returnedBytes = [UInt8](characteristic.value!)
+        let returnedBytes = [UInt8](characteristic.value!)
         
         res += returnedBytes
-        if (res.map { String(UnicodeScalar($0)) }).joined() == setupOutput || (res.map { String(UnicodeScalar($0)) }).joined() == partialsetupOutput {
+        if (res.map { String(UnicodeScalar($0)) }).joined() == setupOutput ||
+            (res.map { String(UnicodeScalar($0)) }).joined() == restartSetupOutput ||
+            (res.map { String(UnicodeScalar($0)) }).joined() == partialsetupOutput {
+            
             print("\nOBD-II Setup is complete")
             setupComplete = true
             res = []
@@ -231,8 +230,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                     var resultStrings = res.map { String(UnicodeScalar($0)) }.joined().components(separatedBy: "\r")
                     
                     // Ref: Pg 42 - https://www.elmelectronics.com/wp-content/uploads/2016/07/ELM327DS.pdf
-                    let
-                    line1 = resultStrings[2]
+                    let line1 = resultStrings[2]
                     let index1 = line1.index(line1.startIndex, offsetBy: 8)
                     vinString += line1.substring(from: index1)
                     

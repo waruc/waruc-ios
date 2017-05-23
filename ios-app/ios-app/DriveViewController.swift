@@ -84,7 +84,7 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
                                                object: nil)
         
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.displayVehicleInfo),
+                                               selector: #selector(self.updateVehicleInfo),
                                                name: DB.sharedInstance.existingVehicleInfoNotification,
                                                object: nil)
         
@@ -97,7 +97,7 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         if DB.sharedInstance.currVehicleInfo != nil {
-            displayVehicleInfo()
+            updateVehicleInfo()
         }
     }
 
@@ -278,11 +278,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
             searchingAnimation?.startAnimating()
             connectionTypeHeader.frame.origin.y = connectionTypeHeader.frame.origin.y + 12
             connectionTypeHeader.text = "Searching"
-            
-            vehicleMakeLogo.image = nil
-            vehicleHeader.frame.origin.y = vehicleHeader.frame.origin.y + 12
-            vehicleHeader.text = "Vehicle not connected"
-            vehicleSubHeader.text = ""
         }
     }
     
@@ -290,15 +285,22 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         connectionTypeSubHeader.text = BLERouter.sharedInstance.bleConnectionStrength!
     }
     
-    func displayVehicleInfo() {
-        vehicleMakeLogo.image = UIImage(named: "\(DB.sharedInstance.currVehicleInfo!["make"]!.lowercased())_logo")
-        vehicleHeader.frame.origin.y = vehicleHeader.frame.origin.y - 12
-        if DB.sharedInstance.currVehicleInfo!["nickname"] == nil {
-            vehicleHeader.text = "\(DB.sharedInstance.currVehicleInfo!["make"]!.capitalized)"
-            vehicleSubHeader.text = "\(DB.sharedInstance.currVehicleInfo!["year"]!) \(DB.sharedInstance.currVehicleInfo!["model"]!)"
+    func updateVehicleInfo() {
+        if DB.sharedInstance.currVehicleInfo != nil {
+            vehicleMakeLogo.image = UIImage(named: "\(DB.sharedInstance.currVehicleInfo!["make"]!.lowercased())_logo")
+            vehicleHeader.frame.origin.y = vehicleHeader.frame.origin.y - 12
+            if DB.sharedInstance.currVehicleInfo!["nickname"] == nil {
+                vehicleHeader.text = "\(DB.sharedInstance.currVehicleInfo!["make"]!.capitalized)"
+                vehicleSubHeader.text = "\(DB.sharedInstance.currVehicleInfo!["year"]!) \(DB.sharedInstance.currVehicleInfo!["model"]!)"
+            } else {
+                vehicleHeader.text = "\(DB.sharedInstance.currVehicleInfo!["nickname"]!)"
+                vehicleSubHeader.text = "\(DB.sharedInstance.currVehicleInfo!["year"]!) \(DB.sharedInstance.currVehicleInfo!["make"]!.capitalized) \(DB.sharedInstance.currVehicleInfo!["model"]!)"
+            }
         } else {
-            vehicleHeader.text = "\(DB.sharedInstance.currVehicleInfo!["nickname"]!)"
-            vehicleSubHeader.text = "\(DB.sharedInstance.currVehicleInfo!["year"]!) \(DB.sharedInstance.currVehicleInfo!["make"]!.capitalized) \(DB.sharedInstance.currVehicleInfo!["model"]!)"
+            vehicleMakeLogo.image = nil
+            vehicleHeader.frame.origin.y = vehicleHeader.frame.origin.y + 12
+            vehicleHeader.text = "Vehicle not connected"
+            vehicleSubHeader.text = ""
         }
     }
 }
