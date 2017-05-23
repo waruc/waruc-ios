@@ -11,11 +11,13 @@ import UIKit
 class OnboardingVehicleInputFrameViewController: UIViewController {
 
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var skipButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         doneButton.layer.cornerRadius = CGFloat(Constants.round)
+        skipButton.layer.cornerRadius = CGFloat(Constants.round)
     }
     
     @IBAction func vehicleSubmit(_ sender: Any) {
