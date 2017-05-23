@@ -15,13 +15,22 @@ class signInContainerViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     var formViewController: signInFormViewController!
     
-    var loginErrorAlert = UIAlertController(title: "Error", message: "That email & password combination is not valid!", preferredStyle: UIAlertControllerStyle.alert)
+    let loginErrorAlert = UIAlertController(title: "Error", message: "That email & password combination is not valid!", preferredStyle: UIAlertControllerStyle.alert)
+    let emailErrorAlert = UIAlertController(title: "Error", message: "Not a valid email", preferredStyle: UIAlertControllerStyle.alert)
+    let passwordErrorAlert = UIAlertController(title: "Error", message: "Not a valid password", preferredStyle: UIAlertControllerStyle.alert)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.tintColor = Colors.green
         nextButton.layer.cornerRadius = CGFloat(Constants.round)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in
+            
+        })
+        loginErrorAlert.addAction(okAction)
+        emailErrorAlert.addAction(okAction)
+        passwordErrorAlert.addAction(okAction)
     }
     
     // Get a reference to the embedded view controller for the form
@@ -41,29 +50,40 @@ class signInContainerViewController: UIViewController {
     // Attempt firbase login 
     func login(form: Form) {
         let rows = form.sectionBy(tag: "account")
+        let values = form.values()
+        let email = values["email"] as! String
+        let pass = values["pass"] as! String
+        var valid = true
+        
         // Email
-        if !((rows?[0].isValid)!) {
+        // Not valid or empty
+        if !((rows?[0].isValid)!) || (email == "") {
+            valid = false
+            self.present(self.emailErrorAlert, animated: true, completion: nil)
             print("Invalid email")
         } else {
             print("Email is valid")
         }
+        
         // Password
-        if !((rows?[1].isValid)!) {
+        // Not valid or empty
+        if !((rows?[1].isValid)!) || (pass == "") {
+            valid = false
+            self.present(self.passwordErrorAlert, animated: true, completion: nil)
             print("Invalid Password")
         } else {
             print("Password is valid")
         }
         
-        let values = form.values()
-        let email = values["email"] as! String
-        let pass = values["pass"] as! String
-        FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
-            if user != nil {
-                self.performSegue(withIdentifier: "authorized", sender: self)
-            } else {
-                print("Sign In Error")
-                self.present(self.loginErrorAlert, animated: true, completion: nil)
-            }
-        })
+        if valid {
+            FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
+                if user != nil {
+                    self.performSegue(withIdentifier: "authorized", sender: self)
+                } else {
+                    print("Sign In Error")
+                    self.present(self.loginErrorAlert, animated: true, completion: nil)
+                }
+            })
+        }
     }
 }
