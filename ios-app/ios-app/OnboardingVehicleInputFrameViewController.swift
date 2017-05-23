@@ -11,9 +11,16 @@ import UIKit
 class OnboardingVehicleInputFrameViewController: UIViewController {
 
     @IBOutlet weak var doneButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         doneButton.layer.cornerRadius = CGFloat(Constants.round)
+    }
+    
+    @IBAction func vehicleSubmit(_ sender: Any) {
+        if DB.sharedInstance.newVehicle {
+            DB.sharedInstance.registerVehicle()
+        }
     }
 }

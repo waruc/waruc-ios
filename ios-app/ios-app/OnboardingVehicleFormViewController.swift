@@ -61,23 +61,12 @@ class OnboardingVehicleFormViewController: FormViewController {
             
             <<< TextRow("Nickname") {
                 $0.title = "Nickname"
-                $0.disabled = false
-                $0.value = ""
+                $0.disabled = DB.sharedInstance.currVehicleInfo!["nickname"] == nil ? false : true
+                $0.value = DB.sharedInstance.currVehicleInfo!["nickname"] ?? ""
                 $0.tag = "nickname"
-                }
-                .cellUpdate { cell, row in
-                    DB.sharedInstance.currVehicleInfo!["nickname"] = row.value
             }
-            
-            +++ Section("Submit")
-            <<< ButtonRow() { (row: ButtonRow) -> Void in
-                    row.title = "Done"
-                }
-                .cellSetup() { cell, row in
-                    cell.backgroundColor = UIColor.clear
-                }
-                .onCellSelection { [weak self] (cell, row) in
-                    DB.sharedInstance.registerVehicle()
-        }
+            .cellUpdate { cell, row in
+                DB.sharedInstance.currVehicleInfo!["nickname"] = row.value
+            }
     }
 }
