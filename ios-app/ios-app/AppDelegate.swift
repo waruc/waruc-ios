@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func startBLEScan() {
-        BLERouter.sharedInstance.scan()
+        BLERouter.sharedInstance.centralManager.scanForPeripherals(withServices: nil, options: nil)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
