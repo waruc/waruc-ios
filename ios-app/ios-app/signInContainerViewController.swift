@@ -8,13 +8,14 @@
 
 import UIKit
 import FirebaseAuth
+import Eureka
 
 class signInContainerViewController: UIViewController {
 
     @IBOutlet weak var nextButton: UIButton!
     var formViewController: signInFormViewController!
     
-    let loginErrorAlert = UIAlertController(title: "Error", message: "That email & password combination is not valid!", preferredStyle: UIAlertControllerStyle.alert)
+    var loginErrorAlert = UIAlertController(title: "Error", message: "That email & password combination is not valid!", preferredStyle: UIAlertControllerStyle.alert)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,13 +34,27 @@ class signInContainerViewController: UIViewController {
     
     @IBAction func nextPressed(_ sender: Any) {
         if let vc = formViewController {
-            let values = vc.form.values()
-            self.login(values: values)
+            self.login(form: vc.form)
         }
     }
 
     // Attempt firbase login 
-    func login(values: [String: Any?]) {
+    func login(form: Form) {
+        let rows = form.sectionBy(tag: "account")
+        // Email
+        if !((rows?[0].isValid)!) {
+            print("Invalid email")
+        } else {
+            print("Email is valid")
+        }
+        // Password
+        if !((rows?[1].isValid)!) {
+            print("Invalid Password")
+        } else {
+            print("Password is valid")
+        }
+        
+        let values = form.values()
         let email = values["email"] as! String
         let pass = values["pass"] as! String
         FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
