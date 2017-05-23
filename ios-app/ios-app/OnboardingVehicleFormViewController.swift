@@ -31,7 +31,7 @@ class OnboardingVehicleFormViewController: FormViewController {
     }
     
     func startBLEScan() {
-        BLERouter.sharedInstance.scan()
+        BLERouter.sharedInstance.centralManager.scanForPeripherals(withServices: nil, options: nil)
     }
     
     func displayInfo() {
