@@ -31,7 +31,7 @@ class DB {
     var userTrips:[[String: Any]] = []
     
     var userTotalMiles:Double?
-    var userTripCount:Int?
+    var userTripCount = 0
     
     var newVehicle = false
     
@@ -77,10 +77,10 @@ class DB {
                     
                     if self.userTrips.count == self.userTripCount {
                         self.userTrips = self.userTrips.sorted(by: { ($0["ts"]! as! Int) > ($1["ts"]! as! Int) })
-                        NotificationCenter.default.post(name: self.tripsNotification, object: nil)
                         print("\nRetrieved all user's trips")
                     }
                 }
+                NotificationCenter.default.post(name: self.tripsNotification, object: nil)
             })
         }
     }
@@ -125,8 +125,7 @@ class DB {
         
         ref.child("vehicles").updateChildValues([currVehicleInfo!["vin"]! : vehicle_values])
         
-        updateVehicleUsers()
-        updateUserVehicles()
+        userVehicleKeys.append(currVehicleInfo!["vin"]!)
     }
     
     func createOrReturnVehicle(vin: String) {
@@ -222,7 +221,7 @@ class DB {
     }
     
     func writeTrip(ts: Int, miles: Double, vin: String) {
-        userTripCount! += 1
+        userTripCount += 1
         
         let uid = FIRAuth.auth()?.currentUser?.uid
         let key = self.ref.child("vehicles").childByAutoId().key
