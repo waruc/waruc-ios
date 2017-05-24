@@ -79,6 +79,12 @@ class signInContainerViewController: UIViewController {
             let user = FIRAuth.auth()?.currentUser
             FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
                 if !(user?.isEmailVerified)! {
+                    DB.sharedInstance.getUserVehicles()
+                    NotificationCenter.default.addObserver(self,
+                                                           selector: #selector(self.startBLEScan),
+                                                           name: BLERouter.sharedInstance.sharedInstanceReadyNotification,
+                                                           object: nil)
+                    
                     self.performSegue(withIdentifier: "authorized", sender: self)
                 } else {
                     print("Sign In Error")
@@ -86,5 +92,9 @@ class signInContainerViewController: UIViewController {
                 }
             })
         }
+    }
+    
+    func startBLEScan() {
+        BLERouter.sharedInstance.centralManager.scanForPeripherals(withServices: nil, options: nil)
     }
 }
