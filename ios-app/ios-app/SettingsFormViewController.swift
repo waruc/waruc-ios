@@ -13,6 +13,14 @@ import MessageUI
 
 class SettingsFormViewController: FormViewController, MFMailComposeViewControllerDelegate {
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addNewVehicle" {
+            if let toViewController = segue.destination as? OnboardingVehicleInputFrameViewController {
+                toViewController.hideSkip = true
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.tableView?.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
@@ -33,7 +41,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 $0.title = "Add New Vehicle"
                 }
                 .onCellSelection {  cell, row in  //sign out
-                    self.performSegue(withIdentifier: "newVehicle", sender: self)
+                    self.performSegue(withIdentifier: "addNewVehicle", sender: self)
                 }
             
             //Removed for apple setup
