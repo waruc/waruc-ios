@@ -349,16 +349,21 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.2156862745" green="0.7843137255" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Afb-Vn-GQ9" secondAttribute="bottom" constant="9" id="0lA-Qw-xg8"/>
                                     <constraint firstAttribute="trailing" secondItem="Afb-Vn-GQ9" secondAttribute="trailing" constant="14" id="5iS-n3-9Z7"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="55" id="C4O-n9-e8n"/>
                                     <constraint firstItem="jRe-hg-I00" firstAttribute="top" secondItem="R6q-99-Wkz" secondAttribute="top" constant="17" id="Mld-Xa-Gqs"/>
                                     <constraint firstItem="jRe-hg-I00" firstAttribute="centerY" secondItem="R6q-99-Wkz" secondAttribute="centerY" id="TqU-L5-qn7"/>
                                     <constraint firstItem="jRe-hg-I00" firstAttribute="centerY" secondItem="Afb-Vn-GQ9" secondAttribute="centerY" id="ULJ-vf-vep"/>
+                                    <constraint firstItem="jRe-hg-I00" firstAttribute="leading" secondItem="R6q-99-Wkz" secondAttribute="leading" constant="8" id="Ukc-lC-5xE"/>
+                                    <constraint firstAttribute="height" constant="55" id="X6e-hW-QoA"/>
+                                    <constraint firstAttribute="bottom" secondItem="jRe-hg-I00" secondAttribute="bottom" constant="17" id="Zbp-XE-lnU"/>
                                     <constraint firstItem="jRe-hg-I00" firstAttribute="leading" secondItem="R6q-99-Wkz" secondAttribute="leadingMargin" id="fuv-0J-nCQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Afb-Vn-GQ9" secondAttribute="trailing" constant="14" id="klc-3J-poy"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAY-6w-ZLw">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAY-6w-ZLw">
                                 <rect key="frame" x="20" y="32" width="151" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="38"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -370,9 +375,8 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vcv-M5-jOM">
-                                <rect key="frame" x="0.0" y="86" width="375" height="477"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vcv-M5-jOM">
+                                <rect key="frame" x="0.0" y="86" width="375" height="475"/>
                                 <connections>
                                     <segue destination="z9J-C5-UII" kind="embed" id="gkV-wr-RqJ"/>
                                 </connections>
@@ -380,10 +384,15 @@
                         </subviews>
                         <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="R6q-99-Wkz" firstAttribute="leading" secondItem="EBs-tO-egk" secondAttribute="leading" id="B88-G9-Ydb"/>
-                            <constraint firstItem="R6q-99-Wkz" firstAttribute="centerX" secondItem="EBs-tO-egk" secondAttribute="centerX" id="IDb-W2-A7j"/>
-                            <constraint firstItem="R6q-99-Wkz" firstAttribute="top" secondItem="EBs-tO-egk" secondAttribute="top" constant="563" id="jMU-uQ-OUw"/>
-                            <constraint firstItem="R6q-99-Wkz" firstAttribute="bottom" secondItem="467-2k-LxI" secondAttribute="top" id="mDQ-Vw-BZf"/>
+                            <constraint firstItem="R6q-99-Wkz" firstAttribute="leading" secondItem="EBs-tO-egk" secondAttribute="leading" id="4LT-kq-UiW"/>
+                            <constraint firstItem="467-2k-LxI" firstAttribute="top" secondItem="R6q-99-Wkz" secondAttribute="bottom" id="Lct-PW-HMf"/>
+                            <constraint firstItem="Vcv-M5-jOM" firstAttribute="top" secondItem="RAY-6w-ZLw" secondAttribute="bottom" constant="8" id="SLr-pV-R0X"/>
+                            <constraint firstItem="Vcv-M5-jOM" firstAttribute="leading" secondItem="EBs-tO-egk" secondAttribute="leading" id="VVC-x8-eTN"/>
+                            <constraint firstItem="R6q-99-Wkz" firstAttribute="top" secondItem="Vcv-M5-jOM" secondAttribute="bottom" id="Zer-JQ-Wbe"/>
+                            <constraint firstItem="RAY-6w-ZLw" firstAttribute="top" secondItem="EBs-tO-egk" secondAttribute="topMargin" constant="32" id="bHE-CU-aEe"/>
+                            <constraint firstItem="RAY-6w-ZLw" firstAttribute="leading" secondItem="EBs-tO-egk" secondAttribute="leadingMargin" constant="4" id="cFP-KD-Jf3"/>
+                            <constraint firstAttribute="trailing" secondItem="Vcv-M5-jOM" secondAttribute="trailing" id="eoY-Ra-896"/>
+                            <constraint firstAttribute="trailing" secondItem="R6q-99-Wkz" secondAttribute="trailing" id="lSn-Ag-tby"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" id="XxO-Tf-Mt8"/>
@@ -397,7 +406,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zIn-Gt-tTk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1481" y="113"/>
+            <point key="canvasLocation" x="1480.8" y="112.89355322338831"/>
         </scene>
         <!--Settings Form View Controller-->
         <scene sceneID="DWH-f8-yKz">
@@ -408,7 +417,7 @@
                         <viewControllerLayoutGuide type="bottom" id="dbQ-oc-nRM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Jmc-Lq-jFP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="477"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="475"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -433,7 +442,7 @@
                         <viewControllerLayoutGuide type="bottom" id="117-Bv-1Jj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GYo-xc-RPm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="477"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="475"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -451,7 +460,7 @@
                         <viewControllerLayoutGuide type="bottom" id="TFp-yM-L24"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jqL-4J-oh3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="477"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="475"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -469,11 +478,11 @@
                         <viewControllerLayoutGuide type="bottom" id="l2Y-re-wOL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="RLm-UV-DEN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="477"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="475"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9nr-Dr-61A">
-                                <rect key="frame" x="12" y="0.0" width="351" height="477"/>
+                                <rect key="frame" x="12" y="0.0" width="351" height="475"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Privacy Notice">
