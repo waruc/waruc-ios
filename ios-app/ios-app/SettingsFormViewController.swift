@@ -42,6 +42,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 }
                 .onCellSelection {  cell, row in  //sign out
                     self.performSegue(withIdentifier: "addNewVehicle", sender: self)
+                    self.navigationController?.setNavigationBarHidden(false, animated: true)
                 }
             
             //Removed for apple setup
