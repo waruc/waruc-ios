@@ -15,6 +15,9 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.tableView?.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
+        //setBlack()
+        
         form +++ Section("Vehicles")
             
             <<< PickerInlineRow<String>("Current Car") { (row : PickerInlineRow<String>) -> Void in
@@ -31,18 +34,19 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 }
                 .onCellSelection {  cell, row in  //sign out
                     self.performSegue(withIdentifier: "newVehicle", sender: self)
-            }
-            
-            +++ Section(header: "Tracking Type", footer: "In-vehicle tracking requires the use of an OBD-II port. Location tracking involves the use of your device's GPS.")
-            
-            <<< PickerInlineRow<String>("Tracking Option") { (row : PickerInlineRow<String>) -> Void in
-                row.title = row.tag
-                row.displayValueFor = { (rowValue: String?) in
-                    return rowValue
                 }
-                row.options = ["In-vehicle tracking", "Location Tracking"]
-                row.value = row.options[0]
-            }
+            
+            //Removed for apple setup
+//            +++ Section(header: "Tracking Type", footer: "In-vehicle tracking requires the use of an OBD-II port. Location tracking involves the use of your device's GPS.")
+//            
+//            <<< PickerInlineRow<String>("Tracking Option") { (row : PickerInlineRow<String>) -> Void in
+//                row.title = row.tag
+//                row.displayValueFor = { (rowValue: String?) in
+//                    return rowValue
+//                }
+//                row.options = ["In-vehicle tracking", "Location Tracking"]
+//                row.value = row.options[0]
+//            }
             
             
             +++ Section(header: "Account", footer: "The password must be at least 8 characters long")
@@ -93,8 +97,6 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             +++ Section(header: "About", footer: "© 2017 Dylan Babbs, Jackson Brown, Jack Fox, Nick Nordale, and Ishan Saksena. All rights reserved.    ")
             
 
-            
-            //This doesn't work yet
             <<< ButtonRow("About the App") {
                 $0.title = $0.tag
                 $0.presentationMode = .segueName(segueName: "aboutApp", onDismiss: nil)
@@ -108,6 +110,8 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 $0.title = $0.tag
                 $0.presentationMode = .segueName(segueName: "privacyPolicy", onDismiss: nil)
             } 
+            //delete this until second app store submission
+            //TODO: reinsert for second app store submission
             <<< ButtonRow("Rate us in the App Store") {
                 $0.title = $0.tag
                 }
@@ -125,6 +129,31 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                     self.sendEmail()
             }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        if BLERouter.sharedInstance.tracking {
+            setBlack()
+        } else {
+            setWhite()
+        }
+    }
+    
+    func updateColorScheme() {
+        if BLERouter.sharedInstance.tracking {
+            setBlack()
+        } else {
+            setWhite()
+        }
+    }
+    
+    func setBlack() {
+        self.tableView?.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
+    }
+    
+    func setWhite() {
+        self.tableView?.backgroundColor = Colors.tableGrey
     }
     
     func sendEmail() {      
