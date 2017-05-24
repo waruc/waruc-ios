@@ -23,6 +23,7 @@ class OnboardingAccountDetailsViewController: UIViewController {
     let emailErrorAlert = UIAlertController(title: "Error", message: "Not a valid email", preferredStyle: UIAlertControllerStyle.alert)
     let passwordErrorAlert = UIAlertController(title: "Error", message: "Not a valid password", preferredStyle: UIAlertControllerStyle.alert)
     let passwordMatchErrorAlert = UIAlertController(title: "Error", message: "Passwords do not match!", preferredStyle: UIAlertControllerStyle.alert)
+    let emailVerificationAlert = UIAlertController(title: "Error", message: "Please verify your email address by checking your email", preferredStyle: UIAlertControllerStyle.alert)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,7 @@ class OnboardingAccountDetailsViewController: UIViewController {
         emailErrorAlert.addAction(okAction)
         passwordErrorAlert.addAction(okAction)
         passwordMatchErrorAlert.addAction(okAction)
+        emailVerificationAlert.addAction(okAction)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -94,8 +96,11 @@ class OnboardingAccountDetailsViewController: UIViewController {
         if valid {
             FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
                 let uid = FIRAuth.auth()?.currentUser?.uid
+                let user = FIRAuth.auth()?.currentUser
                 let values = ["trips": 0, "user_mileage": 0.0, "name": email] as [String : Any]
                 if uid != nil {
+                    user?.sendEmailVerification(completion: nil)
+                    self.present(self.emailVerificationAlert, animated: true, completion: nil)
                     DB.sharedInstance.ref.child("userVehicles/").updateChildValues([String(uid!): values])
                     self.performSegue(withIdentifier: "accountCreatedSuccessfully", sender: self)
                 } else {
