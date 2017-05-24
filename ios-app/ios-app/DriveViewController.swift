@@ -47,6 +47,11 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        cityHeader.text = "Drive"
+        locationIcon.isHidden = true
+        
+        bottomStartStopTrackingButton.isHidden = true
+        
         searchingAnimation = NVActivityIndicatorView(frame: CGRect(x: 10, y: 10, width: 32, height: 32))
         searchingAnimation!.color = UIColor.black
         //searchingAnimation = .ballScaleRippleMultiple

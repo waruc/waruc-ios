@@ -27,6 +27,8 @@ class SettingsViewController: UIViewController {
         
         self.bottomBar.backgroundColor = Colors.green
         
+        //bottomStartStopTrackingButton.isHidden = true
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.updateColorScheme),
                                                name: BLERouter.sharedInstance.colorUpdateNotification,
@@ -68,7 +70,6 @@ class SettingsViewController: UIViewController {
         //Main and header
         view.backgroundColor = Colors.backgroundBlack
         settingsHeader.textColor = Colors.white
-        
         
         //Bottom bar area
         bottomBar.backgroundColor = Colors.purple

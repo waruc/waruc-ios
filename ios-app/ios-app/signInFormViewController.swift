@@ -14,12 +14,14 @@ class signInFormViewController: FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+        
         form +++ Section("Account") { section in
                 section.tag = "account"
             }
             
-            <<< TextRow() {
+            <<< EmailRow() {
                 $0.title = "Email"
                 $0.tag = "email"
                 $0.add(rule: RuleRequired())
@@ -28,12 +30,14 @@ class signInFormViewController: FormViewController {
                 ruleSet.add(rule: RuleEmail())
                 $0.add(ruleSet: ruleSet)
                 $0.validationOptions = .validatesOnChangeAfterBlurred
-                $0.placeholder = "rick@getschwifty.com"
+                $0.placeholder = "example@email.com"
+                
             }
             .cellUpdate { cell, row in
                 if !row.isValid {
                     cell.titleLabel?.textColor = .red
             }
+                
         }
         
         <<< PasswordRow() {

@@ -8,9 +8,9 @@
 
 import UIKit
 import CoreBluetooth
-import CoreLocation
+//import CoreLocation
 
-class OnboardingEnableFeaturesViewController: UIViewController, CLLocationManagerDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
+class OnboardingEnableFeaturesViewController: UIViewController, /*CLLocationManagerDelegate,*/ CBCentralManagerDelegate, CBPeripheralDelegate {
 
     //location
     //TODO: This code is for next submission when location is ready
