@@ -76,8 +76,9 @@ class signInContainerViewController: UIViewController {
         }
         
         if valid {
+            let user = FIRAuth.auth()?.currentUser
             FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
-                if user != nil {
+                if !(user?.isEmailVerified)! {
                     self.performSegue(withIdentifier: "authorized", sender: self)
                 } else {
                     print("Sign In Error")
