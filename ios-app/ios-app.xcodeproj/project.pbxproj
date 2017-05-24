@@ -199,16 +199,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A3AC63959F578843C4418011033864EA /* ExpandedSettingsViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				88A97D257E23C80B47B33F6D1A6FB79F /* AboutPrivacyPolicyViewController.swift */,
-				88BDCA22BC12CB74F1D0E1752C7646CB /* AboutProgramViewController.swift */,
-				0F2737A4A5CAF7E4FDA2994A01F81561 /* AboutViewController.swift */,
-			);
-			name = ExpandedSettingsViewControllers;
-			sourceTree = "<group>";
-		};
 		638B160FEBAFF11C15AA151F1726C446 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +243,16 @@
 				24409AEF74396A96DB5940F12EF83B3E /* TripsViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A3AC63959F578843C4418011033864EA /* ExpandedSettingsViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				88A97D257E23C80B47B33F6D1A6FB79F /* AboutPrivacyPolicyViewController.swift */,
+				88BDCA22BC12CB74F1D0E1752C7646CB /* AboutProgramViewController.swift */,
+				0F2737A4A5CAF7E4FDA2994A01F81561 /* AboutViewController.swift */,
+			);
+			name = ExpandedSettingsViewControllers;
 			sourceTree = "<group>";
 		};
 		E12960067B4BC9046B88D60180D21A75 /* Models */ = {
@@ -363,7 +363,7 @@
 				TargetAttributes = {
 					4B7F7B27DA252087D73087D24E7742BA = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = MYKB4J9SMT;
+						DevelopmentTeam = M6SMTA44W3;
 						ProvisioningStyle = Automatic;
 					};
 					A26F4000BB5354698DA5E0082DFB9B15 = {
@@ -741,10 +741,10 @@
 			baseConfigurationReference = 7155F0AF2F917F34B10454E020C1E03E /* Pods-ios-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MYKB4J9SMT;
+				DEVELOPMENT_TEAM = M6SMTA44W3;
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nn.ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dbabbs.ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -806,10 +806,10 @@
 			baseConfigurationReference = 7B7FB9104AE8A001DF3C179095EA76F9 /* Pods-ios-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MYKB4J9SMT;
+				DEVELOPMENT_TEAM = M6SMTA44W3;
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nn.ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dbabbs.ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

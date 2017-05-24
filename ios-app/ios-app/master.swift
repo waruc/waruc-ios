@@ -52,6 +52,7 @@ struct Colors {
     static let white = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
     static let lightGrey = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
     static let darkGrey = UIColor(red:0.61, green:0.61, blue:0.61, alpha:1.0)
+    static let tableGrey = UIColor(red:0.94, green:0.94, blue:0.96, alpha:1.0)
     
     static let transitionTime = 0.5
 }
