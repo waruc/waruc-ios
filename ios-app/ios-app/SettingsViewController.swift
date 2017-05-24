@@ -15,7 +15,7 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var settingsHeader: UILabel!
     @IBOutlet weak var bottomBar: UIView!
-    @IBOutlet weak var settingsTableView: UITableView!
+
     
     @IBOutlet weak var trackingStatusLabel: UILabel!
     
@@ -91,7 +91,7 @@ class SettingsViewController: UIViewController {
     
     func setWhite() {
         //Main and header
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = Colors.tableGrey
         settingsHeader.textColor = Colors.black
 
         //Bottom bar area

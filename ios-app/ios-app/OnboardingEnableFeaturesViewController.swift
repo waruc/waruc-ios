@@ -13,8 +13,9 @@ import CoreLocation
 class OnboardingEnableFeaturesViewController: UIViewController, CLLocationManagerDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
 
     //location
-    var locationManager: CLLocationManager = CLLocationManager()
-    var startLocation: CLLocation!
+    //TODO: This code is for next submission when location is ready
+//    var locationManager: CLLocationManager = CLLocationManager()
+//    var startLocation: CLLocation!
     
     // Bluetooth 
     var centralManager: CBCentralManager!
@@ -42,7 +43,7 @@ class OnboardingEnableFeaturesViewController: UIViewController, CLLocationManage
     
     @IBAction func enableServices(_ sender: UIButton) {
         //location
-        locationManager.requestWhenInUseAuthorization()
+        //locationManager.requestWhenInUseAuthorization()
         
         //bluetooth
         centralManager = CBCentralManager(delegate: self, queue: nil)

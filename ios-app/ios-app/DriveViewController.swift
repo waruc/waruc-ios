@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import GoogleMaps
-import CoreLocation
+//import GoogleMaps
+//import CoreLocation
 import NVActivityIndicatorView
 
-class DriveViewController: UIViewController, CLLocationManagerDelegate {
+class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
     
     // MARK: References
     //Main header
@@ -39,9 +39,9 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     
     var searchingAnimation: NVActivityIndicatorView?
 
-    //Location services
-    var locationManager: CLLocationManager = CLLocationManager()
-    var startLocation: CLLocation!
+//    //Location services
+//    var locationManager: CLLocationManager = CLLocationManager()
+//    var startLocation: CLLocation!
     
     // MARK: Setup
     override func viewDidLoad() {
@@ -66,7 +66,7 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
 
         //Change below to kCLLocationAccuracyBestForNavigation if we need location tracking
         
-        location()
+        //location()
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.updateConnection),
@@ -101,12 +101,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
 
-    func startScanning() {
-        let uuid = UUID(uuidString: "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5")!
-        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: 123, minor: 456, identifier: "MyBeacon")
-        locationManager.startMonitoring(for: beaconRegion)
-        locationManager.startRangingBeacons(in: beaconRegion)
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -212,58 +206,61 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
                           completion: nil)
     }
     
-    func location() {
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        locationManager.distanceFilter = 1500.0
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        startLocation = nil
-    }
+    //----- The following code is for location services to be added following first
+    //----- apple submission.
     
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        // App may no longer be authorized to obtain location
-        //information. Check status here and respond accordingly
-    }
+//    func location() {
+//        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+//        locationManager.distanceFilter = 1500.0
+//        locationManager.delegate = self
+//        locationManager.requestWhenInUseAuthorization()
+//        locationManager.startUpdatingLocation()
+//        startLocation = nil
+//    }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let latestLocation: CLLocation = locations[locations.count - 1]
-        var currentLatitude:Double = latestLocation.coordinate.latitude
-        var currentLongitude:Double = latestLocation.coordinate.longitude
-        
-        if startLocation == nil {
-            startLocation = latestLocation
-        }
-        
-        //Geocoder:
-        let geocoder = GMSGeocoder()
-        var result = "result"
-        var temp = CLLocationCoordinate2D(latitude: currentLatitude, longitude: currentLongitude)
-        geocoder.reverseGeocodeCoordinate(temp) {
-            response , error in
-            if let address = response?.firstResult() {
-                if address.locality == nil || address.administrativeArea == nil {
-                    result = "Unknown, USA"
-                } else {
-                    if address.administrativeArea! != "Washington" {
-                        let city = "\(address.locality!), \(address.administrativeArea!)"
-                        result = "Outside of WA"
-                    } else {
-                        result = "\(address.locality!), WA"
-                    }
-                    print("CITY: \(result)")
-                }
-            }
-            self.cityHeader.text = result
-            self.locationIcon.isHidden = false
-            self.transition(item: self.locationIcon)
-            self.transition(item: self.cityHeader)
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        // Handle errors here 
-    }
+//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+//        // App may no longer be authorized to obtain location
+//        //information. Check status here and respond accordingly
+//    }
+//    
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        let latestLocation: CLLocation = locations[locations.count - 1]
+//        var currentLatitude:Double = latestLocation.coordinate.latitude
+//        var currentLongitude:Double = latestLocation.coordinate.longitude
+//        
+//        if startLocation == nil {
+//            startLocation = latestLocation
+//        }
+//        
+//        //Geocoder:
+//        let geocoder = GMSGeocoder()
+//        var result = "result"
+//        var temp = CLLocationCoordinate2D(latitude: currentLatitude, longitude: currentLongitude)
+//        geocoder.reverseGeocodeCoordinate(temp) {
+//            response , error in
+//            if let address = response?.firstResult() {
+//                if address.locality == nil || address.administrativeArea == nil {
+//                    result = "Unknown, USA"
+//                } else {
+//                    if address.administrativeArea! != "Washington" {
+//                        let city = "\(address.locality!), \(address.administrativeArea!)"
+//                        result = "Outside of WA"
+//                    } else {
+//                        result = "\(address.locality!), WA"
+//                    }
+//                    print("CITY: \(result)")
+//                }
+//            }
+//            self.cityHeader.text = result
+//            self.locationIcon.isHidden = false
+//            self.transition(item: self.locationIcon)
+//            self.transition(item: self.cityHeader)
+//        }
+//    }
+//    
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+//        // Handle errors here 
+//    }
     
     func updateConnection() {
         if BLERouter.sharedInstance.connectionType != nil {

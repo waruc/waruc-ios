@@ -199,16 +199,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A3AC63959F578843C4418011033864EA /* ExpandedSettingsViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				88A97D257E23C80B47B33F6D1A6FB79F /* AboutPrivacyPolicyViewController.swift */,
-				88BDCA22BC12CB74F1D0E1752C7646CB /* AboutProgramViewController.swift */,
-				0F2737A4A5CAF7E4FDA2994A01F81561 /* AboutViewController.swift */,
-			);
-			name = ExpandedSettingsViewControllers;
-			sourceTree = "<group>";
-		};
 		638B160FEBAFF11C15AA151F1726C446 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +243,16 @@
 				24409AEF74396A96DB5940F12EF83B3E /* TripsViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A3AC63959F578843C4418011033864EA /* ExpandedSettingsViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				88A97D257E23C80B47B33F6D1A6FB79F /* AboutPrivacyPolicyViewController.swift */,
+				88BDCA22BC12CB74F1D0E1752C7646CB /* AboutProgramViewController.swift */,
+				0F2737A4A5CAF7E4FDA2994A01F81561 /* AboutViewController.swift */,
+			);
+			name = ExpandedSettingsViewControllers;
 			sourceTree = "<group>";
 		};
 		E12960067B4BC9046B88D60180D21A75 /* Models */ = {
