@@ -99,8 +99,8 @@ class OnboardingAccountDetailsViewController: UIViewController {
                 let user = FIRAuth.auth()?.currentUser
                 let values = ["trips": 0, "user_mileage": 0.0, "name": email] as [String : Any]
                 if uid != nil {
-                    user?.sendEmailVerification(completion: nil)
-                    self.present(self.emailVerificationAlert, animated: true, completion: nil)
+//                    user?.sendEmailVerification(completion: nil)
+//                    self.present(self.emailVerificationAlert, animated: true, completion: nil)
                     DB.sharedInstance.ref.child("userVehicles/").updateChildValues([String(uid!): values])
                     self.performSegue(withIdentifier: "accountCreatedSuccessfully", sender: self)
                 } else {
