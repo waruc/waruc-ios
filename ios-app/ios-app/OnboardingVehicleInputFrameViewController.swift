@@ -9,6 +9,8 @@
 import UIKit
 
 class OnboardingVehicleInputFrameViewController: UIViewController {
+    
+    var hideSkip = false
 
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
@@ -18,6 +20,10 @@ class OnboardingVehicleInputFrameViewController: UIViewController {
         
         doneButton.layer.cornerRadius = CGFloat(Constants.round)
         skipButton.layer.cornerRadius = CGFloat(Constants.round)
+        
+        if hideSkip {
+            skipButton.isHidden = true
+        }
     }
     
     @IBAction func vehicleSubmit(_ sender: Any) {

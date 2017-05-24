@@ -13,6 +13,14 @@ import MessageUI
 
 class SettingsFormViewController: FormViewController, MFMailComposeViewControllerDelegate {
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addNewVehicle" {
+            if let toViewController = segue.destination as? OnboardingVehicleInputFrameViewController {
+                toViewController.hideSkip = true
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         form +++ Section("Vehicles")
@@ -30,7 +38,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 $0.title = "Add New Vehicle"
                 }
                 .onCellSelection {  cell, row in  //sign out
-                    self.performSegue(withIdentifier: "newVehicle", sender: self)
+                    self.performSegue(withIdentifier: "addNewVehicle", sender: self)
             }
             
             +++ Section(header: "Tracking Type", footer: "In-vehicle tracking requires the use of an OBD-II port. Location tracking involves the use of your device's GPS.")
