@@ -47,11 +47,6 @@ class ViewController: UIViewController {
         //        getUserVechiles()
 //        writeTrip(ts: ts, miles: 53.6912, vin: "1G1JC5444R7252367", uid: "eE3ArfvjeoOcpijMEqLVHaI0lOG2")
 //        getTrips(vin:"1G1JC5444R7252367", uid: "eE3ArfvjeoOcpijMEqLVHaI0lOG2", results: <#((JSON) -> Void)#>)
-        getTrips( {(vin: <#T##String#>, uid: <#T##String#>, results: <#T##((JSON) -> Void)##((JSON) -> Void)##(JSON) -> Void#>)
-            results; in print('bullshit')
-        
-        
-        }, uid: <#String#>)
 //        if FIRAuth.auth()?.currentUser?.uid != nil {
 //            getUserData()
 //        }
@@ -81,14 +76,15 @@ class ViewController: UIViewController {
         // TODO: Form validation
         
         if let email = emailTextField.text, let pass = passwordTextField.text {
+            let user = FIRAuth.auth()?.currentUser
             // check if sign in or create a new account
             if isSignIn {
                 // Sign in with Firebase
                 FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
                     //check that user is not nill
-                    if let u = user {
+                    if (user?.isEmailVerified)! {
                         // User is found
-                        print("S--s-s-egue")
+                        print(user?.isEmailVerified as Any)
                         self.performSegue(withIdentifier: "goToSuccess", sender: self)
                     }
                     else {
@@ -103,11 +99,34 @@ class ViewController: UIViewController {
                 // Register the user with Firebase
                 FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user, error) in
                     let uid = FIRAuth.auth()?.currentUser?.uid
-                    
-                    //
-                    if uid != nil {
-                        let values = ["OTHER_INFO": "placeholder", "name": "placeholder", "vehicles": ["placeholder": "na"]] as [String : Any]
-                        self.ref.child("userVehicles/").updateChildValues([String(uid!): values])
+                    let user = FIRAuth.auth()?.currentUser
+                    //  if !(user?.isEmailVerified)!
+                    if !(user?.isEmailVerified)! {
+                        /******* Email Verification: Start *******/
+                        
+                        let alert = UIAlertController(title: "Error", message: "Please verify your email address", preferredStyle: .alert)
+                        let alertActionOkay = UIAlertAction(title: "Okay", style: .default) {
+                            (_) in
+                        
+                            user?.sendEmailVerification(completion: nil) // sends the email to the user
+                        }
+                        let alertActionCancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                        alert.addAction(alertActionOkay)
+                        alert.addAction(alertActionCancel)
+                        self.present(alert, animated: true, completion: nil)
+                        
+
+                        
+                        
+                        
+                        /******* Email Verification: End *******/
+                        
+                        
+                        
+                        
+                        
+//                        let values = ["OTHER_INFO": "placeholder", "name": "placeholder", "vehicles": ["placeholder": "na"]] as [String : Any]
+//                        self.ref.child("userVehicles/").updateChildValues([String(uid!): values])
                         self.performSegue(withIdentifier: "goToSuccess", sender: self)
                     }
                     else {
@@ -283,6 +302,6 @@ class ViewController: UIViewController {
 //let enumerator = snapshot.children
 //while let rest = enumerator.nextObject() as? FIRDataSnapshot {}
 //let key = self.ref.child("index_vehicle").childByAutoId().key // auto-generates a hash
-
+//let handle = FIRAuth.auth()?.addStateDidChangeListener { (auth, user) in} // adds a listner for the current user
 
 
