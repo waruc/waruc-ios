@@ -24,5 +24,10 @@ class OnboardingVehicleInputFrameViewController: UIViewController {
         if DB.sharedInstance.newVehicle {
             DB.sharedInstance.registerVehicle()
         }
+        
+        DB.sharedInstance.updateVehicleUsers()
+        DB.sharedInstance.updateUserVehicles()
+        
+        DB.sharedInstance.userVehicleKeys.append(DB.sharedInstance.currVehicleInfo!["vin"]!)
     }
 }

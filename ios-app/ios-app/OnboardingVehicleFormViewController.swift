@@ -15,8 +15,6 @@ class OnboardingVehicleFormViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DB.sharedInstance.getUserVehicles()
-        
         self.view.addSubview(progressHUD)
         
         NotificationCenter.default.addObserver(self,
