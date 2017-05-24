@@ -61,7 +61,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             
             <<< TextRow(){ row in
                 row.title = "Name"
-                row.placeholder = "Rick Sanchez"
+                row.placeholder = "John Smith"
             }
             
             <<< TextRow() {
@@ -72,7 +72,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 ruleSet.add(rule: RuleEmail())
                 $0.add(ruleSet: ruleSet)
                 $0.validationOptions = .validatesOnChangeAfterBlurred
-                $0.placeholder = "rick@getschwifty.com"
+                $0.placeholder = "example@email.com"
                 }
                 .cellUpdate { cell, row in
                     if !row.isValid {
@@ -120,15 +120,15 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             } 
             //delete this until second app store submission
             //TODO: reinsert for second app store submission
-            <<< ButtonRow("Rate us in the App Store") {
-                $0.title = $0.tag
-                }
-                .onCellSelection { cell, row in 
-                    
-                    self.rateApp(appId: "id389801252") { success in
-                        print("RateApp \(success)")
-                    }
-            }
+//            <<< ButtonRow("Rate us in the App Store") {
+//                $0.title = $0.tag
+//                }
+//                .onCellSelection { cell, row in 
+//                    
+//                    self.rateApp(appId: "id389801252") { success in
+//                        print("RateApp \(success)")
+//                    }
+//            }
             <<< ButtonRow("Report an Issue") {
                 $0.title = $0.tag
                 
