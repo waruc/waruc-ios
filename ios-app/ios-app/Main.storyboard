@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Lb-ae-XNf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Lb-ae-XNf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -3370,6 +3370,9 @@ Cg
                                 <state key="normal" title="Forgot Password">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="resetPassword:" destination="2Jz-Yw-0nz" eventType="touchUpInside" id="s3P-fQ-G54"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -3387,8 +3390,10 @@ Cg
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="0eB-Yh-bYL"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="forgotPasswordButton" destination="3dQ-ui-fKk" id="3PR-Oa-yfJ"/>
                         <outlet property="nextButton" destination="MdO-X2-RfR" id="PvV-fS-iJk"/>
                         <segue destination="49e-Tb-3d3" kind="show" identifier="authorized" id="Bxj-1H-fHk"/>
+                        <segue destination="tZH-JL-lH1" kind="show" identifier="returnToVideo" id="0wl-gM-U8e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6qO-t4-fzI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3400,7 +3405,7 @@ Cg
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7Lb-ae-XNf" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="b8a-07-SKZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="b8a-07-SKZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3569,8 +3574,9 @@ Cg
         <image name="wheel" width="147" height="147"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Bxj-1H-fHk"/>
+        <segue reference="0wl-gM-U8e"/>
         <segue reference="ws9-I2-c5Z"/>
         <segue reference="Vyx-nc-J1K"/>
+        <segue reference="Bxj-1H-fHk"/>
     </inferredMetricsTieBreakers>
 </document>
