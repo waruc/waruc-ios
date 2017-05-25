@@ -122,15 +122,15 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             } 
             //delete this until second app store submission
             //TODO: reinsert for second app store submission
-//            <<< ButtonRow("Rate us in the App Store") {
-//                $0.title = $0.tag
-//                }
-//                .onCellSelection { cell, row in 
-//                    
-//                    self.rateApp(appId: "id389801252") { success in
-//                        print("RateApp \(success)")
-//                    }
-//            }
+            <<< ButtonRow("Rate us in the App Store") {
+                $0.title = $0.tag
+                }
+                .onCellSelection { cell, row in 
+                    
+                    self.rateApp(appId: "1240657572") { success in
+                        print("RateApp \(success)")
+                    }
+            }
             <<< ButtonRow("Report an Issue") {
                 $0.title = $0.tag
                 
