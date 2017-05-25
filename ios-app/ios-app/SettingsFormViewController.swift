@@ -80,7 +80,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                     $0.value = FIRAuth.auth()?.currentUser?.email!
                     $0.disabled = true
                     }
-                    .cellUpdate { cell, row in                        
+                    .cellUpdate { cell, row in
                         if !row.isValid {
                             cell.titleLabel?.textColor = .red
                         }
@@ -231,7 +231,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
     }
     
     func setWhite() {
-        self.tableView.backgroundColor = UIColor.lightGray
+        self.tableView.backgroundColor = UIColor.white
         
         if let vehiclePickerRow:PickerInlineRow<String> = form.rowBy(tag: "Current Car") {
             vehiclePickerRow.cellUpdate { cell, row in
