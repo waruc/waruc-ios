@@ -118,7 +118,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 <<< ButtonRow("About the Program") {
                     $0.title = $0.tag
                     $0.presentationMode = .segueName(segueName: "aboutProgram", onDismiss: nil)
-                } 
+                }
                 
                 <<< ButtonRow("Privacy Policy") {
                     $0.title = $0.tag
