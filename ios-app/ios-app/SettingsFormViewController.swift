@@ -22,6 +22,11 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
     }
     
     override func viewDidLoad() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.updateColorScheme),
+                                               name: BLERouter.sharedInstance.colorUpdateNotification,
+                                               object: nil)
+        
         super.viewDidLoad()
         
         form

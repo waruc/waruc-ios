@@ -34,9 +34,6 @@ class SettingsViewController: UIViewController {
                                                selector: #selector(self.updateColorScheme),
                                                name: BLERouter.sharedInstance.colorUpdateNotification,
                                                object: nil)
-        
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +68,6 @@ class SettingsViewController: UIViewController {
     }
     
     func setBlack() {
-        
         //Main and header
         view.backgroundColor = Colors.backgroundBlack
         settingsHeader.textColor = Colors.white
