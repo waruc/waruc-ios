@@ -21,18 +21,22 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var bottomStartStopTrackingButton: UIButton!
     
+    
     // MARK: Setup 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.bottomBar.backgroundColor = Colors.green
         
-        //bottomStartStopTrackingButton.isHidden = true
+        bottomStartStopTrackingButton.isHidden = true
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.updateColorScheme),
                                                name: BLERouter.sharedInstance.colorUpdateNotification,
                                                object: nil)
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +71,7 @@ class SettingsViewController: UIViewController {
     }
     
     func setBlack() {
+        
         //Main and header
         view.backgroundColor = Colors.backgroundBlack
         settingsHeader.textColor = Colors.white

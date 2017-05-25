@@ -23,9 +23,6 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.tableView?.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
-        //setBlack()
-        
         form +++ Section("Vehicles")
             
             <<< PickerInlineRow<String>("Current Car") { (row : PickerInlineRow<String>) -> Void in
@@ -35,6 +32,10 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 }
                 row.options = ["BMW 725i", "Hummer H2", "Ferrari 458 Italia"]
                 row.value = row.options[0]
+                }.cellSetup() {cell, row in
+                    cell.backgroundColor = Colors.backgroundBlack
+                    cell.tintColor = UIColor.white
+                    cell.textLabel?.textColor = UIColor.white
             }
             
             <<< ButtonRow() { 
@@ -42,6 +43,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 }
                 .onCellSelection {  cell, row in  //sign out
                     self.performSegue(withIdentifier: "addNewVehicle", sender: self)
+                    self.navigationController?.setNavigationBarHidden(false, animated: true)
                 }
             
             //Removed for apple setup
@@ -62,7 +64,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             
 //            <<< TextRow(){ row in
 //                row.title = "Name"
-//                row.placeholder = "Rick Sanchez"
+//                row.placeholder = "First Last"
 //            }
             
             <<< TextRow() {
@@ -73,6 +75,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 ruleSet.add(rule: RuleEmail())
                 $0.add(ruleSet: ruleSet)
                 $0.validationOptions = .validatesOnChangeAfterBlurred
+                $0.placeholder = "example@email.com"
                 $0.value = FIRAuth.auth()?.currentUser?.email!
                 $0.disabled = true
                 }
@@ -106,11 +109,11 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             
             +++ Section(header: "About", footer: "© 2017 Dylan Babbs, Jackson Brown, Jack Fox, Nick Nordale, and Ishan Saksena. All rights reserved.    ")
             
-
-            <<< ButtonRow("About the App") {
-                $0.title = $0.tag
-                $0.presentationMode = .segueName(segueName: "aboutApp", onDismiss: nil)
-            } 
+            //TODO: reinsert when website is running
+//            <<< ButtonRow("About the App") {
+//                $0.title = $0.tag
+//                $0.presentationMode = .segueName(segueName: "aboutApp", onDismiss: nil)
+//            } 
             <<< ButtonRow("About the Program") {
                 $0.title = $0.tag
                 $0.presentationMode = .segueName(segueName: "aboutProgram", onDismiss: nil)
@@ -122,15 +125,15 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             } 
             //delete this until second app store submission
             //TODO: reinsert for second app store submission
-            <<< ButtonRow("Rate us in the App Store") {
-                $0.title = $0.tag
-                }
-                .onCellSelection { cell, row in 
-                    
-                    self.rateApp(appId: "id389801252") { success in
-                        print("RateApp \(success)")
-                    }
-            }
+//            <<< ButtonRow("Rate us in the App Store") {
+//                $0.title = $0.tag
+//                }
+//                .onCellSelection { cell, row in 
+//                    
+//                    self.rateApp(appId: "id389801252") { success in
+//                        print("RateApp \(success)")
+//                    }
+//            }
             <<< ButtonRow("Report an Issue") {
                 $0.title = $0.tag
                 
@@ -138,8 +141,8 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 .onCellSelection { cell, row in 
                     self.sendEmail()
             }
-        
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -159,11 +162,36 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
     }
     
     func setBlack() {
+        print("set black occurred")
+        TextRow.defaultCellUpdate = { cell, row in 
+            cell.backgroundColor = Colors.backgroundBlack
+        }
+        ButtonRow.defaultCellUpdate = { cell, row in 
+            cell.backgroundColor = Colors.backgroundBlack
+        }
+        PasswordRow.defaultCellUpdate = { cell, row in 
+            cell.backgroundColor = Colors.backgroundBlack
+        }
+        PickerInlineRow<String>.defaultCellUpdate = { cell, row in 
+            cell.backgroundColor = Colors.backgroundBlack
+        }
         self.tableView?.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
     }
     
     func setWhite() {
         self.tableView?.backgroundColor = Colors.tableGrey
+        TextRow.defaultCellUpdate = { cell, row in 
+            cell.backgroundColor = Colors.white
+        }
+        ButtonRow.defaultCellUpdate = { cell, row in 
+            cell.backgroundColor = Colors.white
+        }
+        PasswordRow.defaultCellUpdate = { cell, row in 
+            cell.backgroundColor = Colors.white
+        }
+        PickerInlineRow<String>.defaultCellUpdate = { cell, row in 
+            cell.backgroundColor = Colors.white
+        }
     }
     
     func sendEmail() {      
@@ -195,4 +223,5 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
         }
         UIApplication.shared.open(url, options: [:], completionHandler: completion)
     }
+    
 }

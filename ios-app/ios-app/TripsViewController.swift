@@ -29,7 +29,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bottomStartStopTrackingButton.isHidden = true
+        //bottomStartStopTrackingButton.isHidden = true
         
         DB.sharedInstance.getTrips()
         
