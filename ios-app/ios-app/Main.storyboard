@@ -3093,7 +3093,7 @@ Cg
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You’re almost done! Just two remaining steps left until you can start driving!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgB-Je-og5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="You’re almost done! Just two remaining steps left until you can start driving!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgB-Je-og5">
                                 <rect key="frame" x="16" y="97" width="343" height="48"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -3118,8 +3118,8 @@ Cg
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m08-uU-O7w">
-                                <rect key="frame" x="68" y="298" width="291" height="175"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m08-uU-O7w">
+                                <rect key="frame" x="68" y="298" width="291" height="99"/>
                                 <string key="text">Configure you vehicle's details so we can determine which vehicle you are driving. The only required information is make, model, and year.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3132,8 +3132,11 @@ Cg
                                     <constraint firstAttribute="width" secondItem="06V-1b-I25" secondAttribute="height" multiplier="1:1" id="y3F-Bn-FZa"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Plug in your WARUC approved OBD-II device into your vehicle. This device allows us to derive your total miles driven." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jp5-CZ-YFJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Plug in your WARUC approved OBD-II device into your vehicle. This device allows us to derive your total miles driven." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jp5-CZ-YFJ">
                                 <rect key="frame" x="68" y="194" width="291" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="qeb-pd-ZcO" userLabel="height = 74"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -3154,13 +3157,13 @@ Cg
                             <constraint firstItem="xgB-Je-og5" firstAttribute="top" secondItem="3rd-y9-yhN" secondAttribute="bottom" constant="33" id="Ons-vt-PFO"/>
                             <constraint firstItem="Cbr-FS-DXf" firstAttribute="leading" secondItem="eDE-we-CoA" secondAttribute="leadingMargin" constant="4" id="Pjf-ge-MuR"/>
                             <constraint firstItem="m08-uU-O7w" firstAttribute="top" secondItem="nMn-KR-snn" secondAttribute="bottom" constant="2" id="Q76-6N-R9M"/>
-                            <constraint firstItem="nMn-KR-snn" firstAttribute="top" secondItem="Jp5-CZ-YFJ" secondAttribute="bottom" constant="24" id="RcC-hH-b6v"/>
-                            <constraint firstItem="Jp5-CZ-YFJ" firstAttribute="top" secondItem="fUX-Tf-uO8" secondAttribute="bottom" constant="2" id="SMk-1z-6p5"/>
+                            <constraint firstItem="Jp5-CZ-YFJ" firstAttribute="top" secondItem="fUX-Tf-uO8" secondAttribute="bottom" constant="-5" id="SMk-1z-6p5"/>
                             <constraint firstItem="Qdd-SH-Ny2" firstAttribute="top" secondItem="7HR-G0-VaJ" secondAttribute="bottom" constant="30" id="Teu-6B-tGc"/>
                             <constraint firstItem="nMn-KR-snn" firstAttribute="leading" secondItem="06V-1b-I25" secondAttribute="trailing" constant="14" id="Wcs-S6-60j"/>
                             <constraint firstItem="m08-uU-O7w" firstAttribute="leading" secondItem="06V-1b-I25" secondAttribute="trailing" constant="14" id="Yb7-FD-M0E"/>
                             <constraint firstItem="xgB-Je-og5" firstAttribute="trailing" secondItem="eDE-we-CoA" secondAttribute="trailingMargin" id="cjh-1D-Es0"/>
                             <constraint firstItem="m08-uU-O7w" firstAttribute="top" secondItem="nMn-KR-snn" secondAttribute="bottom" constant="2" id="dra-x1-eh9"/>
+                            <constraint firstItem="fUX-Tf-uO8" firstAttribute="leading" secondItem="Cbr-FS-DXf" secondAttribute="trailing" constant="14" id="i67-1I-Mnp"/>
                             <constraint firstItem="Jp5-CZ-YFJ" firstAttribute="trailing" secondItem="eDE-we-CoA" secondAttribute="trailingMargin" id="iyI-G6-ibM"/>
                             <constraint firstItem="7HR-G0-VaJ" firstAttribute="centerX" secondItem="eDE-we-CoA" secondAttribute="centerX" id="jAb-Kq-dBR"/>
                             <constraint firstItem="nMn-KR-snn" firstAttribute="top" secondItem="eDE-we-CoA" secondAttribute="top" constant="272" id="k3G-VR-8eN"/>
