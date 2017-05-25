@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Lb-ae-XNf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Lb-ae-XNf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -250,7 +250,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u0O-56-GgW" id="nhF-vY-jI0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5m-N0-WMw">
@@ -1667,15 +1667,6 @@ Cg
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENd-Md-J4W">
-                                <rect key="frame" x="334" y="637" width="41" height="30"/>
-                                <state key="normal" title="Cheat">
-                                    <color key="titleColor" red="0.34490317106246948" green="0.33960753679275513" blue="0.41832131147384644" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="49e-Tb-3d3" kind="show" id="9Rd-rc-416"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NG8-Ql-32Y">
                                 <rect key="frame" x="68" y="597" width="240" height="40"/>
                                 <color key="backgroundColor" red="0.2156862745" green="0.7843137255" blue="0.50980392159999999" alpha="1" colorSpace="deviceRGB"/>
@@ -1709,15 +1700,13 @@ Cg
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="L6m-hZ-1NH" firstAttribute="centerX" secondItem="6m9-J1-b4C" secondAttribute="centerX" id="Ekw-p2-M8u"/>
-                            <constraint firstItem="KHd-fv-teH" firstAttribute="top" secondItem="ENd-Md-J4W" secondAttribute="bottom" id="F2T-fG-8Fp"/>
                             <constraint firstItem="Dxs-dr-4ca" firstAttribute="leading" secondItem="6m9-J1-b4C" secondAttribute="leading" id="HbF-hw-1H7"/>
                             <constraint firstItem="KHd-fv-teH" firstAttribute="top" secondItem="Dxs-dr-4ca" secondAttribute="bottom" id="HlP-g9-168"/>
-                            <constraint firstItem="ENd-Md-J4W" firstAttribute="top" secondItem="NG8-Ql-32Y" secondAttribute="bottom" id="R0L-He-7hv"/>
                             <constraint firstItem="NG8-Ql-32Y" firstAttribute="centerX" secondItem="6m9-J1-b4C" secondAttribute="centerX" id="Tuv-7N-N85"/>
                             <constraint firstAttribute="trailing" secondItem="Dxs-dr-4ca" secondAttribute="trailing" id="b6w-L2-cp6"/>
-                            <constraint firstAttribute="trailing" secondItem="ENd-Md-J4W" secondAttribute="trailing" id="hbX-OQ-eLv"/>
                             <constraint firstItem="NG8-Ql-32Y" firstAttribute="top" secondItem="L6m-hZ-1NH" secondAttribute="bottom" constant="18" id="jUx-au-Pld"/>
                             <constraint firstItem="Dxs-dr-4ca" firstAttribute="top" secondItem="6m9-J1-b4C" secondAttribute="top" id="ogY-fv-Z8g"/>
+                            <constraint firstItem="KHd-fv-teH" firstAttribute="top" secondItem="NG8-Ql-32Y" secondAttribute="bottom" constant="30" id="qje-ZD-lfg"/>
                             <constraint firstItem="NG8-Ql-32Y" firstAttribute="top" secondItem="L6m-hZ-1NH" secondAttribute="bottom" constant="18" id="rw0-AH-xM9"/>
                         </constraints>
                     </view>
@@ -3026,15 +3015,6 @@ Cg
                                     <segue destination="unF-7a-18m" kind="embed" identifier="userRegistration" id="ic7-Hh-AQZ"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWO-Xc-ENQ">
-                                <rect key="frame" x="334" y="637" width="41" height="30"/>
-                                <state key="normal" title="Cheat">
-                                    <color key="titleColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="jaA-wA-FsY" kind="show" identifier="accountCreatedSuccessfully" id="ws9-I2-c5Z"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GK3-hC-CVk">
                                 <rect key="frame" x="62" y="437" width="240" height="40"/>
                                 <color key="backgroundColor" red="0.2156862745" green="0.7843137255" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3056,16 +3036,14 @@ Cg
                             <constraint firstAttribute="trailing" secondItem="ESk-KN-SRI" secondAttribute="trailing" id="9kO-an-qUl"/>
                             <constraint firstItem="GK3-hC-CVk" firstAttribute="centerY" secondItem="ssK-yS-pyG" secondAttribute="centerY" id="CpO-qZ-t9s"/>
                             <constraint firstItem="ESk-KN-SRI" firstAttribute="leading" secondItem="ssK-yS-pyG" secondAttribute="leading" id="GXe-Gg-Aow"/>
-                            <constraint firstItem="WWe-Vq-EPD" firstAttribute="top" secondItem="NWO-Xc-ENQ" secondAttribute="bottom" id="QWo-jj-WPq"/>
                             <constraint firstItem="WWe-Vq-EPD" firstAttribute="top" secondItem="ESk-KN-SRI" secondAttribute="bottom" id="Tfv-Lj-h6g"/>
                             <constraint firstItem="ESk-KN-SRI" firstAttribute="top" secondItem="kSl-4x-vVv" secondAttribute="bottom" id="VR5-G5-uYW"/>
                             <constraint firstItem="GK3-hC-CVk" firstAttribute="centerX" secondItem="ssK-yS-pyG" secondAttribute="centerX" id="cFC-uv-ZQe"/>
-                            <constraint firstAttribute="trailing" secondItem="NWO-Xc-ENQ" secondAttribute="trailing" id="dXx-WS-2TP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="nextButton" destination="GK3-hC-CVk" id="Iih-yW-Pw9"/>
-                        <segue destination="jaA-wA-FsY" kind="show" id="Egt-cs-19n"/>
+                        <segue destination="jaA-wA-FsY" kind="show" identifier="accountCreatedSuccessfully" id="Egt-cs-19n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sUR-np-CCK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3124,7 +3102,7 @@ Cg
                                     <constraint firstAttribute="width" secondItem="Cbr-FS-DXf" secondAttribute="height" multiplier="34:25" id="iCe-3e-cxP" userLabel="aspect = 1:1"/>
                                     <constraint firstAttribute="width" constant="34" id="naK-xN-avc"/>
                                 </constraints>
-			    </imageView>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="747" misplaced="YES" image="wheel" translatesAutoresizingMaskIntoConstraints="NO" id="06V-1b-I25">
                                 <rect key="frame" x="16" y="267" width="34" height="34"/>
                                 <constraints>
@@ -3561,9 +3539,8 @@ Cg
         <image name="wheel" width="147" height="147"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Vyx-nc-J1K"/>
-        <segue reference="ws9-I2-c5Z"/>
         <segue reference="7ZV-ay-ceO"/>
-        <segue reference="9Rd-rc-416"/>
+        <segue reference="Y9S-bN-CGT"/>
+        <segue reference="Vyx-nc-J1K"/>
     </inferredMetricsTieBreakers>
 </document>
