@@ -80,10 +80,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                     $0.value = FIRAuth.auth()?.currentUser?.email!
                     $0.disabled = true
                     }
-                    .cellUpdate { cell, row in
-//                        cell.textLabel?.textColor = UIColor.white
-//                        cell.backgroundColor = UIColor.blue
-                        
+                    .cellUpdate { cell, row in                        
                         if !row.isValid {
                             cell.titleLabel?.textColor = .red
                         }
