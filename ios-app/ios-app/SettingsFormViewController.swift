@@ -57,12 +57,13 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
 //            }
             
             
-            +++ Section(header: "Account", footer: "The password must be at least 8 characters long")
+//            +++ Section(header: "Account", footer: "The password must be at least 8 characters long")
+            +++ Section("Account")
             
-            <<< TextRow(){ row in
-                row.title = "Name"
-                row.placeholder = "Rick Sanchez"
-            }
+//            <<< TextRow(){ row in
+//                row.title = "Name"
+//                row.placeholder = "Rick Sanchez"
+//            }
             
             <<< TextRow() {
                 $0.title = "Email"
@@ -72,7 +73,8 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 ruleSet.add(rule: RuleEmail())
                 $0.add(ruleSet: ruleSet)
                 $0.validationOptions = .validatesOnChangeAfterBlurred
-                $0.placeholder = "rick@getschwifty.com"
+                $0.value = FIRAuth.auth()?.currentUser?.email!
+                $0.disabled = true
                 }
                 .cellUpdate { cell, row in
                     if !row.isValid {
@@ -82,16 +84,16 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             }
             
             
-            <<< PasswordRow() {
-                $0.title = "Password"
-                $0.add(rule: RuleMinLength(minLength: 8))
-                //$0.add(rule: RuleMaxLength(maxLength: 13))
-                }
-                .cellUpdate { cell, row in
-                    if !row.isValid {
-                        cell.titleLabel?.textColor = .red
-                    }
-            }
+//            <<< PasswordRow() {
+//                $0.title = "Password"
+//                $0.add(rule: RuleMinLength(minLength: 8))
+//                //$0.add(rule: RuleMaxLength(maxLength: 13))
+//                }
+//                .cellUpdate { cell, row in
+//                    if !row.isValid {
+//                        cell.titleLabel?.textColor = .red
+//                    }
+//            }
             
             <<< ButtonRow() { 
                     $0.title = "Sign out"
