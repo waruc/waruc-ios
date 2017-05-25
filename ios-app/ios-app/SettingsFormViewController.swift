@@ -33,9 +33,6 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 row.options = ["BMW 725i", "Hummer H2", "Ferrari 458 Italia"]
                 row.value = row.options[0]
                 }.cellSetup() {cell, row in
-                    cell.backgroundColor = Colors.backgroundBlack
-                    cell.tintColor = UIColor.white
-                    cell.textLabel?.textColor = UIColor.white
             }
             
             <<< ButtonRow() { 
