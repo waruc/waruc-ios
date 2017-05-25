@@ -231,7 +231,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
     }
     
     func setWhite() {
-        self.tableView.backgroundColor = UIColor.white
+        self.tableView.backgroundColor = Colors.tableGrey
         
         if let vehiclePickerRow:PickerInlineRow<String> = form.rowBy(tag: "Current Car") {
             vehiclePickerRow.cellUpdate { cell, row in
