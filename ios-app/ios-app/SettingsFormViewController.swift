@@ -98,7 +98,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
 //                        }
 //                }
             
-                <<< ButtonRow() { 
+                <<< ButtonRow("Sign out") {
                         $0.title = "Sign out"
                     }
                     .onCellSelection {  cell, row in  //sign out
@@ -197,6 +197,16 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             emailRow.updateCell()
         }
         
+        if let signOutRow:ButtonRow = form.rowBy(tag: "Sign out") {
+            signOutRow.cellUpdate { cell, row in
+                cell.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
+                cell.textLabel?.textColor = UIColor.white
+                cell.detailTextLabel?.textColor = UIColor.white
+            }
+            
+            signOutRow.updateCell()
+        }
+        
         if let aboutTheProgramRow:ButtonRow = form.rowBy(tag: "About the Program") {
             aboutTheProgramRow.cellUpdate { cell, row in
                 cell.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
@@ -261,6 +271,16 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             }
             
             emailRow.updateCell()
+        }
+        
+        if let signOutRow:ButtonRow = form.rowBy(tag: "Sign out") {
+            signOutRow.cellUpdate { cell, row in
+                cell.backgroundColor = UIColor.white
+                cell.textLabel?.textColor = UIColor.black
+                cell.detailTextLabel?.textColor = UIColor.black
+            }
+            
+            signOutRow.updateCell()
         }
         
         if let aboutTheProgramRow:ButtonRow = form.rowBy(tag: "About the Program") {
