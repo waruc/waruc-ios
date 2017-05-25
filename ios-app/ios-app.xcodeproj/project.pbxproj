@@ -363,7 +363,6 @@
 				TargetAttributes = {
 					4B7F7B27DA252087D73087D24E7742BA = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = MYKB4J9SMT;
 						ProvisioningStyle = Automatic;
 					};
 					A26F4000BB5354698DA5E0082DFB9B15 = {
@@ -741,9 +740,9 @@
 			baseConfigurationReference = 7155F0AF2F917F34B10454E020C1E03E /* Pods-ios-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MYKB4J9SMT;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "ios-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nn.waruc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -807,9 +806,9 @@
 			baseConfigurationReference = 7B7FB9104AE8A001DF3C179095EA76F9 /* Pods-ios-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MYKB4J9SMT;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "ios-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nn.waruc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
