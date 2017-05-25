@@ -38,10 +38,9 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
     @IBOutlet weak var animationView: UIView!
     
     var searchingAnimation: NVActivityIndicatorView?
-
-//    //Location services
-//    var locationManager: CLLocationManager = CLLocationManager()
-//    var startLocation: CLLocation!
+    
+    @IBOutlet weak var connectionHeaderTop: NSLayoutConstraint!
+    @IBOutlet weak var vehicleHeaderTop: NSLayoutConstraint!
     
     // MARK: Setup
     override func viewDidLoad() {
@@ -272,13 +271,13 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
             connectionTypeLogo.image = #imageLiteral(resourceName: "bluetooth")
             searchingAnimation?.stopAnimating()
             
-            connectionTypeHeader.frame.origin.y = connectionTypeHeader.frame.origin.y - 12
+            connectionHeaderTop.constant -= 12
             connectionTypeHeader.text = BLERouter.sharedInstance.connectionType
         } else {
             connectionTypeLogo.image = nil
             connectionTypeSubHeader.text = ""
             searchingAnimation?.startAnimating()
-            connectionTypeHeader.frame.origin.y = connectionTypeHeader.frame.origin.y + 12
+            connectionHeaderTop.constant += 12
             connectionTypeHeader.text = "Searching"
         }
     }
@@ -290,7 +289,7 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
     func updateVehicleInfo() {
         if DB.sharedInstance.currVehicleInfo != nil {
             vehicleMakeLogo.image = UIImage(named: "\(DB.sharedInstance.currVehicleInfo!["make"]!.lowercased())_logo")
-            vehicleHeader.frame.origin.y = vehicleHeader.frame.origin.y - 12
+            vehicleHeaderTop.constant -= 12
             if DB.sharedInstance.currVehicleInfo!["nickname"] == nil {
                 vehicleHeader.text = "\(DB.sharedInstance.currVehicleInfo!["make"]!.capitalized)"
                 vehicleSubHeader.text = "\(DB.sharedInstance.currVehicleInfo!["year"]!) \(DB.sharedInstance.currVehicleInfo!["model"]!)"
@@ -300,7 +299,7 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
             }
         } else {
             vehicleMakeLogo.image = nil
-            vehicleHeader.frame.origin.y = vehicleHeader.frame.origin.y + 12
+            vehicleHeaderTop.constant += 12
             vehicleHeader.text = "Vehicle not connected"
             vehicleSubHeader.text = ""
         }
