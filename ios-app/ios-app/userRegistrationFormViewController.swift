@@ -20,7 +20,7 @@ class userRegistrationFormViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        form +++ Section("Sign Up") { section in
+        form +++ Section(header: "Sign Up", footer: "Passwords must contain at least 8 characters") { section in
                 section.tag = "account"
             }
             

@@ -98,13 +98,13 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
 //                        }
 //                }
             
-//                <<< ButtonRow() { 
-//                        $0.title = "Sign out"
-//                    }
-//                    .onCellSelection {  cell, row in  //sign out
-//                        try! FIRAuth.auth()!.signOut()
-//                        self.performSegue(withIdentifier: "signOut", sender: self)
-//                }
+                <<< ButtonRow() { 
+                        $0.title = "Sign out"
+                    }
+                    .onCellSelection {  cell, row in  //sign out
+                        try! FIRAuth.auth()!.signOut()
+                        self.performSegue(withIdentifier: "signOut", sender: self)
+                }
             
             
             +++ Section(header: "About", footer: "© 2017 Dylan Babbs, Jackson Brown, Jack Fox, Nick Nordale, and Ishan Saksena. All rights reserved.    ")

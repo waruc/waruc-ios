@@ -44,7 +44,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searching" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qtw-h1-sqA">
-                                <rect key="frame" x="76" y="143" width="101.5" height="27"/>
+                                <rect key="frame" x="76" y="143" width="102" height="27"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -3016,7 +3016,7 @@ Cg
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GK3-hC-CVk">
-                                <rect key="frame" x="62" y="437" width="240" height="40"/>
+                                <rect key="frame" x="67" y="373" width="240" height="40"/>
                                 <color key="backgroundColor" red="0.2156862745" green="0.7843137255" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="2Lr-Ts-dmU"/>
@@ -3034,8 +3034,8 @@ Cg
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ESk-KN-SRI" secondAttribute="trailing" id="9kO-an-qUl"/>
-                            <constraint firstItem="GK3-hC-CVk" firstAttribute="centerY" secondItem="ssK-yS-pyG" secondAttribute="centerY" id="CpO-qZ-t9s"/>
                             <constraint firstItem="ESk-KN-SRI" firstAttribute="leading" secondItem="ssK-yS-pyG" secondAttribute="leading" id="GXe-Gg-Aow"/>
+                            <constraint firstItem="GK3-hC-CVk" firstAttribute="top" secondItem="kSl-4x-vVv" secondAttribute="bottom" constant="280" id="LRF-KF-Zgg" userLabel="Next Button.top = Top Layout Guide.bottom + 240"/>
                             <constraint firstItem="WWe-Vq-EPD" firstAttribute="top" secondItem="ESk-KN-SRI" secondAttribute="bottom" id="Tfv-Lj-h6g"/>
                             <constraint firstItem="ESk-KN-SRI" firstAttribute="top" secondItem="kSl-4x-vVv" secondAttribute="bottom" id="VR5-G5-uYW"/>
                             <constraint firstItem="GK3-hC-CVk" firstAttribute="centerX" secondItem="ssK-yS-pyG" secondAttribute="centerX" id="cFC-uv-ZQe"/>
