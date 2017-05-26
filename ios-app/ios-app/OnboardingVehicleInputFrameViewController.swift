@@ -43,7 +43,7 @@ class OnboardingVehicleInputFrameViewController: UIViewController {
         DB.sharedInstance.updateVehicleUsers()
         DB.sharedInstance.updateUserVehicles()
         
-        DB.sharedInstance.userVehicleKeys.append(DB.sharedInstance.currVehicleInfo!["vin"]!)
+        DB.sharedInstance.userVehicleKeys.insert(DB.sharedInstance.currVehicleInfo!["vin"]!)
     }
     
     func modifyButtons() {
