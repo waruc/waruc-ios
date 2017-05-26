@@ -22,7 +22,7 @@ class DB {
     let existingVehicleInfoNotification = Notification.Name("existingVehicleInfoNotification")
     let newVehicleInfoNotification = Notification.Name("newVehicleInfoNotification")
     
-    var userVehicleKeys:[String] = []
+    var userVehicleKeys = Set<String>()
     var userVehicles:[[String: String]] = []
     
     var vinData:[JSON] = []
@@ -51,7 +51,7 @@ class DB {
                 self.userTripCount = (userObj["trips"] as! Int)
                 
                 if let userVehicleArray = userObj["vehicles"] as? [String: String] {
-                    self.userVehicleKeys = [String](userVehicleArray.keys)
+                    self.userVehicleKeys = Set<String>(userVehicleArray.keys)
                     self.getTrips()
                     self.getUserVehicleInfo()
                 }
@@ -64,6 +64,7 @@ class DB {
     func getTrips() {
         let uid = FIRAuth.auth()?.currentUser?.uid
         self.userTrips = []
+        var trips:[[String: Any]] = []
         for key in userVehicleKeys {
             ref.child("vehicles/\(key)/users/\(uid!)/trips").observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.exists() {
@@ -72,11 +73,11 @@ class DB {
                     for (_, value) in returnedTrips {
                         var trip = (value as! [String: Any])
                         trip = ["ts": trip["timestamp"]!, "distance": (trip["mileage"]! as! Double)]
-                        self.userTrips.append(trip)
+                        trips.append(trip)
                     }
                     
-                    if self.userTrips.count == self.userTripCount {
-                        self.userTrips = self.userTrips.sorted(by: { ($0["ts"]! as! Int) > ($1["ts"]! as! Int) })
+                    if trips.count == self.userTripCount {
+                        self.userTrips = trips.sorted(by: { ($0["ts"]! as! Int) > ($1["ts"]! as! Int) })
                         print("\nRetrieved all user's trips")
                     }
                 }
@@ -91,6 +92,7 @@ class DB {
             ref!.child("vehicles").child(key).observeSingleEvent(of: .value, with: { (snapshot) in
                 let existingVehicleInfo = snapshot.value as! [String: Any]
                 let vehicle:[String: String] = [
+                    "vin": key,
                     "make": (existingVehicleInfo["make"] as! String),
                     "model": (existingVehicleInfo["model"] as! String),
                     "year": (existingVehicleInfo["year"] as! String),
@@ -113,19 +115,23 @@ class DB {
         
         let uid = FIRAuth.auth()?.currentUser?.uid
         
-        let vehicle_values = [
+        var vehicle_values = [
             "make" : currVehicleInfo!["make"]!,
             "model": currVehicleInfo!["model"]!,
             "year": currVehicleInfo!["year"]!,
             "users": uid!,
-            "nickname": currVehicleInfo!["nickname"] ?? "",
-            "vehicle_mileage": 0.0,
-            "cts": "\(ts)"
+            "nickname": currVehicleInfo!["nickname"] ?? ""
             ] as [String : Any]
+        
+        userVehicles.append(vehicle_values as! [String : String])
+        
+        vehicle_values["vehicle_mileage"] =  0.0
+        vehicle_values["cts"] = "\(ts)"
         
         ref.child("vehicles").updateChildValues([currVehicleInfo!["vin"]! : vehicle_values])
         
-        userVehicleKeys.append(currVehicleInfo!["vin"]!)
+        
+        userVehicleKeys.insert(currVehicleInfo!["vin"]!)
     }
     
     func createOrReturnVehicle(vin: String) {
