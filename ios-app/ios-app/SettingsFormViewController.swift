@@ -32,18 +32,18 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
         form
             +++ Section("Vehicles")
             
-                <<< PickerInlineRow<String>("Current Car") { (row : PickerInlineRow<String>) -> Void in
-                    row.title = row.tag
-                    row.displayValueFor = { (rowValue: String?) in
-                        return rowValue
-                    }
-                    row.options = ["BMW 725i", "Hummer H2", "Ferrari 458 Italia"]
-                    row.value = row.options[0]
-                    }.cellSetup() {cell, row in
-                        cell.backgroundColor = Colors.backgroundBlack
-                        cell.tintColor = UIColor.white
-                        cell.textLabel?.textColor = UIColor.white
-                }
+//                <<< PickerInlineRow<String>("Current Car") { (row : PickerInlineRow<String>) -> Void in
+//                    row.title = row.tag
+//                    row.displayValueFor = { (rowValue: String?) in
+//                        return rowValue
+//                    }
+//                    row.options = ["BMW 725i", "Hummer H2", "Ferrari 458 Italia"]
+//                    row.value = row.options[0]
+//                    }.cellSetup() {cell, row in
+//                        cell.backgroundColor = Colors.backgroundBlack
+//                        cell.tintColor = UIColor.white
+//                        cell.textLabel?.textColor = UIColor.white
+//                }
             
                 <<< ButtonRow("Add New Vehicle") {
                     $0.title = "Add New Vehicle"
