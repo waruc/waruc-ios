@@ -92,6 +92,7 @@ class DB {
             ref!.child("vehicles").child(key).observeSingleEvent(of: .value, with: { (snapshot) in
                 let existingVehicleInfo = snapshot.value as! [String: Any]
                 let vehicle:[String: String] = [
+                    "vin": key,
                     "make": (existingVehicleInfo["make"] as! String),
                     "model": (existingVehicleInfo["model"] as! String),
                     "year": (existingVehicleInfo["year"] as! String),
@@ -114,17 +115,21 @@ class DB {
         
         let uid = FIRAuth.auth()?.currentUser?.uid
         
-        let vehicle_values = [
+        var vehicle_values = [
             "make" : currVehicleInfo!["make"]!,
             "model": currVehicleInfo!["model"]!,
             "year": currVehicleInfo!["year"]!,
             "users": uid!,
-            "nickname": currVehicleInfo!["nickname"] ?? "",
-            "vehicle_mileage": 0.0,
-            "cts": "\(ts)"
+            "nickname": currVehicleInfo!["nickname"] ?? ""
             ] as [String : Any]
         
+        userVehicles.append(vehicle_values as! [String : String])
+        
+        vehicle_values["vehicle_mileage"] =  0.0
+        vehicle_values["cts"] = "\(ts)"
+        
         ref.child("vehicles").updateChildValues([currVehicleInfo!["vin"]! : vehicle_values])
+        
         
         userVehicleKeys.insert(currVehicleInfo!["vin"]!)
     }
