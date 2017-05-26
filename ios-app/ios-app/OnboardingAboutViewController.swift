@@ -11,6 +11,7 @@ import UIKit
 class OnboardingAboutViewController: UIViewController {
     
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var aboutText: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,10 @@ class OnboardingAboutViewController: UIViewController {
         nextButton.clipsToBounds = true
         
         self.navigationController?.navigationBar.tintColor = Colors.green
+    }
+    
+    override func viewDidLayoutSubviews() {
+        aboutText.setContentOffset(.zero, animated: false)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -40,7 +40,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                     row.options = DB.sharedInstance.userVehicles.map {
                         "\($0["nickname"] != nil ? "\($0["nickname"]!) - " : "")\($0["year"]!) \($0["make"]!) \($0["model"]!)"
                     }
-                    row.value = row.options[0]
+                    row.value = row.options.count > 0 ? row.options[0] : ""
                     }.cellSetup() {cell, row in
                         cell.backgroundColor = Colors.backgroundBlack
                         cell.tintColor = UIColor.white

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Lb-ae-XNf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Lb-ae-XNf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -250,7 +250,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u0O-56-GgW" id="nhF-vY-jI0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5m-N0-WMw">
@@ -1801,11 +1801,12 @@ Cg
                             <constraint firstAttribute="trailing" secondItem="hij-W8-gOK" secondAttribute="trailing" constant="12" id="ONy-Gy-4Zi"/>
                             <constraint firstAttribute="trailing" secondItem="ZWH-0W-BWQ" secondAttribute="trailing" constant="12" id="ZOG-ea-sJN"/>
                             <constraint firstItem="woy-vX-heW" firstAttribute="top" secondItem="ZWH-0W-BWQ" secondAttribute="bottom" constant="20" id="gtM-me-LbD"/>
+                            <constraint firstItem="ZWH-0W-BWQ" firstAttribute="top" secondItem="hij-W8-gOK" secondAttribute="bottom" constant="8" id="j83-tL-ibl"/>
                             <constraint firstItem="O3d-1P-EeC" firstAttribute="top" secondItem="woy-vX-heW" secondAttribute="bottom" constant="30" id="vqb-gg-VOW"/>
-                            <constraint firstItem="ZWH-0W-BWQ" firstAttribute="top" secondItem="hij-W8-gOK" secondAttribute="bottom" constant="8" id="zV9-xY-gcG"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="aboutText" destination="ZWH-0W-BWQ" id="fnL-tF-XE6"/>
                         <outlet property="nextButton" destination="woy-vX-heW" id="SDi-OL-sFC"/>
                     </connections>
                 </viewController>
@@ -3311,7 +3312,7 @@ Cg
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdO-X2-RfR">
-                                <rect key="frame" x="68" y="314" width="240" height="40"/>
+                                <rect key="frame" x="68" y="373.5" width="240" height="40"/>
                                 <color key="backgroundColor" red="0.2156862745" green="0.7843137255" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="7Gf-69-EBm"/>
@@ -3326,7 +3327,7 @@ Cg
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3dQ-ui-fKk">
-                                <rect key="frame" x="68" y="254" width="240" height="40"/>
+                                <rect key="frame" x="68" y="313.5" width="240" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="42b-GU-OHh"/>
                                     <constraint firstAttribute="height" constant="40" id="ct6-M0-N5j"/>
@@ -3345,10 +3346,10 @@ Cg
                             <constraint firstItem="MOD-Jc-5WW" firstAttribute="top" secondItem="lbF-cN-oPj" secondAttribute="bottom" id="0ib-MJ-1oo"/>
                             <constraint firstItem="MdO-X2-RfR" firstAttribute="centerX" secondItem="ta2-Vz-Pti" secondAttribute="centerX" id="BGL-mg-iyf"/>
                             <constraint firstItem="MdO-X2-RfR" firstAttribute="top" secondItem="3dQ-ui-fKk" secondAttribute="bottom" constant="20" id="Efn-Jq-Cp4"/>
-                            <constraint firstItem="MdO-X2-RfR" firstAttribute="centerY" secondItem="ta2-Vz-Pti" secondAttribute="centerY" id="Hcl-uP-W10"/>
                             <constraint firstAttribute="trailing" secondItem="MOD-Jc-5WW" secondAttribute="trailing" id="fFq-AR-7I3"/>
                             <constraint firstItem="3dQ-ui-fKk" firstAttribute="centerX" secondItem="ta2-Vz-Pti" secondAttribute="centerX" id="ji2-FL-sYA"/>
                             <constraint firstItem="MOD-Jc-5WW" firstAttribute="leading" secondItem="ta2-Vz-Pti" secondAttribute="leading" id="xWc-iJ-SB4"/>
+                            <constraint firstItem="3dQ-ui-fKk" firstAttribute="centerY" secondItem="ta2-Vz-Pti" secondAttribute="centerY" id="yE9-Pi-HXV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sign In" id="XNx-0D-IVX">
@@ -3539,8 +3540,8 @@ Cg
         <image name="wheel" width="147" height="147"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7ZV-ay-ceO"/>
-        <segue reference="Y9S-bN-CGT"/>
+        <segue reference="0wl-gM-U8e"/>
+        <segue reference="Bxj-1H-fHk"/>
         <segue reference="Vyx-nc-J1K"/>
     </inferredMetricsTieBreakers>
 </document>
