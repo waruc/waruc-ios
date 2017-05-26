@@ -3084,36 +3084,36 @@ Cg
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="You’re almost done! Just two remaining steps left until you can start driving!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgB-Je-og5">
-                                <rect key="frame" x="16" y="90" width="343" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="You’re almost done! Just two remaining steps left until you can start driving!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgB-Je-og5">
+                                <rect key="frame" x="16" y="114" width="343" height="41"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Connect OBD-II Device" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUX-Tf-uO8">
-                                <rect key="frame" x="68" y="204" width="291" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect OBD-II Device" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUX-Tf-uO8">
+                                <rect key="frame" x="72" y="205" width="213" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="746" misplaced="YES" image="obd-ii" translatesAutoresizingMaskIntoConstraints="NO" id="Cbr-FS-DXf">
-                                <rect key="frame" x="16" y="204" width="34" height="25"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="746" image="obd-ii" translatesAutoresizingMaskIntoConstraints="NO" id="Cbr-FS-DXf">
+                                <rect key="frame" x="16" y="205" width="34" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="Fs8-8K-dTU"/>
                                     <constraint firstAttribute="width" secondItem="Cbr-FS-DXf" secondAttribute="height" multiplier="34:25" id="iCe-3e-cxP" userLabel="aspect = 1:1"/>
                                     <constraint firstAttribute="width" constant="34" id="naK-xN-avc"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="747" misplaced="YES" image="wheel" translatesAutoresizingMaskIntoConstraints="NO" id="06V-1b-I25">
-                                <rect key="frame" x="16" y="267" width="34" height="34"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="747" image="wheel" translatesAutoresizingMaskIntoConstraints="NO" id="06V-1b-I25">
+                                <rect key="frame" x="16" y="255" width="34" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="K3G-ie-UyL"/>
                                     <constraint firstAttribute="width" constant="34" id="XRM-8u-gRh"/>
                                     <constraint firstAttribute="width" secondItem="06V-1b-I25" secondAttribute="height" multiplier="1:1" id="y3F-Bn-FZa"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Configure Vehicle Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMn-KR-snn">
-                                <rect key="frame" x="68" y="267" width="291" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Configure Vehicle Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMn-KR-snn">
+                                <rect key="frame" x="72" y="260" width="231" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -3121,26 +3121,22 @@ Cg
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="06V-1b-I25" firstAttribute="leading" secondItem="eDE-we-CoA" secondAttribute="leadingMargin" id="1Xl-yu-7dp"/>
                             <constraint firstItem="7HR-G0-VaJ" firstAttribute="top" secondItem="1YM-hV-H53" secondAttribute="bottom" constant="18" id="2PE-xT-iqy"/>
                             <constraint firstItem="1YM-hV-H53" firstAttribute="leading" secondItem="eDE-we-CoA" secondAttribute="leadingMargin" id="42Z-xY-SeG"/>
                             <constraint firstItem="1YM-hV-H53" firstAttribute="trailing" secondItem="eDE-we-CoA" secondAttribute="trailingMargin" id="5Zx-dI-v8L"/>
-                            <constraint firstItem="Cbr-FS-DXf" firstAttribute="leading" secondItem="eDE-we-CoA" secondAttribute="leadingMargin" constant="4" id="5fC-li-Rat"/>
-                            <constraint firstItem="fUX-Tf-uO8" firstAttribute="leading" secondItem="Cbr-FS-DXf" secondAttribute="trailing" constant="18" id="ELv-kT-9Dr"/>
-                            <constraint firstItem="nMn-KR-snn" firstAttribute="top" secondItem="fUX-Tf-uO8" secondAttribute="bottom" constant="40" id="Evo-j0-UTz"/>
-                            <constraint firstItem="fUX-Tf-uO8" firstAttribute="trailing" secondItem="eDE-we-CoA" secondAttribute="trailingMargin" id="HLD-gt-B1G"/>
-                            <constraint firstItem="fUX-Tf-uO8" firstAttribute="top" secondItem="xgB-Je-og5" secondAttribute="bottom" constant="73" id="LPv-mH-qbj"/>
-                            <constraint firstItem="xgB-Je-og5" firstAttribute="top" secondItem="3rd-y9-yhN" secondAttribute="bottom" constant="77" id="Ons-vt-PFO"/>
-                            <constraint firstItem="Cbr-FS-DXf" firstAttribute="leading" secondItem="eDE-we-CoA" secondAttribute="leadingMargin" constant="4" id="Pjf-ge-MuR"/>
-                            <constraint firstItem="06V-1b-I25" firstAttribute="top" secondItem="Cbr-FS-DXf" secondAttribute="bottom" constant="40" id="QvQ-Ca-XfL"/>
+                            <constraint firstItem="06V-1b-I25" firstAttribute="top" secondItem="Cbr-FS-DXf" secondAttribute="bottom" constant="25" id="A7g-6K-t4v"/>
+                            <constraint firstItem="fUX-Tf-uO8" firstAttribute="top" secondItem="xgB-Je-og5" secondAttribute="bottom" constant="50" id="AAq-7h-OXI"/>
+                            <constraint firstItem="fUX-Tf-uO8" firstAttribute="leading" secondItem="Cbr-FS-DXf" secondAttribute="trailing" constant="22" id="Bgg-l7-BAx"/>
+                            <constraint firstItem="Cbr-FS-DXf" firstAttribute="leading" secondItem="eDE-we-CoA" secondAttribute="leadingMargin" id="Kne-Le-qis"/>
+                            <constraint firstItem="xgB-Je-og5" firstAttribute="top" secondItem="3rd-y9-yhN" secondAttribute="bottom" constant="50" id="Q49-TD-bpY"/>
+                            <constraint firstItem="Cbr-FS-DXf" firstAttribute="top" secondItem="xgB-Je-og5" secondAttribute="bottom" constant="50" id="TQr-bd-Vdk"/>
                             <constraint firstItem="Qdd-SH-Ny2" firstAttribute="top" secondItem="7HR-G0-VaJ" secondAttribute="bottom" constant="30" id="Teu-6B-tGc"/>
-                            <constraint firstItem="nMn-KR-snn" firstAttribute="leading" secondItem="06V-1b-I25" secondAttribute="trailing" constant="14" id="Wcs-S6-60j"/>
                             <constraint firstItem="xgB-Je-og5" firstAttribute="trailing" secondItem="eDE-we-CoA" secondAttribute="trailingMargin" id="cjh-1D-Es0"/>
-                            <constraint firstItem="fUX-Tf-uO8" firstAttribute="leading" secondItem="Cbr-FS-DXf" secondAttribute="trailing" constant="18" id="i67-1I-Mnp"/>
                             <constraint firstItem="7HR-G0-VaJ" firstAttribute="centerX" secondItem="eDE-we-CoA" secondAttribute="centerX" id="jAb-Kq-dBR"/>
+                            <constraint firstItem="nMn-KR-snn" firstAttribute="top" secondItem="fUX-Tf-uO8" secondAttribute="bottom" constant="31" id="kcM-E4-YbJ"/>
+                            <constraint firstItem="nMn-KR-snn" firstAttribute="leading" secondItem="06V-1b-I25" secondAttribute="trailing" constant="22" id="l07-Ck-vFS"/>
                             <constraint firstItem="xgB-Je-og5" firstAttribute="leading" secondItem="eDE-we-CoA" secondAttribute="leadingMargin" id="luO-P2-szA"/>
-                            <constraint firstItem="Cbr-FS-DXf" firstAttribute="top" secondItem="fUX-Tf-uO8" secondAttribute="top" id="oaE-LK-LH6"/>
-                            <constraint firstItem="06V-1b-I25" firstAttribute="leading" secondItem="eDE-we-CoA" secondAttribute="leadingMargin" constant="4" id="sid-fT-JAW"/>
-                            <constraint firstItem="nMn-KR-snn" firstAttribute="trailing" secondItem="eDE-we-CoA" secondAttribute="trailingMargin" id="xHD-tl-SOR"/>
                         </constraints>
                     </view>
                     <connections>
@@ -3179,7 +3175,7 @@ Cg
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="obd-diagram" translatesAutoresizingMaskIntoConstraints="NO" id="kMP-xK-Ylw">
-                                <rect key="frame" x="16" y="202" width="343" height="182"/>
+                                <rect key="frame" x="16" y="182" width="343" height="182"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="kMP-xK-Ylw" secondAttribute="height" multiplier="49:26" id="76U-vb-40q"/>
                                 </constraints>
@@ -3191,7 +3187,7 @@ Cg
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Your vehicle's OBD-II port can be found below your steering wheel." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YJ-A3-Obz">
-                                <rect key="frame" x="16" y="424" width="343" height="41"/>
+                                <rect key="frame" x="16" y="394" width="343" height="41"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -3206,10 +3202,10 @@ Cg
                             <constraint firstItem="kMP-xK-Ylw" firstAttribute="leading" secondItem="LNc-If-WEf" secondAttribute="leadingMargin" id="S7t-44-WkC"/>
                             <constraint firstItem="pEV-kR-DdI" firstAttribute="centerX" secondItem="LNc-If-WEf" secondAttribute="centerX" id="c1c-nR-sxc"/>
                             <constraint firstItem="kMP-xK-Ylw" firstAttribute="trailing" secondItem="LNc-If-WEf" secondAttribute="trailingMargin" id="eK1-V1-h3Y"/>
-                            <constraint firstItem="9YJ-A3-Obz" firstAttribute="top" secondItem="kMP-xK-Ylw" secondAttribute="bottom" constant="40" id="j2s-dw-9oR"/>
+                            <constraint firstItem="kMP-xK-Ylw" firstAttribute="top" secondItem="y19-Gs-Agi" secondAttribute="bottom" constant="44" id="k1X-Bk-bf1"/>
                             <constraint firstItem="y19-Gs-Agi" firstAttribute="leading" secondItem="LNc-If-WEf" secondAttribute="leadingMargin" id="nJu-O6-KaC"/>
                             <constraint firstItem="y19-Gs-Agi" firstAttribute="top" secondItem="kLq-Wh-qJJ" secondAttribute="bottom" constant="33" id="qRY-VU-e8s"/>
-                            <constraint firstItem="kMP-xK-Ylw" firstAttribute="top" secondItem="y19-Gs-Agi" secondAttribute="bottom" constant="64" id="trb-2S-rjF"/>
+                            <constraint firstItem="9YJ-A3-Obz" firstAttribute="top" secondItem="kMP-xK-Ylw" secondAttribute="bottom" constant="30" id="uY4-hd-cPG"/>
                             <constraint firstItem="Znc-47-NtY" firstAttribute="top" secondItem="pEV-kR-DdI" secondAttribute="bottom" constant="30" id="xhq-PI-FUb"/>
                             <constraint firstItem="y19-Gs-Agi" firstAttribute="trailing" secondItem="LNc-If-WEf" secondAttribute="trailingMargin" id="xoU-7e-XLj"/>
                         </constraints>
