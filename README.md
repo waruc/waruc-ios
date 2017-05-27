@@ -1,6 +1,6 @@
-# WARUC: Washington Road Usage Charge Pilot
-![icon](ios-app/ios-app/Assets.xcassets/AppIcon.appiconset/GooglePlayStore.png)
+![icon](ios-app/screenshots/icon.png)
 
+# WARUC: Washington Road Usage Charge Pilot
 The Washington Road Usage Charge Pilot Program is the future of supporting your state's transportation infrastructure. Vehicles and trips are accessible on all your devices. It's easy to pair and get back to driving with our application.
 
 ## About the Project
