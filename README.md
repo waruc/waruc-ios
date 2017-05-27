@@ -34,5 +34,5 @@ The app requires a Bluetooth OBD-II device to connect to our application. Please
 - [Ishan Saksena](mailto:ishansaksena@gmail.com) (Informatics '18)
 
 ## Other
-- Terms of Service: https://waruc.github.io/terms-of-service.html
-- Privacy Policy: https://waruc.github.io/privacy-policy.html
+- [Terms of Service](https://waruc.github.io/terms-of-service.html)
+- [Privacy Policy](https://waruc.github.io/privacy-policy.html)
