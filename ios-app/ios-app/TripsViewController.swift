@@ -179,7 +179,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.dayLabel?.text = "\(calendar.component(.day, from: date))"
         cell.timeLabel?.text = "\(formatter.string(from: date))"
         cell.distanceLabel?.text = "\((((currTrip["distance"] as! Double) * 10).rounded() / 10)) miles"
-        cell.monthLabel?.text = "\(calendar.monthSymbols[calendar.component(.month, from: date) - 1])"
+        cell.monthLabel?.text = "\(calendar.shortMonthSymbols[calendar.component(.month, from: date) - 1])"
         
         return cell
     }
