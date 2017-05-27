@@ -263,7 +263,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
         if let addNewVehicleRow:ButtonRow = form.rowBy(tag: "Add New Vehicle") {
             addNewVehicleRow.cellUpdate { cell, row in
                 cell.backgroundColor = UIColor.white
-                cell.textLabel?.textColor = UIColor.black
+                cell.textLabel?.textColor = self.view.tintColor
                 cell.detailTextLabel?.textColor = UIColor.black
             }
             
@@ -283,7 +283,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
         if let signOutRow:ButtonRow = form.rowBy(tag: "Sign out") {
             signOutRow.cellUpdate { cell, row in
                 cell.backgroundColor = UIColor.white
-                cell.textLabel?.textColor = UIColor.black
+                cell.textLabel?.textColor = self.view.tintColor
                 cell.detailTextLabel?.textColor = UIColor.black
             }
             
@@ -313,7 +313,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
         if let reportAnIssueRow:ButtonRow = form.rowBy(tag: "Report an Issue") {
             reportAnIssueRow.cellUpdate { cell, row in
                 cell.backgroundColor = UIColor.white
-                cell.textLabel?.textColor = UIColor.black
+                cell.textLabel?.textColor = self.view.tintColor
                 cell.detailTextLabel?.textColor = UIColor.black
             }
             
