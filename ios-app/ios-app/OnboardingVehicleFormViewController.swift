@@ -22,10 +22,14 @@ class OnboardingVehicleFormViewController: FormViewController {
                                                name: BLERouter.sharedInstance.sharedInstanceReadyNotification,
                                                object: nil)
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.displayInfo),
-                                               name: DB.sharedInstance.newVehicleInfoNotification,
-                                               object: nil)
+        if DB.sharedInstance.currVehicleInfo != nil {
+            displayInfo()
+        } else {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(self.displayInfo),
+                                                   name: DB.sharedInstance.newVehicleInfoNotification,
+                                                   object: nil)
+        }
     }
     
     func startBLEScan() {

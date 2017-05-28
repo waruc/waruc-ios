@@ -43,7 +43,9 @@ class OnboardingVehicleInputFrameViewController: UIViewController {
         DB.sharedInstance.updateVehicleUsers()
         DB.sharedInstance.updateUserVehicles()
         
-        DB.sharedInstance.userVehicleKeys.insert(DB.sharedInstance.currVehicleInfo!["vin"]!)
+        //DB.sharedInstance.userVehicleKeys.insert(DB.sharedInstance.currVehicleInfo!["vin"]!)
+        DB.sharedInstance.userVehicles[DB.sharedInstance.currVehicleInfo!["vin"]!] = [:]
+        DB.sharedInstance.getUserVehicleInfo()
     }
     
     func modifyButtons() {
@@ -52,7 +54,7 @@ class OnboardingVehicleInputFrameViewController: UIViewController {
             skipButton.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
         }
         
-        if !(DB.sharedInstance.userVehicleKeys.contains(DB.sharedInstance.currVehicleInfo!["vin"]!)) {
+        if !(DB.sharedInstance.userVehicles.keys.contains(DB.sharedInstance.currVehicleInfo!["vin"]!)) {
             doneButton.isHidden = false
         }
     }

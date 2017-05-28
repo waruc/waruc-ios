@@ -29,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if FIRAuth.auth()?.currentUser != nil {
             print("User is signed in")
             
-            DB.sharedInstance.getUserVehicles()
+            DB.sharedInstance.getUserData()
+            DB.sharedInstance.seedTrips()
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(self.startBLEScan),
                                                    name: BLERouter.sharedInstance.sharedInstanceReadyNotification,
