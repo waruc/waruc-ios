@@ -31,7 +31,8 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         bottomStartStopTrackingButton.isHidden = true
         
-        DB.sharedInstance.getTrips()
+        //DB.sharedInstance.getTrips()
+        DB.sharedInstance.getUserData()
         
         // Separator for top of first cell
         let px = 1 / UIScreen.main.scale
@@ -59,11 +60,12 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func refreshData(sender: UIRefreshControl) {
-        DB.sharedInstance.getTrips()
+        //DB.sharedInstance.getTrips()
+        DB.sharedInstance.getUserData()
     }
     
     func updateTripsTable() {
-        self.mileCountLabel.text = "\(Int(DB.sharedInstance.userTrips.map { ($0["distance"] as! Double) }.reduce(0.0, +).rounded(.toNearestOrAwayFromZero)))"
+        self.mileCountLabel.text = "\(Int(DB.sharedInstance.userTrips.values.map { ($0["distance"] as! Double) }.reduce(0.0, +).rounded(.toNearestOrAwayFromZero)))"
         self.refreshControl.endRefreshing()
         self.tripTableView.reloadData()
     }
@@ -167,7 +169,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tripTableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as! TripTableViewCell
         
-        let currTrip = DB.sharedInstance.userTrips[indexPath.row]
+        let currTrip = Array(DB.sharedInstance.userTrips.values)[indexPath.row]
         
         let calendar = Calendar.current
         let date = Date.init(timeIntervalSince1970: TimeInterval((currTrip["ts"] as! Int)))

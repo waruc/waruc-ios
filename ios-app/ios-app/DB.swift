@@ -22,16 +22,16 @@ class DB {
     let existingVehicleInfoNotification = Notification.Name("existingVehicleInfoNotification")
     let newVehicleInfoNotification = Notification.Name("newVehicleInfoNotification")
     
-    var userVehicleKeys = Set<String>()
-    var userVehicles:[[String: String]] = []
+    //var userVehicleKeys = Set<String>()
+    var userVehicles:[String: [String: String]] = [:]
     
     var vinData:[JSON] = []
     var currVehicleInfo:[String: String]?
     
-    var userTrips:[[String: Any]] = []
+    var userTrips:[String: [String: Any]] = [:]
     
     var userTotalMiles:Double?
-    var userTripCount = 0
+    //var userTripCount = 0
     
     var newVehicle = false
     
@@ -43,16 +43,26 @@ class DB {
     
     static let sharedInstance = DB()
     
-    func getUserVehicles() {
+    func getUserData() {
         let uid = FIRAuth.auth()?.currentUser?.uid
         if uid != nil {
-            ref!.child("userVehicles").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-                let userObj = snapshot.value as! [String: Any]
-                self.userTripCount = (userObj["trips"] as! Int)
+            ref!.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+                let user = snapshot.value as! [String: Any]
                 
-                if let userVehicleArray = userObj["vehicles"] as? [String: String] {
-                    self.userVehicleKeys = Set<String>(userVehicleArray.keys)
-                    self.getTrips()
+                print(user)
+                print(user["trips"])
+                
+                if user["trips"] != nil {
+                    self.userTrips = user["trips"]! as! [String: [String: Any]]
+                } else {
+                    self.userTrips = [:]
+                }
+                
+                self.userVehicles = [:]
+                if let userVehicleKeys = (user["vehicles"] as? [String: String])?.keys {
+                    for key in userVehicleKeys {
+                        self.userVehicles[key] = [:]
+                    }
                     self.getUserVehicleInfo()
                 }
             })
@@ -61,34 +71,34 @@ class DB {
         }
     }
     
-    func getTrips() {
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        self.userTrips = []
-        var trips:[[String: Any]] = []
-        for key in userVehicleKeys {
-            ref.child("vehicles/\(key)/users/\(uid!)/trips").observeSingleEvent(of: .value, with: { (snapshot) in
-                if snapshot.exists() {
-                    let returnedTrips = (snapshot.value as! [String: Any])
-                    
-                    for (_, value) in returnedTrips {
-                        var trip = (value as! [String: Any])
-                        trip = ["ts": trip["timestamp"]!, "distance": (trip["mileage"]! as! Double)]
-                        trips.append(trip)
-                    }
-                    
-                    if trips.count == self.userTripCount {
-                        self.userTrips = trips.sorted(by: { ($0["ts"]! as! Int) > ($1["ts"]! as! Int) })
-                        print("\nRetrieved all user's trips")
-                    }
-                }
-                NotificationCenter.default.post(name: self.tripsNotification, object: nil)
-            })
-        }
-    }
+//    func getTrips() {
+//        let uid = FIRAuth.auth()?.currentUser?.uid
+//        self.userTrips = []
+//        var trips:[[String: Any]] = []
+//        for key in userVehicleKeys {
+//            ref.child("vehicles/\(key)/users/\(uid!)/trips").observeSingleEvent(of: .value, with: { (snapshot) in
+//                if snapshot.exists() {
+//                    let returnedTrips = (snapshot.value as! [String: Any])
+//                    
+//                    for (_, value) in returnedTrips {
+//                        var trip = (value as! [String: Any])
+//                        trip = ["ts": trip["timestamp"]!, "distance": (trip["mileage"]! as! Double)]
+//                        trips.append(trip)
+//                    }
+//                    
+//                    if trips.count == self.userTripCount {
+//                        self.userTrips = trips.sorted(by: { ($0["ts"]! as! Int) > ($1["ts"]! as! Int) })
+//                        print("\nRetrieved all user's trips")
+//                    }
+//                }
+//                NotificationCenter.default.post(name: self.tripsNotification, object: nil)
+//            })
+//        }
+//    }
     
     func getUserVehicleInfo() {
-        self.userVehicles = []
-        for key in userVehicleKeys {
+        //self.userVehicles = []
+        for (key, value) in userVehicles {
             ref!.child("vehicles").child(key).observeSingleEvent(of: .value, with: { (snapshot) in
                 let existingVehicleInfo = snapshot.value as! [String: Any]
                 let vehicle:[String: String] = [
@@ -99,11 +109,11 @@ class DB {
                     "nickname": (existingVehicleInfo["nickname"] as! String)
                 ]
                 
-                self.userVehicles.append(vehicle)
+                self.userVehicles[key] = vehicle
                 
-                if self.userVehicles.count == self.userVehicleKeys.count {
-                    print("\nRetrieved all user's vehicles")
-                }
+//                if self.userVehicles.count == self.userVehicleKeys.count {
+//                    print("\nRetrieved all user's vehicles")
+//                }
             })
         }
     }
@@ -119,19 +129,16 @@ class DB {
             "make" : currVehicleInfo!["make"]!,
             "model": currVehicleInfo!["model"]!,
             "year": currVehicleInfo!["year"]!,
-            "users": uid!,
             "nickname": currVehicleInfo!["nickname"] ?? ""
             ] as [String : Any]
         
-        userVehicles.append(vehicle_values as! [String : String])
+        userVehicles[currVehicleInfo!["vin"]!] = (vehicle_values as! [String : String])
         
+        vehicle_values["users"] =  uid!
         vehicle_values["vehicle_mileage"] =  0.0
         vehicle_values["cts"] = "\(ts)"
         
         ref.child("vehicles").updateChildValues([currVehicleInfo!["vin"]! : vehicle_values])
-        
-        
-        userVehicleKeys.insert(currVehicleInfo!["vin"]!)
     }
     
     func createOrReturnVehicle(vin: String) {
@@ -208,12 +215,12 @@ class DB {
     
     func updateUserVehicles() {
         let uid = FIRAuth.auth()?.currentUser?.uid
-        ref!.child("userVehicles").child("\(uid!)/vehicles/\(self.currVehicleInfo!["vin"]!)").observeSingleEvent(of: .value, with: { snapshot in
+        ref!.child("users").child("\(uid!)/vehicles/\(self.currVehicleInfo!["vin"]!)").observeSingleEvent(of: .value, with: { snapshot in
             if snapshot.exists() {
                 print("\nFound vehicle entry in user vehicles!")
             } else {
                 print("\nCreating new entry in user vehicles...")
-                self.ref.child("userVehicles/\(uid!)/vehicles").updateChildValues([self.currVehicleInfo!["vin"]!: "owner"])
+                self.ref.child("users/\(uid!)/vehicles").updateChildValues([self.currVehicleInfo!["vin"]!: "owner"])
             }
         })
     }
@@ -227,12 +234,13 @@ class DB {
     }
     
     func writeTrip(ts: Int, miles: Double, vin: String) {
-        userTripCount += 1
+        //userTripCount += 1
         
         let uid = FIRAuth.auth()?.currentUser?.uid
         let key = self.ref.child("vehicles").childByAutoId().key
-        let values = ["timestamp": ts, "mileage": miles] as [String : Any]
-        let updates = ["vehicles/\(vin)/users/\(uid!)/trips/\(key)": values]
+        let values = ["timestamp": ts, "mileage": miles, "vin": vin] as [String : Any]
+        let updates = ["users/\(uid!)/trips/\(key)": values]
+        //let updates = ["vehicles/\(vin)/users/\(uid!)/trips/\(key)": values]
         ref.updateChildValues(updates)
         
         // update vehicle total miles based off of current trip
@@ -248,10 +256,10 @@ class DB {
         })
         
         // update user total miles based off of current trip
-        ref.child("userVehicles/\(uid!)").observeSingleEvent(of: .value, with: { (snapshot) in
-            let user_obj = snapshot.value as! [String: Any]
-            self.ref.child("userVehicles/\(uid!)/user_mileage").setValue((user_obj["user_mileage"] as! Double) + miles)
-            self.ref.child("userVehicles/\(uid!)/trips").setValue((user_obj["trips"] as! Int) + 1)
+        ref.child("users/\(uid!)").observeSingleEvent(of: .value, with: { (snapshot) in
+            let user = snapshot.value as! [String: Any]
+            self.ref.child("users/\(uid!)/user_mileage").setValue((user["user_mileage"] as! Double) + miles)
+            //self.ref.child("users/\(uid!)/trips").setValue((user["trips"] as! Int) + 1)
         })
     }
     
