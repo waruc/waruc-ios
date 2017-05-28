@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
             })
             newVehicleAlert.addAction(okAction)
-            newVehicleAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            newVehicleAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
             self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "TabBar") as! UITabBarController
         }
         
