@@ -10,7 +10,7 @@ import UIKit
 
 class OnboardingVehicleInputFrameViewController: UIViewController {
     
-    var hideSkip = false
+    var showCancel = false
 
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
@@ -21,18 +21,23 @@ class OnboardingVehicleInputFrameViewController: UIViewController {
         doneButton.layer.cornerRadius = CGFloat(Constants.round)
         skipButton.layer.cornerRadius = CGFloat(Constants.round)
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.modifyButtons),
-                                               name: DB.sharedInstance.newVehicleInfoNotification,
-                                               object: nil)
-        
-        if hideSkip {
-            skipButton.isHidden = true
+        if DB.sharedInstance.currVehicleInfo == nil {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(self.modifyButtons),
+                                                   name: DB.sharedInstance.newVehicleInfoNotification,
+                                                   object: nil)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        doneButton.isHidden = true
+        if DB.sharedInstance.currVehicleInfo == nil {
+            doneButton.isHidden = true
+        }
+        
+        if showCancel {
+            skipButton.setTitle("Cancel", for: .normal)
+            skipButton.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        }
     }
     
     @IBAction func vehicleSubmit(_ sender: Any) {
@@ -49,11 +54,6 @@ class OnboardingVehicleInputFrameViewController: UIViewController {
     }
     
     func modifyButtons() {
-        if !skipButton.isHidden {
-            skipButton.setTitle("Cancel", for: .normal)
-            skipButton.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-        }
-        
         if !(DB.sharedInstance.userVehicles.keys.contains(DB.sharedInstance.currVehicleInfo!["vin"]!)) {
             doneButton.isHidden = false
         }

@@ -16,7 +16,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addNewVehicle" {
             if let toViewController = segue.destination as? OnboardingVehicleInputFrameViewController {
-                toViewController.hideSkip = true
+                toViewController.showCancel = true
             }
         }
     }
