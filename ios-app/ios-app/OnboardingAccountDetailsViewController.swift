@@ -99,12 +99,14 @@ class OnboardingAccountDetailsViewController: UIViewController {
             if valid {
                 FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
                     let uid = FIRAuth.auth()?.currentUser?.uid
-                    let user = FIRAuth.auth()?.currentUser
-                    let values = ["trips": 0, "user_mileage": 0.0, "name": email] as [String : Any]
+                    //let user = FIRAuth.auth()?.currentUser
+                    
+                    let values = ["user_mileage": 0.0] as [String : Any]
+                    
                     if uid != nil {
-                        //                    user?.sendEmailVerification(completion: nil)
-                        //                    self.present(self.emailVerificationAlert, animated: true, completion: nil)
-                        DB.sharedInstance.ref.child("userVehicles/").updateChildValues([String(uid!): values])
+//                        user?.sendEmailVerification(completion: nil)
+//                        self.present(self.emailVerificationAlert, animated: true, completion: nil)
+                        DB.sharedInstance.ref.child("users/").updateChildValues([String(uid!): values])
                         self.performSegue(withIdentifier: "accountCreatedSuccessfully", sender: self)
                     } else {
                         self.present(self.loginErrorAlert, animated: true, completion: nil)
