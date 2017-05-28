@@ -21,6 +21,7 @@ class DB {
     let tripsNotification = Notification.Name("tripsNotification")
     let existingVehicleInfoNotification = Notification.Name("existingVehicleInfoNotification")
     let newVehicleInfoNotification = Notification.Name("newVehicleInfoNotification")
+    let newVehicleAlertNotification = Notification.Name("newVehicleAlertNotification")
     
     //var userVehicleKeys = Set<String>()
     var userVehicles:[String: [String: String]] = [:]
@@ -34,6 +35,7 @@ class DB {
     //var userTripCount = 0
     
     var newVehicle = false
+    var showAddVehicleAlert = true
     
     init() {
         self.ref = FIRDatabase.database().reference()
@@ -154,8 +156,8 @@ class DB {
                 self.currVehicleInfo!["year"] = (existingVehicleInfo["year"] as! String)
                 self.currVehicleInfo!["nickname"] = (existingVehicleInfo["nickname"] as! String) == "" ? nil : (existingVehicleInfo["nickname"] as! String)
                 
-                self.updateVehicleUsers()
-                self.updateUserVehicles()
+//                self.updateVehicleUsers()
+//                self.updateUserVehicles()
                 
                 print("\nMake: \(self.currVehicleInfo!["make"]!)")
                 print("Model: \(self.currVehicleInfo!["model"]!)")
@@ -164,7 +166,14 @@ class DB {
                     print("Vehicle Nickname: \(self.currVehicleInfo!["nickname"]!)")
                 }
                 
-                NotificationCenter.default.post(name: self.existingVehicleInfoNotification, object: nil)
+                if !(self.userVehicles.keys.contains(vin)) && self.showAddVehicleAlert {
+                    NotificationCenter.default.post(name: self.newVehicleAlertNotification, object: nil)
+                }
+                
+                if self.userVehicles.keys.contains(vin) {
+                    NotificationCenter.default.post(name: self.existingVehicleInfoNotification, object: nil)
+                }
+                
                 NotificationCenter.default.post(name: self.newVehicleInfoNotification, object: nil)
             } else {
                 print("\nFetching new vehicle info...")
@@ -190,7 +199,14 @@ class DB {
                 print("Model: \(self.currVehicleInfo!["model"]!)")
                 print("Model Year: \(self.currVehicleInfo!["year"]!)")
                 
-                NotificationCenter.default.post(name: self.existingVehicleInfoNotification, object: nil)
+                if !(self.userVehicles.keys.contains(self.currVehicleInfo!["vin"]!)) && self.showAddVehicleAlert {
+                    NotificationCenter.default.post(name: self.newVehicleAlertNotification, object: nil)
+                }
+                
+                if self.userVehicles.keys.contains(self.currVehicleInfo!["vin"]!) {
+                    NotificationCenter.default.post(name: self.existingVehicleInfoNotification, object: nil)
+                }
+                
                 NotificationCenter.default.post(name: self.newVehicleInfoNotification, object: nil)
                 
             case .failure(let error):

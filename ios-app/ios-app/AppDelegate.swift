@@ -15,6 +15,8 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    let newVehicleAlert = UIAlertController(title: "Found New Vehicle", message: "Would you like to register as a driver of this vehicle?", preferredStyle: UIAlertControllerStyle.alert)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey("AIzaSyB4KKkw7xZWUYxbwtY_6Nlr5RXAf_0jzcU")
@@ -36,6 +38,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                    name: BLERouter.sharedInstance.sharedInstanceReadyNotification,
                                                    object: nil)
             
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(self.presentVehicleCreationAlert),
+                                                   name: DB.sharedInstance.newVehicleAlertNotification,
+                                                   object: nil)
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in
+                let rootViewController = self.window?.rootViewController;
+                rootViewController!.performSegue(withIdentifier: "authedAddNewVehicle", sender: nil)
+                
+            })
+            newVehicleAlert.addAction(okAction)
+            newVehicleAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "TabBar") as! UITabBarController
         }
         
@@ -44,6 +58,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func startBLEScan() {
         BLERouter.sharedInstance.centralManager.scanForPeripherals(withServices: nil, options: nil)
+    }
+    
+    func presentVehicleCreationAlert() {
+        if UIApplication.topViewController() is OnboardingVehicleInputFrameViewController ||
+            UIApplication.topViewController() is OnboardingVehicleFormViewController {
+            print("\nVehicle Onboarding Form is already displayed.. don't display the add vehicle alert")
+        } else {
+            if let topController = UIApplication.topViewController() {
+                topController.present(self.newVehicleAlert, animated: true, completion: nil)
+                DB.sharedInstance.showAddVehicleAlert = false
+            }
+
+        }
+
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -116,4 +144,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
+
+extension UIApplication {
+    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
+    }
+}
+
 
