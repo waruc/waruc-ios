@@ -24,12 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         
         // Uncomment this line to sign out before each session
-        try! FIRAuth.auth()!.signOut()
+        //try! FIRAuth.auth()!.signOut()
         
         if FIRAuth.auth()?.currentUser != nil {
             print("User is signed in")
             
             DB.sharedInstance.getUserData()
+            DB.sharedInstance.seedTrips()
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(self.startBLEScan),
                                                    name: BLERouter.sharedInstance.sharedInstanceReadyNotification,

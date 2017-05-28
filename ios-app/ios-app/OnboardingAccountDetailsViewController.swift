@@ -101,7 +101,7 @@ class OnboardingAccountDetailsViewController: UIViewController {
                     let uid = FIRAuth.auth()?.currentUser?.uid
                     //let user = FIRAuth.auth()?.currentUser
                     
-                    let values = ["user_mileage": 0.0, "name": email] as [String : Any]
+                    let values = ["user_mileage": 0.0] as [String : Any]
                     
                     if uid != nil {
 //                        user?.sendEmailVerification(completion: nil)

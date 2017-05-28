@@ -28,7 +28,7 @@ class DB {
     var vinData:[JSON] = []
     var currVehicleInfo:[String: String]?
     
-    var userTrips:[String: [String: Any]] = [:]
+    var userTrips:[[String: Any]] = []
     
     var userTotalMiles:Double?
     //var userTripCount = 0
@@ -49,14 +49,7 @@ class DB {
             ref!.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
                 let user = snapshot.value as! [String: Any]
                 
-                print(user)
-                print(user["trips"])
-                
-                if user["trips"] != nil {
-                    self.userTrips = user["trips"]! as! [String: [String: Any]]
-                } else {
-                    self.userTrips = [:]
-                }
+                self.userTotalMiles = (user["user_mileage"] as! Double)
                 
                 self.userVehicles = [:]
                 if let userVehicleKeys = (user["vehicles"] as? [String: String])?.keys {
@@ -71,30 +64,37 @@ class DB {
         }
     }
     
-//    func getTrips() {
-//        let uid = FIRAuth.auth()?.currentUser?.uid
-//        self.userTrips = []
-//        var trips:[[String: Any]] = []
-//        for key in userVehicleKeys {
-//            ref.child("vehicles/\(key)/users/\(uid!)/trips").observeSingleEvent(of: .value, with: { (snapshot) in
-//                if snapshot.exists() {
-//                    let returnedTrips = (snapshot.value as! [String: Any])
-//                    
-//                    for (_, value) in returnedTrips {
-//                        var trip = (value as! [String: Any])
-//                        trip = ["ts": trip["timestamp"]!, "distance": (trip["mileage"]! as! Double)]
-//                        trips.append(trip)
-//                    }
-//                    
-//                    if trips.count == self.userTripCount {
-//                        self.userTrips = trips.sorted(by: { ($0["ts"]! as! Int) > ($1["ts"]! as! Int) })
-//                        print("\nRetrieved all user's trips")
-//                    }
-//                }
-//                NotificationCenter.default.post(name: self.tripsNotification, object: nil)
-//            })
-//        }
-//    }
+    func getTrips(completionHandler: @escaping (_ returnedTrips: [[String: Any]]) -> ()) {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        if uid != nil {
+            ref!.child("users/\(uid!)").child("trips").observeSingleEvent(of: .value, with: { (snapshot) in
+                var returnedTrips:[[String: Any]] = []
+                
+                if snapshot.exists() {
+                    returnedTrips = Array((snapshot.value as! [String: [String: Any]]).values)
+                }
+                
+                completionHandler(returnedTrips)
+            })
+        } else {
+            print("User isn't authenticated")
+        }
+    }
+    
+    func seedTrips() {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        if uid != nil {
+            ref?.child("users/\(uid!)/trips").queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.exists() {
+                    self.userTrips = Array((snapshot.value as! [String: [String: Any]]).values)
+                } else {
+                    self.userTrips = []
+                }
+                
+                NotificationCenter.default.post(name: self.tripsNotification, object: nil)
+            })
+        }
+    }
     
     func getUserVehicleInfo() {
         //self.userVehicles = []

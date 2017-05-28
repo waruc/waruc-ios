@@ -31,9 +31,6 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         bottomStartStopTrackingButton.isHidden = true
         
-        //DB.sharedInstance.getTrips()
-        DB.sharedInstance.getUserData()
-        
         // Separator for top of first cell
         let px = 1 / UIScreen.main.scale
         let frame = CGRect(x: 0, y: 0, width: self.tripTableView.frame.size.width, height: px)
@@ -53,19 +50,28 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                                name: BLERouter.sharedInstance.colorUpdateNotification,
                                                object: nil)
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.updateTripsTable),
-                                               name: DB.sharedInstance.tripsNotification,
-                                               object: nil)
+        if DB.sharedInstance.userTotalMiles != nil {
+            updateTripsTable()
+        } else {
+            DB.sharedInstance.getTrips() { (returnedTrips) in
+                DB.sharedInstance.userTrips = returnedTrips
+                self.updateTripsTable()
+            }
+        }
     }
     
     func refreshData(sender: UIRefreshControl) {
-        //DB.sharedInstance.getTrips()
-        DB.sharedInstance.getUserData()
+        DB.sharedInstance.getTrips() { (returnedTrips) in
+            DB.sharedInstance.userTrips = returnedTrips
+            self.updateTripsTable()
+        }
     }
     
     func updateTripsTable() {
-        self.mileCountLabel.text = "\(Int(DB.sharedInstance.userTrips.values.map { ($0["distance"] as! Double) }.reduce(0.0, +).rounded(.toNearestOrAwayFromZero)))"
+        //self.mileCountLabel.text = "\(Int(DB.sharedInstance.userTrips.map { ($0["mileage"] as! Double) }.reduce(0.0, +).rounded(.toNearestOrAwayFromZero)))"
+        
+        self.mileCountLabel.text = "\(Int((DB.sharedInstance.userTotalMiles?.rounded(.toNearestOrAwayFromZero))!))"
+        
         self.refreshControl.endRefreshing()
         self.tripTableView.reloadData()
     }
@@ -169,10 +175,10 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tripTableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as! TripTableViewCell
         
-        let currTrip = Array(DB.sharedInstance.userTrips.values)[indexPath.row]
+        let currTrip = DB.sharedInstance.userTrips[indexPath.row]
         
         let calendar = Calendar.current
-        let date = Date.init(timeIntervalSince1970: TimeInterval((currTrip["ts"] as! Int)))
+        let date = Date.init(timeIntervalSince1970: TimeInterval((currTrip["timestamp"] as! Int)))
         
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone(abbreviation: "PST")!
@@ -180,7 +186,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         cell.dayLabel?.text = "\(calendar.component(.day, from: date))"
         cell.timeLabel?.text = "\(formatter.string(from: date))"
-        cell.distanceLabel?.text = "\((((currTrip["distance"] as! Double) * 10).rounded() / 10)) miles"
+        cell.distanceLabel?.text = "\((((currTrip["mileage"] as! Double) * 10).rounded() / 10)) miles"
         cell.monthLabel?.text = "\(calendar.shortMonthSymbols[calendar.component(.month, from: date) - 1])"
         
         cell.distanceLabel.textColor = BLERouter.sharedInstance.tracking ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
