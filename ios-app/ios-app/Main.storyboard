@@ -3498,7 +3498,7 @@ Cg
                         <viewControllerLayoutGuide type="bottom" id="0bB-vp-FlF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1MP-hN-wiA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -3516,7 +3516,7 @@ Cg
                         <viewControllerLayoutGuide type="bottom" id="lGe-LC-Gsa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Y1u-ea-JPD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="528"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

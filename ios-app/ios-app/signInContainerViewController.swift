@@ -25,8 +25,15 @@ class signInContainerViewController: UIViewController {
     let passwordResetConfirmationAlert = UIAlertController(title: "Reset Password", message: "", preferredStyle: .alert)
     let passwordResetErrorAlert = UIAlertController(title: "Error", message: "Error: email does not match a valid WARUC account.", preferredStyle: .alert)
     
+    let signInFormSubmitNotification = Notification.Name("signInFormSubmitNotification")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(nextPressed),
+                                               name: signInFormSubmitNotification,
+                                               object: nil)
         
         self.navigationController?.navigationBar.tintColor = Colors.green
         nextButton.layer.cornerRadius = CGFloat(Constants.round)
