@@ -13,14 +13,6 @@ import MessageUI
 
 class SettingsFormViewController: FormViewController, MFMailComposeViewControllerDelegate {
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "addNewVehicle" {
-            if let toViewController = segue.destination as? OnboardingVehicleInputFrameViewController {
-                toViewController.showCancel = true
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.updateColorScheme),
