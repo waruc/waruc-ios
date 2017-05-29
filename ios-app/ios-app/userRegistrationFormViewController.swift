@@ -11,6 +11,8 @@ import Eureka
 
 class userRegistrationFormViewController: FormViewController {
     
+    let signUpFormSubmitNotification = Notification.Name("signUpFormSubmitNotification")
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
@@ -24,7 +26,7 @@ class userRegistrationFormViewController: FormViewController {
                 section.tag = "account"
             }
             
-            <<< EmailRow() {
+            <<< EmailRow("email") {
                 $0.title = "Email"
                 $0.tag = "email"
                 $0.add(rule: RuleRequired())
@@ -41,7 +43,7 @@ class userRegistrationFormViewController: FormViewController {
                     }
             }
             
-            <<< PasswordRow() {
+            <<< PasswordRow("pass1") {
                 $0.title = "Password"
                 $0.tag = "pass1"
                 $0.add(rule: RuleMinLength(minLength: 8))
@@ -52,7 +54,7 @@ class userRegistrationFormViewController: FormViewController {
                     }
             }
             
-            <<< PasswordRow() {
+            <<< PasswordRow("pass2") {
                 $0.title = "Retype Password"
                 $0.tag = "pass2"
                 $0.add(rule: RuleMinLength(minLength: 8))
@@ -63,4 +65,12 @@ class userRegistrationFormViewController: FormViewController {
                     }
             }
     }
+    
+    override func textInputShouldReturn<T>(_ textInput: UITextInput, cell: Cell<T>) -> Bool {
+        if cell.row.tag == "pass2" {
+            NotificationCenter.default.post(name: signUpFormSubmitNotification, object: nil)
+        }
+        return super.textInputShouldReturn(textInput, cell: cell)
+    }
+
 }

@@ -25,8 +25,15 @@ class OnboardingAccountDetailsViewController: UIViewController {
     let passwordMatchErrorAlert = UIAlertController(title: "Error", message: "Passwords do not match!", preferredStyle: UIAlertControllerStyle.alert)
     let emailVerificationAlert = UIAlertController(title: "Error", message: "Please verify your email address by checking your email", preferredStyle: UIAlertControllerStyle.alert)
     
+    let signUpFormSubmitNotification = Notification.Name("signUpFormSubmitNotification")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(nextButtonPressed),
+                                               name: signUpFormSubmitNotification,
+                                               object: nil)
 
         self.nextButton.layer.cornerRadius = CGFloat(Constants.round)
         nextButton.clipsToBounds = true

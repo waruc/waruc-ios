@@ -12,16 +12,16 @@ import FirebaseAuth
 
 class signInFormViewController: FormViewController {
     
+    let signInFormSubmitNotification = Notification.Name("signInFormSubmitNotification")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         form +++ Section("Account") { section in
                 section.tag = "account"
             }
             
-            <<< EmailRow() {
+            <<< EmailRow("email") {
                 $0.title = "Email"
                 $0.tag = "email"
                 $0.add(rule: RuleRequired())
@@ -40,7 +40,7 @@ class signInFormViewController: FormViewController {
                 
         }
         
-        <<< PasswordRow() {
+        <<< PasswordRow("pass") {
             $0.title = "Password"
             $0.tag = "pass"
             $0.add(rule: RuleMinLength(minLength: 8))
@@ -52,4 +52,12 @@ class signInFormViewController: FormViewController {
             }
         }
     }
+    
+    override func textInputShouldReturn<T>(_ textInput: UITextInput, cell: Cell<T>) -> Bool {
+        if cell.row.tag == "pass" {
+            NotificationCenter.default.post(name: signInFormSubmitNotification, object: nil)
+        }
+        return super.textInputShouldReturn(textInput, cell: cell)
+    }
+    
 }
