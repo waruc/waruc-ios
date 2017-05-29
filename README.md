@@ -23,7 +23,7 @@ The project was developed as part of the [University of Washington Information S
 The app requires a Bluetooth OBD-II device to connect to our application. Please purchase one to utilize the application.
 
 ## Contact
-- Visit https://waruc.github.io for more information.
+- Visit https://waruc.github.io for more information
 - Email us at [caspstone.waruc (at) gmail.com](mailto:capstone.waruc@gmail.com)
 
 ### Team
