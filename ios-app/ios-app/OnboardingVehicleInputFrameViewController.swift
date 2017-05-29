@@ -10,7 +10,7 @@ import UIKit
 
 class OnboardingVehicleInputFrameViewController: UIViewController {
     
-    var showCancel = false
+    var showSkip = false
 
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
@@ -31,12 +31,12 @@ class OnboardingVehicleInputFrameViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if DB.sharedInstance.currVehicleInfo == nil {
+            if showSkip {
+                skipButton.setTitle("Skip", for: .normal)
+                skipButton.backgroundColor = doneButton.backgroundColor
+            }
+            
             doneButton.isHidden = true
-        }
-        
-        if showCancel {
-            skipButton.setTitle("Cancel", for: .normal)
-            skipButton.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
         }
     }
     
@@ -54,6 +54,11 @@ class OnboardingVehicleInputFrameViewController: UIViewController {
     }
     
     func modifyButtons() {
+        if showSkip {
+            skipButton.setTitle("Cancel", for: .normal)
+            skipButton.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        }
+        
         if !(DB.sharedInstance.userVehicles.keys.contains(DB.sharedInstance.currVehicleInfo!["vin"]!)) {
             doneButton.isHidden = false
         }

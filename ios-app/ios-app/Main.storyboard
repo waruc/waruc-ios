@@ -3172,7 +3172,7 @@ Cg
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="haP-8d-rx7" kind="show" id="Vyx-nc-J1K"/>
+                                    <segue destination="haP-8d-rx7" kind="show" identifier="obdPluggedIn" id="Vyx-nc-J1K"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="obd-diagram" translatesAutoresizingMaskIntoConstraints="NO" id="kMP-xK-Ylw">
@@ -3240,7 +3240,7 @@ Cg
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVO-no-2fC">
                                 <rect key="frame" x="68" y="597" width="240" height="40"/>
-                                <color key="backgroundColor" red="0.2156862745" green="0.7843137255" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.40155461430549622" green="0.77507239580154419" blue="0.53336226940155029" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="KfH-Bo-ykV"/>
                                     <constraint firstAttribute="height" constant="40" id="ldt-1x-FNt"/>
@@ -3256,13 +3256,13 @@ Cg
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvp-Ex-7CK">
                                 <rect key="frame" x="68" y="538" width="240" height="40"/>
-                                <color key="backgroundColor" red="0.2156862745" green="0.7843137255" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.74509805439999999" green="0.15686275059999999" blue="0.074509806930000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="FMr-eN-abp"/>
                                     <constraint firstAttribute="height" constant="40" id="ibU-g7-9NY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                <state key="normal" title="SKIP">
+                                <state key="normal" title="CANCEL">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -3538,7 +3538,7 @@ Cg
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="0wl-gM-U8e"/>
+        <segue reference="Vyx-nc-J1K"/>
         <segue reference="Y9S-bN-CGT"/>
-        <segue reference="8zG-gm-wQZ"/>
     </inferredMetricsTieBreakers>
 </document>

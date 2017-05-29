@@ -100,7 +100,8 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
             displayConnectionStrength()
         }
         
-        if DB.sharedInstance.currVehicleInfo != nil {
+        if DB.sharedInstance.currVehicleInfo != nil &&
+            DB.sharedInstance.userVehicles.keys.contains(DB.sharedInstance.currVehicleInfo!["vin"]!) {
             updateVehicleInfo()
         }
     }

@@ -20,8 +20,14 @@ class OnboardingOBDIIViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let backItem = UIBarButtonItem()
-        backItem.title = "Back"
-        navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
+        if segue.identifier == "obdPluggedIn" {
+            if let toViewController = segue.destination as? OnboardingVehicleInputFrameViewController {
+                toViewController.showSkip = true
+            }
+        } else {
+            let backItem = UIBarButtonItem()
+            backItem.title = "Back"
+            navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
+        }
     }
 }

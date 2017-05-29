@@ -14,11 +14,4 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "authedAddNewVehicle" {
-            if let toViewController = segue.destination as? OnboardingVehicleInputFrameViewController {
-                toViewController.showCancel = true
-            }
-        }
-    }
 }
