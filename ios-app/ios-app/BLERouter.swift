@@ -196,6 +196,9 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             res = []
             
             obd2?.setNotifyValue(true, for: dataCharacteristic!)
+            
+            //obd2?.writeValue(Data(bytes: Array("ATCRA7eb\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+            
             configureOBD()
             
             // Get VIN Number
