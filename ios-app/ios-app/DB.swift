@@ -154,7 +154,7 @@ class DB {
                 self.currVehicleInfo!["make"] = (existingVehicleInfo["make"] as! String)
                 self.currVehicleInfo!["model"] = (existingVehicleInfo["model"] as! String)
                 self.currVehicleInfo!["year"] = (existingVehicleInfo["year"] as! String)
-                self.currVehicleInfo!["nickname"] = (existingVehicleInfo["nickname"] as! String) == "" ? nil : (existingVehicleInfo["nickname"] as! String)
+                self.currVehicleInfo!["nickname"] = (existingVehicleInfo["nickname"] as! String)
                 
 //                self.updateVehicleUsers()
 //                self.updateUserVehicles()
@@ -162,7 +162,7 @@ class DB {
                 print("\nMake: \(self.currVehicleInfo!["make"]!)")
                 print("Model: \(self.currVehicleInfo!["model"]!)")
                 print("Model Year: \(self.currVehicleInfo!["year"]!)")
-                if self.currVehicleInfo!["nickname"] != nil {
+                if self.currVehicleInfo!["nickname"] != "" {
                     print("Vehicle Nickname: \(self.currVehicleInfo!["nickname"]!)")
                 }
                 

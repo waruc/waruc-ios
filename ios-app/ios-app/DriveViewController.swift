@@ -290,7 +290,7 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
         if DB.sharedInstance.currVehicleInfo != nil {
             vehicleMakeLogo.image = UIImage(named: "\(DB.sharedInstance.currVehicleInfo!["make"]!.lowercased())_logo")
             vehicleHeaderTop.constant -= 12
-            if DB.sharedInstance.currVehicleInfo!["nickname"] == nil {
+            if (DB.sharedInstance.currVehicleInfo!["nickname"] ?? "").isEmpty {
                 vehicleHeader.text = "\(DB.sharedInstance.currVehicleInfo!["make"]!.capitalized)"
                 vehicleSubHeader.text = "\(DB.sharedInstance.currVehicleInfo!["year"]!) \(DB.sharedInstance.currVehicleInfo!["model"]!)"
             } else {
