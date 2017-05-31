@@ -46,6 +46,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     let setupOutput = "ATE0\rOK\r\r>OK\r\r>OK\r\r>OK\r\r>OK\r\r>"
     let partialsetupOutput = "OK\r\r>OK\r\r>OK\r\r>OK\r\r>OK\r\r>"
     var setupComplete = false
+    var canError = false
     
     var vinNumber:String?
     
@@ -202,7 +203,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             configureOBD()
             
             // Get VIN Number
-            obd2?.writeValue(Data(bytes: Array("0902\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+            //obd2?.writeValue(Data(bytes: Array("0902\r".utf8)), for: dataCharacteristic!, type: .withResponse)
         }
     }
     
@@ -222,12 +223,49 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             print("\nOBD-II Setup is complete")
             setupComplete = true
             res = []
+            
+            if vinNumber == nil {
+                print("\nRequesting VIN")
+                obd2?.writeValue(Data(bytes: Array("0902\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+            }
+        }
+        
+        if canError {
+            print("ERROR")
+            print((res.map { String(UnicodeScalar($0)) }))
+            if (res.map { String(UnicodeScalar($0)) }).joined() == "OK\r\r>" ||
+                (res.map { String(UnicodeScalar($0)) }).joined() == "\r\rELM327 v1.5\r\r>" ||
+                (res.map { String(UnicodeScalar($0)) }).joined() == "ATZ\r\r\rELM327 v1.5\r\r>" {
+                
+                canError = false
+                res = []
+                
+                print("\nReconfigure OBD")
+                setupComplete = false
+                configureOBD()
+            }
         }
         
         if setupComplete {
             if vinNumber == nil {
                 // Parse VIN Number response
-                if (Array(res.suffix(3)).map { String(UnicodeScalar($0)) }.joined()) == "\r\r>" {
+                if (res.map { String(UnicodeScalar($0)) }.joined()).range(of: "CAN ERROR") != nil ||
+                    (res.map { String(UnicodeScalar($0)) }.joined()).range(of: "UNABLE TO CONNECT") != nil {
+                    res = []
+                    
+                    centralManager.cancelPeripheralConnection(obd2!)
+                    centralManager.scanForPeripherals(withServices: nil, options: nil)
+                    
+//                    canError = true
+//                    obd2?.writeValue(Data(bytes: Array("ATZ\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+                    
+//                    if vinNumber == nil {
+//                        print("\nRetrying VIN request")
+//                        obd2?.writeValue(Data(bytes: Array("0902\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+//                    }
+                }
+                
+                if !canError && (Array(res.suffix(3)).map { String(UnicodeScalar($0)) }.joined()) == "\r\r>" {
                     var vinString = ""
                     
                     var resultStrings = res.map { String(UnicodeScalar($0)) }.joined().components(separatedBy: "\r")
@@ -252,6 +290,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                     }
                     
                     vinNumber = String(vinCharArray)
+                    vinNumber = "JHMFA1F60A0017762"
                     print("\nVIN Number: \(vinNumber!)")
                     
                     res = []
@@ -263,7 +302,8 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                 }
             } else {
                 if (Array(res.suffix(3)).map { String(UnicodeScalar($0)) }.joined()) == "\r\r>" {
-                    if (res.map { String(UnicodeScalar($0)) }).joined() != "NO DATA\r\r>" {
+                    if (res.map { String(UnicodeScalar($0)) }).joined() != "NO DATA\r\r>" ||
+                        (res.map { String(UnicodeScalar($0)) }).joined() != "CAN ERROR\r\r>" {
                         // Setup complete and VIN Number is set.. Proceed with normal data collection
                         let kph = Int("\(String(UnicodeScalar(res[res.count - 5])))\(String(UnicodeScalar(res[res.count - 4])))", radix:16)
                         let mph = Double(kph!) / 1.609344
