@@ -29,7 +29,7 @@ class DB {
     var vinData:[JSON] = []
     var currVehicleInfo:[String: String]?
     
-    var userTrips:[[String: Any]] = []
+    var userTrips:[[String: Any]]?
     
     var userTotalMiles:Double?
     //var userTripCount = 0
@@ -51,7 +51,7 @@ class DB {
             ref!.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
                 let user = snapshot.value as! [String: Any]
                 
-                self.userTotalMiles = (user["user_mileage"] as! Double)
+                //self.userTotalMiles = (user["user_mileage"] as! Double)
                 
                 self.userVehicles = [:]
                 if let userVehicleKeys = (user["vehicles"] as? [String: String])?.keys {

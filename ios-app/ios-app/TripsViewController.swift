@@ -50,11 +50,12 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                                name: BLERouter.sharedInstance.colorUpdateNotification,
                                                object: nil)
         
-        if DB.sharedInstance.userTotalMiles != nil {
+        if DB.sharedInstance.userTrips != nil {
             updateTripsTable()
         } else {
             DB.sharedInstance.getTrips() { (returnedTrips) in
                 DB.sharedInstance.userTrips = returnedTrips
+                
                 self.updateTripsTable()
             }
         }
@@ -63,14 +64,18 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func refreshData(sender: UIRefreshControl) {
         DB.sharedInstance.getTrips() { (returnedTrips) in
             DB.sharedInstance.userTrips = returnedTrips
+            
             self.updateTripsTable()
         }
     }
     
     func updateTripsTable() {
-        //self.mileCountLabel.text = "\(Int(DB.sharedInstance.userTrips.map { ($0["mileage"] as! Double) }.reduce(0.0, +).rounded(.toNearestOrAwayFromZero)))"
+        DB.sharedInstance.userTotalMiles = DB.sharedInstance.userTrips!.count > 0 ?
+            Array(DB.sharedInstance.userTrips!.map { (($0["mileage"] as! Double) * 10).rounded() / 10 }).reduce(0.0, +) : 0.0
         
         self.mileCountLabel.text = "\(Int((DB.sharedInstance.userTotalMiles?.rounded(.toNearestOrAwayFromZero))!))"
+        
+        DB.sharedInstance.userTrips = DB.sharedInstance.userTrips!.sorted(by: { $0["timestamp"] as! Int > $1["timestamp"] as! Int })
         
         self.refreshControl.endRefreshing()
         self.tripTableView.reloadData()
@@ -169,13 +174,13 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     // MARK: TableViewDelegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DB.sharedInstance.userTrips.count
+        return DB.sharedInstance.userTrips!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tripTableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as! TripTableViewCell
         
-        let currTrip = DB.sharedInstance.userTrips[indexPath.row]
+        let currTrip = DB.sharedInstance.userTrips![indexPath.row]
         
         let calendar = Calendar.current
         let date = Date.init(timeIntervalSince1970: TimeInterval((currTrip["timestamp"] as! Int)))
