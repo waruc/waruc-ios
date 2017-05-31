@@ -63,7 +63,7 @@ class OnboardingVehicleFormViewController: FormViewController {
             
             <<< TextRow("Nickname") {
                 $0.title = "Nickname"
-                $0.disabled = DB.sharedInstance.currVehicleInfo!["nickname"] == "" ? false : true
+                $0.disabled = (DB.sharedInstance.currVehicleInfo!["nickname"] ?? "").isEmpty ? false : true
                 $0.value = DB.sharedInstance.currVehicleInfo!["nickname"]
                 $0.tag = "nickname"
             }
