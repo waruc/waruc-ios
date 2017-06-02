@@ -28,8 +28,8 @@ The app requires a Bluetooth OBD-II device to connect to our application. Please
   - Autonomous connections between iOS application and OBD BLE.
 
 - [Database Connection Built w/ Firebase](https://firebase.google.com/)
-  - Quick, secure, easy to setup and manage.
-  - Easy to update ERD and subsequent database.
+  - Quick, secure, easy to setup and manage. Easy to update ERD and subsequent database.
+  - Built in Authentication services and encryption of data.
   - Extremely scalable and adaptable to new and varying datatypes. Created with growth of the system after the pilot program in mind.
 
 - Design Choices
