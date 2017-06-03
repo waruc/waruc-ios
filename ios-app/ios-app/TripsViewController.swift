@@ -29,7 +29,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bottomStartStopTrackingButton.isHidden = true
+        //bottomStartStopTrackingButton.isHidden = true
         
         // Separator for top of first cell
         let px = 1 / UIScreen.main.scale

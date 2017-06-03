@@ -10,10 +10,11 @@ import UIKit
 
 class OnboardingOBDIIViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var skipButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.skipButton.layer.cornerRadius = CGFloat(Constants.round)
         self.nextButton.layer.cornerRadius = CGFloat(Constants.round)
         nextButton.clipsToBounds = true
         self.navigationController?.navigationBar.tintColor = Colors.green

@@ -28,7 +28,7 @@ class SettingsViewController: UIViewController {
         
         self.bottomBar.backgroundColor = Colors.green
         
-        bottomStartStopTrackingButton.isHidden = true
+        //bottomStartStopTrackingButton.isHidden = true
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.updateColorScheme),
