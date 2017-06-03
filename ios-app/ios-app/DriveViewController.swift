@@ -10,6 +10,7 @@ import UIKit
 //import GoogleMaps
 //import CoreLocation
 import NVActivityIndicatorView
+import Charts
 
 class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
     
@@ -41,6 +42,10 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
     
     @IBOutlet weak var connectionHeaderTop: NSLayoutConstraint!
     @IBOutlet weak var vehicleHeaderTop: NSLayoutConstraint!
+    
+    //Charts
+    @IBOutlet weak var lineChart: LineChartView!
+    
     
     // MARK: Setup
     override func viewDidLoad() {
@@ -104,6 +109,11 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
             DB.sharedInstance.userVehicles.keys.contains(DB.sharedInstance.currVehicleInfo!["vin"]!) {
             updateVehicleInfo()
         }
+        
+        //Charts
+        
+        updateChart()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -303,5 +313,55 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
             vehicleHeader.text = "Vehicle not connected"
             vehicleSubHeader.text = ""
         }
+    }
+    
+    //******** Charts *******
+
+    func updateChart() {
+        
+        //Data
+        var y:[Double] = [3.0, 8.0, 7.0, 11.0, 13.0, 17.0, 12.0, 9.0, 15.0, 8.0, 10.0]
+        
+        var dataEntries: [ChartDataEntry] = []
+        for i in 0..<y.count {
+            let dataEntry = ChartDataEntry(x: Double(i), y: Double(y[i]))
+            dataEntries.append(dataEntry)
+        }
+        let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "Example Chart")
+        lineChartDataSet.mode = .cubicBezier
+        lineChart.data = LineChartData(dataSet: lineChartDataSet)
+        
+
+        //set colors
+        lineChart.backgroundColor = UIColor(white: 1, alpha: 0)
+        let gradientColors = [Colors.lightBlue.cgColor, Colors.lighterBlue.cgColor] as CFArray
+        let colorLocations: [CGFloat] = [1.0, 0.2]
+        guard let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) else {
+            print("gradient"); return
+        }
+        lineChartDataSet.fill = Fill.fillWithLinearGradient(gradient, angle: 90)
+        lineChartDataSet.drawFilledEnabled = true
+        lineChartDataSet.drawCircleHoleEnabled = false
+        lineChartDataSet.circleRadius = 6
+        
+        //animation
+        lineChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
+        
+        //remove axis and gridlines
+        lineChart.xAxis.drawGridLinesEnabled = false
+        lineChart.xAxis.drawAxisLineEnabled = false
+        lineChart.leftAxis.drawGridLinesEnabled = false
+        lineChart.leftAxis.drawAxisLineEnabled = false
+        lineChart.rightAxis.drawGridLinesEnabled = false
+        lineChart.rightAxis.drawAxisLineEnabled = false
+        
+        //remove text 
+        lineChart.data?.setDrawValues(false)
+        lineChart.xAxis.drawLabelsEnabled = false
+        lineChart.leftAxis.drawLabelsEnabled = false
+        lineChart.rightAxis.drawLabelsEnabled = false
+        lineChart.legend.enabled = false
+        lineChart.chartDescription?.text = ""
+
     }
 }

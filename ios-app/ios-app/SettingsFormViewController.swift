@@ -108,11 +108,11 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             
             +++ Section(header: "About", footer: "© 2017 Dylan Babbs, Jackson Brown, Jack Fox, Nick Nordale, and Ishan Saksena. All rights reserved.    ")
             
-//                //TODO: reinsert when website is running
-//                <<< ButtonRow("About the App") {
-//                    $0.title = $0.tag
-//                    $0.presentationMode = .segueName(segueName: "aboutApp", onDismiss: nil)
-//                }
+                //TODO: reinsert when website is running
+                <<< ButtonRow("About the App") {
+                    $0.title = $0.tag
+                    $0.presentationMode = .segueName(segueName: "aboutApp", onDismiss: nil)
+                }
             
                 <<< ButtonRow("About the Program") {
                     $0.title = $0.tag
@@ -124,15 +124,15 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                     $0.presentationMode = .segueName(segueName: "privacyPolicy", onDismiss: nil)
                 }
             
-//                <<< ButtonRow("Rate us in the App Store") {
-//                    $0.title = $0.tag
-//                    }
-//                    .onCellSelection { cell, row in 
-//                        
-//                        self.rateApp(appId: "id389801252") { success in
-//                            print("RateApp \(success)")
-//                        }
-//                }
+                <<< ButtonRow("Rate us in the App Store") {
+                    $0.title = $0.tag
+                    }
+                    .onCellSelection { cell, row in 
+                        
+                        self.rateApp(appId: "id1240657572") { success in
+                            print("RateApp \(success)")
+                        }
+                }
             
                 <<< ButtonRow("Report an Issue") {
                     $0.title = $0.tag
@@ -206,6 +206,16 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             signOutRow.updateCell()
         }
         
+        if let aboutTheAppRow:ButtonRow = form.rowBy(tag: "About the App") {
+            aboutTheAppRow.cellUpdate { cell, row in
+                cell.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
+                cell.textLabel?.textColor = UIColor.white
+                cell.detailTextLabel?.textColor = UIColor.white
+            }
+            
+            aboutTheAppRow.updateCell()
+        }
+        
         if let aboutTheProgramRow:ButtonRow = form.rowBy(tag: "About the Program") {
             aboutTheProgramRow.cellUpdate { cell, row in
                 cell.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
@@ -224,6 +234,16 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             }
             
             privacyPolicyRow.updateCell()
+        }
+        
+        if let rateUsRow:ButtonRow = form.rowBy(tag: "Rate us in the App Store") {
+            rateUsRow.cellUpdate { cell, row in
+                cell.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
+                cell.textLabel?.textColor = UIColor.white
+                cell.detailTextLabel?.textColor = UIColor.white
+            }
+            
+            rateUsRow.updateCell()
         }
         
         if let reportAnIssueRow:ButtonRow = form.rowBy(tag: "Report an Issue") {
