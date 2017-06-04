@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet weak var mytripsHeader: UILabel!
     @IBOutlet weak var mileCountLabel: UILabel!
@@ -25,6 +25,8 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var firebaseTrips = [[String: Any]]()
     
     private let refreshControl = UIRefreshControl()
+    
+    let tripFilterNotificationIdentifier = Notification.Name("tripFilterNotificationIdentifier")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,10 +52,15 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                                name: BLERouter.sharedInstance.colorUpdateNotification,
                                                object: nil)
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.filterTrips(_:)),
+                                               name: tripFilterNotificationIdentifier,
+                                               object: nil)
+        
         if DB.sharedInstance.userTrips != nil {
             updateTripsTable()
         } else {
-            DB.sharedInstance.getTrips() { (returnedTrips) in
+            DB.sharedInstance.fetchUserTrips() { (returnedTrips) in
                 DB.sharedInstance.userTrips = returnedTrips
                 
                 self.updateTripsTable()
@@ -62,7 +69,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func refreshData(sender: UIRefreshControl) {
-        DB.sharedInstance.getTrips() { (returnedTrips) in
+        DB.sharedInstance.fetchUserTrips() { (returnedTrips) in
             DB.sharedInstance.userTrips = returnedTrips
             
             self.updateTripsTable()
@@ -205,6 +212,48 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func updateTotalMiles() {
         self.mileCountLabel.text = "\(Int(DB.sharedInstance.userTotalMiles!.rounded(.toNearestOrAwayFromZero)))"
+    }
+
+    @IBAction func filterByVehicle(_ sender: Any) {
+        //addCategory()
+        
+        let mainStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let popoverController = mainStoryboard.instantiateViewController(withIdentifier: "VehiclePickerVC") as UIViewController
+        // set the presentation style
+        popoverController.modalPresentationStyle = UIModalPresentationStyle.popover
+        
+        // set up the popover presentation controller
+        popoverController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
+        popoverController.popoverPresentationController?.delegate = self
+        popoverController.popoverPresentationController?.sourceView = (sender as! UIView) // button
+        popoverController.popoverPresentationController?.sourceRect = (sender as AnyObject).bounds
+        popoverController.popoverPresentationController?.backgroundColor = UIColor.black
+        
+        popoverController.preferredContentSize = CGSize(width: 300, height: 150)
+        
+        // present the popover
+        self.present(popoverController, animated: true, completion: nil)
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+    
+    func filterTrips(_ notification: NSNotification) {
+        if let selectedVehicle = (notification.object as? [String: String]) {
+            DB.sharedInstance.fetchUserTripsByVin(vin: selectedVehicle["vin"]!) { (returnedTrips) in
+                DB.sharedInstance.userTrips = returnedTrips
+                
+                self.updateTripsTable()
+            }
+        } else {
+            DB.sharedInstance.fetchUserTrips() { (returnedTrips) in
+                DB.sharedInstance.userTrips = returnedTrips
+                
+                self.updateTripsTable()
+            }
+        }
+
     }
     
 }
