@@ -66,24 +66,3 @@ class VehicleFilterViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
 
 }
-
-//class PickerTableViewCell: UITableViewCell {
-//    
-//    @IBOutlet var pickerView:UIPickerView!
-//    
-//    private var gestureRecognizer:UITapGestureRecognizer!
-//    
-//    override func awakeFromNib() {
-//        gestureRecognizer = UITapGestureRecognizer(target: self, action: "didTap:")
-//        gestureRecognizer.cancelsTouchesInView = false
-//        pickerView.addGestureRecognizer(gestureRecognizer)
-//    }
-//    
-//    func didTap(gestureRecognizer:UITapGestureRecognizer) {
-//        print("tap")
-//    }
-//    
-//    override func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//        return true
-//    }
-//}
