@@ -128,8 +128,7 @@ class signInContainerViewController: UIViewController {
                 FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
                     if user != nil {
                         //if !(user?.isEmailVerified)! {
-                        DB.sharedInstance.getUserData()
-                        DB.sharedInstance.seedTrips()
+                        DB.init()
                         NotificationCenter.default.addObserver(self,
                                                                selector: #selector(self.startBLEScan),
                                                                name: BLERouter.sharedInstance.sharedInstanceReadyNotification,
