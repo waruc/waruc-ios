@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Lb-ae-XNf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Lb-ae-XNf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -401,12 +401,25 @@
                                     <constraint firstItem="fP0-ax-haF" firstAttribute="leading" secondItem="fUT-cY-Esr" secondAttribute="leading" constant="8" id="nq6-zi-P2s"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2b-fZ-oCI">
+                                <rect key="frame" x="305" y="30" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="NZE-vo-mC1"/>
+                                    <constraint firstAttribute="width" constant="50" id="iyG-mj-QD6"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="car"/>
+                                <connections>
+                                    <action selector="filterByVehicle:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="Cba-9k-mxM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fUT-cY-Esr" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="2xS-CD-cJz"/>
+                            <constraint firstAttribute="trailing" secondItem="Z2b-fZ-oCI" secondAttribute="trailing" constant="20" id="35S-9x-krL"/>
                             <constraint firstItem="eEo-a6-wd9" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="4" id="3rE-82-G3V"/>
                             <constraint firstItem="fUT-cY-Esr" firstAttribute="top" secondItem="kLe-jE-7fM" secondAttribute="bottom" id="Cb2-9n-Hrb"/>
+                            <constraint firstItem="Z2b-fZ-oCI" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="10" id="HaF-1m-Lfv"/>
                             <constraint firstItem="fUT-cY-Esr" firstAttribute="bottom" secondItem="Djb-ko-YwX" secondAttribute="top" id="LLj-wn-RmQ"/>
                             <constraint firstItem="fUT-cY-Esr" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="LRY-Lh-RAd"/>
                             <constraint firstAttribute="trailing" secondItem="fUT-cY-Esr" secondAttribute="trailing" id="OQU-Ff-9Wy"/>
@@ -554,6 +567,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6no-ca-nSC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2306" y="27"/>
+        </scene>
+        <!--Vehicle Filter View Controller-->
+        <scene sceneID="e8S-Rx-Hbe">
+            <objects>
+                <viewController storyboardIdentifier="VehiclePickerVC" id="YJd-hY-QWA" customClass="VehicleFilterViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jNg-TR-Egg"/>
+                        <viewControllerLayoutGuide type="bottom" id="x5R-5f-ngG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bBe-3n-bpw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kpn-sA-9tA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Kpn-sA-9tA" secondAttribute="trailing" id="DnC-hm-IiS"/>
+                            <constraint firstItem="x5R-5f-ngG" firstAttribute="top" secondItem="Kpn-sA-9tA" secondAttribute="bottom" id="Pno-RS-KdW"/>
+                            <constraint firstItem="Kpn-sA-9tA" firstAttribute="leading" secondItem="bBe-3n-bpw" secondAttribute="leading" id="ZAI-bM-l2N"/>
+                            <constraint firstItem="Kpn-sA-9tA" firstAttribute="top" secondItem="bBe-3n-bpw" secondAttribute="top" id="u2K-XW-XBf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="vehiclePickerView" destination="Kpn-sA-9tA" id="V8u-aa-q5O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SwA-BJ-ert" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1480.8" y="787.55622188905556"/>
         </scene>
         <!--About the App-->
         <scene sceneID="BGU-QZ-oWN">
@@ -3437,7 +3483,7 @@ Cg
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7Lb-ae-XNf" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="b8a-07-SKZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="b8a-07-SKZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3597,6 +3643,7 @@ Cg
     </scenes>
     <resources>
         <image name="bluetooth-purple" width="112" height="222"/>
+        <image name="car" width="166" height="166"/>
         <image name="history" width="25" height="25"/>
         <image name="locationsmall" width="27" height="27"/>
         <image name="obd-diagram" width="1846" height="1000"/>
