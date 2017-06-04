@@ -43,7 +43,8 @@ class Location: NSObject, CLLocationManagerDelegate {
     
     func stopTracking() {
         self.tracking = false
-        saveTrips()
+        // Convert meters to miles w/ tripDistance * 0.000621371
+        DB.sharedInstance.writeTrip(miles: tripDistance * 0.000621371, vin: "location")
         tripDistance = 0.0
     }
     
@@ -100,24 +101,6 @@ class Location: NSObject, CLLocationManagerDelegate {
                 tripDistance += meters
             }
             realTimeDistance = currentLoc
-        }
-    }
-    
-    func saveTrips() {
-        let newTrip = Trip()
-        let miles = tripDistance * 0.000621371 //convert to miles
-        newTrip.distance = miles
-        newTrip.startTime = tripStartTime
-        newTrip.endTime = Date()
-        newTrip.save()
-        printDB()
-    }
-    
-    func printDB() {
-        let realm = try! Realm()
-        let trips = realm.objects(Trip.self)
-        for trip in trips {
-            print(trip)
         }
     }
     
