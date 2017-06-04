@@ -9,10 +9,14 @@
 import UIKit
 import NVActivityIndicatorView
 import Charts
+import LocalAuthentication
 
 
 class DriveViewController: UIViewController {    
     // MARK: References
+    
+    
+    
     //Main header
     @IBOutlet weak var cityHeader: UILabel!
     @IBOutlet weak var locationIcon: UIImageView!
@@ -113,7 +117,7 @@ class DriveViewController: UIViewController {
         }
         
     }
-    
+     
     func updateCityHeader(_ notification: NSNotification) {
         if let text = notification.userInfo?["text"] as? String {
             self.cityHeader.text = text  
@@ -133,7 +137,10 @@ class DriveViewController: UIViewController {
         } else {
             setWhite()
         }
+        
+        
     }
+
     
     @IBAction public func send(_ sender: UIButton) {
         BLERouter.sharedInstance.tracking = !BLERouter.sharedInstance.tracking
@@ -250,8 +257,6 @@ class DriveViewController: UIViewController {
                           animations: nil,
                           completion: nil)
     }
-    
-    
     
     //******** BLE **********
     
