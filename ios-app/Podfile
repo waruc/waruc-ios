@@ -9,6 +9,7 @@ target 'ios-app' do
   # Pods for ios-app
   pod 'RealmSwift'
   pod 'Eureka'
+  pod 'Charts'
 
   #Firebase related pods
   pod 'Firebase/Core'

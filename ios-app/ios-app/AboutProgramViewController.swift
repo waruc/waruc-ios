@@ -17,7 +17,7 @@ class AboutProgramViewController: UIViewController, UIWebViewDelegate {
         webView = UIWebView(frame: UIScreen.main.bounds)
         webView.delegate = self
         view.addSubview(webView)
-        if let url = URL(string: "https://waruc.github.io") {
+        if let url = URL(string: "https://waroadusagecharge.org") {
             let request = URLRequest(url: url)
             webView.loadRequest(request)
         }

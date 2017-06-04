@@ -14,16 +14,30 @@ The project was developed as part of the [University of Washington Information S
 - Automatic mileage recording so you aren't distracted while driving.
 - Completely secure and encrypted to ensure your privacy.
 
-![shot1](ios-app/screenshots/shot1.png)
-![shot1](ios-app/screenshots/shot2.png)
-![shot1](ios-app/screenshots/shot3.png)
+![shot1](ios-app/screenshots/add-vehicle.gif)
+![shot1](ios-app/screenshots/drive.gif)
+![shot1](ios-app/screenshots/onboarding.gif)
 
 
 ## Requirements
 The app requires a Bluetooth OBD-II device to connect to our application. Please purchase one to utilize the application.
 
+## Tech Features
+- [OBD-II BLE Open Source Framework](https://github.com/waruc/OBD2_BLE)
+  - Allows for low battery consumption, multi-channel Bluetooth connections, and quick pairing and recognition of Bluetooth Low Energy enabled devices.
+  - Autonomous connections between iOS application and OBD BLE.
+
+- [Database Connection Built w/ Firebase](https://firebase.google.com/)
+  - Quick, secure, easy to setup and manage. Easy to update ERD and subsequent database.
+  - Built in Authentication services and encryption of data.
+  - Extremely scalable and adaptable to new and varying datatypes. Created with growth of the system after the pilot program in mind.
+
+- Design Choices
+  - Intuitive tracking state changes for user quick verification of current state of application.
+  - Extensive onboarding process to help user quickly get through the hassle of installing hardware in vehicle.
+
 ## Contact
-- Visit https://waruc.github.io for more information
+- Visit [waruc.github.io](https://waruc.github.io) for more information
 - Email us at [caspstone.waruc (at) gmail.com](mailto:capstone.waruc@gmail.com)
 
 ### Team

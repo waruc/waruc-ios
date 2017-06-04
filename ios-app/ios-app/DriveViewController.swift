@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  DriveViewController.swift
 //  ios-app
 //
 //  Created by ishansaksena on 4/7/17.
@@ -7,13 +7,16 @@
 //
 
 import UIKit
-//import GoogleMaps
-//import CoreLocation
 import NVActivityIndicatorView
+import Charts
+import LocalAuthentication
 
-class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
-    
+
+class DriveViewController: UIViewController {    
     // MARK: References
+    
+    
+    
     //Main header
     @IBOutlet weak var cityHeader: UILabel!
     @IBOutlet weak var locationIcon: UIImageView!
@@ -42,6 +45,12 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
     @IBOutlet weak var connectionHeaderTop: NSLayoutConstraint!
     @IBOutlet weak var vehicleHeaderTop: NSLayoutConstraint!
     
+    //Charts
+    @IBOutlet weak var currentMPH: UILabel!
+    @IBOutlet weak var mphLabel: UILabel!
+    @IBOutlet weak var lineChart: LineChartView!
+    
+    
     // MARK: Setup
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +58,7 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
         cityHeader.text = "Drive"
         locationIcon.isHidden = true
         
-        bottomStartStopTrackingButton.isHidden = true
+        //bottomStartStopTrackingButton.isHidden = true
         
         searchingAnimation = NVActivityIndicatorView(frame: CGRect(x: 10, y: 10, width: 32, height: 32))
         searchingAnimation!.color = UIColor.black
@@ -63,14 +72,7 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
         self.greyBoxTwo.clipsToBounds = true
         
         self.bottomBar.backgroundColor = Colors.green
-        locationIcon.isHidden = true
-        
-        //Location services:
-        //locationManager = CLLocationManager()
 
-        //Change below to kCLLocationAccuracyBestForNavigation if we need location tracking
-        
-        //location()
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.updateConnection),
@@ -92,6 +94,15 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
                                                name: DB.sharedInstance.existingVehicleInfoNotification,
                                                object: nil)
         
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(self.updateCityHeader(_:)), 
+                                               name: NSNotification.Name(rawValue: "cityHeaderNotification"), 
+                                               object: nil)
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(self.updateLocationIcon(_:)), 
+                                               name: NSNotification.Name(rawValue: "locationIconNotification"), 
+                                               object: nil)
+        
         if BLERouter.sharedInstance.connectionType != nil {
             updateConnection()
         }
@@ -104,24 +115,48 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
             DB.sharedInstance.userVehicles.keys.contains(DB.sharedInstance.currVehicleInfo!["vin"]!) {
             updateVehicleInfo()
         }
+        
     }
-
+     
+    func updateCityHeader(_ notification: NSNotification) {
+        if let text = notification.userInfo?["text"] as? String {
+            self.cityHeader.text = text  
+        }
+    }
+    
+    func updateLocationIcon(_ notification: NSNotification) {
+        if let status = notification.userInfo?["status"] as? Bool {
+            self.locationIcon.isHidden = status 
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        if BLERouter.sharedInstance.tracking {
+        if BLERouter.sharedInstance.tracking || Location.sharedInstance.tracking {
             setBlack()
         } else {
             setWhite()
         }
+        
+        
     }
+
     
     @IBAction public func send(_ sender: UIButton) {
         BLERouter.sharedInstance.tracking = !BLERouter.sharedInstance.tracking
+        Location.sharedInstance.tracking = !Location.sharedInstance.tracking
+        
         updateColorScheme()
+        
+        if Location.sharedInstance.tracking {
+            Location.sharedInstance.startTracking()
+        } else {
+            Location.sharedInstance.stopTracking()
+        }
     }
     
     func updateColorScheme() {
-        if BLERouter.sharedInstance.tracking {
+        if BLERouter.sharedInstance.tracking || Location.sharedInstance.tracking {
             setBlack()
         } else {
             setWhite()
@@ -129,6 +164,12 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
     }
     
     func setBlack() {
+        //charts
+        lineChart.isHidden = false
+        currentMPH.isHidden = false
+        mphLabel.isHidden = false
+        updateChart()
+        
         //bars
         self.bottomBar.backgroundColor = Colors.purple
         self.view.backgroundColor = Colors.backgroundBlack
@@ -166,6 +207,11 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
     }
     
     func setWhite() {
+        //charts
+        lineChart.isHidden = true
+        currentMPH.isHidden = true
+        mphLabel.isHidden = true
+        
         //bars
         self.bottomBar.backgroundColor = Colors.green
         self.view.backgroundColor = Colors.white
@@ -197,6 +243,8 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
         //Status bar
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: true)
         
+        lineChart.isHidden = true;
+        
         //Transitions
         transition(item: self.view)
         transition(item: (self.tabBarController?.tabBar)!)
@@ -210,61 +258,7 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
                           completion: nil)
     }
     
-    //----- The following code is for location services to be added following first
-    //----- apple submission.
-    
-//    func location() {
-//        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-//        locationManager.distanceFilter = 1500.0
-//        locationManager.delegate = self
-//        locationManager.requestWhenInUseAuthorization()
-//        locationManager.startUpdatingLocation()
-//        startLocation = nil
-//    }
-    
-//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//        // App may no longer be authorized to obtain location
-//        //information. Check status here and respond accordingly
-//    }
-//    
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        let latestLocation: CLLocation = locations[locations.count - 1]
-//        var currentLatitude:Double = latestLocation.coordinate.latitude
-//        var currentLongitude:Double = latestLocation.coordinate.longitude
-//        
-//        if startLocation == nil {
-//            startLocation = latestLocation
-//        }
-//        
-//        //Geocoder:
-//        let geocoder = GMSGeocoder()
-//        var result = "result"
-//        var temp = CLLocationCoordinate2D(latitude: currentLatitude, longitude: currentLongitude)
-//        geocoder.reverseGeocodeCoordinate(temp) {
-//            response , error in
-//            if let address = response?.firstResult() {
-//                if address.locality == nil || address.administrativeArea == nil {
-//                    result = "Unknown, USA"
-//                } else {
-//                    if address.administrativeArea! != "Washington" {
-//                        let city = "\(address.locality!), \(address.administrativeArea!)"
-//                        result = "Outside of WA"
-//                    } else {
-//                        result = "\(address.locality!), WA"
-//                    }
-//                    print("CITY: \(result)")
-//                }
-//            }
-//            self.cityHeader.text = result
-//            self.locationIcon.isHidden = false
-//            self.transition(item: self.locationIcon)
-//            self.transition(item: self.cityHeader)
-//        }
-//    }
-//    
-//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-//        // Handle errors here 
-//    }
+    //******** BLE **********
     
     func updateConnection() {
         if BLERouter.sharedInstance.connectionType != nil {
@@ -304,4 +298,55 @@ class DriveViewController: UIViewController { //, CLLocationManagerDelegate {
             vehicleSubHeader.text = ""
         }
     }
+    
+    //******** Charts *******
+
+    func updateChart() {
+        //Data
+        var y:[Double] = [3.0, 8.0, 7.0, 11.0, 13.0, 17.0, 12.0, 9.0, 15.0, 8.0, 10.0]
+        
+        var dataEntries: [ChartDataEntry] = []
+        for i in 0..<y.count {
+            let dataEntry = ChartDataEntry(x: Double(i), y: Double(y[i]))
+            dataEntries.append(dataEntry)
+        }
+        let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "Example Chart")
+        lineChartDataSet.mode = .cubicBezier
+        lineChart.data = LineChartData(dataSet: lineChartDataSet)
+        
+
+        //set colors
+        lineChart.backgroundColor = UIColor(white: 1, alpha: 0)
+        let gradientColors = [Colors.lightBlue.cgColor, Colors.lighterBlue.cgColor] as CFArray
+        let colorLocations: [CGFloat] = [1.0, 0.2]
+        guard let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) else {
+            print("gradient"); return
+        }
+        lineChartDataSet.fill = Fill.fillWithLinearGradient(gradient, angle: 90)
+        lineChartDataSet.drawFilledEnabled = true
+        lineChartDataSet.drawCircleHoleEnabled = false
+        lineChartDataSet.circleRadius = 0
+        
+        
+        //animation
+        lineChart.animate(xAxisDuration: 0.0, yAxisDuration: 1.5)
+        
+        //remove axis and gridlines
+        lineChart.xAxis.drawGridLinesEnabled = false
+        lineChart.xAxis.drawAxisLineEnabled = false
+        lineChart.leftAxis.drawGridLinesEnabled = false
+        lineChart.leftAxis.drawAxisLineEnabled = false
+        lineChart.rightAxis.drawGridLinesEnabled = false
+        lineChart.rightAxis.drawAxisLineEnabled = false
+        
+        //remove text 
+        lineChart.data?.setDrawValues(false)
+        lineChart.xAxis.drawLabelsEnabled = false
+        lineChart.leftAxis.drawLabelsEnabled = false
+        lineChart.rightAxis.drawLabelsEnabled = false
+        lineChart.legend.enabled = false
+        lineChart.chartDescription?.text = ""
+
+    }
+    
 }

@@ -249,8 +249,11 @@ class DB {
         return vinData.filter { $0["VariableId"].intValue == variableId }[0]["Value"].stringValue
     }
     
-    func writeTrip(ts: Int, miles: Double, vin: String) {
+    func writeTrip(miles: Double, vin: String) {
         //userTripCount += 1
+        
+        let date = Date()
+        let ts = Int(date.timeIntervalSince1970.rounded())
         
         let uid = FIRAuth.auth()?.currentUser?.uid
         let key = self.ref.child("vehicles").childByAutoId().key

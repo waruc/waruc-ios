@@ -352,11 +352,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     func stopTrip() {
         aggDist += totalDist
-        
-        let date = Date()
-        let ts = Int(date.timeIntervalSince1970.rounded())
-        
-        DB.sharedInstance.writeTrip(ts: ts, miles: totalDist, vin: vinNumber!)
+        DB.sharedInstance.writeTrip(miles: totalDist, vin: vinNumber!)
     }
     
 }

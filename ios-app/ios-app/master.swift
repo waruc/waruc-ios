@@ -21,6 +21,9 @@ struct Colors {
     static let lightGrey = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
     static let darkGrey = UIColor(red:0.61, green:0.61, blue:0.61, alpha:1.0)
     static let tableGrey = UIColor(red:0.94, green:0.94, blue:0.96, alpha:1.0)
+    static let lightBlue = UIColor(red:0.02, green:0.76, blue:0.96, alpha:1.0)
+    
+    static let lighterBlue = UIColor(red:0.76, green:0.95, blue:1.00, alpha:1.0)
     
     static let transitionTime = 0.5
 }
