@@ -46,7 +46,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     let setupOutput = "ATE0\rOK\r\r>OK\r\r>OK\r\r>OK\r\r>OK\r\r>"
     let partialsetupOutput = "OK\r\r>OK\r\r>OK\r\r>OK\r\r>OK\r\r>"
     var setupComplete = false
-    var canError = false
+    var obdError = false
     
     var vinNumber:String?
     
@@ -214,112 +214,118 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
         
         let returnedBytes = [UInt8](characteristic.value!)
-        
         res += returnedBytes
-        if (res.map { String(UnicodeScalar($0)) }).joined() == setupOutput ||
-            (res.map { String(UnicodeScalar($0)) }).joined() == restartSetupOutput ||
-            (res.map { String(UnicodeScalar($0)) }).joined() == partialsetupOutput {
-            
-            print("\nOBD-II Setup is complete")
-            setupComplete = true
-            res = []
-            
-            if vinNumber == nil {
-                print("\nRequesting VIN")
-                obd2?.writeValue(Data(bytes: Array("0902\r".utf8)), for: dataCharacteristic!, type: .withResponse)
-            }
-        }
         
-        if canError {
-            print("ERROR")
-            print((res.map { String(UnicodeScalar($0)) }))
-            if (res.map { String(UnicodeScalar($0)) }).joined() == "OK\r\r>" ||
-                (res.map { String(UnicodeScalar($0)) }).joined() == "\r\rELM327 v1.5\r\r>" ||
-                (res.map { String(UnicodeScalar($0)) }).joined() == "ATZ\r\r\rELM327 v1.5\r\r>" {
+//        if obdError {
+//            if (res.map { String(UnicodeScalar($0)) }).joined() == "OK\r\r>" ||
+//                (res.map { String(UnicodeScalar($0)) }).joined() == "\r\rELM327 v1.5\r\r>" ||
+//                (res.map { String(UnicodeScalar($0)) }).joined() == "ATZ\r\r\rELM327 v1.5\r\r>" {
+//                
+//                obdError = false
+//                res = []
+//                
+//                print("\nOBD restart successful. Reconfiguring OBD...")
+//                setupComplete = false
+//                configureOBD()
+//            }
+//        } else if !setupComplete {
+        if !setupComplete {
+            if (res.map { String(UnicodeScalar($0)) }).joined() == setupOutput ||
+                (res.map { String(UnicodeScalar($0)) }).joined() == restartSetupOutput ||
+                (res.map { String(UnicodeScalar($0)) }).joined() == partialsetupOutput {
                 
-                canError = false
+                print("\nOBD-II Setup is complete")
+                setupComplete = true
                 res = []
                 
-                print("\nReconfigure OBD")
-                setupComplete = false
-                configureOBD()
+                if vinNumber == nil {
+                    print("\nRequesting VIN")
+                    obd2?.writeValue(Data(bytes: Array("0902\r".utf8)), for: dataCharacteristic!, type: .withResponse)
+                }
             }
-        }
-        
-        if setupComplete {
-            if vinNumber == nil {
-                // Parse VIN Number response
-                if (res.map { String(UnicodeScalar($0)) }.joined()).range(of: "CAN ERROR") != nil ||
-                    (res.map { String(UnicodeScalar($0)) }.joined()).range(of: "UNABLE TO CONNECT") != nil {
-                    res = []
-                    
-                    centralManager.cancelPeripheralConnection(obd2!)
-                    centralManager.scanForPeripherals(withServices: nil, options: nil)
-                    
-//                    canError = true
-//                    obd2?.writeValue(Data(bytes: Array("ATZ\r".utf8)), for: dataCharacteristic!, type: .withResponse)
-                    
-//                    if vinNumber == nil {
-//                        print("\nRetrying VIN request")
-//                        obd2?.writeValue(Data(bytes: Array("0902\r".utf8)), for: dataCharacteristic!, type: .withResponse)
-//                    }
-                }
+        } else {
+            if (res.map { String(UnicodeScalar($0)) }.joined()).range(of: "CAN ERROR") != nil ||
+                (res.map { String(UnicodeScalar($0)) }.joined()).range(of: "UNABLE TO CONNECT") != nil ||
+                (res.map { String(UnicodeScalar($0)) }).joined().range(of: "NO DATA") != nil {
                 
-                if !canError && (Array(res.suffix(3)).map { String(UnicodeScalar($0)) }.joined()) == "\r\r>" {
-                    var vinString = ""
-                    
-                    var resultStrings = res.map { String(UnicodeScalar($0)) }.joined().components(separatedBy: "\r")
-                    
-                    // Ref: Pg 42 - https://www.elmelectronics.com/wp-content/uploads/2016/07/ELM327DS.pdf
-                    let line1 = resultStrings[2]
-                    let index1 = line1.index(line1.startIndex, offsetBy: 8)
-                    vinString += line1.substring(from: index1)
-                    
-                    let line2 = resultStrings[3]
-                    let index2 = line2.index(line2.startIndex, offsetBy: 2)
-                    vinString += line2.substring(from: index2)
-                    
-                    let line3 = resultStrings[4]
-                    let index3 = line3.index(line3.startIndex, offsetBy: 2)
-                    vinString += line3.substring(from: index3)
-                    
-                    let vinHexArray = Array(vinString.characters).splitBy(subSize: 2).map { String($0) }
-                    let vinCharArray = vinHexArray.map { char -> Character in
-                        let code = Int(strtoul(char, nil, 16))
-                        return Character(UnicodeScalar(code)!)
-                    }
-                    
-                    vinNumber = String(vinCharArray)
-                    vinNumber = "JHMFA1F60A0017762"
-                    print("\nVIN Number: \(vinNumber!)")
-                    
-                    res = []
-                    
-                    // Monitor speed
-                    monitorSpeed()
-                    
-                    DB.sharedInstance.createOrReturnVehicle(vin: vinNumber!)
-                }
+                print("\nOBD ERROR")
+                res = []
+                obdError = true
+                
+                //centralManager.cancelPeripheralConnection(obd2!)
+                //centralManager.scanForPeripherals(withServices: nil, options: nil)
+                
+//                print("\nRestarting...")
+//                obd2?.writeValue(Data(bytes: Array("ATZ\r".utf8)), for: dataCharacteristic!, type: .withResponse)
             } else {
                 if (Array(res.suffix(3)).map { String(UnicodeScalar($0)) }.joined()) == "\r\r>" {
-                    if (res.map { String(UnicodeScalar($0)) }).joined() != "NO DATA\r\r>" ||
-                        (res.map { String(UnicodeScalar($0)) }).joined() != "CAN ERROR\r\r>" {
-                        // Setup complete and VIN Number is set.. Proceed with normal data collection
-                        let kph = Int("\(String(UnicodeScalar(res[res.count - 5])))\(String(UnicodeScalar(res[res.count - 4])))", radix:16)
-                        let mph = Double(kph!) / 1.609344
-                        print("\nCurrent speed: \(mph) mph")
-                        if (!tracking && mph > 0) {
-                            tracking = true
-                            NotificationCenter.default.post(name: colorUpdateNotification, object: nil)
+                    if vinNumber == nil {
+                        // Parse VIN Number response
                             
-                            totalDist = 0
-                            tripSeconds = 0.0
-                            recordSpeedUpdate(spd: mph)
-                        } else if (tracking) {
-                            recordSpeedUpdate(spd: mph)
+                        var vinString = ""
+                        var resultStrings = res.map { String(UnicodeScalar($0)) }.joined().components(separatedBy: "\r")
+                        
+//                        guard resultStrings.count >= 5 else {
+//                            print("\nOBD ERROR getting VIN number")
+//                            obdError = true
+//
+//                            throw OBDError.generalError
+//                        }
+                    
+                        if resultStrings.count < 5 {
+                            print("\nOBD ERROR getting VIN number")
+                            obdError = true
+                        } else {
+                            // Ref: Pg 42 - https://www.elmelectronics.com/wp-content/uploads/2016/07/ELM327DS.pdf
+                            let line1 = resultStrings[2]
+                            let index1 = line1.index(line1.startIndex, offsetBy: 8)
+                            vinString += line1.substring(from: index1)
+                            
+                            let line2 = resultStrings[3]
+                            let index2 = line2.index(line2.startIndex, offsetBy: 2)
+                            vinString += line2.substring(from: index2)
+                            
+                            let line3 = resultStrings[4]
+                            let index3 = line3.index(line3.startIndex, offsetBy: 2)
+                            vinString += line3.substring(from: index3)
+                            
+                            let vinHexArray = Array(vinString.characters).splitBy(subSize: 2).map { String($0) }
+                            let vinCharArray = vinHexArray.map { char -> Character in
+                                let code = Int(strtoul(char, nil, 16))
+                                return Character(UnicodeScalar(code)!)
+                            }
+                            
+                            vinNumber = String(vinCharArray)
+                            print("\nVIN Number: \(vinNumber!)")
+                            
+                            // Monitor speed
+                            res = []
+                            monitorSpeed()
+                            
+                            DB.sharedInstance.createOrReturnVehicle(vin: vinNumber!)
                         }
+                        
+                    } else {
+                        // Setup complete and VIN Number is set.. Proceed with normal data collection
+                        if let kph = Int("\(String(UnicodeScalar(res[res.count - 5])))\(String(UnicodeScalar(res[res.count - 4])))", radix:16) {
+                            let mph = Double(kph) / 1.609344
+                            print("\nCurrent speed: \(mph) mph")
+                            if (!tracking && mph > 0) {
+                                tracking = true
+                                NotificationCenter.default.post(name: colorUpdateNotification, object: nil)
+                                
+                                totalDist = 0
+                                tripSeconds = 0.0
+                                recordSpeedUpdate(spd: mph)
+                            } else if (tracking) {
+                                recordSpeedUpdate(spd: mph)
+                            }
+                        } else {
+                            print("\nOBD ERROR getting VIN number")
+                            obdError = true
+                        }
+                        res = []
                     }
-                    res = []
                 }
             }
         }
@@ -355,6 +361,10 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         DB.sharedInstance.writeTrip(miles: totalDist, vin: vinNumber!)
     }
     
+}
+
+enum OBDError: Error {
+    case generalError
 }
 
 extension Array {
