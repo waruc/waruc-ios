@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0197E1B11EE429460073DA2F /* VehicleFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0197E1B01EE429460073DA2F /* VehicleFilterViewController.swift */; };
 		06A9BD341A9B549B466826376A3D2413 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */; };
 		16FF7BCCC040DBA9854BD3F5B4B7EEE7 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A4F260796706653FEDA42C67E4215D /* ProgressHUD.swift */; };
 		1F24C44017B4827B3533A27C30B1D4C7 /* OnboardingVehicleInputFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BB7F97B2D9AC3F62F421EF05927DDC /* OnboardingVehicleInputFrameViewController.swift */; };
@@ -16,6 +15,7 @@
 		31019DBE74EAB2C7E85DEA8167B7BF11 /* signInContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E446201498C1AB0DF67DE79DEECFF46 /* signInContainerViewController.swift */; };
 		3859A90E2018A2F372A3A712246F2ED6 /* seattle.mov in Resources */ = {isa = PBXBuildFile; fileRef = 38F7749561D7A09B9A1E206599842E8E /* seattle.mov */; };
 		38D5CCA17DA10FC2BB5F74A48E6A8A13 /* ios_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E36859A2066CF7E2A4E86B5C221357 /* ios_appTests.swift */; };
+		48DD5C052535DB914C2CD10158DC3E5D /* VehicleFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46205589B625778D643FB4CE3721428F /* VehicleFilterViewController.swift */; };
 		4E0CD37CBC72C156B52DC9628D9E9C56 /* DriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626147F27F3DDAE6969CD5185FC91B66 /* DriveViewController.swift */; };
 		57C6F00F79E5D7281B159D6DCFF3699E /* AboutPrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A97D257E23C80B47B33F6D1A6FB79F /* AboutPrivacyPolicyViewController.swift */; };
 		585029EE2549657BC7C1ED9B03D8CE79 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC022A1A4D354CB52B7428299B08BB1A /* Location.swift */; };
@@ -68,7 +68,6 @@
 /* Begin PBXFileReference section */
 		00992823807C74F5E0C484B8117A65A5 /* TripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		013A9B4DE67988F68090F821C40F92E1 /* Pods-ios-appUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-appUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-appUITests/Pods-ios-appUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		0197E1B01EE429460073DA2F /* VehicleFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleFilterViewController.swift; sourceTree = "<group>"; };
 		0B2669E0AC51EF94156CBA67F82FABE1 /* Pods-ios-appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-appTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-appTests/Pods-ios-appTests.release.xcconfig"; sourceTree = "<group>"; };
 		0F2737A4A5CAF7E4FDA2994A01F81561 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		1C382CED79453FBA8144FB1EFAD89693 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,6 +83,7 @@
 		3C3D8F4835EAA11FD5C32E6F125EF6A5 /* Pods-ios-appTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-appTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-appTests/Pods-ios-appTests.debug.xcconfig"; sourceTree = "<group>"; };
 		40B687E7761B32C937C275BE963E3053 /* Pods-ios-appUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-appUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-appUITests/Pods-ios-appUITests.release.xcconfig"; sourceTree = "<group>"; };
 		43BB7F97B2D9AC3F62F421EF05927DDC /* OnboardingVehicleInputFrameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingVehicleInputFrameViewController.swift; sourceTree = "<group>"; };
+		46205589B625778D643FB4CE3721428F /* VehicleFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleFilterViewController.swift; sourceTree = "<group>"; };
 		4AA5C6592E672205AE7042E0E9F73B84 /* BLERouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLERouter.swift; sourceTree = "<group>"; };
 		53503EBC5433A018AA0C72B1285DD994 /* ios-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		578289527F9714E0BB9D02424C1DA42F /* ios_app.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ios_app.xcdatamodel; sourceTree = "<group>"; };
@@ -245,7 +245,7 @@
 				880EB9519B5038CA89CEE75133D7E0B2 /* TabBarViewController.swift */,
 				00992823807C74F5E0C484B8117A65A5 /* TripTableViewCell.swift */,
 				24409AEF74396A96DB5940F12EF83B3E /* TripsViewController.swift */,
-				0197E1B01EE429460073DA2F /* VehicleFilterViewController.swift */,
+				46205589B625778D643FB4CE3721428F /* VehicleFilterViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -608,12 +608,12 @@
 				9344BFC53DD62E2B252A09F182675EE1 /* TabBarViewController.swift in Sources */,
 				DF2FC0F47FE27BBE18E0F1AB22F48DFF /* TripTableViewCell.swift in Sources */,
 				C29C1A46750FF6CEC150ED6ECEF8DA24 /* TripsViewController.swift in Sources */,
+				48DD5C052535DB914C2CD10158DC3E5D /* VehicleFilterViewController.swift in Sources */,
 				BA8AD98CA2DFC64E2F586DDDC3C4A58B /* initialViewController.swift in Sources */,
 				63254EFE5F3EF2507A91392D2896E9C7 /* ios_app.xcdatamodeld in Sources */,
 				A243094A71AA77A242EF8C0948AEFF42 /* master.swift in Sources */,
 				31019DBE74EAB2C7E85DEA8167B7BF11 /* signInContainerViewController.swift in Sources */,
 				B73D2FAD2D6D9F4CB0D7C76D92288E42 /* signInFormViewController.swift in Sources */,
-				0197E1B11EE429460073DA2F /* VehicleFilterViewController.swift in Sources */,
 				971CC6486EAECBE47A3296A67C2B80BA /* userRegistrationFormViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
