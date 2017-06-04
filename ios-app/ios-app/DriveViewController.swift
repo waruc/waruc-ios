@@ -50,9 +50,7 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var mphLabel: UILabel!
     @IBOutlet weak var lineChart: LineChartView!
     
-    //Location
-    var locationManager = CLLocationManager()
-    var startLocation: CLLocation!
+    
     
     
     // MARK: Setup
@@ -81,9 +79,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         //Location services:
         locationManager = CLLocationManager()
 
-        
-        
-        location()
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.updateConnection),
@@ -134,11 +129,12 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction public func send(_ sender: UIButton) {
         BLERouter.sharedInstance.tracking = !BLERouter.sharedInstance.tracking
+        tracking = !tracking
         updateColorScheme()
     }
     
     func updateColorScheme() {
-        if BLERouter.sharedInstance.tracking {
+        if BLERouter.sharedInstance.tracking || tracking {
             setBlack()
             startTracking()
         } else {
@@ -335,70 +331,31 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
 
     }
     
+    //Location
     
+    var locationManager = CLLocationManager()
     
-    
-    func location() {
-        //locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        // OR
-        //locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        // OR
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    
-        //Below changes meter interval to update location
-        locationManager.distanceFilter = 25
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        startLocation = nil
-    }
-
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        // App may no longer be authorized to obtain location
-        //information. Check status here and respond accordingly
-    }
+    //location tracking
+    var tracking = false
     
     //**** tracking ****
-    
-    var tracking = false
-    var trackStartTimeStamp : Date? = nil
-    var path = GMSMutablePath()
-    var firstRun = true
-    var collectData = false
-    var totalTotalDistance : Double = 0
-    var totalDistance : Double = 0.0
-    
-    var firstLoc = false
-    
     var realTimeDistance = CLLocation()
-    
-    var locations = [CLLocation]()
-    var elapsed: TimeInterval = 0
-    var startTime = Date()
     var currentLoc = CLLocation()
+    var tripDistance = Double()
+    var tripTimeStamp = Date()
+    var initialLocation = false
     
-    var currentTime = Date()
-    var totalSeconds : Int = 0
-    
-    var globalVelocity : [Double] = []
-    
-    var startTimeDylan : Date? = nil
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let latestLocation: CLLocation = locations[locations.count - 1]
-        var currentLatitude:Double = latestLocation.coordinate.latitude
-        var currentLongitude:Double = latestLocation.coordinate.longitude
+        let location: CLLocation = locations[locations.count - 1]
+        let currentLatitude:Double = location.coordinate.latitude
+        let currentLongitude:Double = location.coordinate.longitude
         
-        if startLocation == nil {
-            startLocation = latestLocation
-        }
-        
+  
         //Geocoder:
         let geocoder = GMSGeocoder()
         var result = "result"
-        var temp = CLLocationCoordinate2D(latitude: currentLatitude, longitude: currentLongitude)
-        
-        //GEOCODING*******
+        let temp = CLLocationCoordinate2D(latitude: currentLatitude, longitude: currentLongitude)
         geocoder.reverseGeocodeCoordinate(temp) {
             response , error in
             if let address = response?.firstResult() {
@@ -422,249 +379,74 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         
         
         //TRACKING ********
-        
-        let location = latestLocation as! CLLocation   
-        if tracking {
-            print("Location is changing")
-            let elapsedSeconds = Int(round(elapsed))
-
-            //NSLog("testing if firstLoc is true \(firstLoc)")
-//            if firstLoc {
-//                realTimeDistance = CLLocation (latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-//                currentLoc = CLLocation (latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-//                startTime = location.timestamp
-//                //NSLog("testing what start time is \(startTime)")
-//                currentTime = location.timestamp
-//                //NSLog("testing what current time is \(currentTime)")
-//                //NSLog("testing what first location is \(realTimeDistance)")
-//                firstLoc = false
-//                //NSLog("testing if firstLoc is false \(firstLoc)")
-//            } else {
-//                
+         
+        if tracking {  
+            if initialLocation {
+                realTimeDistance = CLLocation (latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 currentLoc = CLLocation (latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                currentTime = location.timestamp
-                print("\(location.coordinate.latitude), \(location.coordinate.longitude)")
-                totalSeconds = realTimeSeconds(startDate: startTime, endDate: currentTime)
-                //NSLog("testing what seconds difference is \(totalSeconds)")
-                //NSLog("testing what original location is \(realTimeDistance)")
-                //NSLog("testing what current location is \(currentLoc)")
+                initialLocation = false
+            } else {
+                currentLoc = CLLocation (latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                //print("\(location.coordinate.latitude), \(location.coordinate.longitude)")
                 let meters = distanceCalc(coordinateOne: realTimeDistance, coordinateTwo: currentLoc)
-                totalDistance += meters
-                totalTotalDistance += meters
-                
-//            }
-
-            add(location: location)
-            
+                tripDistance += meters
+            }
             realTimeDistance = currentLoc
-            
-            // Record each location for a new run
-            
-            
-            
-            //These are generally unnecesary for now. Add again when we want current velocy:
-            
-            var distanceStepTwo = totalTotalDistance * 1.09361  //1.09361 is yards conversion
-             
-            print("totalDistance: \(totalDistance))")
-            print("meters: \(meters)")
-            print("totalTotalDistance: \(totalTotalDistance)")
-            elapsed = Date().timeIntervalSince(startTimeDylan!)
-            print(elapsed)
-            
-            
-            var velocity = Double(distanceStepTwo * 0.000568182) / Double(elapsed / 3600) //yards to miles; seconds to hours
-            print("VELOCITY: \(velocity)")
-            globalVelocity.append(velocity)
-            self.currentMPH.text = "\(Int(round(velocity)))"
         }
-        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        // App may no longer be authorized to obtain location
+        //information. Check status here and respond accordingly
     }
 
-    func add(location: CLLocation) {
-        self.locations.append(location)
-    }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         // Handle errors here 
     }
     
     
-    
-    
-    
     func startTracking() {
-        // Begins getting location data until stopped
-        //self.locationManager.startUpdatingLocation()
-        self.locations.removeAll(keepingCapacity: false)
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        //Below changes meter interval to update location
+        locationManager.distanceFilter = 25
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        initialLocation = true
         self.tracking = true
-        self.firstLoc = true
-        self.collectData = true
-        self.trackStartTimeStamp = NSDate() as Date
-        
-        startTimeDylan = Date()
-        print("here")
-        
-        totalTotalDistance = 0.0
+        self.tripTimeStamp = Date()
     }
     
     func stopTracking() {
         self.tracking = false
-        self.collectData = false
-        totalTotalDistance = 0.0
-        saveTracking()
+        saveTrips()
+        tripDistance = 0.0
     }
     
-
-    
-    func saveTracking() -> Void {
-        
+    func saveTrips() {
         let newTrip = Trip()
-        newTrip.timestamp = Date()
-        
-        var index = 1
-        var firstLocationLat : Double = 0.0
-        var firstLocationLong : Double = 0.0
-        var distanceInMeters : Double = 0.0
-        
-        for location in locations {
-            NSLog("THIS IS THE CURRENT INDEX \(index)")
-            if (index == 6){
-                index = 1
-                distanceInMeters = 0.0
-            }
-            if (index == 1){
-                firstLocationLat = location.coordinate.latitude
-                firstLocationLong = location.coordinate.longitude
-                distanceInMeters = 0.0
-            }
-            
-            let secondLocationLat = location.coordinate.latitude
-            let secondLocationLong = location.coordinate.longitude
-            
-            let coordinateOne = CLLocation(latitude: firstLocationLat, longitude: firstLocationLong)
-            let coordinateTwo = CLLocation(latitude: secondLocationLat, longitude: secondLocationLong)
-            
-            distanceInMeters += distanceCalc(coordinateOne: coordinateOne, coordinateTwo: coordinateTwo)
-            
-            firstLocationLat = secondLocationLat
-            firstLocationLong = secondLocationLong
-            
-            let newLocation = Location()
-            newLocation.latitude = Float(location.coordinate.latitude)
-            newLocation.longitude = Float(location.coordinate.longitude)
-            newLocation.timestamp = location.timestamp
-            newLocation.save()
-            newTrip.locations.append(newLocation)
-            
-            index += 1
-        }
+        let miles = tripDistance * 0.000621371
+        newTrip.distance = miles
+        newTrip.timestamp = tripTimeStamp
         newTrip.save()
-        
-        do{
-            let realm = try Realm()
-            let allTrips = realm.objects(Trip.self)
-            print(allTrips)
-            var startDates = [String]()
-            var finalDistance = [String]()
-            var totalTime = [String]()
-            
-            var index = 0
-            for run in allTrips {
-                let startTime = run.timestamp
-                let calendar = Calendar.current
-                
-                
-                let hour = calendar.component(.hour, from: startTime)
-                let minutes = calendar.component(.minute, from: startTime)
-                let seconds = calendar.component(.second, from: startTime)
-                startDates.append("hours = \(hour):\(minutes):\(seconds)")
-                
-                
-                var locationIndex = 1
-                var timeOne = Date()
-                
-                for location in run.locations {
-                    if (locationIndex == 1){
-                        timeOne = location.timestamp
-                    }
-                    
-                    let endIndex = run.locations.endIndex
-                    print(endIndex)
-                    
-                    
-                    if (locationIndex == endIndex){
-                        let timeTwo = location.timestamp
-                        
-                        let runMinutes = minsBetweenDates(startDate: timeOne, endDate: timeTwo)
-                        let runSeconds = secsBetweenDates(startDate: timeOne, endDate: timeTwo)
-                        totalTime.append("\(runMinutes):\(runSeconds)")
-                    }
-                    
-                    locationIndex+=1
-                    
-                }
-                
-                index+=1
-            }
-            
-            for run in allTrips{
-                var distanceInMeters : Double = 0.0
-                var locationIndex = 1
-                var coordinateOne = CLLocation()
-                
-                for location in run.locations {
-                    if (locationIndex == 1){
-                        coordinateOne = CLLocation(latitude: Double(location.latitude), longitude: Double(location.longitude))
-                    }
-                    
-                    let coordinateTwo = CLLocation(latitude: Double(location.latitude), longitude: Double(location.longitude))
-                    
-                    distanceInMeters += distanceCalc(coordinateOne: coordinateOne, coordinateTwo: coordinateTwo)
-                    
-                    coordinateOne = CLLocation(latitude: Double(location.latitude), longitude: Double(location.longitude))
-                    locationIndex += 1
-                }
-                
-                finalDistance.append(String(distanceInMeters))
-                distanceInMeters = 0.0
-            }
-            
-            NSLog("total Time array \(totalTime)")
-            NSLog("start dates array \(startDates)")
-            NSLog("total distance array \(finalDistance)")
-            
-        } catch let error as NSError {
-            fatalError(error.localizedDescription)
+        printDB()
+    }
+    
+    func printDB() {
+        let realm = try! Realm()
+        var trips = realm.objects(Trip.self)
+        for trip in trips {
+            print(trip)
         }
     }
     
     func distanceCalc(coordinateOne: CLLocation, coordinateTwo: CLLocation) -> Double {
+        //Curvature of the earth formula
         var distance : Double = 0.0
         distance = coordinateOne.distance(from: coordinateTwo)
         return distance
-    }
-    
-    func minsBetweenDates(startDate: Date, endDate: Date) -> Int {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([Calendar.Component.minute], from: startDate, to: endDate)
-        return components.minute!
-    }
-    
-    func secsBetweenDates(startDate: Date, endDate: Date) -> Int {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([Calendar.Component.second], from: startDate, to: endDate)
-        var seconds : Int = components.second!
-        if (components.second! >= 60){
-            seconds = seconds / 60
-        }
-        
-        return seconds
-    }
-    
-    func realTimeSeconds(startDate: Date, endDate: Date) -> Int {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([Calendar.Component.second], from: startDate, to: endDate)
-        return components.second!
     }
 }

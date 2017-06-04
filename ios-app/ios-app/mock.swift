@@ -9,10 +9,8 @@
 import Foundation
 import RealmSwift
 
-// Run Model
-class Trip: Object {
-    dynamic var timestamp = Date()
-    let locations = List<Location>()
+class Trips: Object {
+    let trips = List<Trip>()
     
     func save() {
         do {
@@ -24,14 +22,11 @@ class Trip: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
 }
 
-// Location Model
-class Location: Object {
+class Trip: Object {
     dynamic var timestamp = Date()
-    dynamic var latitude : Float = 0.0
-    dynamic var longitude : Float = 0.0
+    dynamic var distance = Double()
     
     func save() {
         do {
@@ -43,5 +38,6 @@ class Location: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
 }
+
