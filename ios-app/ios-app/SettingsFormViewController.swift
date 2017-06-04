@@ -47,25 +47,18 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                         self.navigationController?.setNavigationBarHidden(false, animated: true)
                     }
             
-//            +++ Section(header: "Tracking Type", footer: "In-vehicle tracking requires the use of an OBD-II port. Location tracking involves the use of your device's GPS.")
-//
-//                <<< PickerInlineRow<String>("Tracking Option") { (row : PickerInlineRow<String>) -> Void in
-//                    row.title = row.tag
-//                    row.displayValueFor = { (rowValue: String?) in
-//                        return rowValue
-//                    }
-//                    row.options = ["In-vehicle tracking", "Location Tracking"]
-//                    row.value = row.options[0]
-//                }
+            +++ Section(header: "Tracking Type", footer: "In-vehicle tracking requires the use of an OBD-II port. Location tracking involves the use of your device's GPS.")
+
+                <<< SwitchRow("Embedded Vehicle Tracking") { row in
+                        row.title = "Embedded Vehicle Tracking"
+                    }
+                <<< SwitchRow("Location Tracking") { row in
+                    row.title = "Location Tracking"
+                    }
+
             
-            
-//            +++ Section(header: "Account", footer: "The password must be at least 8 characters long")
             +++ Section("Account")
             
-//                <<< TextRow(){ row in
-//                    row.title = "Name"
-//                    row.placeholder = "First Last"
-//                }
             
                 <<< TextRow("Email") {
                     $0.title = "Email"
@@ -186,6 +179,27 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             addNewVehicleRow.updateCell()
         }
         
+        if let vehicleRow:SwitchRow = form.rowBy(tag: "Embedded Vehicle Tracking") {
+            vehicleRow.cellUpdate { cell, row in
+                cell.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
+                cell.textLabel?.textColor = UIColor.white
+                cell.detailTextLabel?.textColor = UIColor.white
+            }
+            
+            vehicleRow.updateCell()
+        }
+        
+        if let locationRow:SwitchRow = form.rowBy(tag: "Location Tracking") {
+            locationRow.cellUpdate { cell, row in
+                cell.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
+                cell.textLabel?.textColor = UIColor.white
+                cell.detailTextLabel?.textColor = UIColor.white
+            }
+            
+            locationRow.updateCell()
+        }
+
+        
         if let emailRow:TextRow = form.rowBy(tag: "Email") {
             emailRow.cellUpdate { cell, row in
                 cell.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
@@ -199,8 +213,8 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
         if let signOutRow:ButtonRow = form.rowBy(tag: "Sign out") {
             signOutRow.cellUpdate { cell, row in
                 cell.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
-                cell.textLabel?.textColor = UIColor.white
-                cell.detailTextLabel?.textColor = UIColor.white
+                //cell.textLabel?.textColor = UIColor.white
+                //cell.detailTextLabel?.textColor = UIColor.white
             }
             
             signOutRow.updateCell()
@@ -226,6 +240,8 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             aboutTheProgramRow.updateCell()
         }
         
+        
+        
         if let privacyPolicyRow:ButtonRow = form.rowBy(tag: "Privacy Policy") {
             privacyPolicyRow.cellUpdate { cell, row in
                 cell.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
@@ -239,8 +255,8 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
         if let rateUsRow:ButtonRow = form.rowBy(tag: "Rate us in the App Store") {
             rateUsRow.cellUpdate { cell, row in
                 cell.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
-                cell.textLabel?.textColor = UIColor.white
-                cell.detailTextLabel?.textColor = UIColor.white
+                //cell.textLabel?.textColor = UIColor.white
+                //cell.detailTextLabel?.textColor = UIColor.white
             }
             
             rateUsRow.updateCell()
@@ -249,8 +265,8 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
         if let reportAnIssueRow:ButtonRow = form.rowBy(tag: "Report an Issue") {
             reportAnIssueRow.cellUpdate { cell, row in
                 cell.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
-                cell.textLabel?.textColor = UIColor.white
-                cell.detailTextLabel?.textColor = UIColor.white
+                //cell.textLabel?.textColor = UIColor.white
+                //cell.detailTextLabel?.textColor = UIColor.white
             }
             
             reportAnIssueRow.updateCell()

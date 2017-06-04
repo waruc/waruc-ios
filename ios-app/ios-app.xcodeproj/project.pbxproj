@@ -31,6 +31,7 @@
 		971CC6486EAECBE47A3296A67C2B80BA /* userRegistrationFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72162C848D2DB61A577392B1849EB990 /* userRegistrationFormViewController.swift */; };
 		9ABE3C681C81AF28509A365CC6922230 /* Pods_ios_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7AC5F3F506A9742D810760E2887AA2D /* Pods_ios_appTests.framework */; };
 		A243094A71AA77A242EF8C0948AEFF42 /* master.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */; };
+		A49DC5EE1EE38D6600AEB4E4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DC5ED1EE38D6600AEB4E4 /* Location.swift */; };
 		A4A6CDF41EE34C4C00B0F74F /* mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A6CDF31EE34C4C00B0F74F /* mock.swift */; };
 		A73F3F550889FDD784BB1E5A35D0EE75 /* OnboardingNextStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56801B1B6DE73A986B646151F11B371 /* OnboardingNextStepsViewController.swift */; };
 		B73D2FAD2D6D9F4CB0D7C76D92288E42 /* signInFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B5F478D766551AB92A3C8AB4808B0 /* signInFormViewController.swift */; };
@@ -104,6 +105,7 @@
 		8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = master.swift; sourceTree = "<group>"; };
 		9B3B9338D030805225619B817B24C830 /* Pods_ios_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A49DC5ED1EE38D6600AEB4E4 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		A4A6CDF31EE34C4C00B0F74F /* mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mock.swift; sourceTree = "<group>"; };
 		A5A29964B8F0B4C2F0A0FF7EA8C97BC6 /* ios_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_appUITests.swift; sourceTree = "<group>"; };
 		A7AC5F3F506A9742D810760E2887AA2D /* Pods_ios_appTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_appTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,6 +268,7 @@
 				99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */,
 				38F7749561D7A09B9A1E206599842E8E /* seattle.mov */,
 				A4A6CDF31EE34C4C00B0F74F /* mock.swift */,
+				A49DC5ED1EE38D6600AEB4E4 /* Location.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				63D41EA86ED1CCCE596BD598F48E4A3E /* AppDelegate.swift in Sources */,
 				BDA701ECBCC0400339E51B59EB70FFF8 /* BLERouter.swift in Sources */,
 				91996BDB2963FBF2FF8EC8E8B8649406 /* DB.swift in Sources */,
+				A49DC5EE1EE38D6600AEB4E4 /* Location.swift in Sources */,
 				4E0CD37CBC72C156B52DC9628D9E9C56 /* DriveViewController.swift in Sources */,
 				8CCBFC4B0280459A31E0445B928B9BEC /* OnboardingAboutViewController.swift in Sources */,
 				C62ED54BCF7EC6DD1BAAB340734366AB /* OnboardingAccountDetailsViewController.swift in Sources */,

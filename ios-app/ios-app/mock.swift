@@ -25,7 +25,8 @@ class Trips: Object {
 }
 
 class Trip: Object {
-    dynamic var timestamp = Date()
+    dynamic var startTime = Date()
+    dynamic var endTime = Date()
     dynamic var distance = Double()
     
     func save() {

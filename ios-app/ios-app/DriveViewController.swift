@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  DriveViewController.swift
 //  ios-app
 //
 //  Created by ishansaksena on 4/7/17.
@@ -7,14 +7,11 @@
 //
 
 import UIKit
-import GoogleMaps
-import CoreLocation
 import NVActivityIndicatorView
 import Charts
-import RealmSwift
 
-class DriveViewController: UIViewController, CLLocationManagerDelegate {
-    
+
+class DriveViewController: UIViewController {    
     // MARK: References
     //Main header
     @IBOutlet weak var cityHeader: UILabel!
@@ -45,19 +42,16 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var vehicleHeaderTop: NSLayoutConstraint!
     
     //Charts
-    
     @IBOutlet weak var currentMPH: UILabel!
     @IBOutlet weak var mphLabel: UILabel!
     @IBOutlet weak var lineChart: LineChartView!
-    
-    
     
     
     // MARK: Setup
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //cityHeader.text = "Drive"
+        cityHeader.text = "Drive"
         locationIcon.isHidden = true
         
         //bottomStartStopTrackingButton.isHidden = true
@@ -74,10 +68,6 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
         self.greyBoxTwo.clipsToBounds = true
         
         self.bottomBar.backgroundColor = Colors.green
-        locationIcon.isHidden = true
-        
-        //Location services:
-        locationManager = CLLocationManager()
 
         
         NotificationCenter.default.addObserver(self,
@@ -100,6 +90,15 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
                                                name: DB.sharedInstance.existingVehicleInfoNotification,
                                                object: nil)
         
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(self.updateCityHeader(_:)), 
+                                               name: NSNotification.Name(rawValue: "cityHeaderNotification"), 
+                                               object: nil)
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(self.updateLocationIcon(_:)), 
+                                               name: NSNotification.Name(rawValue: "locationIconNotification"), 
+                                               object: nil)
+        
         if BLERouter.sharedInstance.connectionType != nil {
             updateConnection()
         }
@@ -113,14 +112,23 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
             updateVehicleInfo()
         }
         
-        view.addObserver(self, forKeyPath: "myLocation", options: NSKeyValueObservingOptions.new, context: nil)
-        
-        
     }
-
+    
+    func updateCityHeader(_ notification: NSNotification) {
+        if let text = notification.userInfo?["text"] as? String {
+            self.cityHeader.text = text  
+        }
+    }
+    
+    func updateLocationIcon(_ notification: NSNotification) {
+        if let status = notification.userInfo?["status"] as? Bool {
+            self.locationIcon.isHidden = status 
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        if BLERouter.sharedInstance.tracking {
+        if BLERouter.sharedInstance.tracking || Location.sharedInstance.tracking {
             setBlack()
         } else {
             setWhite()
@@ -129,17 +137,22 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction public func send(_ sender: UIButton) {
         BLERouter.sharedInstance.tracking = !BLERouter.sharedInstance.tracking
-        tracking = !tracking
+        Location.sharedInstance.tracking = !Location.sharedInstance.tracking
+        
         updateColorScheme()
+        
+        if Location.sharedInstance.tracking {
+            Location.sharedInstance.startTracking()
+        } else {
+            Location.sharedInstance.stopTracking()
+        }
     }
     
     func updateColorScheme() {
-        if BLERouter.sharedInstance.tracking || tracking {
+        if BLERouter.sharedInstance.tracking || Location.sharedInstance.tracking {
             setBlack()
-            startTracking()
         } else {
             setWhite()
-            stopTracking()
         }
     }
     
@@ -331,122 +344,4 @@ class DriveViewController: UIViewController, CLLocationManagerDelegate {
 
     }
     
-    //Location
-    
-    var locationManager = CLLocationManager()
-    
-    //location tracking
-    var tracking = false
-    
-    //**** tracking ****
-    var realTimeDistance = CLLocation()
-    var currentLoc = CLLocation()
-    var tripDistance = Double()
-    var tripTimeStamp = Date()
-    var initialLocation = false
-    
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location: CLLocation = locations[locations.count - 1]
-        let currentLatitude:Double = location.coordinate.latitude
-        let currentLongitude:Double = location.coordinate.longitude
-        
-  
-        //Geocoder:
-        let geocoder = GMSGeocoder()
-        var result = "result"
-        let temp = CLLocationCoordinate2D(latitude: currentLatitude, longitude: currentLongitude)
-        geocoder.reverseGeocodeCoordinate(temp) {
-            response , error in
-            if let address = response?.firstResult() {
-                if address.locality == nil || address.administrativeArea == nil {
-                    result = "Unknown, USA"
-                } else {
-                    if address.administrativeArea! != "Washington" {
-                        let city = "\(address.locality!), \(address.administrativeArea!)"
-                        result = "Outside of WA"
-                    } else {
-                        result = "\(address.locality!), WA"
-                    }
-                    //print("CITY: \(result)")
-                }
-            }
-            self.cityHeader.text = result
-            self.locationIcon.isHidden = false
-            self.transition(item: self.locationIcon)
-            self.transition(item: self.cityHeader)
-        }
-        
-        
-        //TRACKING ********
-         
-        if tracking {  
-            if initialLocation {
-                realTimeDistance = CLLocation (latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                currentLoc = CLLocation (latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                initialLocation = false
-            } else {
-                currentLoc = CLLocation (latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                //print("\(location.coordinate.latitude), \(location.coordinate.longitude)")
-                let meters = distanceCalc(coordinateOne: realTimeDistance, coordinateTwo: currentLoc)
-                tripDistance += meters
-            }
-            realTimeDistance = currentLoc
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        // App may no longer be authorized to obtain location
-        //information. Check status here and respond accordingly
-    }
-
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        // Handle errors here 
-    }
-    
-    
-    func startTracking() {
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
-        //Below changes meter interval to update location
-        locationManager.distanceFilter = 25
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
-        initialLocation = true
-        self.tracking = true
-        self.tripTimeStamp = Date()
-    }
-    
-    func stopTracking() {
-        self.tracking = false
-        saveTrips()
-        tripDistance = 0.0
-    }
-    
-    func saveTrips() {
-        let newTrip = Trip()
-        let miles = tripDistance * 0.000621371
-        newTrip.distance = miles
-        newTrip.timestamp = tripTimeStamp
-        newTrip.save()
-        printDB()
-    }
-    
-    func printDB() {
-        let realm = try! Realm()
-        var trips = realm.objects(Trip.self)
-        for trip in trips {
-            print(trip)
-        }
-    }
-    
-    func distanceCalc(coordinateOne: CLLocation, coordinateTwo: CLLocation) -> Double {
-        //Curvature of the earth formula
-        var distance : Double = 0.0
-        distance = coordinateOne.distance(from: coordinateTwo)
-        return distance
-    }
 }
