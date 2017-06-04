@@ -17,6 +17,7 @@
 		38D5CCA17DA10FC2BB5F74A48E6A8A13 /* ios_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E36859A2066CF7E2A4E86B5C221357 /* ios_appTests.swift */; };
 		4E0CD37CBC72C156B52DC9628D9E9C56 /* DriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626147F27F3DDAE6969CD5185FC91B66 /* DriveViewController.swift */; };
 		57C6F00F79E5D7281B159D6DCFF3699E /* AboutPrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A97D257E23C80B47B33F6D1A6FB79F /* AboutPrivacyPolicyViewController.swift */; };
+		585029EE2549657BC7C1ED9B03D8CE79 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC022A1A4D354CB52B7428299B08BB1A /* Location.swift */; };
 		618640CF7052C844C7A8DD0BEB8AE954 /* Pods_ios_appUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B3F91C09AB653384F396AA380C4D2E /* Pods_ios_appUITests.framework */; };
 		63254EFE5F3EF2507A91392D2896E9C7 /* ios_app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7C665298DB176695132B2F26FA1F9E6 /* ios_app.xcdatamodeld */; };
 		63701A70CEFD0B5BDAE74604FE4A50A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11160A8E6C999C1B1CB46BB32990AE7 /* Main.storyboard */; };
@@ -31,8 +32,6 @@
 		971CC6486EAECBE47A3296A67C2B80BA /* userRegistrationFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72162C848D2DB61A577392B1849EB990 /* userRegistrationFormViewController.swift */; };
 		9ABE3C681C81AF28509A365CC6922230 /* Pods_ios_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7AC5F3F506A9742D810760E2887AA2D /* Pods_ios_appTests.framework */; };
 		A243094A71AA77A242EF8C0948AEFF42 /* master.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */; };
-		A49DC5EE1EE38D6600AEB4E4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DC5ED1EE38D6600AEB4E4 /* Location.swift */; };
-		A4A6CDF41EE34C4C00B0F74F /* mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A6CDF31EE34C4C00B0F74F /* mock.swift */; };
 		A73F3F550889FDD784BB1E5A35D0EE75 /* OnboardingNextStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56801B1B6DE73A986B646151F11B371 /* OnboardingNextStepsViewController.swift */; };
 		B73D2FAD2D6D9F4CB0D7C76D92288E42 /* signInFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B5F478D766551AB92A3C8AB4808B0 /* signInFormViewController.swift */; };
 		BA8AD98CA2DFC64E2F586DDDC3C4A58B /* initialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44A28D9B88D33F110E14B474EDA94BB /* initialViewController.swift */; };
@@ -105,8 +104,6 @@
 		8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = master.swift; sourceTree = "<group>"; };
 		9B3B9338D030805225619B817B24C830 /* Pods_ios_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A49DC5ED1EE38D6600AEB4E4 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		A4A6CDF31EE34C4C00B0F74F /* mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mock.swift; sourceTree = "<group>"; };
 		A5A29964B8F0B4C2F0A0FF7EA8C97BC6 /* ios_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_appUITests.swift; sourceTree = "<group>"; };
 		A7AC5F3F506A9742D810760E2887AA2D /* Pods_ios_appTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_appTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0A5586F2B7638A92DC89C91088E985 /* OnboardingEnableFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingEnableFeaturesViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +111,7 @@
 		D44A28D9B88D33F110E14B474EDA94BB /* initialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = initialViewController.swift; sourceTree = "<group>"; };
 		E01B774056617283E4F8DAD7F8198590 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E11160A8E6C999C1B1CB46BB32990AE7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		EC022A1A4D354CB52B7428299B08BB1A /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F56801B1B6DE73A986B646151F11B371 /* OnboardingNextStepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingNextStepsViewController.swift; sourceTree = "<group>"; };
 		FD4BECC19EFB2E7BB06F244D3954808B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDF0DCF6EA7AB223AB3317B56B0B7A9E /* OnboardingAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingAboutViewController.swift; sourceTree = "<group>"; };
@@ -264,11 +262,10 @@
 			children = (
 				4AA5C6592E672205AE7042E0E9F73B84 /* BLERouter.swift */,
 				7B8B5BC677B1038566550CB03EFFEBB4 /* DB.swift */,
+				EC022A1A4D354CB52B7428299B08BB1A /* Location.swift */,
 				73A4F260796706653FEDA42C67E4215D /* ProgressHUD.swift */,
 				99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */,
 				38F7749561D7A09B9A1E206599842E8E /* seattle.mov */,
-				A4A6CDF31EE34C4C00B0F74F /* mock.swift */,
-				A49DC5ED1EE38D6600AEB4E4 /* Location.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -592,8 +589,8 @@
 				63D41EA86ED1CCCE596BD598F48E4A3E /* AppDelegate.swift in Sources */,
 				BDA701ECBCC0400339E51B59EB70FFF8 /* BLERouter.swift in Sources */,
 				91996BDB2963FBF2FF8EC8E8B8649406 /* DB.swift in Sources */,
-				A49DC5EE1EE38D6600AEB4E4 /* Location.swift in Sources */,
 				4E0CD37CBC72C156B52DC9628D9E9C56 /* DriveViewController.swift in Sources */,
+				585029EE2549657BC7C1ED9B03D8CE79 /* Location.swift in Sources */,
 				8CCBFC4B0280459A31E0445B928B9BEC /* OnboardingAboutViewController.swift in Sources */,
 				C62ED54BCF7EC6DD1BAAB340734366AB /* OnboardingAccountDetailsViewController.swift in Sources */,
 				E273EC3DEAB56CC0A0BCC3D8B059BA99 /* OnboardingEnableFeaturesViewController.swift in Sources */,
@@ -614,7 +611,6 @@
 				31019DBE74EAB2C7E85DEA8167B7BF11 /* signInContainerViewController.swift in Sources */,
 				B73D2FAD2D6D9F4CB0D7C76D92288E42 /* signInFormViewController.swift in Sources */,
 				971CC6486EAECBE47A3296A67C2B80BA /* userRegistrationFormViewController.swift in Sources */,
-				A4A6CDF41EE34C4C00B0F74F /* mock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
