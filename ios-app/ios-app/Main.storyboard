@@ -3406,7 +3406,7 @@ Cg
                                 </state>
                                 <connections>
                                     <action selector="vehicleSubmit:" destination="haP-8d-rx7" eventType="touchUpInside" id="jUv-7M-07f"/>
-                                    <segue destination="463-KA-cS2" kind="show" identifier="goToCamera" id="p5a-3x-fN8"/>
+                                    <segue destination="R1t-dg-YCX" kind="show" id="yuY-F1-JLR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvp-Ex-7CK">
@@ -3675,43 +3675,70 @@ Cg
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f9y-Lf-aEg" userLabel="Camera View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dG1-MZ-hfD">
-                                        <rect key="frame" x="133" y="612" width="108" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Read Odometer"/>
-                                        <connections>
-                                            <action selector="takePhotoButtonPressed:" destination="R1t-dg-YCX" eventType="touchUpInside" id="Ems-es-tkd"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Pf-Pa-xvK">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DE-o3-SJZ">
+                                <rect key="frame" x="67.5" y="605" width="240" height="32"/>
+                                <color key="backgroundColor" red="0.4015546143" green="0.77507239579999998" blue="0.53336226939999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="gak-Uc-42p"/>
+                                    <constraint firstAttribute="width" constant="240" id="mLR-iN-7oU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <state key="normal" title="FINISH">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="finishButton:" destination="463-KA-cS2" eventType="touchUpInside" id="C2O-SJ-Qw1"/>
+                                    <action selector="vehicleSubmit:" destination="haP-8d-rx7" eventType="touchUpInside" id="MC7-1V-UZ6"/>
+                                    <segue destination="49e-Tb-3d3" kind="show" id="hLi-BX-FMj"/>
+                                </connections>
+                            </button>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Pf-Pa-xvK">
                                 <rect key="frame" x="0.0" y="281" width="375" height="104"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1025044326" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="104" id="Cre-EF-x0x"/>
+                                    <constraint firstAttribute="width" constant="375" id="t2u-VG-waH"/>
+                                </constraints>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="5fF-kh-2x0">
-                                <rect key="frame" x="14" y="544" width="347" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Odometer Reading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7W-Gi-1J1">
+                                <rect key="frame" x="30.5" y="70" width="315.5" height="45.5"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dG1-MZ-hfD">
+                                <rect key="frame" x="133" y="545" width="108" height="30"/>
+                                <state key="normal" title="Read Odometer"/>
+                                <connections>
+                                    <action selector="takePhotoButtonPressed:" destination="R1t-dg-YCX" eventType="touchUpInside" id="Ems-es-tkd"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="5fF-kh-2x0">
+                                <rect key="frame" x="22" y="485" width="347" height="31"/>
                                 <connections>
                                     <action selector="sliderValueDidChange:" destination="R1t-dg-YCX" eventType="valueChanged" id="KI9-ao-vL2"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Odometer Reading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7W-Gi-1J1">
-                                <rect key="frame" x="93.5" y="120" width="187" height="28.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="2" height="2"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="p7W-Gi-1J1" firstAttribute="centerX" secondItem="awD-LS-x3x" secondAttribute="centerX" id="5DU-1t-aKp"/>
-                            <constraint firstItem="p7W-Gi-1J1" firstAttribute="top" secondItem="OYW-n7-e36" secondAttribute="bottom" constant="100" id="CYN-2q-A4c"/>
+                            <constraint firstItem="7Pf-Pa-xvK" firstAttribute="centerX" secondItem="awD-LS-x3x" secondAttribute="centerX" id="4cr-Lj-KEf"/>
+                            <constraint firstItem="7DE-o3-SJZ" firstAttribute="centerX" secondItem="awD-LS-x3x" secondAttribute="centerX" id="DUB-qM-i8e"/>
+                            <constraint firstItem="7DE-o3-SJZ" firstAttribute="top" secondItem="dG1-MZ-hfD" secondAttribute="bottom" constant="30" id="IfR-nb-Obn"/>
+                            <constraint firstItem="5fF-kh-2x0" firstAttribute="leading" secondItem="awD-LS-x3x" secondAttribute="leadingMargin" constant="8" id="JvU-PZ-TWe"/>
+                            <constraint firstItem="7Pf-Pa-xvK" firstAttribute="centerY" secondItem="awD-LS-x3x" secondAttribute="centerY" id="K2K-cD-vzg"/>
+                            <constraint firstItem="Z4h-gB-sI2" firstAttribute="top" secondItem="7DE-o3-SJZ" secondAttribute="bottom" constant="30" id="VJd-0T-zrg"/>
+                            <constraint firstItem="5fF-kh-2x0" firstAttribute="trailing" secondItem="awD-LS-x3x" secondAttribute="trailingMargin" constant="8" id="b54-oV-Cq1"/>
+                            <constraint firstItem="dG1-MZ-hfD" firstAttribute="centerX" secondItem="awD-LS-x3x" secondAttribute="centerX" id="jI8-WX-eZp"/>
+                            <constraint firstItem="p7W-Gi-1J1" firstAttribute="top" secondItem="OYW-n7-e36" secondAttribute="bottom" constant="50" id="mvE-4T-Uxr"/>
+                            <constraint firstItem="5fF-kh-2x0" firstAttribute="centerX" secondItem="awD-LS-x3x" secondAttribute="centerX" id="qVU-Zk-aXi"/>
+                            <constraint firstItem="p7W-Gi-1J1" firstAttribute="centerX" secondItem="awD-LS-x3x" secondAttribute="centerX" id="yaC-sB-GFR"/>
+                            <constraint firstItem="dG1-MZ-hfD" firstAttribute="top" secondItem="5fF-kh-2x0" secondAttribute="bottom" constant="30" id="zAY-Y5-Fbh"/>
                         </constraints>
                     </view>
                     <connections>
@@ -3794,10 +3821,10 @@ Cg
         <image name="wheel" width="147" height="147"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HyD-Mn-DLM"/>
+        <segue reference="ZKK-aA-lUm"/>
         <segue reference="Vyx-nc-J1K"/>
         <segue reference="yEm-V2-paG"/>
         <segue reference="0wl-gM-U8e"/>
-        <segue reference="p5a-3x-fN8"/>
+        <segue reference="yuY-F1-JLR"/>
     </inferredMetricsTieBreakers>
 </document>
