@@ -20,7 +20,7 @@ target 'ios-app' do
   pod 'Alamofire'
 
   pod 'NVActivityIndicatorView'
-
+  pod 'SwiftOCR'
   target 'ios-appTests' do
     inherit! :search_paths
     # Pods for testing

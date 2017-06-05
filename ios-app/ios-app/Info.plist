@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>For odometer photo</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -30,6 +28,8 @@
 	<true/>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>WARUC would like access to Bluetooth to connect to your vehicle</string>
+	<key>NSCameraUsageDescription</key>
+	<string>For odometer photo</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>WARUC would like to use your location </string>
 	<key>UIBackgroundModes</key>
