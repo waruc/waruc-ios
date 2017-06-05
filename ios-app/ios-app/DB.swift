@@ -27,7 +27,6 @@ class DB {
     var currVehicleInfo:[String: String]?
     
     var userTrips:[[String: Any]]?
-    
     var userTotalMiles:Double?
     
     var newVehicle = false
@@ -35,13 +34,29 @@ class DB {
     
     var tripsTableSelectedRow = 0
     
-    init() {
+    private init() {
         self.ref = FIRDatabase.database().reference()
         fetchUserVehicles()
         seedTrips()
     }
     
     static let sharedInstance = DB()
+    
+    func clearData() {
+        userVehicles = [:]
+        vinData = []
+        currVehicleInfo = nil
+        userTrips = nil
+        newVehicle = false
+        showAddVehicleAlert = true
+        tripsTableSelectedRow = 0
+    }
+    
+    func createSingleton() {
+        print("Creating DB singleton...")
+        fetchUserVehicles()
+        seedTrips()
+    }
     
     func fetchUserVehicles() {
         let uid = FIRAuth.auth()?.currentUser?.uid

@@ -16,7 +16,6 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     var centralManager: CBCentralManager!
     var obd2: CBPeripheral?
     var dataCharacteristic:CBCharacteristic?
-    var readService:CBService?
     
     let obd2TagName = "OBDBLE"
     let obd2ServiceUUID = CBUUID(string: "B88BAB0E-3ABD-40F9-A816-7FB4FBE10E7E")
@@ -29,7 +28,6 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     var tracking = false
     
     var totalDist = 0.0
-    var aggDist = 0.0
     var tripSeconds = 0.0
     var connectionType:String?
     
@@ -57,12 +55,35 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     var bleConnectionStrength:String?
     
-    override init() {
+    private override init() {
         super.init()
         self.centralManager = CBCentralManager(delegate: self, queue: nil, options: [CBCentralManagerOptionRestoreIdentifierKey : warucRestoreId])
     }
     
     static let sharedInstance = BLERouter()
+    
+    func clearData() {
+        if obd2 != nil {
+            centralManager.cancelPeripheralConnection(obd2!)
+        }
+        obd2 = nil
+        dataCharacteristic = nil
+        speedUpdateTimer.invalidate()
+        tracking = false
+        totalDist = 0.0
+        tripSeconds = 0.0
+        connectionType = nil
+        speedAggregator = []
+        graphSpeeds = []
+        res = []
+        vinNumber = nil
+        bleConnectionStrength = nil
+    }
+    
+    func createSingleton() {
+        print("Creating BLERouter singleton...")
+        centralManager.scanForPeripherals(withServices: nil, options: nil)
+    }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
@@ -180,10 +201,6 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         if let services = peripheral.services {
             for service in services {
                 print("Discovered service \(service)")
-                if (service.uuid.uuidString == "FFE0") {
-                    readService = service
-                }
-                
                 peripheral.discoverCharacteristics(nil, for: service)
             }
         }
@@ -330,7 +347,6 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     }
     
     func stopTrip() {
-        aggDist += totalDist
         DB.sharedInstance.writeTrip(miles: totalDist, vin: vinNumber!)
     }
     
