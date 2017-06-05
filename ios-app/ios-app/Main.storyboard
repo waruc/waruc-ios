@@ -1938,7 +1938,7 @@ Cg
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="QDr-mo-3Kl" kind="show" id="T7r-PR-pLP"/>
+                                    <segue destination="Wgp-Tw-7Lw" kind="show" id="9jb-bW-8Sr"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lTc-MB-2N6">
@@ -3007,7 +3007,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gNj-gG-BEY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="650.39999999999998" y="-1593.5532233883059"/>
+            <point key="canvasLocation" x="590" y="-1591"/>
         </scene>
         <!--Enable All Features-->
         <scene sceneID="uF4-w8-gp4">
@@ -3021,82 +3021,93 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g20-mz-FKu">
-                                <rect key="frame" x="67.5" y="597" width="240" height="40"/>
-                                <color key="backgroundColor" red="0.2156862745" green="0.7843137255" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="7Ch-c9-dvm"/>
-                                    <constraint firstAttribute="height" constant="40" id="zMR-EH-KuD"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                <state key="normal" title="OKAY!">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="enableServices:" destination="QDr-mo-3Kl" eventType="touchUpInside" id="BQx-lk-zET"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In the next screen you will be prompted to allow access" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sz5-d7-Mk5">
-                                <rect key="frame" x="16" y="558.5" width="343" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to provide you with the best experience, we need access to:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEp-Xw-VOr">
-                                <rect key="frame" x="16" y="53" width="343" height="92"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your tracking method:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEp-Xw-VOr">
+                                <rect key="frame" x="52" y="83" width="271" height="24.5"/>
+                                <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth LE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afe-ml-JCQ">
-                                <rect key="frame" x="67" y="175" width="117" height="24"/>
+                                <rect key="frame" x="67" y="159.5" width="117" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth will enable us to connect to your OBD-II device attached to your vehicle in order to calculate your total miles." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gU-F1-YVQ">
-                                <rect key="frame" x="67" y="207" width="284" height="43"/>
+                                <rect key="frame" x="71" y="188.5" width="285" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluetooth-purple" translatesAutoresizingMaskIntoConstraints="NO" id="xRM-q2-OOv">
-                                <rect key="frame" x="24" y="179" width="25" height="45"/>
+                                <rect key="frame" x="26" y="159.5" width="25" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="dFH-et-bbp"/>
                                     <constraint firstAttribute="height" constant="45" id="hw8-Q8-Sax"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Services" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VI0-wf-9up">
+                                <rect key="frame" x="71" y="288" width="163.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Services will verify you are within Washington State bounds. There is also an option to enable GPS tracking." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gx-hN-2qj">
+                                <rect key="frame" x="73" y="317" width="285" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="285" id="FIW-Iu-TZ4"/>
+                                    <constraint firstAttribute="height" constant="47" id="FZT-aI-VGm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locationsmall" translatesAutoresizingMaskIntoConstraints="NO" id="9a4-Ja-88J">
+                                <rect key="frame" x="21" y="293" width="34" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="NPb-2p-vdo"/>
+                                    <constraint firstAttribute="width" constant="34" id="xcX-aq-H8G"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8gU-F1-YVQ" firstAttribute="leading" secondItem="xRM-q2-OOv" secondAttribute="trailing" constant="18" id="32u-kd-cpM"/>
-                            <constraint firstItem="sz5-d7-Mk5" firstAttribute="centerX" secondItem="NYN-Ke-N7C" secondAttribute="centerX" id="Ahw-QS-CiR"/>
-                            <constraint firstItem="sz5-d7-Mk5" firstAttribute="trailing" secondItem="NYN-Ke-N7C" secondAttribute="trailingMargin" id="Cjl-uv-Sqk"/>
-                            <constraint firstItem="tlk-C7-YVB" firstAttribute="top" secondItem="g20-mz-FKu" secondAttribute="bottom" constant="30" id="IFP-l3-H2H"/>
-                            <constraint firstItem="xRM-q2-OOv" firstAttribute="top" secondItem="oEp-Xw-VOr" secondAttribute="bottom" constant="34" id="IiD-Tl-GoY"/>
-                            <constraint firstItem="sz5-d7-Mk5" firstAttribute="leading" secondItem="NYN-Ke-N7C" secondAttribute="leadingMargin" id="Pdx-pe-Wub"/>
-                            <constraint firstItem="Afe-ml-JCQ" firstAttribute="top" secondItem="oEp-Xw-VOr" secondAttribute="bottom" constant="30" id="SyI-6u-plm"/>
-                            <constraint firstItem="g20-mz-FKu" firstAttribute="centerX" secondItem="NYN-Ke-N7C" secondAttribute="centerX" id="b9e-hy-QE8"/>
-                            <constraint firstItem="8gU-F1-YVQ" firstAttribute="top" secondItem="Afe-ml-JCQ" secondAttribute="bottom" constant="8" id="fGd-1L-uKH"/>
-                            <constraint firstItem="oEp-Xw-VOr" firstAttribute="top" secondItem="nTc-DC-QY7" secondAttribute="bottom" constant="33" id="gQr-R3-mNv"/>
-                            <constraint firstItem="xRM-q2-OOv" firstAttribute="top" secondItem="NYN-Ke-N7C" secondAttribute="top" constant="179" id="gnP-Jh-m0z"/>
-                            <constraint firstItem="oEp-Xw-VOr" firstAttribute="leading" secondItem="sz5-d7-Mk5" secondAttribute="leading" id="jmj-ra-KU9"/>
-                            <constraint firstItem="oEp-Xw-VOr" firstAttribute="trailing" secondItem="sz5-d7-Mk5" secondAttribute="trailing" id="m3o-gh-ZcX"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8gU-F1-YVQ" secondAttribute="trailing" constant="8" id="o0B-5Y-S8U"/>
-                            <constraint firstItem="g20-mz-FKu" firstAttribute="top" secondItem="sz5-d7-Mk5" secondAttribute="bottom" constant="18" id="ur2-QI-lkY"/>
-                            <constraint firstItem="xRM-q2-OOv" firstAttribute="leading" secondItem="NYN-Ke-N7C" secondAttribute="leadingMargin" constant="8" id="xaV-ZZ-Q9e"/>
-                            <constraint firstItem="Afe-ml-JCQ" firstAttribute="leading" secondItem="xRM-q2-OOv" secondAttribute="trailing" constant="18" id="yVV-TM-ikt"/>
+                            <constraint firstItem="oEp-Xw-VOr" firstAttribute="centerX" secondItem="NYN-Ke-N7C" secondAttribute="centerX" id="1Yr-aS-PYL"/>
+                            <constraint firstItem="8gU-F1-YVQ" firstAttribute="top" secondItem="Afe-ml-JCQ" secondAttribute="bottom" constant="5" id="882-YO-QAo"/>
+                            <constraint firstItem="9a4-Ja-88J" firstAttribute="leading" secondItem="NYN-Ke-N7C" secondAttribute="leadingMargin" constant="5" id="Byd-og-yIE"/>
+                            <constraint firstItem="xRM-q2-OOv" firstAttribute="leading" secondItem="NYN-Ke-N7C" secondAttribute="leadingMargin" constant="10" id="COP-ZQ-NCc"/>
+                            <constraint firstItem="Afe-ml-JCQ" firstAttribute="leading" secondItem="xRM-q2-OOv" secondAttribute="trailing" constant="16" id="HtK-ef-u6m"/>
+                            <constraint firstItem="2gx-hN-2qj" firstAttribute="leading" secondItem="9a4-Ja-88J" secondAttribute="trailing" constant="18" id="LX8-IF-geF"/>
+                            <constraint firstItem="2gx-hN-2qj" firstAttribute="top" secondItem="VI0-wf-9up" secondAttribute="bottom" constant="5" id="Tia-7Z-rYR"/>
+                            <constraint firstItem="2gx-hN-2qj" firstAttribute="top" secondItem="VI0-wf-9up" secondAttribute="bottom" constant="5" id="XId-Is-B5k"/>
+                            <constraint firstItem="VI0-wf-9up" firstAttribute="leading" secondItem="9a4-Ja-88J" secondAttribute="trailing" constant="16" id="XeH-Vh-Ehl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8gU-F1-YVQ" secondAttribute="trailing" constant="3" id="aIE-34-Ig9"/>
+                            <constraint firstItem="VI0-wf-9up" firstAttribute="top" secondItem="8gU-F1-YVQ" secondAttribute="bottom" constant="56.5" id="cxx-W1-BFp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Afe-ml-JCQ" secondAttribute="trailing" constant="175" id="jn5-Qb-qDV"/>
+                            <constraint firstItem="9a4-Ja-88J" firstAttribute="top" secondItem="xRM-q2-OOv" secondAttribute="bottom" constant="88.5" id="kbL-n0-wE9"/>
+                            <constraint firstItem="8gU-F1-YVQ" firstAttribute="leading" secondItem="xRM-q2-OOv" secondAttribute="trailing" constant="20" id="mO8-fR-9cS"/>
+                            <constraint firstItem="xRM-q2-OOv" firstAttribute="top" secondItem="oEp-Xw-VOr" secondAttribute="bottom" constant="52" id="mTg-7p-rbT"/>
+                            <constraint firstItem="VI0-wf-9up" firstAttribute="leading" secondItem="9a4-Ja-88J" secondAttribute="trailing" constant="16" id="oee-t5-0qK"/>
+                            <constraint firstItem="Afe-ml-JCQ" firstAttribute="top" secondItem="oEp-Xw-VOr" secondAttribute="bottom" constant="52" id="qs6-jP-one"/>
+                            <constraint firstItem="8gU-F1-YVQ" firstAttribute="top" secondItem="Afe-ml-JCQ" secondAttribute="bottom" constant="5" id="tOW-zK-qEh"/>
+                            <constraint firstItem="tlk-C7-YVB" firstAttribute="top" secondItem="9a4-Ja-88J" secondAttribute="bottom" constant="340" id="tuf-P5-p90"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VI0-wf-9up" secondAttribute="trailing" constant="124.5" id="tvc-ia-8iR"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="okayButton" destination="g20-mz-FKu" id="RYL-Cm-nl3"/>
-                        <segue destination="Wgp-Tw-7Lw" kind="show" identifier="toDetails" id="Q4D-mg-9lA"/>
+                        <outlet property="bluetoothDesc" destination="8gU-F1-YVQ" id="PDf-9V-ztg"/>
+                        <outlet property="bluetoothImage" destination="xRM-q2-OOv" id="lya-ph-dVR"/>
+                        <outlet property="bluetoothTitle" destination="Afe-ml-JCQ" id="eSv-Ty-aaS"/>
+                        <outlet property="locationDesc" destination="2gx-hN-2qj" id="2wo-Pk-gIj"/>
+                        <outlet property="locationImage" destination="9a4-Ja-88J" id="GKe-7m-o3p"/>
+                        <outlet property="locationTitle" destination="VI0-wf-9up" id="Zqd-U3-Wva"/>
+                        <segue destination="jaA-wA-FsY" kind="show" identifier="setupOBD" id="1XD-UF-ouu"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="finishLocationSetup" id="5ly-cQ-yy8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jz8-gG-DqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1480.8" y="-1596.2518740629687"/>
+            <point key="canvasLocation" x="2262" y="-1591"/>
         </scene>
         <!--Account Details-->
         <scene sceneID="Goi-jQ-IZH">
@@ -3136,7 +3147,7 @@ Cg
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Skip"/>
                                 <connections>
-                                    <segue destination="jaA-wA-FsY" kind="show" id="vNs-WL-clF"/>
+                                    <segue destination="QDr-mo-3Kl" kind="show" id="cJO-Rp-sk7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -3152,12 +3163,12 @@ Cg
                     </view>
                     <connections>
                         <outlet property="nextButton" destination="GK3-hC-CVk" id="Iih-yW-Pw9"/>
-                        <segue destination="jaA-wA-FsY" kind="show" identifier="accountCreatedSuccessfully" id="Egt-cs-19n"/>
+                        <segue destination="QDr-mo-3Kl" kind="show" identifier="accountCreatedSuccessfully" id="yEm-V2-paG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sUR-np-CCK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2232.8000000000002" y="-1591.7541229385308"/>
+            <point key="canvasLocation" x="1428" y="-1591"/>
         </scene>
         <!--Next Steps-->
         <scene sceneID="Alf-uD-rAk">
@@ -3640,96 +3651,6 @@ Cg
             </objects>
             <point key="canvasLocation" x="4854" y="-2276"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="hgm-DF-my5">
-            <objects>
-                <viewController id="Hpc-ce-pB2" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="WtO-la-1dI"/>
-                        <viewControllerLayoutGuide type="bottom" id="Gh7-tO-lO9"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="4W6-3w-27m">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C51-5Z-gDh">
-                                <rect key="frame" x="68" y="549" width="240" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.2156862745" green="0.7843137255" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                <state key="normal" title="OKAY!">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="enableServices:" destination="QDr-mo-3Kl" eventType="touchUpInside" id="FDV-aR-hKt"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="In the next screen you will be prompted to allow access" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqw-iW-BnZ">
-                                <rect key="frame" x="16" y="483" width="343" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="In order to provide you with the best experience, we need access to:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6C-X5-usL">
-                                <rect key="frame" x="16" y="49" width="343" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location Services" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APX-ax-JcX">
-                                <rect key="frame" x="68" y="127" width="176" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8EJ-Me-eys">
-                                <rect key="frame" x="68" y="153" width="285" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">Location Services will verify you are within Washington State bounds. There is also an option to enable GPS tracking. Exact text to change.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="locationsmall" translatesAutoresizingMaskIntoConstraints="NO" id="6Ff-JQ-omR">
-                                <rect key="frame" x="20" y="131" width="34" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bluetooth LE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDU-0a-UzR">
-                                <rect key="frame" x="68" y="224" width="176" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bluetooth will enable us to connect to your OBD-II device attached to your vehicle in order to calculate your total miles." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sh8-dR-ruZ">
-                                <rect key="frame" x="68" y="250" width="285" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bluetooth-purple" translatesAutoresizingMaskIntoConstraints="NO" id="QQI-Cf-BS4">
-                                <rect key="frame" x="25" y="224" width="25" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DON'T DELETE THIS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFh-2i-rMg">
-                                <rect key="frame" x="108" y="323" width="159" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wgp-5r-GZ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1430" y="-2276"/>
-        </scene>
         <!--User Registration Form View Controller-->
         <scene sceneID="I4o-Q3-1Gc">
             <objects>
@@ -3746,7 +3667,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KRH-5T-vl1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2233" y="-2275"/>
+            <point key="canvasLocation" x="1428" y="-2285"/>
         </scene>
         <!--Sign In Form View Controller-->
         <scene sceneID="MAo-xk-tQe">
@@ -3799,10 +3720,10 @@ Cg
         <image name="wheel" width="147" height="147"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZKK-aA-lUm"/>
-        <segue reference="p5a-3x-fN8"/>
-        <segue reference="8zG-gm-wQZ"/>
+        <segue reference="5ly-cQ-yy8"/>
+        <segue reference="yEm-V2-paG"/>
         <segue reference="0wl-gM-U8e"/>
-        <segue reference="vNs-WL-clF"/>
+        <segue reference="8zG-gm-wQZ"/>
+        <segue reference="p5a-3x-fN8"/>
     </inferredMetricsTieBreakers>
 </document>
