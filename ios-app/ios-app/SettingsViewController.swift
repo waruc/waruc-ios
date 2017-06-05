@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class SettingsViewController: UIViewController {
     // MARK: References
@@ -44,7 +45,7 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         self.tabBarController?.tabBar.isHidden = false
-        if BLERouter.sharedInstance.tracking {
+        if BLERouter.sharedInstance.tracking || Location.sharedInstance.tracking {
             setBlack()
         } else {
             setWhite()
@@ -59,11 +60,20 @@ class SettingsViewController: UIViewController {
     //Below code is work in progress from master.swift trying to update color
     @IBAction func send(_ sender: UIButton) {
         BLERouter.sharedInstance.tracking = !BLERouter.sharedInstance.tracking
+        Location.sharedInstance.tracking = !Location.sharedInstance.tracking
+        
+        if Location.sharedInstance.tracking {
+            Location.sharedInstance.startTracking()
+        } else {
+            Location.sharedInstance.stopTracking()
+        }
+        
         updateColorScheme()
     }
     
     func updateColorScheme() {
-        if BLERouter.sharedInstance.tracking {
+        if BLERouter.sharedInstance.tracking || Location.sharedInstance.tracking {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) 
             setBlack()
         } else {
             setWhite()

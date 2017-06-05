@@ -9,7 +9,7 @@
 import UIKit
 import NVActivityIndicatorView
 import Charts
-import LocalAuthentication
+import AudioToolbox
 
 
 class DriveViewController: UIViewController {
@@ -127,6 +127,7 @@ class DriveViewController: UIViewController {
             DB.sharedInstance.userVehicles.keys.contains(DB.sharedInstance.currVehicleInfo!["vin"]!) {
             updateVehicleInfo()
         }
+        
     }
      
     func updateCityHeader(_ notification: NSNotification) {
@@ -176,6 +177,7 @@ class DriveViewController: UIViewController {
     
     func updateColorScheme() {
         if BLERouter.sharedInstance.tracking || Location.sharedInstance.tracking {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) 
             setBlack()
         } else {
             setWhite()

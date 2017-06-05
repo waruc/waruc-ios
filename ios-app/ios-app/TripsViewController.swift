@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import AudioToolbox
 
 class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
     
@@ -90,7 +91,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        if BLERouter.sharedInstance.tracking {
+        if BLERouter.sharedInstance.tracking || Location.sharedInstance.tracking {
             setBlack()
         } else {
             setWhite()
@@ -104,11 +105,20 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func send(_ sender: UIButton) {
         BLERouter.sharedInstance.tracking = !BLERouter.sharedInstance.tracking
+        Location.sharedInstance.tracking = !Location.sharedInstance.tracking
+        
+        if Location.sharedInstance.tracking {
+            Location.sharedInstance.startTracking()
+        } else {
+            Location.sharedInstance.stopTracking()
+        }
+        
         updateColorScheme()
     }
     
     func updateColorScheme() {
-        if BLERouter.sharedInstance.tracking {
+        if BLERouter.sharedInstance.tracking || Location.sharedInstance.tracking {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) 
             setBlack()
         } else {
             setWhite()

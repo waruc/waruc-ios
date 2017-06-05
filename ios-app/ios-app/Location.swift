@@ -23,12 +23,14 @@ class Location: NSObject, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     
     //Tracking setup
-    var tracking = false
+    
     var realTimeDistance = CLLocation()
     var currentLoc = CLLocation()
     var tripDistance = Double()
     var tripStartTime = Date()
     var initialLocation = false
+    
+    var tracking = false
     
     func startTracking() {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -37,7 +39,8 @@ class Location: NSObject, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         initialLocation = true
-        self.tracking = true
+        
+        
         self.tripStartTime = Date()
         print("*** 📍GPS: Successfully connected!💦 ***")
         let values = ["connection": "GPS"]
@@ -45,7 +48,7 @@ class Location: NSObject, CLLocationManagerDelegate {
     }
     
     func stopTracking() {
-        self.tracking = false
+        tracking = false
         // Convert meters to miles w/ tripDistance * 0.000621371
         if washington {
             DB.sharedInstance.writeTrip(miles: tripDistance * 0.000621371, vin: DB.sharedInstance.currVehicleInfo!["vin"]!)
