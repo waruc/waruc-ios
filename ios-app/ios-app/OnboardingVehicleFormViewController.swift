@@ -17,11 +17,6 @@ class OnboardingVehicleFormViewController: FormViewController {
         
         self.view.addSubview(progressHUD)
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.startBLEScan),
-                                               name: BLERouter.sharedInstance.sharedInstanceReadyNotification,
-                                               object: nil)
-        
         if DB.sharedInstance.currVehicleInfo != nil {
             displayInfo()
         } else {
@@ -30,10 +25,6 @@ class OnboardingVehicleFormViewController: FormViewController {
                                                    name: DB.sharedInstance.newVehicleInfoNotification,
                                                    object: nil)
         }
-    }
-    
-    func startBLEScan() {
-        BLERouter.sharedInstance.centralManager.scanForPeripherals(withServices: nil, options: nil)
     }
     
     func displayInfo() {

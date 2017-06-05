@@ -95,6 +95,8 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                     }
                     .onCellSelection {  cell, row in  //sign out
                         try! FIRAuth.auth()!.signOut()
+                        BLERouter.sharedInstance.clearData()
+                        DB.sharedInstance.clearData()
                         self.performSegue(withIdentifier: "signOut", sender: self)
                 }
             
@@ -359,7 +361,6 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
         // Present the view controller modally.
         self.present(composeVC, animated: true, completion: nil)
     }
-    
 
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
