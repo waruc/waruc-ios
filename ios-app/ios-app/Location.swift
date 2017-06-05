@@ -32,6 +32,15 @@ class Location: NSObject, CLLocationManagerDelegate {
     
     var tracking = false
     
+    var locationSpeedAggregator:[Double] = []
+    var graphSpeeds:[Double] = []
+    var currentTs = 0
+    
+    var currentMph = 0.0
+    
+    let mphUpdateNotification = Notification.Name("mphUpdateNotification")
+    let graphUpdateNotification = Notification.Name("graphUpdateNotification")
+    
     func startTracking() {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 25 //meter interval for location updating
@@ -50,9 +59,10 @@ class Location: NSObject, CLLocationManagerDelegate {
     func stopTracking() {
         tracking = false
         // Convert meters to miles w/ tripDistance * 0.000621371
-        if washington {
-            DB.sharedInstance.writeTrip(miles: tripDistance * 0.000621371, vin: DB.sharedInstance.currVehicleInfo!["vin"]!)
-        }
+        //if washington {
+        print("Wrote trip with vehicle vin: \(DB.sharedInstance.currVehicleInfo!["vin"]!), distance: \(tripDistance * 0.000621371)")
+        DB.sharedInstance.writeTrip(miles: tripDistance * 0.000621371, vin: DB.sharedInstance.currVehicleInfo!["vin"]!)
+        //}
         tripDistance = 0.0
         
         NotificationCenter.default.post(name: Notification.Name("LocationConnectionUpdateNotificatonIdentifier"), object: nil)
@@ -108,16 +118,36 @@ class Location: NSObject, CLLocationManagerDelegate {
         }
         
         //GPS tracking 
-        if tracking {  
+        if tracking {
             if initialLocation {
-                realTimeDistance = CLLocation (latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                currentLoc = CLLocation (latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                realTimeDistance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                currentLoc = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 initialLocation = false
             } else {
-                currentLoc = CLLocation (latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                currentLoc = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 //print("\(location.coordinate.latitude), \(location.coordinate.longitude)")
                 let meters = distanceCalc(coordinateOne: realTimeDistance, coordinateTwo: currentLoc)
                 tripDistance += meters
+                
+                let date = Date()
+                let ts = Int(date.timeIntervalSince1970.rounded())
+                if ts - currentTs > 5 {
+                    let meters_per_second = locationSpeedAggregator.reduce(0.0, +) / 5.0
+                    
+                    let mph = meters_per_second * 2.23694
+                    NotificationCenter.default.post(name: mphUpdateNotification, object: ["speed": mph])
+                    
+                    if graphSpeeds.count >= 10 {
+                        graphSpeeds.remove(at: 0)
+                    }
+                    
+                    graphSpeeds.append(meters_per_second)
+                    NotificationCenter.default.post(name: graphUpdateNotification, object: nil)
+                    locationSpeedAggregator = []
+                    currentTs = ts
+                } else {
+                    locationSpeedAggregator.append(meters)
+                }
             }
             realTimeDistance = currentLoc
         }

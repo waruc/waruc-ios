@@ -100,6 +100,12 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         bottomStartStopTrackingButton.isHidden = true
         if UserDefaults.standard.value(forKey: "ble_tracking") == nil && UserDefaults.standard.value(forKey: "location_tracking") != nil {
             bottomStartStopTrackingButton.isHidden = false
+            
+            if DB.sharedInstance.currVehicleInfo == nil {
+                bottomStartStopTrackingButton.isEnabled = false
+            } else {
+                bottomStartStopTrackingButton.isEnabled = true
+            }
         }
     }
     

@@ -153,16 +153,20 @@ class DriveViewController: UIViewController {
         bottomStartStopTrackingButton.isHidden = true
         if UserDefaults.standard.value(forKey: "ble_tracking") == nil && UserDefaults.standard.value(forKey: "location_tracking") != nil {
             bottomStartStopTrackingButton.isHidden = false
+            
+            if DB.sharedInstance.currVehicleInfo == nil {
+                bottomStartStopTrackingButton.isEnabled = false
+            } else {
+                bottomStartStopTrackingButton.isEnabled = true
+            }
         }
         
-        currentMPH.text = ""
+        currentMPH.text = "0"
         initialGraph = true
     }
 
     
     @IBAction public func send(_ sender: UIButton) {
-        print(DB.sharedInstance.currVehicleInfo)
-        
         BLERouter.sharedInstance.tracking = !BLERouter.sharedInstance.tracking
         Location.sharedInstance.tracking = !Location.sharedInstance.tracking
         
@@ -302,6 +306,7 @@ class DriveViewController: UIViewController {
     
     func updateVehicleInfo() {
         if DB.sharedInstance.currVehicleInfo != nil {
+            bottomStartStopTrackingButton.isEnabled = true
             vehicleMakeLogo.image = UIImage(named: "\(DB.sharedInstance.currVehicleInfo!["make"]!.lowercased())_logo")
             vehicleHeaderTop.constant -= 12
             if (DB.sharedInstance.currVehicleInfo!["nickname"] ?? "").isEmpty {
@@ -344,54 +349,56 @@ class DriveViewController: UIViewController {
     
     //******** Charts *******
     func updateChart() {
-        var y = BLERouter.sharedInstance.graphSpeeds
-        y += [Double](repeating: 0.0, count: 10 - BLERouter.sharedInstance.graphSpeeds.count)
-        
-        var dataEntries: [ChartDataEntry] = []
-        for i in 0..<y.count {
-            let dataEntry = ChartDataEntry(x: Double(i), y: Double(y[i]))
-            dataEntries.append(dataEntry)
+        if UserDefaults.standard.value(forKey: "ble_tracking") != nil || UserDefaults.standard.value(forKey: "location_tracking") != nil {
+            var y = UserDefaults.standard.value(forKey: "ble_tracking") != nil ? BLERouter.sharedInstance.graphSpeeds : Location.sharedInstance.graphSpeeds
+            y += [Double](repeating: 0.0, count: 10 - y.count)
+            
+            var dataEntries: [ChartDataEntry] = []
+            for i in 0..<y.count {
+                let dataEntry = ChartDataEntry(x: Double(i), y: Double(y[i]))
+                dataEntries.append(dataEntry)
+            }
+            
+            let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "Example Chart")
+            lineChartDataSet.mode = .cubicBezier
+            lineChart.data = LineChartData(dataSet: lineChartDataSet)
+            
+            //set colors
+            lineChart.backgroundColor = UIColor(white: 1, alpha: 0)
+            let gradientColors = [Colors.lightBlue.cgColor, Colors.lighterBlue.cgColor] as CFArray
+            let colorLocations: [CGFloat] = [1.0, 0.2]
+            guard let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) else {
+                print("gradient"); return
+            }
+            lineChartDataSet.fill = Fill.fillWithLinearGradient(gradient, angle: 90)
+            lineChartDataSet.drawFilledEnabled = true
+            lineChartDataSet.drawCircleHoleEnabled = false
+            lineChartDataSet.circleRadius = 0
+            
+            //animation
+            if initialGraph {
+                lineChart.animate(xAxisDuration: 0.0, yAxisDuration: 1.5)
+                initialGraph = false
+            }
+            
+            //remove axis and gridlines
+            lineChart.xAxis.drawGridLinesEnabled = false
+            lineChart.xAxis.drawAxisLineEnabled = false
+            lineChart.leftAxis.drawGridLinesEnabled = false
+            lineChart.leftAxis.drawAxisLineEnabled = false
+            lineChart.rightAxis.drawGridLinesEnabled = false
+            lineChart.rightAxis.drawAxisLineEnabled = false
+            
+            //remove text
+            lineChart.data?.setDrawValues(false)
+            lineChart.xAxis.drawLabelsEnabled = false
+            lineChart.leftAxis.drawLabelsEnabled = false
+            lineChart.rightAxis.drawLabelsEnabled = false
+            lineChart.legend.enabled = false
+            lineChart.chartDescription?.text = ""
+            
+            lineChart.isUserInteractionEnabled = false
         }
-        
-        let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "Example Chart")
-        lineChartDataSet.mode = .cubicBezier
-        lineChart.data = LineChartData(dataSet: lineChartDataSet)
-        
-        //set colors
-        lineChart.backgroundColor = UIColor(white: 1, alpha: 0)
-        let gradientColors = [Colors.lightBlue.cgColor, Colors.lighterBlue.cgColor] as CFArray
-        let colorLocations: [CGFloat] = [1.0, 0.2]
-        guard let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) else {
-            print("gradient"); return
-        }
-        lineChartDataSet.fill = Fill.fillWithLinearGradient(gradient, angle: 90)
-        lineChartDataSet.drawFilledEnabled = true
-        lineChartDataSet.drawCircleHoleEnabled = false
-        lineChartDataSet.circleRadius = 0
-        
-        //animation
-        if initialGraph {
-            lineChart.animate(xAxisDuration: 0.0, yAxisDuration: 1.5)
-            initialGraph = false
-        }
-        
-        //remove axis and gridlines
-        lineChart.xAxis.drawGridLinesEnabled = false
-        lineChart.xAxis.drawAxisLineEnabled = false
-        lineChart.leftAxis.drawGridLinesEnabled = false
-        lineChart.leftAxis.drawAxisLineEnabled = false
-        lineChart.rightAxis.drawGridLinesEnabled = false
-        lineChart.rightAxis.drawAxisLineEnabled = false
-        
-        //remove text 
-        lineChart.data?.setDrawValues(false)
-        lineChart.xAxis.drawLabelsEnabled = false
-        lineChart.leftAxis.drawLabelsEnabled = false
-        lineChart.rightAxis.drawLabelsEnabled = false
-        lineChart.legend.enabled = false
-        lineChart.chartDescription?.text = ""
-        
-        lineChart.isUserInteractionEnabled = false
     }
     
 }
