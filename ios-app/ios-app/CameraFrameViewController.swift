@@ -17,10 +17,11 @@ class CameraFrameViewController: UIViewController {
     
     @IBOutlet weak var previewView: UIView!
     
-    var captureSession = AVCaptureSession();
-    var sessionOutput = AVCapturePhotoOutput();
-    var sessionOutputSetting = AVCapturePhotoSettings(format: [AVVideoCodecKey:AVVideoCodecJPEG]);
-    var previewLayer = AVCaptureVideoPreviewLayer();
+    let captureSession = AVCaptureSession()
+    let stillImageOutput = AVCaptureStillImageOutput()
+    var previewLayer : AVCaptureVideoPreviewLayer?
+    
+    var captureDevice : AVCaptureDevice?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +34,60 @@ class CameraFrameViewController: UIViewController {
         mileLabel.layer.cornerRadius = 3
         
         takePhotoButton.layer.cornerRadius = 30
-        takePhotoButton.layer.borderColor = Colors.black.cgColor        
+        takePhotoButton.layer.borderColor = Colors.black.cgColor 
+        takePhotoButton.layer.borderWidth = 3
         
         self.navigationController?.navigationBar.tintColor = Colors.green
         // Do any additional setup after loading the view.
+        
+        
+        captureSession.sessionPreset = AVCaptureSessionPresetHigh
+        
+        if let devices = AVCaptureDevice.devices() as? [AVCaptureDevice] {
+            // Loop through all the capture devices on this phone
+            for device in devices {
+                // Make sure this particular device supports video
+                if (device.hasMediaType(AVMediaTypeVideo)) {
+                    // Finally check the position and confirm we've got the back camera
+                    if(device.position == AVCaptureDevicePosition.back) {
+                        captureDevice = device
+                        if captureDevice != nil {
+                            print("Capture device found")
+                            beginSession()
+                        }
+                    }
+                }
+            }
+        }
+        
     }
+    
+    func beginSession() {
+        
+        do {
+            try captureSession.addInput(AVCaptureDeviceInput(device: captureDevice))
+            stillImageOutput.outputSettings = [AVVideoCodecKey:AVVideoCodecJPEG]
+            
+            if captureSession.canAddOutput(stillImageOutput) {
+                captureSession.addOutput(stillImageOutput)
+            }
+            
+        }
+        catch {
+            print("error: \(error.localizedDescription)")
+        }
+        
+        guard let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession) else {
+            print("no preview layer")
+            return
+        }
+        
+        self.previewView.layer.addSublayer(previewLayer)
+        previewLayer.frame = self.previewView.layer.frame
+        captureSession.startRunning()
+
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -55,48 +105,12 @@ class CameraFrameViewController: UIViewController {
         self.performSegue(withIdentifier: "home", sender: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        captureSession.startRunning()
-        
-        
-        let deviceDiscoverySession = AVCaptureDeviceDiscoverySession(deviceTypes: [AVCaptureDeviceType.builtInDuoCamera, AVCaptureDeviceType.builtInTelephotoCamera,AVCaptureDeviceType.builtInWideAngleCamera], mediaType: AVMediaTypeVideo, position: AVCaptureDevicePosition.unspecified)
-        for device in (deviceDiscoverySession?.devices)! {
-            if(device.position == AVCaptureDevicePosition.front){
-                do{
-                    let input = try AVCaptureDeviceInput(device: device)
-                    if(captureSession.canAddInput(input)){
-                        captureSession.addInput(input);
-                        
-                        if(captureSession.canAddOutput(sessionOutput)){
-                            captureSession.addOutput(sessionOutput);
-                            previewLayer = AVCaptureVideoPreviewLayer(session: captureSession);
-                            previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-                            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.portrait;
-                            previewView.layer.addSublayer(previewLayer);
-                        }
-                    }
-                }
-                catch{
-                    print("exception!");
-                }
-            }
-        }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        previewLayer.frame = previewView.bounds
-    }
-   
-    
+      
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let backItem = UIBarButtonItem()
-        backItem.title = "Back"
-        navigationItem.backBarButtonItem = backItem
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.topItem?.title = "Back"
     }
     
 
