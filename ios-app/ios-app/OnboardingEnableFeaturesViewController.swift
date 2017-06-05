@@ -52,14 +52,14 @@ class OnboardingEnableFeaturesViewController: UIViewController, /*CLLocationMana
     }
     
     func bleTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        UserDefaults.standard.setValue("ble", forKey: "tracking_method")
-        print("Set user tracking method to: \(UserDefaults.standard.value(forKey: "tracking_method")!)")
+        UserDefaults.standard.setValue("on", forKey: "ble_tracking")
+        print("Set user ble_tracking value to: \(UserDefaults.standard.value(forKey: "ble_tracking")!)")
         self.performSegue(withIdentifier: "setupOBD", sender: nil)
     }
     
     func locationTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        UserDefaults.standard.setValue("location", forKey: "tracking_method")
-        print("Set user tracking method to: \(UserDefaults.standard.value(forKey: "tracking_method")!)")
+        UserDefaults.standard.setValue("on", forKey: "location_tracking")
+        print("Set user location_tracking value to: \(UserDefaults.standard.value(forKey: "location_tracking")!)")
         self.performSegue(withIdentifier: "finishLocationSetup", sender: nil)
     }
 

@@ -31,6 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if FIRAuth.auth()?.currentUser != nil {
             print("User is signed in")
             
+            if UserDefaults.standard.value(forKey: "ble_tracking") == nil &&
+                UserDefaults.standard.value(forKey: "location_tracking") == nil {
+                UserDefaults.standard.setValue("on", forKey: "ble_tracking")
+            }
+            
             DB.sharedInstance.createSingleton()
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(self.startBLEScan),

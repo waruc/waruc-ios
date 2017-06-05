@@ -95,6 +95,11 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         } else {
             setWhite()
         }
+        
+        bottomStartStopTrackingButton.isHidden = true
+        if UserDefaults.standard.value(forKey: "ble_tracking") == nil && UserDefaults.standard.value(forKey: "location_tracking") != nil {
+            bottomStartStopTrackingButton.isHidden = false
+        }
     }
     
     @IBAction func send(_ sender: UIButton) {

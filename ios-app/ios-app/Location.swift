@@ -56,7 +56,6 @@ class Location: NSObject, CLLocationManagerDelegate {
         //information. Check status here and respond accordingly
     }
     
-    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         // Handle errors here 
     }

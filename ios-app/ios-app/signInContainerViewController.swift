@@ -127,6 +127,7 @@ class signInContainerViewController: UIViewController {
                 //let user = FIRAuth.auth()?.currentUser
                 FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
                     if user != nil {
+                        UserDefaults.standard.setValue("on", forKey: "ble_tracking")
                         //if !(user?.isEmailVerified)! {
                         DB.sharedInstance.createSingleton()
                         BLERouter.sharedInstance.createSingleton()

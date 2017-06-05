@@ -55,8 +55,6 @@ class DriveViewController: UIViewController {
         cityHeader.text = "Drive"
         locationIcon.isHidden = true
         
-        //bottomStartStopTrackingButton.isHidden = true
-        
         searchingAnimation = NVActivityIndicatorView(frame: CGRect(x: 10, y: 10, width: 32, height: 32))
         searchingAnimation!.color = UIColor.black
         //searchingAnimation = .ballScaleRippleMultiple
@@ -144,6 +142,11 @@ class DriveViewController: UIViewController {
             setBlack()
         } else {
             setWhite()
+        }
+        
+        bottomStartStopTrackingButton.isHidden = true
+        if UserDefaults.standard.value(forKey: "ble_tracking") == nil && UserDefaults.standard.value(forKey: "location_tracking") != nil {
+            bottomStartStopTrackingButton.isHidden = false
         }
         
         currentMPH.text = ""

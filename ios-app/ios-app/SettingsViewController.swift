@@ -34,6 +34,11 @@ class SettingsViewController: UIViewController {
                                                selector: #selector(self.updateColorScheme),
                                                name: BLERouter.sharedInstance.colorUpdateNotification,
                                                object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.toggleStartButton),
+                                               name: Notification.Name("toggleStartNotificationIdentifier"),
+                                               object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +48,11 @@ class SettingsViewController: UIViewController {
             setBlack()
         } else {
             setWhite()
+        }
+        
+        bottomStartStopTrackingButton.isHidden = true
+        if UserDefaults.standard.value(forKey: "ble_tracking") == nil && UserDefaults.standard.value(forKey: "location_tracking") != nil {
+            bottomStartStopTrackingButton.isHidden = false
         }
     }
     
@@ -115,5 +125,9 @@ class SettingsViewController: UIViewController {
         transition(item: self.view)
         transition(item: (self.tabBarController?.tabBar)!)
         
+    }
+    
+    func toggleStartButton() {
+        bottomStartStopTrackingButton.isHidden = !bottomStartStopTrackingButton.isHidden
     }
 }

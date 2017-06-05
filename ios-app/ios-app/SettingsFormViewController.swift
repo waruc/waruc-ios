@@ -51,11 +51,42 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
 
                 <<< SwitchRow("Embedded Vehicle Tracking") { row in
                         row.title = "Embedded Vehicle Tracking"
+                        row.value = UserDefaults.standard.value(forKey: "ble_tracking") != nil
                     }
-                <<< SwitchRow("Location Tracking") { row in
-                    row.title = "Location Tracking"
+                    .onChange { row in
+                        if row.value! {
+                            UserDefaults.standard.setValue("on", forKey: "ble_tracking")
+                            print("Set user ble_tracking value to: \(String(describing: UserDefaults.standard.value(forKey: "ble_tracking")))")
+                        } else {
+                            UserDefaults.standard.removeObject(forKey: "ble_tracking")
+                            print("Set user ble_tracking value to: \(String(describing: UserDefaults.standard.value(forKey: "ble_tracking")))")
+                        }
+                        
+                        if UserDefaults.standard.value(forKey: "location_tracking") != nil {
+                            NotificationCenter.default.post(name: Notification.Name("toggleStartNotificationIdentifier"), object: nil)
+                        }
+                        
+                        row.updateCell()
                     }
 
+                <<< SwitchRow("Location Tracking") { row in
+                        row.title = "Location Tracking"
+                        row.value = UserDefaults.standard.value(forKey: "location_tracking") != nil
+                    }
+                    .onChange { row in
+                        if row.value! {
+                            UserDefaults.standard.setValue("on", forKey: "location_tracking")
+                            print("Set user location_tracking value to: \(String(describing: UserDefaults.standard.value(forKey: "location_tracking")))")
+                            
+                            if UserDefaults.standard.value(forKey: "ble_tracking") == nil {
+                                NotificationCenter.default.post(name: Notification.Name("toggleStartNotificationIdentifier"), object: nil)
+                            }
+                        } else {
+                            UserDefaults.standard.removeObject(forKey: "location_tracking")
+                            print("Set user location_tracking value to: \(String(describing: UserDefaults.standard.value(forKey: "location_tracking")))")
+                        }
+                        row.updateCell()
+                    }
             
             +++ Section("Account")
             
@@ -95,6 +126,10 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                     }
                     .onCellSelection {  cell, row in  //sign out
                         try! FIRAuth.auth()!.signOut()
+                        if let bundle = Bundle.main.bundleIdentifier {
+                            UserDefaults.standard.removePersistentDomain(forName: bundle)
+                        }
+
                         BLERouter.sharedInstance.clearData()
                         DB.sharedInstance.clearData()
                         self.performSegue(withIdentifier: "signOut", sender: self)
