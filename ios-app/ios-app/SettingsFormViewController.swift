@@ -172,8 +172,8 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
         if let addNewVehicleRow:ButtonRow = form.rowBy(tag: "Add New Vehicle") {
             addNewVehicleRow.cellUpdate { cell, row in
                 cell.backgroundColor = UIColor(red:0.14, green:0.13, blue:0.21, alpha:1.0)
-                cell.textLabel?.textColor = UIColor.white
-                cell.detailTextLabel?.textColor = UIColor.white
+                cell.textLabel?.textColor = self.view.tintColor
+//                cell.detailTextLabel?.textColor = UIColor.white
             }
             
             addNewVehicleRow.updateCell()
@@ -298,6 +298,26 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             addNewVehicleRow.updateCell()
         }
         
+        if let vehicleRow:SwitchRow = form.rowBy(tag: "Embedded Vehicle Tracking") {
+            vehicleRow.cellUpdate { cell, row in
+                cell.backgroundColor = UIColor.white
+                cell.textLabel?.textColor = UIColor.black
+                cell.detailTextLabel?.textColor = UIColor.black
+            }
+            
+            vehicleRow.updateCell()
+        }
+        
+        if let locationRow:SwitchRow = form.rowBy(tag: "Location Tracking") {
+            locationRow.cellUpdate { cell, row in
+                cell.backgroundColor = UIColor.white
+                cell.textLabel?.textColor = UIColor.black
+                cell.detailTextLabel?.textColor = UIColor.black
+            }
+            
+            locationRow.updateCell()
+        }
+        
         if let emailRow:TextRow = form.rowBy(tag: "Email") {
             emailRow.cellUpdate { cell, row in
                 cell.backgroundColor = UIColor.white
@@ -318,6 +338,16 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             signOutRow.updateCell()
         }
         
+        if let aboutTheAppRow:ButtonRow = form.rowBy(tag: "About the App") {
+            aboutTheAppRow.cellUpdate { cell, row in
+                cell.backgroundColor = UIColor.white
+                cell.textLabel?.textColor = UIColor.black
+                cell.detailTextLabel?.textColor = UIColor.black
+            }
+            
+            aboutTheAppRow.updateCell()
+        }
+        
         if let aboutTheProgramRow:ButtonRow = form.rowBy(tag: "About the Program") {
             aboutTheProgramRow.cellUpdate { cell, row in
                 cell.backgroundColor = UIColor.white
@@ -336,6 +366,15 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             }
             
             privacyPolicyRow.updateCell()
+        }
+        if let rateUsRow:ButtonRow = form.rowBy(tag: "Rate us in the App Store") {
+            rateUsRow.cellUpdate { cell, row in
+                cell.backgroundColor = UIColor.white
+                cell.textLabel?.textColor = self.view.tintColor
+                cell.detailTextLabel?.textColor = UIColor.black
+            }
+            
+            rateUsRow.updateCell()
         }
         
         if let reportAnIssueRow:ButtonRow = form.rowBy(tag: "Report an Issue") {

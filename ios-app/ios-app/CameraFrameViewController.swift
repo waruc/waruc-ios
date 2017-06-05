@@ -98,7 +98,7 @@ class CameraFrameViewController: UIViewController {
         finishButton.isEnabled = true
         finishButton.backgroundColor = Colors.green
         finishButton.isHidden = false
-        
+
     }
     
     @IBAction func finishButton(_ sender: Any) {

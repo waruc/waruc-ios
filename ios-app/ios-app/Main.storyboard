@@ -3739,7 +3739,7 @@ Cg
                         <viewControllerLayoutGuide type="bottom" id="0bB-vp-FlF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1MP-hN-wiA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -3757,7 +3757,7 @@ Cg
                         <viewControllerLayoutGuide type="bottom" id="lGe-LC-Gsa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Y1u-ea-JPD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -3780,10 +3780,10 @@ Cg
         <image name="wheel" width="147" height="147"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vNs-WL-clF"/>
-        <segue reference="0wl-gM-U8e"/>
-        <segue reference="Vyx-nc-J1K"/>
-        <segue reference="p5a-3x-fN8"/>
         <segue reference="ZKK-aA-lUm"/>
+        <segue reference="p5a-3x-fN8"/>
+        <segue reference="8zG-gm-wQZ"/>
+        <segue reference="0wl-gM-U8e"/>
+        <segue reference="vNs-WL-clF"/>
     </inferredMetricsTieBreakers>
 </document>
