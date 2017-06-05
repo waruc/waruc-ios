@@ -268,7 +268,6 @@ class DriveViewController: UIViewController {
     }
     
     //******** BLE **********
-    
     func updateConnection() {
         if BLERouter.sharedInstance.connectionType != nil {
             connectionTypeLogo.image = #imageLiteral(resourceName: "bluetooth")
