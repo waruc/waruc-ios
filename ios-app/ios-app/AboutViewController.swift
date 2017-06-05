@@ -26,6 +26,6 @@ class AboutViewController: UIViewController, UIWebViewDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
-
+        self.tabBarController?.tabBar.isHidden = true
     }
 }

@@ -38,6 +38,7 @@ class SettingsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        self.tabBarController?.tabBar.isHidden = false
         if BLERouter.sharedInstance.tracking {
             setBlack()
         } else {
