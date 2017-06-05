@@ -18,6 +18,8 @@ class Location: NSObject, CLLocationManagerDelegate {
     
     static let sharedInstance = Location()
     
+    var washington = true
+    
     var locationManager = CLLocationManager()
     
     //Tracking setup
@@ -43,7 +45,9 @@ class Location: NSObject, CLLocationManagerDelegate {
     func stopTracking() {
         self.tracking = false
         // Convert meters to miles w/ tripDistance * 0.000621371
-        DB.sharedInstance.writeTrip(miles: tripDistance * 0.000621371, vin: "location")
+        if washington {
+            DB.sharedInstance.writeTrip(miles: tripDistance * 0.000621371, vin: "location")
+        }
         tripDistance = 0.0
     }
     
@@ -66,6 +70,7 @@ class Location: NSObject, CLLocationManagerDelegate {
         let geocoder = GMSGeocoder()
         var result = "result"
         let temp = CLLocationCoordinate2D(latitude: currentLatitude, longitude: currentLongitude)
+        
         geocoder.reverseGeocodeCoordinate(temp) {
             response , error in
             if let address = response?.firstResult() {
@@ -75,10 +80,19 @@ class Location: NSObject, CLLocationManagerDelegate {
                     if address.administrativeArea! != "Washington" {
                         _ = "\(address.locality!), \(address.administrativeArea!)"
                         result = "Outside of WA"
+                        self.washington = false
                     } else {
-                        result = "\(address.locality!), WA"
+                        result = "\(address.locality!)"
                     }
-                    //print("CITY: \(result)")
+                    print("CITY: \(result)")
+                    if result.characters.count < 13 {
+                        result += ", WA"
+                    } else if result.characters.count > 15 {
+                        let index = result.index(result.startIndex, offsetBy: 13)
+                        result = result.substring(to: index)
+                        result += "..."
+                    }
+                    //result = "123456789012" //15
                 }
             }
             let resultDict:[String: String] = ["text": result]
