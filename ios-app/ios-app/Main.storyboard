@@ -3432,6 +3432,14 @@ Cg
                                     <segue destination="463-KA-cS2" kind="show" id="4W5-Bg-ODf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2BQ-C5-pwa">
+                                <rect key="frame" x="337" y="503" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="New"/>
+                                <connections>
+                                    <segue destination="R1t-dg-YCX" kind="show" id="m2f-zL-0gv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
@@ -3652,6 +3660,67 @@ Cg
             </objects>
             <point key="canvasLocation" x="4854" y="-2276"/>
         </scene>
+        <!--Odometer View Controller-->
+        <scene sceneID="6nN-Ip-Wo1">
+            <objects>
+                <viewController id="R1t-dg-YCX" customClass="OdometerViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OYW-n7-e36"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z4h-gB-sI2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="awD-LS-x3x">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f9y-Lf-aEg" userLabel="Camera View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Pf-Pa-xvK">
+                                <rect key="frame" x="0.0" y="281" width="375" height="104"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1025044326" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dG1-MZ-hfD">
+                                <rect key="frame" x="168" y="617" width="39" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Click!"/>
+                                <connections>
+                                    <action selector="takePhotoButtonPressed:" destination="R1t-dg-YCX" eventType="touchUpInside" id="Ems-es-tkd"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="5fF-kh-2x0">
+                                <rect key="frame" x="14" y="544" width="347" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderValueDidChange:" destination="R1t-dg-YCX" eventType="valueChanged" id="KI9-ao-vL2"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Odometer Reading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7W-Gi-1J1">
+                                <rect key="frame" x="115" y="120" width="144" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p7W-Gi-1J1" firstAttribute="centerX" secondItem="awD-LS-x3x" secondAttribute="centerX" id="5DU-1t-aKp"/>
+                            <constraint firstItem="p7W-Gi-1J1" firstAttribute="top" secondItem="OYW-n7-e36" secondAttribute="bottom" constant="100" id="CYN-2q-A4c"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cameraView" destination="f9y-Lf-aEg" id="NCb-NU-0IM"/>
+                        <outlet property="label" destination="p7W-Gi-1J1" id="ZPU-QZ-Ul8"/>
+                        <outlet property="slider" destination="5fF-kh-2x0" id="k28-7t-L4s"/>
+                        <outlet property="viewFinder" destination="7Pf-Pa-xvK" id="L6q-dv-Wmw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fMw-d1-6AD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5672.8000000000002" y="-2266.4167916041979"/>
+        </scene>
         <!--User Registration Form View Controller-->
         <scene sceneID="I4o-Q3-1Gc">
             <objects>
@@ -3661,7 +3730,7 @@ Cg
                         <viewControllerLayoutGuide type="bottom" id="0bB-vp-FlF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1MP-hN-wiA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -3679,7 +3748,7 @@ Cg
                         <viewControllerLayoutGuide type="bottom" id="lGe-LC-Gsa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Y1u-ea-JPD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="528"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -3721,10 +3790,10 @@ Cg
         <image name="wheel" width="147" height="147"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZVc-WH-GyV"/>
+        <segue reference="HyD-Mn-DLM"/>
+        <segue reference="Vyx-nc-J1K"/>
         <segue reference="yEm-V2-paG"/>
         <segue reference="0wl-gM-U8e"/>
-        <segue reference="Vyx-nc-J1K"/>
         <segue reference="p5a-3x-fN8"/>
     </inferredMetricsTieBreakers>
 </document>
