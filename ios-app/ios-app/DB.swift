@@ -54,8 +54,6 @@ class DB {
     
     func createSingleton() {
         print("Creating DB singleton...")
-        fetchUserVehicles()
-        seedTrips()
     }
     
     func fetchUserVehicles() {

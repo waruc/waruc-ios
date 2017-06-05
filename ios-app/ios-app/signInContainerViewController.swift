@@ -131,10 +131,13 @@ class signInContainerViewController: UIViewController {
                         //if !(user?.isEmailVerified)! {
                         DB.sharedInstance.createSingleton()
                         BLERouter.sharedInstance.createSingleton()
-                        NotificationCenter.default.addObserver(self,
-                                                               selector: #selector(self.startBLEScan),
-                                                               name: BLERouter.sharedInstance.sharedInstanceReadyNotification,
-                                                               object: nil)
+                        
+                        if UserDefaults.standard.value(forKey: "ble_tracking") != nil {
+                            NotificationCenter.default.addObserver(self,
+                                                                   selector: #selector(self.startBLEScan),
+                                                                   name: BLERouter.sharedInstance.sharedInstanceReadyNotification,
+                                                                   object: nil)
+                        }
                         
                         self.performSegue(withIdentifier: "authorized", sender: self)
                     } else {

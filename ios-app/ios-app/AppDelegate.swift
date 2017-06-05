@@ -37,10 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             DB.sharedInstance.createSingleton()
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(self.startBLEScan),
-                                                   name: BLERouter.sharedInstance.sharedInstanceReadyNotification,
-                                                   object: nil)
+            
+            if UserDefaults.standard.value(forKey: "ble_tracking") != nil {
+                NotificationCenter.default.addObserver(self,
+                                                       selector: #selector(self.startBLEScan),
+                                                       name: BLERouter.sharedInstance.sharedInstanceReadyNotification,
+                                                       object: nil)
+            }
             
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(self.presentVehicleCreationAlert),

@@ -127,7 +127,6 @@ class DriveViewController: UIViewController {
             DB.sharedInstance.userVehicles.keys.contains(DB.sharedInstance.currVehicleInfo!["vin"]!) {
             updateVehicleInfo()
         }
-        
     }
      
     func updateCityHeader(_ notification: NSNotification) {
@@ -161,6 +160,8 @@ class DriveViewController: UIViewController {
 
     
     @IBAction public func send(_ sender: UIButton) {
+        print(DB.sharedInstance.currVehicleInfo)
+        
         BLERouter.sharedInstance.tracking = !BLERouter.sharedInstance.tracking
         Location.sharedInstance.tracking = !Location.sharedInstance.tracking
         
