@@ -40,6 +40,10 @@ class OnboardingVehicleInputFrameViewController: UIViewController {
         }
     }
     
+    @IBAction func dismissVehicleForm(_ sender: Any) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func vehicleSubmit(_ sender: Any) {
         if DB.sharedInstance.newVehicle {
             DB.sharedInstance.registerVehicle()

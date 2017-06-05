@@ -123,6 +123,7 @@ class DriveViewController: UIViewController {
         }
         
         if DB.sharedInstance.currVehicleInfo != nil &&
+            DB.sharedInstance.currVehicleInfo!["vin"] != nil &&
             DB.sharedInstance.userVehicles.keys.contains(DB.sharedInstance.currVehicleInfo!["vin"]!) {
             updateVehicleInfo()
         }

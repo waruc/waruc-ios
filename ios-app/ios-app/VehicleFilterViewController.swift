@@ -59,7 +59,7 @@ class VehicleFilterViewController: UIViewController, UIPickerViewDelegate, UIPic
             pickerLabel.text = "All"
         } else {
             let rowVehicle = Array(DB.sharedInstance.userVehicles.values)[row - 1]
-            pickerLabel.text = "\(rowVehicle["nickname"] != nil ? "\(rowVehicle["nickname"]!) - " : "")\(rowVehicle["year"]!) \(rowVehicle["make"]!) \(rowVehicle["model"]!)"
+            pickerLabel.text = "\((rowVehicle["nickname"] ?? "").isEmpty ? "" : "\(rowVehicle["nickname"]!) - ")\(rowVehicle["year"]!) \(rowVehicle["make"]!) \(rowVehicle["model"]!)"
         }
         
         return pickerLabel

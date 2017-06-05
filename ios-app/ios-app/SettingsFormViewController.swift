@@ -43,6 +43,17 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                     $0.title = "Add New Vehicle"
                     }
                     .onCellSelection {  cell, row in  //sign out
+                        // If user is using location tracking, setup the form for manual input
+                        if UserDefaults.standard.value(forKey: "obd_tracking") == nil &&
+                            UserDefaults.standard.value(forKey: "location_tracking") != nil {
+                            DB.sharedInstance.newVehicle = true
+                            DB.sharedInstance.currVehicleInfo = [
+                                "make": "",
+                                "model": "",
+                                "year": "",
+                                "nickname": ""
+                            ]
+                        }
                         self.performSegue(withIdentifier: "addNewVehicle", sender: self)
                         self.navigationController?.setNavigationBarHidden(false, animated: true)
                     }
