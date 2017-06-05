@@ -90,7 +90,6 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             
             +++ Section("Account")
             
-            
                 <<< TextRow("Email") {
                     $0.title = "Email"
                     $0.add(rule: RuleRequired())
@@ -108,7 +107,6 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                             cell.titleLabel?.textColor = .red
                         }
                 }
-            
             
 //                <<< PasswordRow() {
 //                    $0.title = "Password"
@@ -173,7 +171,6 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                 }
     }
 
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 

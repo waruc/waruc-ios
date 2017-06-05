@@ -91,12 +91,17 @@ class DriveViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, 
                                                selector: #selector(self.updateCityHeader(_:)), 
-                                               name: NSNotification.Name(rawValue: "cityHeaderNotification"), 
+                                               name: Notification.Name("cityHeaderNotification"),
                                                object: nil)
         
         NotificationCenter.default.addObserver(self, 
                                                selector: #selector(self.updateLocationIcon(_:)), 
-                                               name: NSNotification.Name(rawValue: "locationIconNotification"), 
+                                               name: Notification.Name("locationIconNotification"),
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.updateLocationConnection(_:)),
+                                               name: Notification.Name("LocationConnectionUpdateNotificatonIdentifier"),
                                                object: nil)
         
         NotificationCenter.default.addObserver(self,
@@ -314,6 +319,22 @@ class DriveViewController: UIViewController {
         if let data = (notification.object as? [String: Double]) {
             currentMPH.text = "\(Int(data["speed"]!.rounded(.toNearestOrAwayFromZero)))"
             currentMPH.sizeToFit()
+        }
+    }
+    
+    //******** Location **********
+    func updateLocationConnection(_ notification: Notification) {
+        if notification.object == nil {
+            connectionTypeLogo.image = nil
+            connectionTypeSubHeader.text = ""
+            searchingAnimation?.startAnimating()
+            connectionTypeHeader.text = "Searching"
+        } else {
+            if let connection = (notification.object as? [String: String]) {
+                connectionTypeLogo.image = #imageLiteral(resourceName: "navigation")
+                searchingAnimation?.stopAnimating()
+                connectionTypeHeader.text = connection["connection"]
+            }
         }
     }
     

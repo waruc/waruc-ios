@@ -40,6 +40,8 @@ class Location: NSObject, CLLocationManagerDelegate {
         self.tracking = true
         self.tripStartTime = Date()
         print("*** 📍GPS: Successfully connected!💦 ***")
+        let values = ["connection": "GPS"]
+        NotificationCenter.default.post(name: Notification.Name("LocationConnectionUpdateNotificatonIdentifier"), object: values)
     }
     
     func stopTracking() {
@@ -49,6 +51,8 @@ class Location: NSObject, CLLocationManagerDelegate {
             DB.sharedInstance.writeTrip(miles: tripDistance * 0.000621371, vin: "location")
         }
         tripDistance = 0.0
+        
+        NotificationCenter.default.post(name: Notification.Name("LocationConnectionUpdateNotificatonIdentifier"), object: nil)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -95,9 +99,9 @@ class Location: NSObject, CLLocationManagerDelegate {
                 }
             }
             let resultDict:[String: String] = ["text": result]
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "cityHeaderNotification"), object: nil, userInfo: resultDict)
+            NotificationCenter.default.post(name: Notification.Name("cityHeaderNotification"), object: nil, userInfo: resultDict)
             let hideDict:[String: Bool] = ["status": false]
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "locationIconNotification"), object: nil, userInfo: hideDict) 
+            NotificationCenter.default.post(name: Notification.Name("locationIconNotification"), object: nil, userInfo: hideDict)
         }
         
         //GPS tracking 
