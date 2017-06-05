@@ -3406,7 +3406,7 @@ Cg
                                 </state>
                                 <connections>
                                     <action selector="vehicleSubmit:" destination="haP-8d-rx7" eventType="touchUpInside" id="jUv-7M-07f"/>
-                                    <segue destination="463-KA-cS2" kind="show" id="p5a-3x-fN8"/>
+                                    <segue destination="463-KA-cS2" kind="show" identifier="goToCamera" id="p5a-3x-fN8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvp-Ex-7CK">
@@ -3444,6 +3444,7 @@ Cg
                     <connections>
                         <outlet property="doneButton" destination="fVO-no-2fC" id="rDu-gR-i3X"/>
                         <outlet property="skipButton" destination="xvp-Ex-7CK" id="Y26-sn-WMA"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="goToHome" id="HyD-Mn-DLM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ycl-RW-dP2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3723,7 +3724,7 @@ Cg
         <segue reference="ZVc-WH-GyV"/>
         <segue reference="yEm-V2-paG"/>
         <segue reference="0wl-gM-U8e"/>
-        <segue reference="uC1-ae-UfU"/>
+        <segue reference="Vyx-nc-J1K"/>
         <segue reference="p5a-3x-fN8"/>
     </inferredMetricsTieBreakers>
 </document>

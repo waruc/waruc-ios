@@ -48,7 +48,7 @@ class Location: NSObject, CLLocationManagerDelegate {
         self.tracking = false
         // Convert meters to miles w/ tripDistance * 0.000621371
         if washington {
-            DB.sharedInstance.writeTrip(miles: tripDistance * 0.000621371, vin: "location")
+            DB.sharedInstance.writeTrip(miles: tripDistance * 0.000621371, vin: DB.sharedInstance.currVehicleInfo!["vin"]!)
         }
         tripDistance = 0.0
         

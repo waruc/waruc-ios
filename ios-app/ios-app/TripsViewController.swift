@@ -186,7 +186,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     // MARK: TableViewDelegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DB.sharedInstance.userTrips!.count
+        return (DB.sharedInstance.userTrips ?? []).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

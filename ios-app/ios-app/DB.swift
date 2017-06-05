@@ -70,6 +70,7 @@ class DB {
                         self.userVehicles[key] = [:]
                     }
                     
+                    print(self.userVehicles)
                     self.getUserVehicleInfo()
                 }
                 
@@ -141,6 +142,17 @@ class DB {
                 ]
                 
                 self.userVehicles[key] = vehicle
+                
+                // Set default car for Location tracking users
+                if UserDefaults.standard.value(forKey: "ble_tracking") == nil &&
+                    UserDefaults.standard.value(forKey: "location_tracking") != nil &&
+                    Array(self.userVehicles.keys).index(of: key) == 0 {
+                    
+                    if self.currVehicleInfo == nil {
+                        self.currVehicleInfo = self.userVehicles[key]
+                        NotificationCenter.default.post(name: self.existingVehicleInfoNotification, object: nil)
+                    }
+                }
             })
         }
     }

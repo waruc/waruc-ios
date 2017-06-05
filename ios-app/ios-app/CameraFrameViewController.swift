@@ -17,6 +17,8 @@ class CameraFrameViewController: UIViewController {
     
     @IBOutlet weak var previewView: UIView!
     
+    var tabBarSegue = false
+    
     let captureSession = AVCaptureSession()
     let stillImageOutput = AVCaptureStillImageOutput()
     var previewLayer : AVCaptureVideoPreviewLayer?
@@ -98,11 +100,18 @@ class CameraFrameViewController: UIViewController {
         finishButton.isEnabled = true
         finishButton.backgroundColor = Colors.green
         finishButton.isHidden = false
-
     }
     
     @IBAction func finishButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "home", sender: nil)
+        if tabBarSegue {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            if appDelegate.window!.rootViewController is UITabBarController {
+                (appDelegate.window!.rootViewController as! UITabBarController).dismiss(animated: true, completion: nil)
+                (appDelegate.window!.rootViewController as! UITabBarController).selectedIndex = 0
+            }
+        } else {
+            self.performSegue(withIdentifier: "home", sender: nil)
+        }
     }
     
       

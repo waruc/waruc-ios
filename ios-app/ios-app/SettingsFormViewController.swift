@@ -43,17 +43,6 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                     $0.title = "Add New Vehicle"
                     }
                     .onCellSelection {  cell, row in  //sign out
-                        // If user is using location tracking, setup the form for manual input
-                        if UserDefaults.standard.value(forKey: "obd_tracking") == nil &&
-                            UserDefaults.standard.value(forKey: "location_tracking") != nil {
-                            DB.sharedInstance.newVehicle = true
-                            DB.sharedInstance.currVehicleInfo = [
-                                "make": "",
-                                "model": "",
-                                "year": "",
-                                "nickname": ""
-                            ]
-                        }
                         self.performSegue(withIdentifier: "addNewVehicle", sender: self)
                         self.navigationController?.setNavigationBarHidden(false, animated: true)
                     }
@@ -68,9 +57,21 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                         if row.value! {
                             UserDefaults.standard.setValue("on", forKey: "ble_tracking")
                             print("Set user ble_tracking value to: \(String(describing: UserDefaults.standard.value(forKey: "ble_tracking")))")
+                            
+                            if UserDefaults.standard.value(forKey: "location_tracking") != nil {
+                                DB.sharedInstance.currVehicleInfo = nil
+                                NotificationCenter.default.post(name: DB.sharedInstance.existingVehicleInfoNotification, object: nil)
+                            }
                         } else {
                             UserDefaults.standard.removeObject(forKey: "ble_tracking")
                             print("Set user ble_tracking value to: \(String(describing: UserDefaults.standard.value(forKey: "ble_tracking")))")
+                            
+                            if UserDefaults.standard.value(forKey: "location_tracking") != nil {
+                                if DB.sharedInstance.currVehicleInfo == nil && !DB.sharedInstance.userVehicles.isEmpty {
+                                    DB.sharedInstance.currVehicleInfo = Array(DB.sharedInstance.userVehicles.values)[0]
+                                    NotificationCenter.default.post(name: DB.sharedInstance.existingVehicleInfoNotification, object: nil)
+                                }
+                            }
                         }
                         
                         if UserDefaults.standard.value(forKey: "location_tracking") != nil {
@@ -91,10 +92,19 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                             
                             if UserDefaults.standard.value(forKey: "ble_tracking") == nil {
                                 NotificationCenter.default.post(name: Notification.Name("toggleStartNotificationIdentifier"), object: nil)
+                                if DB.sharedInstance.currVehicleInfo == nil && !DB.sharedInstance.userVehicles.isEmpty {
+                                    DB.sharedInstance.currVehicleInfo = Array(DB.sharedInstance.userVehicles.values)[0]
+                                    NotificationCenter.default.post(name: DB.sharedInstance.existingVehicleInfoNotification, object: nil)
+                                }
                             }
                         } else {
                             UserDefaults.standard.removeObject(forKey: "location_tracking")
                             print("Set user location_tracking value to: \(String(describing: UserDefaults.standard.value(forKey: "location_tracking")))")
+                            
+                            if UserDefaults.standard.value(forKey: "ble_tracking") == nil {
+                                DB.sharedInstance.currVehicleInfo = nil
+                                NotificationCenter.default.post(name: DB.sharedInstance.existingVehicleInfoNotification, object: nil)
+                            }
                         }
                         row.updateCell()
                     }
@@ -460,6 +470,26 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
             return
         }
         UIApplication.shared.open(url, options: [:], completionHandler: completion)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addNewVehicle" {
+            // If user is using location tracking, setup the form for manual input
+            if UserDefaults.standard.value(forKey: "obd_tracking") == nil &&
+                UserDefaults.standard.value(forKey: "location_tracking") != nil {
+                DB.sharedInstance.newVehicle = true
+                DB.sharedInstance.currVehicleInfo = [
+                    "make": "",
+                    "model": "",
+                    "year": "",
+                    "nickname": ""
+                ]
+            }
+            
+            if let toViewController = segue.destination as? OnboardingVehicleInputFrameViewController {
+                toViewController.existingUser = true
+            }
+        }
     }
     
 }

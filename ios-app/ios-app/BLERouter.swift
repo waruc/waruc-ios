@@ -347,7 +347,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     }
     
     func stopTrip() {
-        DB.sharedInstance.writeTrip(miles: totalDist, vin: vinNumber!)
+        DB.sharedInstance.writeTrip(miles: totalDist, vin: DB.sharedInstance.currVehicleInfo!["vin"]!)
     }
     
 }
