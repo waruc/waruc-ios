@@ -9,7 +9,6 @@
 import Foundation
 import GoogleMaps
 import CoreLocation
-import RealmSwift
 
 class Location: NSObject, CLLocationManagerDelegate {
     

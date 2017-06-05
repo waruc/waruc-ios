@@ -33,6 +33,7 @@
 		971CC6486EAECBE47A3296A67C2B80BA /* userRegistrationFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72162C848D2DB61A577392B1849EB990 /* userRegistrationFormViewController.swift */; };
 		9ABE3C681C81AF28509A365CC6922230 /* Pods_ios_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7AC5F3F506A9742D810760E2887AA2D /* Pods_ios_appTests.framework */; };
 		A243094A71AA77A242EF8C0948AEFF42 /* master.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */; };
+		A4D3ABFF1EE4CF3A009CEFBF /* CameraFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3ABFE1EE4CF3A009CEFBF /* CameraFrameViewController.swift */; };
 		A73F3F550889FDD784BB1E5A35D0EE75 /* OnboardingNextStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56801B1B6DE73A986B646151F11B371 /* OnboardingNextStepsViewController.swift */; };
 		B73D2FAD2D6D9F4CB0D7C76D92288E42 /* signInFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B5F478D766551AB92A3C8AB4808B0 /* signInFormViewController.swift */; };
 		BA8AD98CA2DFC64E2F586DDDC3C4A58B /* initialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44A28D9B88D33F110E14B474EDA94BB /* initialViewController.swift */; };
@@ -106,6 +107,7 @@
 		8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99EC2A94FE8BC24B12B3FABA5691F07D /* master.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = master.swift; sourceTree = "<group>"; };
 		9B3B9338D030805225619B817B24C830 /* Pods_ios_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4D3ABFE1EE4CF3A009CEFBF /* CameraFrameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraFrameViewController.swift; sourceTree = "<group>"; };
 		A5A29964B8F0B4C2F0A0FF7EA8C97BC6 /* ios_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_appUITests.swift; sourceTree = "<group>"; };
 		A7AC5F3F506A9742D810760E2887AA2D /* Pods_ios_appTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_appTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0A5586F2B7638A92DC89C91088E985 /* OnboardingEnableFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingEnableFeaturesViewController.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 		FA759E30E710B0DC2A47271BF9DA03F0 /* OnboardingViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A4D3ABFE1EE4CF3A009CEFBF /* CameraFrameViewController.swift */,
 				FDF0DCF6EA7AB223AB3317B56B0B7A9E /* OnboardingAboutViewController.swift */,
 				354E5F06A9ED0DFE06BBF8B3F19B8F1F /* OnboardingAccountDetailsViewController.swift */,
 				CC0A5586F2B7638A92DC89C91088E985 /* OnboardingEnableFeaturesViewController.swift */,
@@ -369,7 +372,7 @@
 				TargetAttributes = {
 					4B7F7B27DA252087D73087D24E7742BA = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = MYKB4J9SMT;
+						DevelopmentTeam = M6SMTA44W3;
 						ProvisioningStyle = Automatic;
 					};
 					A26F4000BB5354698DA5E0082DFB9B15 = {
@@ -599,6 +602,7 @@
 				E273EC3DEAB56CC0A0BCC3D8B059BA99 /* OnboardingEnableFeaturesViewController.swift in Sources */,
 				A73F3F550889FDD784BB1E5A35D0EE75 /* OnboardingNextStepsViewController.swift in Sources */,
 				C1BD8E44F38868604C3072654A54CE64 /* OnboardingOBDIIViewController.swift in Sources */,
+				A4D3ABFF1EE4CF3A009CEFBF /* CameraFrameViewController.swift in Sources */,
 				8D1B2E3DF83CAF25062D87CD2C1213C6 /* OnboardingTermsViewController.swift in Sources */,
 				89C5314C8ACC42F27CDFF82EBDD903E1 /* OnboardingVehicleFormViewController.swift in Sources */,
 				1F24C44017B4827B3533A27C30B1D4C7 /* OnboardingVehicleInputFrameViewController.swift in Sources */,
@@ -750,7 +754,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = MYKB4J9SMT;
+				DEVELOPMENT_TEAM = M6SMTA44W3;
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -818,7 +822,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = MYKB4J9SMT;
+				DEVELOPMENT_TEAM = M6SMTA44W3;
 				INFOPLIST_FILE = "ios-app/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

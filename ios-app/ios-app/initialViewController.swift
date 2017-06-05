@@ -55,49 +55,11 @@ class initialViewController: UIViewController, UIScrollViewDelegate {
         greenLogIn.layer.borderColor = Colors.green.cgColor
         //BLERouter.sharedInstance.scan()
 
-        
-        //configurePageControl()
-        
-//        scrollView.delegate = self
-//        self.view.addSubview(scrollView)
-//        for index in 0..<4 {
-//            
-//            frame.origin.x = self.scrollView.frame.size.width * CGFloat(index)
-//            frame.size = self.scrollView.frame.size
-//            
-//            let subView = UIView(frame: frame)
-//            subView.backgroundColor = colors[index]
-//            self.scrollView .addSubview(subView)
-//        }
-//        self.scrollView.isPagingEnabled = true
-//        self.scrollView.contentSize = CGSize(width: self.scrollView.frame.size.width * 4, height: self.scrollView.frame.size.height)
-//        pageControl.addTarget(self, action: #selector(self.changePage(sender:)), for: UIControlEvents.valueChanged)
+
         
     }
     
-//    func configurePageControl() {
-//        // The total number of pages that are available is based on how many available colors we have.
-//        self.pageControl.numberOfPages = colors.count
-//        self.pageControl.currentPage = 0
-//        self.pageControl.tintColor = UIColor.red
-//        self.pageControl.pageIndicatorTintColor = UIColor.black
-//        self.pageControl.currentPageIndicatorTintColor = UIColor.green
-//        self.view.addSubview(pageControl)
-//        
-//    }
-//    
-//    // MARK : TO CHANGE WHILE CLICKING ON PAGE CONTROL
-//    func changePage(sender: AnyObject) -> () {
-//        let x = CGFloat(pageControl.currentPage) * scrollView.frame.size.width
-//        scrollView.setContentOffset(CGPoint(x: x,y :0), animated: true)
-//    }
-//    
-//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        
-//        let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
-//        pageControl.currentPage = Int(pageNumber)
-//    }
-    
+
     @IBAction func login(_ sender: UIButton) {
         self.performSegue(withIdentifier: "goToLogin", sender: self)
     }
