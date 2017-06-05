@@ -37,6 +37,12 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     let connectionTypeNotification = Notification.Name("connectionTypeNotificationIdentifier")
     let connectionStrengthNotification = Notification.Name("connectionStrengthNotificationIdentifier")
     let colorUpdateNotification = Notification.Name("colorUpdateNotification")
+    let mphUpdateNotification = Notification.Name("mphUpdateNotification")
+    let graphUpdateNotification = Notification.Name("graphUpdateNotification")
+    
+    let driveGraphInterval = 5
+    var speedAggregator:[Double] = []
+    var graphSpeeds:[Double] = []
     
     var res:[UInt8] = []
     
@@ -268,6 +274,19 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                         let kph = Int("\(String(UnicodeScalar(res[res.count - 5])))\(String(UnicodeScalar(res[res.count - 4])))", radix:16)
                         let mph = Double(kph!) / 1.609344
                         print("\nCurrent speed: \(mph) mph")
+                        NotificationCenter.default.post(name: mphUpdateNotification, object: ["speed": mph])
+                        
+                        speedAggregator.append(mph)
+                        if speedAggregator.count >= driveGraphInterval {
+                            if graphSpeeds.count >= 10 {
+                                graphSpeeds.remove(at: 0)
+                            }
+                            
+                            graphSpeeds.append(speedAggregator.reduce(0.0, +) / Double(speedAggregator.count))
+                            NotificationCenter.default.post(name: graphUpdateNotification, object: nil)
+                            speedAggregator = []
+                        }
+                        
                         if (!tracking && mph > 0) {
                             tracking = true
                             NotificationCenter.default.post(name: colorUpdateNotification, object: nil)

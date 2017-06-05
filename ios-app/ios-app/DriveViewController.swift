@@ -12,11 +12,7 @@ import Charts
 import LocalAuthentication
 
 
-class DriveViewController: UIViewController {    
-    // MARK: References
-    
-    
-    
+class DriveViewController: UIViewController {
     //Main header
     @IBOutlet weak var cityHeader: UILabel!
     @IBOutlet weak var locationIcon: UIImageView!
@@ -50,6 +46,7 @@ class DriveViewController: UIViewController {
     @IBOutlet weak var mphLabel: UILabel!
     @IBOutlet weak var lineChart: LineChartView!
     
+    var initialGraph = true
     
     // MARK: Setup
     override func viewDidLoad() {
@@ -98,9 +95,20 @@ class DriveViewController: UIViewController {
                                                selector: #selector(self.updateCityHeader(_:)), 
                                                name: NSNotification.Name(rawValue: "cityHeaderNotification"), 
                                                object: nil)
+        
         NotificationCenter.default.addObserver(self, 
                                                selector: #selector(self.updateLocationIcon(_:)), 
                                                name: NSNotification.Name(rawValue: "locationIconNotification"), 
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.updateMPH(_:)),
+                                               name: BLERouter.sharedInstance.mphUpdateNotification,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.updateChart),
+                                               name: BLERouter.sharedInstance.graphUpdateNotification,
                                                object: nil)
         
         if BLERouter.sharedInstance.connectionType != nil {
@@ -138,7 +146,8 @@ class DriveViewController: UIViewController {
             setWhite()
         }
         
-        
+        currentMPH.text = ""
+        initialGraph = true
     }
 
     
@@ -299,22 +308,28 @@ class DriveViewController: UIViewController {
         }
     }
     
+    func updateMPH(_ notification: NSNotification) {
+        if let data = (notification.object as? [String: Double]) {
+            currentMPH.text = "\(Int(data["speed"]!.rounded(.toNearestOrAwayFromZero)))"
+            currentMPH.sizeToFit()
+        }
+    }
+    
     //******** Charts *******
-
     func updateChart() {
-        //Data
-        var y:[Double] = [3.0, 8.0, 7.0, 11.0, 13.0, 17.0, 12.0, 9.0, 15.0, 8.0, 10.0]
+        var y = BLERouter.sharedInstance.graphSpeeds
+        y += [Double](repeating: 0.0, count: 10 - BLERouter.sharedInstance.graphSpeeds.count)
         
         var dataEntries: [ChartDataEntry] = []
         for i in 0..<y.count {
             let dataEntry = ChartDataEntry(x: Double(i), y: Double(y[i]))
             dataEntries.append(dataEntry)
         }
+        
         let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "Example Chart")
         lineChartDataSet.mode = .cubicBezier
         lineChart.data = LineChartData(dataSet: lineChartDataSet)
         
-
         //set colors
         lineChart.backgroundColor = UIColor(white: 1, alpha: 0)
         let gradientColors = [Colors.lightBlue.cgColor, Colors.lighterBlue.cgColor] as CFArray
@@ -327,9 +342,11 @@ class DriveViewController: UIViewController {
         lineChartDataSet.drawCircleHoleEnabled = false
         lineChartDataSet.circleRadius = 0
         
-        
         //animation
-        lineChart.animate(xAxisDuration: 0.0, yAxisDuration: 1.5)
+        if initialGraph {
+            lineChart.animate(xAxisDuration: 0.0, yAxisDuration: 1.5)
+            initialGraph = false
+        }
         
         //remove axis and gridlines
         lineChart.xAxis.drawGridLinesEnabled = false
@@ -346,7 +363,8 @@ class DriveViewController: UIViewController {
         lineChart.rightAxis.drawLabelsEnabled = false
         lineChart.legend.enabled = false
         lineChart.chartDescription?.text = ""
-
+        
+        lineChart.isUserInteractionEnabled = false
     }
     
 }
