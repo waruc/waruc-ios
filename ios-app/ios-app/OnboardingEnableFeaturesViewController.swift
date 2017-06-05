@@ -60,13 +60,23 @@ class OnboardingEnableFeaturesViewController: UIViewController, /*CLLocationMana
     func locationTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         UserDefaults.standard.setValue("on", forKey: "location_tracking")
         print("Set user location_tracking value to: \(UserDefaults.standard.value(forKey: "location_tracking")!)")
-        self.performSegue(withIdentifier: "finishLocationSetup", sender: nil)
+        self.performSegue(withIdentifier: "manualVehicleCreation", sender: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let backItem = UIBarButtonItem()
-        backItem.title = "Back"
-        navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
+        if segue.identifier == "manualVehicleCreation" {
+            DB.sharedInstance.newVehicle = true
+            DB.sharedInstance.currVehicleInfo = [
+                "make": "",
+                "model": "",
+                "year": "",
+                "nickname": ""
+            ]
+        } else {
+            let backItem = UIBarButtonItem()
+            backItem.title = "Back"
+            navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
+        }
     }
     
     @available(iOS 5.0, *)

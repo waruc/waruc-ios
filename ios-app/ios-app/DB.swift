@@ -159,7 +159,12 @@ class DB {
             "nickname": currVehicleInfo!["nickname"] ?? ""
             ] as [String : Any]
         
-        userVehicles[currVehicleInfo!["vin"]!] = (vehicle_values as! [String : String])
+        if currVehicleInfo!["vin"] != nil {
+            userVehicles[currVehicleInfo!["vin"]!] = (vehicle_values as! [String : String])
+        } else {
+            currVehicleInfo!["vin"] = "\(currVehicleInfo!["make"]!)\(currVehicleInfo!["model"]!)\(currVehicleInfo!["year"]!)\(ts)"
+            userVehicles[currVehicleInfo!["vin"]!] = (vehicle_values as! [String : String])
+        }
         
         vehicle_values["users"] =  uid!
         vehicle_values["vehicle_mileage"] =  0.0

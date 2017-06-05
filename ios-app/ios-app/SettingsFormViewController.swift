@@ -30,7 +30,7 @@ class SettingsFormViewController: FormViewController, MFMailComposeViewControlle
                         return rowValue
                     }
                     row.options = DB.sharedInstance.userVehicles.values.map {
-                        "\($0["nickname"] != nil ? "\($0["nickname"]!) - " : "")\($0["year"]!) \($0["make"]!) \($0["model"]!)"
+                        "\(($0["nickname"] ?? "").isEmpty ? "" : "\($0["nickname"]!) - ")\($0["year"]!) \($0["make"]!) \($0["model"]!)"
                     }
                     row.value = row.options.count > 0 ? row.options[0] : ""
                     }.cellSetup() {cell, row in

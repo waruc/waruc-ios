@@ -3102,7 +3102,7 @@ Cg
                         <outlet property="locationImage" destination="9a4-Ja-88J" id="GKe-7m-o3p"/>
                         <outlet property="locationTitle" destination="VI0-wf-9up" id="Zqd-U3-Wva"/>
                         <segue destination="jaA-wA-FsY" kind="show" identifier="setupOBD" id="1XD-UF-ouu"/>
-                        <segue destination="49e-Tb-3d3" kind="show" identifier="finishLocationSetup" id="5ly-cQ-yy8"/>
+                        <segue destination="haP-8d-rx7" kind="show" identifier="manualVehicleCreation" id="uC1-ae-UfU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jz8-gG-DqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3620,7 +3620,7 @@ Cg
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7Lb-ae-XNf" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="b8a-07-SKZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="b8a-07-SKZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3693,7 +3693,7 @@ Cg
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a3j-TK-dW5" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" id="XxO-Tf-Mt8"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="NP1-C8-Tgc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NP1-C8-Tgc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3720,10 +3720,10 @@ Cg
         <image name="wheel" width="147" height="147"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5ly-cQ-yy8"/>
+        <segue reference="ZKK-aA-lUm"/>
+        <segue reference="p5a-3x-fN8"/>
+        <segue reference="uC1-ae-UfU"/>
         <segue reference="yEm-V2-paG"/>
         <segue reference="0wl-gM-U8e"/>
-        <segue reference="8zG-gm-wQZ"/>
-        <segue reference="p5a-3x-fN8"/>
     </inferredMetricsTieBreakers>
 </document>
