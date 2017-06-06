@@ -82,7 +82,7 @@ class BLERouter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     func createSingleton() {
         print("Creating BLERouter singleton...")
-        centralManager.scanForPeripherals(withServices: nil, options: nil)
+        //centralManager.scanForPeripherals(withServices: nil, options: nil)
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {

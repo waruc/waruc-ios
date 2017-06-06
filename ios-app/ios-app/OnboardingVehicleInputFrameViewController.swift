@@ -27,7 +27,18 @@ class OnboardingVehicleInputFrameViewController: UIViewController {
                                                    selector: #selector(self.modifyButtons),
                                                    name: DB.sharedInstance.newVehicleInfoNotification,
                                                    object: nil)
+            
+            if UserDefaults.standard.value(forKey: "ble_tracking") != nil {
+                NotificationCenter.default.addObserver(self,
+                                                       selector: #selector(self.startBLEScan),
+                                                       name: BLERouter.sharedInstance.sharedInstanceReadyNotification,
+                                                       object: nil)
+            }
         }
+    }
+    
+    func startBLEScan() {
+        BLERouter.sharedInstance.centralManager.scanForPeripherals(withServices: nil, options: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {

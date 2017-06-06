@@ -23,6 +23,7 @@ class OnboardingOBDIIViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "obdPluggedIn" {
             BLERouter.sharedInstance.createSingleton()
+            
             if let toViewController = segue.destination as? OnboardingVehicleInputFrameViewController {
                 toViewController.showSkip = true
             }
