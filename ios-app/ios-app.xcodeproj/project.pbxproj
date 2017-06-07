@@ -10,6 +10,7 @@
 		06A9BD341A9B549B466826376A3D2413 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D958D0625B33CA4F5B9E3B52D63A36B /* Assets.xcassets */; };
 		16FF7BCCC040DBA9854BD3F5B4B7EEE7 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A4F260796706653FEDA42C67E4215D /* ProgressHUD.swift */; };
 		1F24C44017B4827B3533A27C30B1D4C7 /* OnboardingVehicleInputFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BB7F97B2D9AC3F62F421EF05927DDC /* OnboardingVehicleInputFrameViewController.swift */; };
+		22AB5A3D20B584C70EA3E00AD915D076 /* OdometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F78DBDFAD73C3C6D5B2B8CE5C8546 /* OdometerViewController.swift */; };
 		233DCF1D5EDD9BB12974A644348B0491 /* SettingsFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C01EA1746B2B84168EF5A0DC378E02C /* SettingsFormViewController.swift */; };
 		269009B517D287693C1B11BB9692F195 /* Pods_ios_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B3B9338D030805225619B817B24C830 /* Pods_ios_app.framework */; };
 		31019DBE74EAB2C7E85DEA8167B7BF11 /* signInContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E446201498C1AB0DF67DE79DEECFF46 /* signInContainerViewController.swift */; };
@@ -23,7 +24,6 @@
 		63254EFE5F3EF2507A91392D2896E9C7 /* ios_app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7C665298DB176695132B2F26FA1F9E6 /* ios_app.xcdatamodeld */; };
 		63701A70CEFD0B5BDAE74604FE4A50A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11160A8E6C999C1B1CB46BB32990AE7 /* Main.storyboard */; };
 		63D41EA86ED1CCCE596BD598F48E4A3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4723942D8C35A66482A93661B91F5F /* AppDelegate.swift */; };
-		6E5236991EE5F5930026552A /* OdometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5236981EE5F5930026552A /* OdometerViewController.swift */; };
 		739359C72B85CE07A90DD687ABAC4321 /* ios_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A29964B8F0B4C2F0A0FF7EA8C97BC6 /* ios_appUITests.swift */; };
 		7B54CA339D30C8697756BB99300E1ACA /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2737A4A5CAF7E4FDA2994A01F81561 /* AboutViewController.swift */; };
 		7B6CF50ACFDF9A71B26302E79F5F5767 /* CameraFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7A0EA5FD7A7B7F3816B72D92E4673C /* CameraFrameViewController.swift */; };
@@ -86,13 +86,13 @@
 		40B687E7761B32C937C275BE963E3053 /* Pods-ios-appUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-appUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-appUITests/Pods-ios-appUITests.release.xcconfig"; sourceTree = "<group>"; };
 		43BB7F97B2D9AC3F62F421EF05927DDC /* OnboardingVehicleInputFrameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingVehicleInputFrameViewController.swift; sourceTree = "<group>"; };
 		46205589B625778D643FB4CE3721428F /* VehicleFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleFilterViewController.swift; sourceTree = "<group>"; };
+		488F78DBDFAD73C3C6D5B2B8CE5C8546 /* OdometerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OdometerViewController.swift; sourceTree = "<group>"; };
 		4AA5C6592E672205AE7042E0E9F73B84 /* BLERouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLERouter.swift; sourceTree = "<group>"; };
 		4D7A0EA5FD7A7B7F3816B72D92E4673C /* CameraFrameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraFrameViewController.swift; sourceTree = "<group>"; };
 		53503EBC5433A018AA0C72B1285DD994 /* ios-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		578289527F9714E0BB9D02424C1DA42F /* ios_app.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ios_app.xcdatamodel; sourceTree = "<group>"; };
 		626147F27F3DDAE6969CD5185FC91B66 /* DriveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriveViewController.swift; sourceTree = "<group>"; };
 		6E446201498C1AB0DF67DE79DEECFF46 /* signInContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signInContainerViewController.swift; sourceTree = "<group>"; };
-		6E5236981EE5F5930026552A /* OdometerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OdometerViewController.swift; sourceTree = "<group>"; };
 		7155F0AF2F917F34B10454E020C1E03E /* Pods-ios-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-app/Pods-ios-app.debug.xcconfig"; sourceTree = "<group>"; };
 		72162C848D2DB61A577392B1849EB990 /* userRegistrationFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userRegistrationFormViewController.swift; sourceTree = "<group>"; };
 		726912D30FAE771354D27173DC9E3319 /* OnboardingOBDIIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingOBDIIViewController.swift; sourceTree = "<group>"; };
@@ -281,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				4D7A0EA5FD7A7B7F3816B72D92E4673C /* CameraFrameViewController.swift */,
+				488F78DBDFAD73C3C6D5B2B8CE5C8546 /* OdometerViewController.swift */,
 				FDF0DCF6EA7AB223AB3317B56B0B7A9E /* OnboardingAboutViewController.swift */,
 				354E5F06A9ED0DFE06BBF8B3F19B8F1F /* OnboardingAccountDetailsViewController.swift */,
 				CC0A5586F2B7638A92DC89C91088E985 /* OnboardingEnableFeaturesViewController.swift */,
@@ -293,7 +294,6 @@
 				6E446201498C1AB0DF67DE79DEECFF46 /* signInContainerViewController.swift */,
 				212B5F478D766551AB92A3C8AB4808B0 /* signInFormViewController.swift */,
 				72162C848D2DB61A577392B1849EB990 /* userRegistrationFormViewController.swift */,
-				6E5236981EE5F5930026552A /* OdometerViewController.swift */,
 			);
 			name = OnboardingViewControllers;
 			sourceTree = "<group>";
@@ -601,6 +601,7 @@
 				91996BDB2963FBF2FF8EC8E8B8649406 /* DB.swift in Sources */,
 				4E0CD37CBC72C156B52DC9628D9E9C56 /* DriveViewController.swift in Sources */,
 				585029EE2549657BC7C1ED9B03D8CE79 /* Location.swift in Sources */,
+				22AB5A3D20B584C70EA3E00AD915D076 /* OdometerViewController.swift in Sources */,
 				8CCBFC4B0280459A31E0445B928B9BEC /* OnboardingAboutViewController.swift in Sources */,
 				C62ED54BCF7EC6DD1BAAB340734366AB /* OnboardingAccountDetailsViewController.swift in Sources */,
 				E273EC3DEAB56CC0A0BCC3D8B059BA99 /* OnboardingEnableFeaturesViewController.swift in Sources */,
@@ -610,7 +611,6 @@
 				89C5314C8ACC42F27CDFF82EBDD903E1 /* OnboardingVehicleFormViewController.swift in Sources */,
 				1F24C44017B4827B3533A27C30B1D4C7 /* OnboardingVehicleInputFrameViewController.swift in Sources */,
 				16FF7BCCC040DBA9854BD3F5B4B7EEE7 /* ProgressHUD.swift in Sources */,
-				6E5236991EE5F5930026552A /* OdometerViewController.swift in Sources */,
 				233DCF1D5EDD9BB12974A644348B0491 /* SettingsFormViewController.swift in Sources */,
 				C01E2D6FD39B48F9667FD3FF37276071 /* SettingsViewController.swift in Sources */,
 				9344BFC53DD62E2B252A09F182675EE1 /* TabBarViewController.swift in Sources */,

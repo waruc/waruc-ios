@@ -3142,14 +3142,6 @@ Cg
                                     <action selector="nextButtonPressed:" destination="Wgp-Tw-7Lw" eventType="touchUpInside" id="OqJ-Mu-lBj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RO9-7o-VR1">
-                                <rect key="frame" x="321" y="629" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Skip"/>
-                                <connections>
-                                    <segue destination="QDr-mo-3Kl" kind="show" id="Nqg-US-0S4"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
@@ -3422,22 +3414,6 @@ Cg
                                 </state>
                                 <connections>
                                     <action selector="dismissVehicleForm:" destination="haP-8d-rx7" eventType="touchUpInside" id="xb3-Kg-Kab"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vir-G8-8fB">
-                                <rect key="frame" x="337" y="629" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Skip"/>
-                                <connections>
-                                    <segue destination="463-KA-cS2" kind="show" id="4W5-Bg-ODf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2BQ-C5-pwa">
-                                <rect key="frame" x="337" y="503" width="31" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="New"/>
-                                <connections>
-                                    <segue destination="R1t-dg-YCX" kind="show" id="m2f-zL-0gv"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -3821,10 +3797,8 @@ Cg
         <image name="wheel" width="147" height="147"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZKK-aA-lUm"/>
+        <segue reference="HyD-Mn-DLM"/>
         <segue reference="Vyx-nc-J1K"/>
-        <segue reference="yEm-V2-paG"/>
         <segue reference="0wl-gM-U8e"/>
-        <segue reference="yuY-F1-JLR"/>
     </inferredMetricsTieBreakers>
 </document>
